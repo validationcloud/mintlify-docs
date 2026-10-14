@@ -1,0 +1,50 @@
+---
+title: "getIdentity"
+---
+
+Returns the identity pubkey for the current node.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` The result will be a JSON object with the following fields:
+
+* `identity` The public key identity of the current node as base-58 encoded string.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"identity": "HnnWuaRUp63oBLNbxpo5wjAuazp2ukobyUvGsvMKX85d"
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getIdentity"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getIdentity"}'
+    
+```
+
+</CodeGroup>

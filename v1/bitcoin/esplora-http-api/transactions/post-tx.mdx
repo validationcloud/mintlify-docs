@@ -1,0 +1,35 @@
+---
+title: "POST /tx"
+---
+
+Broadcast a raw transaction to the network.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`hex tx data`** - string, required in request body.
+
+## Returns
+
+The txid will be returned on success.
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl --request POST \
+  --url https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx \
+  --header 'Content-Type: text/plain' \
+  --data <HEX_DATA>
+```
+
+```bash title="testnet"
+curl --request POST \
+  --url https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx \
+  --header 'Content-Type: text/plain' \
+  --data <HEX_DATA>
+```
+
+</CodeGroup>

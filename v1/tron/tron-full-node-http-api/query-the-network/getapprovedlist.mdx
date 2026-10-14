@@ -1,0 +1,101 @@
+---
+title: "GetApprovedList"
+---
+
+Query the account address list which signed the transaction.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `signature` - Array of strings - <span style={{color: "red"}}>Required</span> - The signature list of transaction
+* `raw_data` - json- <span style={{color: "red"}}>Required</span> - The transaction raw data
+* `visible` - Boolean - Optional. Whether the address is in base58check format.
+
+## **Returns**
+
+Json object: including the signed account address list `approved_list`, and the transaction information `transaction`.
+
+```bash
+// Result
+{
+  "result": {},
+  "approved_list": [
+    "41d795dc6b63cccd17ef7a7cc22116d18089f5acbb",
+    "41ac1e00f5a45c769b7da5e4148c129ee716e4973e"
+  ],
+  "transaction": {
+    "result": {
+      "result": true
+    },
+    "txid": "120c37304bef81be37461ad3fc6bc7f5105db2d1d701c54f95093943dac607de",
+    "transaction": {
+      "signature": [
+        "e0bd4a60f1b3c89d4da3894d400e7e32385f6dd690aee17fdac4e016cdb294c5128b66f62f3947a7182c015547496eba95510c113bda2a361d811b829343c36501",
+        "596ead6439d0f381e67f30b1ed6b3687f2bd53ce5140cdb126cfe4183235804741eeaf79b4e91f251fd7042380a9485d4d29d67f112d5387bc7457b355cd3c4200"
+      ],
+      "txID": "120c37304bef81be37461ad3fc6bc7f5105db2d1d701c54f95093943dac607de",
+      "raw_data": {
+        "contract": [
+          {
+            "parameter": {
+              "value": {
+                "amount": 1000000,
+                "owner_address": "41a7d8a35b260395c14aa456297662092ba3b76fc0",
+                "to_address": "415a523b449890854c8fc460ab602df9f31fe4293f"
+              },
+              "type_url": "type.googleapis.com/protocol.TransferContract"
+            },
+            "type": "TransferContract"
+          }
+        ],
+        "ref_block_bytes": "163d",
+        "ref_block_hash": "77ef4ace148b05ba",
+        "expiration": 1555664823000,
+        "timestamp": 1555664763418
+      },
+      "raw_data_hex": "0a02163d220877ef4ace148b05ba40d8c5e5a6a32d5a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a1541a7d8a35b260395c14aa456297662092ba3b76fc01215415a523b449890854c8fc460ab602df9f31fe4293f18c0843d709af4e1a6a32d"
+    }
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getapprovedlist \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "signature": [
+    "e0bd4a60f1b3c89d4da3894d400e7e32385f6dd690aee17fdac4e016cdb294c5128b66f62f3947a7182c015547496eba95510c113bda2a361d811b829343c36501",
+    "596ead6439d0f381e67f30b1ed6b3687f2bd53ce5140cdb126cfe4183235804741eeaf79b4e91f251fd7042380a9485d4d29d67f112d5387bc7457b355cd3c4200"
+  ],
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "amount": 1000000,
+            "owner_address": "41A7D8A35B260395C14AA456297662092BA3B76FC0",
+            "to_address": "415A523B449890854C8FC460AB602DF9F31FE4293F"
+          },
+          "type_url": "type.googleapis.com/protocol.TransferContract"
+        },
+        "type": "TransferContract"
+      }
+    ],
+    "ref_block_bytes": "163d",
+    "ref_block_hash": "77ef4ace148b05ba",
+    "expiration": 1555664823000,
+    "timestamp": 1555664763418
+  },
+  "visible": false
+}
+'
+```
+
+</CodeGroup>

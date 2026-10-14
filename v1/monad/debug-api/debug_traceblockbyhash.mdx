@@ -1,0 +1,91 @@
+---
+title: "debug_traceBlockByHash"
+---
+
+Returns the tracing result by executing all transactions in the block specified by the block hash with a tracer.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`blockHash` - String - <span style={{color: "red"}}>Required</span>  - The block hash as a string.
+
+`object` - Object - <span style={{color: "red"}}>Required</span>  - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or`prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - An array of transactions for that block, each containing:
+
+* `txHash` - The transaction hash of the transaction
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+* `calls` - A list of sub-calls.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		{
+			"txHash": "0xa74f51eef286315e0328ccbdaedc7f7af75071ad3345f190c0c5bc47d0a6546e",
+			"result": {
+				"type": "CALL",
+				"from": "0x974578674eaa0ac8d4e3c43723a91e2963acc932",
+				"to": "0xb2f82d0f38dc453d596ad40a37799446cc89274a",
+				"value": "0x0",
+				"gas": "0x25ccf",
+				"gasUsed": "0x25ccf",
+				"input": "0x7d41c86e0000000000000000000000000000000000000000000000000003328b944c4000000000000000000000000000974578674eaa0ac8d4e3c43723a91e2963acc932000000000000000000000000974578674eaa0ac8d4e3c43723a91e2963acc932",
+				"output": "0x000000000000000000000000000000000000000000000000000000000076f415",
+				"calls": [
+					{
+						"type": "DELEGATECALL",
+						"from": "0xb2f82d0f38dc453d596ad40a37799446cc89274a",
+						"to": "0x986b003f510476d43c623c3e15fd1b1dcd46f81f",
+						"value": "0x0",
+						"gas": "0x1ebe3",
+						"gasUsed": "0x1ea18",
+						"input": "0x7d41c86e0000000000000000000000000000000000000000000000000003328b944c4000000000000000000000000000974578674eaa0ac8d4e3c43723a91e2963acc932000000000000000000000000974578674eaa0ac8d4e3c43723a91e2963acc932",
+						"output": "0x000000000000000000000000000000000000000000000000000000000076f415"
+					}
+				]
+			}
+		},
+		...
+	]
+	...
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_traceBlockByHash","params":["0x1f02ebda842084489063ae829b9440cd2d60ffabd36811dac943f9f695f325d8", {"tracer": "callTracer","tracerConfig": { "onlyTopCall": false}}],"id":1}'
+    
+```
+
+```bash title="testnet"
+curl https://testnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_traceBlockByHash","params":["0x1f02ebda842084489063ae829b9440cd2d60ffabd36811dac943f9f695f325d8", {"tracer": "callTracer","tracerConfig": { "onlyTopCall": false}}],"id":1}'
+    
+```
+
+</CodeGroup>

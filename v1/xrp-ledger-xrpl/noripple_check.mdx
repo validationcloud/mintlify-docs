@@ -1,0 +1,53 @@
+---
+title: "noripple_check"
+---
+
+Provides a quick way to check the status of the Default Ripple field for an account and the No Ripple flag of its trust lines, compared with the recommended settings.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/account-methods/noripple_check)
+
+## **Parameters**
+
+* `account` (string, required) The address of the account.
+* `role` (string, required) Whether the address refers to a `gateway` or `user`. Recommendations depend on the role of the account.
+* `transactions` (boolean, optional) If `true`, include an array of suggested transactions, as JSON objects, that you can sign and submit to fix the problems. The default is `false`.
+* `limit` (unsigned integer, optional) The maximum number of trust line problems to include in the results. Defaults to 300.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+
+## Returns
+
+* `ledger_current_index` or `ledger_index` (number) The ledger index of the ledger used to calculate these results.
+* `problems` (array) Array of strings with human-readable descriptions of the problems. Empty when the account matches the recommended settings.
+* `transactions` (array) May be omitted. If the request specified `transactions` as `true`, the JSON form of transactions that fix the described problems.
+* `validated` (boolean) If `true`, the information comes from a validated ledger version.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "95DE9B70294B40B116066C638CDE84E963982F604050D08C6BAC141B39D6B36E",
+    "ledger_index": 107292977,
+    "problems": [],
+    "validated": true,
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"noripple_check","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","role":"gateway","ledger_index":"validated","limit":2}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"noripple_check","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","role":"gateway","ledger_index":"validated","limit":2}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

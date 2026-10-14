@@ -1,0 +1,64 @@
+---
+title: "Overview"
+---
+
+Unichain is a DeFi-focused Ethereum Layer 2 built by Uniswap Labs on the OP Stack. It is part of the Optimism Superchain and produces a block every second.
+
+Developer docs: [https://docs.unichain.org](https://docs.unichain.org)
+
+Mainnet block explorer: [https://uniscan.xyz](https://uniscan.xyz)
+
+### Network Support
+
+| Network          | Full History / Archive                                                                    | HTTPS | WSS |
+| ---------------- | ----------------------------------------------------------------------------------------- | ----- | --- |
+| Unichain Mainnet | <p>Blocks, receipts and logs ✅ to genesis<br /><br />State and Debug ❌ (last ~10,000 blocks)</p> | ✅     | ✅   |
+
+> Unichain Mainnet keeps historical state for roughly the last 10,000 blocks, about 2.8 hours at one block per second. State methods (`eth_call`, `eth_createAccessList`, `eth_estimateGas`, `eth_getBalance`, `eth_getCode`, `eth_getProof`, `eth_getStorageAt`, `eth_getTransactionCount`, `eth_simulateV1`) and the [Debug API](/v1/unichain/debug-api) work for blocks inside that window. Older blocks return JSON-RPC error `-32603` with a message that contains `state at block #<number> is pruned`.
+
+> The Trace API (`trace_*`) is not available on Unichain. Use the [Debug API](/v1/unichain/debug-api) for call traces.
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Methods & Compute Units
+
+<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>debug_getBadBlocks</td><td>80</td></tr><tr><td>debug_traceBlockByHash</td><td>80</td></tr><tr><td>debug_traceBlockByNumber</td><td>80</td></tr><tr><td>debug_traceCall</td><td>80</td></tr><tr><td>debug_traceTransaction</td><td>80</td></tr><tr><td>eth_accounts</td><td>20</td></tr><tr><td>eth_blobBaseFee</td><td>10</td></tr><tr><td>eth_blockNumber</td><td>20</td></tr><tr><td>eth_call</td><td>40</td></tr><tr><td>eth_chainId</td><td>10</td></tr><tr><td>eth_createAccessList</td><td>20</td></tr><tr><td>eth_estimateGas</td><td>40</td></tr><tr><td>eth_feeHistory</td><td>20</td></tr><tr><td>eth_gasPrice</td><td>40</td></tr><tr><td>eth_getBalance</td><td>40</td></tr><tr><td>eth_getBlockByHash</td><td>40</td></tr><tr><td>eth_getBlockByNumber</td><td>40</td></tr><tr><td>eth_getBlockReceipts</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByHash</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByNumber</td><td>40</td></tr><tr><td>eth_getCode</td><td>40</td></tr><tr><td>eth_getFilterChanges</td><td>40</td></tr><tr><td>eth_getFilterLogs</td><td>40</td></tr><tr><td>eth_getLogs</td><td>80</td></tr><tr><td>eth_getProof</td><td>40</td></tr><tr><td>eth_getRawTransactionByHash</td><td>10</td></tr><tr><td>eth_getStorageAt</td><td>40</td></tr><tr><td>eth_getTransactionByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByHash</td><td>40</td></tr><tr><td>eth_getTransactionCount</td><td>40</td></tr><tr><td>eth_getTransactionReceipt</td><td>40</td></tr><tr><td>eth_getUncleByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getUncleByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getUncleCountByBlockHash</td><td>40</td></tr><tr><td>eth_getUncleCountByBlockNumber</td><td>40</td></tr><tr><td>eth_maxPriorityFeePerGas</td><td>20</td></tr><tr><td>eth_newBlockFilter</td><td>40</td></tr><tr><td>eth_newFilter</td><td>40</td></tr><tr><td>eth_newPendingTransactionFilter</td><td>40</td></tr><tr><td>eth_protocolVersion</td><td>10</td></tr><tr><td>eth_sendRawTransaction</td><td>80</td></tr><tr><td>eth_simulateV1</td><td>40</td></tr><tr><td>eth_subscribe</td><td>20</td></tr><tr><td>eth_syncing</td><td>10</td></tr><tr><td>eth_uninstallFilter</td><td>20</td></tr><tr><td>eth_unsubscribe</td><td>20</td></tr><tr><td>net_listening</td><td>10</td></tr><tr><td>net_peerCount</td><td>20</td></tr><tr><td>net_version</td><td>10</td></tr><tr><td>txpool_content</td><td>500</td></tr><tr><td>web3_clientVersion</td><td>40</td></tr><tr><td>web3_sha3</td><td>40</td></tr></tbody></table>
+
+### Endpoint Capabilities
+
+Unichain endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* blockchain data queries
+* smart contract deployment and interaction
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* real-time transaction monitoring
+* event subscriptions
+* live dashboards and analytics
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on Unichain, connect your application to a Unichain endpoint and send standard Ethereum JSON-RPC requests.
+
+Example request:
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>

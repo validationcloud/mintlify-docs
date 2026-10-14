@@ -1,0 +1,44 @@
+---
+title: "Docs"
+---
+
+Will allow you to see the version of the Mirror Node that Validation Cloud is running by looking at the `openapi.yml` file.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+```json
+// Result
+openapi: 3.0.3
+paths:
+...
+info:
+  title: Hedera Mirror Node REST API
+  version: 0.107.2
+...
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hedera.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v1/docs/openapi.yml \
+    -X GET
+
+# Or visit the above URL in your browser, note you will need to include your API Key.
+```
+
+```bash title="testnet"
+curl https://testnet.hedera.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v1/docs/openapi.yml \
+    -X GET
+
+# Or visit the above URL in your browser, note you will need to include your API Key.
+```
+
+</CodeGroup>

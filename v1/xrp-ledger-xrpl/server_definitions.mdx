@@ -1,0 +1,86 @@
+---
+title: "server_definitions"
+---
+
+Returns an SDK-compatible `definitions.json` generated from the running server, containing the field, type, ledger entry type, transaction type and result code definitions needed to serialize and deserialize the XRP Ledger's binary format.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/server-info-methods/server_definitions)
+
+## **Parameters**
+
+* `hash` (string, optional) If included and the hash matches the server's hash, the full set of definitions is not returned.
+
+## Returns
+
+* `hash` (string) A hash of the definitions. Send it back in a later request to skip the full payload when nothing has changed.
+* `TYPES` (object) Map of serialized type names to type codes.
+* `FIELDS` (array) Array of `[field name, field info]` pairs, where the info object has `isSerialized`, `isSigningField`, `isVLEncoded`, `nth` and `type`.
+* `LEDGER_ENTRY_TYPES` (object) Map of ledger entry type names to type codes.
+* `TRANSACTION_TYPES` (object) Map of transaction type names to type codes.
+* `TRANSACTION_RESULTS` (object) Map of transaction result code names to numeric codes.
+* `TRANSACTION_FORMATS`, `LEDGER_ENTRY_FORMATS`, `TRANSACTION_FLAGS`, `LEDGER_ENTRY_FLAGS`, `ACCOUNT_SET_FLAGS` (objects) The fields and flags of each transaction and ledger entry type.
+
+```bash
+// Result
+{
+  "result": {
+    "hash": "1EA05B0FC11101F7C500BD0DAC794A8BC746A7FBA6250B75489603EB820E0FF5",
+    "TYPES": {
+      "AccountID": 8,
+      "Amount": 6,
+      "Blob": 7
+    },
+    "LEDGER_ENTRY_TYPES": {
+      "AMM": 121,
+      "AccountRoot": 97,
+      "Amendments": 102
+    },
+    "FIELDS": [
+      [
+        "ObjectEndMarker",
+        {
+          "isSerialized": true,
+          "isSigningField": true,
+          "isVLEncoded": false,
+          "nth": 1,
+          "type": "STObject"
+        }
+      ],
+      // ...
+    ],
+    "TRANSACTION_RESULTS": {
+      "tecAMM_ACCOUNT": 168,
+      "tecAMM_BALANCE": 163
+    },
+    "TRANSACTION_TYPES": {
+      "AMMBid": 39,
+      "AMMClawback": 31
+    },
+    "TRANSACTION_FORMATS": { // ... },
+    "LEDGER_ENTRY_FORMATS": { // ... },
+    "TRANSACTION_FLAGS": { // ... },
+    "LEDGER_ENTRY_FLAGS": { // ... },
+    "ACCOUNT_SET_FLAGS": { // ... },
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"server_definitions","params":[{}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"server_definitions"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> The full response is around 80 KB. The example above keeps only the first entries of each section; the elided sections are marked with `// ...`.

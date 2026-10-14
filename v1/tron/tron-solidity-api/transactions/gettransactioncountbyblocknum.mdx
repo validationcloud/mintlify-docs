@@ -1,0 +1,35 @@
+---
+title: "GetTransactionCountByBlockNum"
+---
+
+Get transaction count in a block by block number (Confirmed state).
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `num` - Int32 - <span style={{color: "red"}}>Required</span> - Block height
+
+## **Returns**
+
+`count` - int64 : the number of transactions in the block
+
+```json
+// Result
+{
+	"count": 409
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/gettransactioncountbyblocknum \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"num":75957003}'
+```
+
+</CodeGroup>

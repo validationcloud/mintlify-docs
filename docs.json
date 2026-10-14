@@ -8,12 +8,2841 @@
     "dark": "#166E3F"
   },
   "favicon": "/favicon.ico",
-  "navigation": {
-    "groups": [
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://www.validationcloud.io"
+  },
+  "navbar": {
+    "links": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index"
+        "label": "Status",
+        "href": "https://status.validationcloud.io/"
+      },
+      {
+        "label": "Contact",
+        "href": "https://www.validationcloud.io/contact"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://app.validationcloud.io"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/mavrik/mavrik",
+      "destination": "/mavrik"
+    },
+    {
+      "source": "/staking/staking",
+      "destination": "/staking"
+    },
+    {
+      "source": "/staking/about/staking",
+      "destination": "/staking"
+    },
+    {
+      "source": "/staking/about",
+      "destination": "/staking"
+    },
+    {
+      "source": "/staking/about/faq",
+      "destination": "/staking/staking/faq"
+    },
+    {
+      "source": "/staking/ethereum",
+      "destination": "/staking/ethereum/staking-tutorial"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/authenticating-with-auth0",
+      "destination": "/staking/ethereum/staking-tutorial/api/authenticating-with-auth0"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/broadcast-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/broadcast-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/full-code",
+      "destination": "/staking/ethereum/staking-tutorial/api/full-code"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/get-staking-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/get-staking-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/prerequisites",
+      "destination": "/staking/ethereum/staking-tutorial/api/prerequisites"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/setting-up-a-wallet",
+      "destination": "/staking/ethereum/staking-tutorial/api/setting-up-a-wallet"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/signing-a-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/signing-a-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/authenticating-with-auth0",
+      "destination": "/staking/ethereum/staking-tutorial/api/authenticating-with-auth0"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/broadcast-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/broadcast-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/full-code",
+      "destination": "/staking/ethereum/staking-tutorial/api/full-code"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/get-staking-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/get-staking-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/setting-up-a-wallet",
+      "destination": "/staking/ethereum/staking-tutorial/api/setting-up-a-wallet"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/signing-a-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/signing-a-transaction"
+    },
+    {
+      "source": "/staking/solana",
+      "destination": "/staking/solana/solana-staking-reporting-api"
+    },
+    {
+      "source": "/staking/staking/staking-overview",
+      "destination": "/staking"
+    },
+    {
+      "source": "/v1/about",
+      "destination": "/v1"
+    },
+    {
+      "source": "/v1/about/supported-private-chains",
+      "destination": "/v1/about/supported-chains"
+    },
+    {
+      "source": "/v1/aptos",
+      "destination": "/v1/aptos/overview"
+    },
+    {
+      "source": "/v1/arbitrum",
+      "destination": "/v1/arbitrum/overview"
+    },
+    {
+      "source": "/v1/arc",
+      "destination": "/v1/arc/overview"
+    },
+    {
+      "source": "/v1/avalanche",
+      "destination": "/v1/avalanche/overview"
+    },
+    {
+      "source": "/v1/base",
+      "destination": "/v1/base/overview"
+    },
+    {
+      "source": "/v1/berachain",
+      "destination": "/v1/berachain/overview"
+    },
+    {
+      "source": "/v1/bitcoin",
+      "destination": "/v1/bitcoin/overview"
+    },
+    {
+      "source": "/v1/bitcoin/indexer-rest-api/:slug*",
+      "destination": "/v1/bitcoin/blockbook-indexer-rest-api/:slug*"
+    },
+    {
+      "source": "/v1/bitcoin/indexer-rest-api",
+      "destination": "/v1/bitcoin/blockbook-indexer-rest-api"
+    },
+    {
+      "source": "/v1/bsc",
+      "destination": "/v1/bsc/overview"
+    },
+    {
+      "source": "/v1/conflux",
+      "destination": "/v1/conflux/overview"
+    },
+    {
+      "source": "/v1/conflux/espace-execution-api/eth_subscribe",
+      "destination": "/v1/conflux/execution-api/eth_subscribe"
+    },
+    {
+      "source": "/v1/conflux/espace-execution-api/eth_unsubscribe",
+      "destination": "/v1/conflux/execution-api/eth_unsubscribe"
+    },
+    {
+      "source": "/v1/ethereum",
+      "destination": "/v1/ethereum/overview"
+    },
+    {
+      "source": "/v1/ethereum/beacon-api/eth-v1-beacon-blocks-block_id-attestations/eth-v1-beacon-states-state_id-sync_committees",
+      "destination": "/v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-sync_committees"
+    },
+    {
+      "source": "/v1/hedera",
+      "destination": "/v1/hedera/overview"
+    },
+    {
+      "source": "/v1/hyperliquid",
+      "destination": "/v1/hyperliquid/overview"
+    },
+    {
+      "source": "/v1/icp",
+      "destination": "/v1/icp/overview"
+    },
+    {
+      "source": "/v1/mezo",
+      "destination": "/v1/mezo/overview"
+    },
+    {
+      "source": "/v1/monad",
+      "destination": "/v1/monad/overview"
+    },
+    {
+      "source": "/v1/opbnb",
+      "destination": "/v1/opbnb/overview"
+    },
+    {
+      "source": "/v1/optimism",
+      "destination": "/v1/optimism/overview"
+    },
+    {
+      "source": "/v1/polygon",
+      "destination": "/v1/polygon/overview"
+    },
+    {
+      "source": "/v1/rayls",
+      "destination": "/v1/rayls/overview"
+    },
+    {
+      "source": "/v1/robinhood/:slug*",
+      "destination": "/v1/robinhood-chain/:slug*"
+    },
+    {
+      "source": "/v1/robinhood-chain",
+      "destination": "/v1/robinhood-chain/overview"
+    },
+    {
+      "source": "/v1/solana",
+      "destination": "/v1/solana/overview"
+    },
+    {
+      "source": "/v1/somnia",
+      "destination": "/v1/somnia/overview"
+    },
+    {
+      "source": "/v1/stellar",
+      "destination": "/v1/stellar/overview"
+    },
+    {
+      "source": "/v1/stellar/soroban-api/:slug*",
+      "destination": "/v1/stellar/stellar-rpc-formerly-soroban-api/:slug*"
+    },
+    {
+      "source": "/v1/stellar/soroban-api",
+      "destination": "/v1/stellar/stellar-rpc-formerly-soroban-api"
+    },
+    {
+      "source": "/v1/tempo",
+      "destination": "/v1/tempo/overview"
+    },
+    {
+      "source": "/v1/tron",
+      "destination": "/v1/tron/overview"
+    },
+    {
+      "source": "/v1/unichain",
+      "destination": "/v1/unichain/overview"
+    },
+    {
+      "source": "/v1/wemix",
+      "destination": "/v1/wemix/overview"
+    },
+    {
+      "source": "/v1/xrp-ledger-xrpl",
+      "destination": "/v1/xrp-ledger-xrpl/overview"
+    },
+    {
+      "source": "/v1/xrpl/:slug*",
+      "destination": "/v1/xrp-ledger-xrpl/:slug*"
+    },
+    {
+      "source": "/v1/about/admin-api-keys/models",
+      "destination": "/v1/about/admin-api-keys"
+    },
+    {
+      "source": "/v1/execution-api/:slug*",
+      "destination": "/v1/ethereum/execution-api/:slug*"
+    },
+    {
+      "source": "/v1/execution-api",
+      "destination": "/v1/ethereum/execution-api"
+    }
+  ],
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Node API",
+        "groups": [
+          {
+            "group": "About",
+            "pages": [
+              "v1/index",
+              "v1/about/billing",
+              "v1/about/supported-chains",
+              "v1/about/team-accounts",
+              "v1/about/logs",
+              {
+                "group": "Security",
+                "root": "v1/about/security/index",
+                "pages": [
+                  "v1/about/security/allow-lists-for-node-api-endpoints",
+                  "v1/about/security/two-factor-authentication-2fa-for-sign-in"
+                ]
+              },
+              "v1/about/development-centre-or-support-faqs",
+              "v1/about/faucets",
+              {
+                "group": "Admin API Keys",
+                "root": "v1/about/admin-api-keys/index",
+                "pages": [
+                  "v1/about/admin-api-keys/account",
+                  "v1/about/admin-api-keys/chains",
+                  "v1/about/admin-api-keys/compute-unit-costs",
+                  "v1/about/admin-api-keys/endpoints",
+                  "v1/about/admin-api-keys/create-endpoint",
+                  "v1/about/admin-api-keys/get-endpoint",
+                  "v1/about/admin-api-keys/delete-endpoint",
+                  "v1/about/admin-api-keys/usage",
+                  "v1/about/admin-api-keys/endpoint-usage",
+                  "v1/about/admin-api-keys/health"
+                ]
+              },
+              "v1/about/changelog"
+            ]
+          },
+          {
+            "group": "Aptos",
+            "pages": [
+              "v1/aptos/overview",
+              {
+                "group": "Endpoints",
+                "root": "v1/aptos/endpoints/index",
+                "pages": [
+                  {
+                    "group": "Accounts",
+                    "root": "v1/aptos/endpoints/accounts/index",
+                    "pages": [
+                      "v1/aptos/endpoints/accounts/get-account",
+                      "v1/aptos/endpoints/accounts/get-account-resources",
+                      "v1/aptos/endpoints/accounts/get-account-resource",
+                      "v1/aptos/endpoints/accounts/get-account-modules",
+                      "v1/aptos/endpoints/accounts/get-account-module"
+                    ]
+                  },
+                  {
+                    "group": "Blocks",
+                    "root": "v1/aptos/endpoints/blocks/index",
+                    "pages": [
+                      "v1/aptos/endpoints/blocks/get-blocks-by-height",
+                      "v1/aptos/endpoints/blocks/get-blocks-by-version"
+                    ]
+                  },
+                  {
+                    "group": "Events",
+                    "root": "v1/aptos/endpoints/events/index",
+                    "pages": [
+                      "v1/aptos/endpoints/events/get-events-by-creation-number",
+                      "v1/aptos/endpoints/events/get-events-by-event-handle"
+                    ]
+                  },
+                  {
+                    "group": "General",
+                    "root": "v1/aptos/endpoints/general/index",
+                    "pages": [
+                      "v1/aptos/endpoints/general/get-ledger-info"
+                    ]
+                  },
+                  {
+                    "group": "Tables",
+                    "root": "v1/aptos/endpoints/tables/index",
+                    "pages": [
+                      "v1/aptos/endpoints/tables/get-table-item",
+                      "v1/aptos/endpoints/tables/get-raw-table-iitem"
+                    ]
+                  },
+                  {
+                    "group": "Transactions",
+                    "root": "v1/aptos/endpoints/transactions/index",
+                    "pages": [
+                      "v1/aptos/endpoints/transactions/get-transactions",
+                      "v1/aptos/endpoints/transactions/submit-transaction",
+                      "v1/aptos/endpoints/transactions/get-transaction-by-hash",
+                      "v1/aptos/endpoints/transactions/get-transaction-by-version",
+                      "v1/aptos/endpoints/transactions/get-account-transactions",
+                      "v1/aptos/endpoints/transactions/submit-batch-transactions",
+                      "v1/aptos/endpoints/transactions/simulate-transaction",
+                      "v1/aptos/endpoints/transactions/encode-submission",
+                      "v1/aptos/endpoints/transactions/estimate-gas-price"
+                    ]
+                  },
+                  {
+                    "group": "View",
+                    "root": "v1/aptos/endpoints/view/index",
+                    "pages": [
+                      "v1/aptos/endpoints/view/execute-view-function-of-a-module"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Arbitrum",
+            "pages": [
+              "v1/arbitrum/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/arbitrum/execution-api/index",
+                "pages": [
+                  "v1/arbitrum/execution-api/eth_accounts",
+                  "v1/arbitrum/execution-api/eth_blocknumber",
+                  "v1/arbitrum/execution-api/eth_call",
+                  "v1/arbitrum/execution-api/eth_chainid",
+                  "v1/arbitrum/execution-api/eth_estimategas",
+                  "v1/arbitrum/execution-api/eth_gasprice",
+                  "v1/arbitrum/execution-api/eth_getbalance",
+                  "v1/arbitrum/execution-api/eth_getblockbyhash",
+                  "v1/arbitrum/execution-api/eth_getblockbynumber",
+                  "v1/arbitrum/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/arbitrum/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/arbitrum/execution-api/eth_getcode",
+                  "v1/arbitrum/execution-api/eth_getfilterchanges",
+                  "v1/arbitrum/execution-api/eth_getfilterlogs",
+                  "v1/arbitrum/execution-api/eth_getlogs",
+                  "v1/arbitrum/execution-api/eth_getstorageat",
+                  "v1/arbitrum/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/arbitrum/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/arbitrum/execution-api/eth_gettransactionbyhash",
+                  "v1/arbitrum/execution-api/eth_gettransactioncount",
+                  "v1/arbitrum/execution-api/eth_gettransactionreceipt",
+                  "v1/arbitrum/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/arbitrum/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/arbitrum/execution-api/eth_getunclecountbyblockhash",
+                  "v1/arbitrum/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/arbitrum/execution-api/eth_maxpriorityfeepergas",
+                  "v1/arbitrum/execution-api/eth_newblockfilter",
+                  "v1/arbitrum/execution-api/eth_newfilter",
+                  "v1/arbitrum/execution-api/eth_newpendingtransactionfilter",
+                  "v1/arbitrum/execution-api/eth_sendrawtransaction",
+                  "v1/arbitrum/execution-api/eth_subscribe",
+                  "v1/arbitrum/execution-api/eth_syncing",
+                  "v1/arbitrum/execution-api/eth_uninstallfilter",
+                  "v1/arbitrum/execution-api/eth_unsubscribe",
+                  "v1/arbitrum/execution-api/net_listening",
+                  "v1/arbitrum/execution-api/net_peercount",
+                  "v1/arbitrum/execution-api/net_version",
+                  "v1/arbitrum/execution-api/web3_clientversion",
+                  "v1/arbitrum/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/arbitrum/debug-api/index",
+                "pages": [
+                  "v1/arbitrum/debug-api/debug_traceblockbyhash",
+                  "v1/arbitrum/debug-api/debug_traceblockbynumber",
+                  "v1/arbitrum/debug-api/debug_tracecall",
+                  "v1/arbitrum/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Arc",
+            "pages": [
+              "v1/arc/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/arc/execution-api/index",
+                "pages": [
+                  "v1/arc/execution-api/eth_blocknumber",
+                  "v1/arc/execution-api/eth_call",
+                  "v1/arc/execution-api/eth_chainid",
+                  "v1/arc/execution-api/eth_createaccesslist",
+                  "v1/arc/execution-api/eth_estimategas",
+                  "v1/arc/execution-api/eth_feehistory",
+                  "v1/arc/execution-api/eth_gasprice",
+                  "v1/arc/execution-api/eth_getbalance",
+                  "v1/arc/execution-api/eth_getblockbyhash",
+                  "v1/arc/execution-api/eth_getblockbynumber",
+                  "v1/arc/execution-api/eth_getblockreceipts",
+                  "v1/arc/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/arc/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/arc/execution-api/eth_getcode",
+                  "v1/arc/execution-api/eth_getfilterchanges",
+                  "v1/arc/execution-api/eth_getfilterlogs",
+                  "v1/arc/execution-api/eth_getlogs",
+                  "v1/arc/execution-api/eth_getproof",
+                  "v1/arc/execution-api/eth_getstorageat",
+                  "v1/arc/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/arc/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/arc/execution-api/eth_gettransactionbyhash",
+                  "v1/arc/execution-api/eth_gettransactioncount",
+                  "v1/arc/execution-api/eth_gettransactionreceipt",
+                  "v1/arc/execution-api/eth_getunclecountbyblockhash",
+                  "v1/arc/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/arc/execution-api/eth_maxpriorityfeepergas",
+                  "v1/arc/execution-api/eth_newblockfilter",
+                  "v1/arc/execution-api/eth_newfilter",
+                  "v1/arc/execution-api/eth_newpendingtransactionfilter",
+                  "v1/arc/execution-api/eth_sendrawtransaction",
+                  "v1/arc/execution-api/eth_simulatev1",
+                  "v1/arc/execution-api/eth_subscribe",
+                  "v1/arc/execution-api/eth_syncing",
+                  "v1/arc/execution-api/eth_uninstallfilter",
+                  "v1/arc/execution-api/eth_unsubscribe",
+                  "v1/arc/execution-api/net_listening",
+                  "v1/arc/execution-api/net_peercount",
+                  "v1/arc/execution-api/net_version",
+                  "v1/arc/execution-api/txpool_content",
+                  "v1/arc/execution-api/web3_clientversion",
+                  "v1/arc/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/arc/debug-api/index",
+                "pages": [
+                  "v1/arc/debug-api/debug_traceblockbyhash",
+                  "v1/arc/debug-api/debug_traceblockbynumber",
+                  "v1/arc/debug-api/debug_tracecall",
+                  "v1/arc/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Trace API",
+                "root": "v1/arc/trace-api/index",
+                "pages": [
+                  "v1/arc/trace-api/trace_block",
+                  "v1/arc/trace-api/trace_call",
+                  "v1/arc/trace-api/trace_filter",
+                  "v1/arc/trace-api/trace_get",
+                  "v1/arc/trace-api/trace_rawtransaction",
+                  "v1/arc/trace-api/trace_replayblocktransactions",
+                  "v1/arc/trace-api/trace_replaytransaction",
+                  "v1/arc/trace-api/trace_transaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Avalanche",
+            "pages": [
+              "v1/avalanche/overview",
+              {
+                "group": "C-Chain",
+                "root": "v1/avalanche/c-chain/index",
+                "pages": [
+                  "v1/avalanche/c-chain/eth_accounts",
+                  "v1/avalanche/c-chain/eth_blocknumber",
+                  "v1/avalanche/c-chain/eth_call",
+                  "v1/avalanche/c-chain/eth_chainid",
+                  "v1/avalanche/c-chain/eth_estimategas",
+                  "v1/avalanche/c-chain/eth_gasprice",
+                  "v1/avalanche/c-chain/eth_getbalance",
+                  "v1/avalanche/c-chain/eth_getblockbyhash",
+                  "v1/avalanche/c-chain/eth_getblockbynumber",
+                  "v1/avalanche/c-chain/eth_getblocktransactioncountbyhash",
+                  "v1/avalanche/c-chain/eth_getblocktransactioncountbynumber",
+                  "v1/avalanche/c-chain/eth_getcode",
+                  "v1/avalanche/c-chain/eth_getfilterchanges",
+                  "v1/avalanche/c-chain/eth_getfilterlogs",
+                  "v1/avalanche/c-chain/eth_getlogs",
+                  "v1/avalanche/c-chain/eth_getstorageat",
+                  "v1/avalanche/c-chain/eth_gettransactionbyblockhashandindex",
+                  "v1/avalanche/c-chain/eth_gettransactionbyblocknumberandindex",
+                  "v1/avalanche/c-chain/eth_gettransactionbyhash",
+                  "v1/avalanche/c-chain/eth_gettransactioncount",
+                  "v1/avalanche/c-chain/eth_gettransactionreceipt",
+                  "v1/avalanche/c-chain/eth_getunclebyblockhashandindex",
+                  "v1/avalanche/c-chain/eth_getunclebyblocknumberandindex",
+                  "v1/avalanche/c-chain/eth_getunclecountbyblockhash",
+                  "v1/avalanche/c-chain/eth_getunclecountbyblocknumber",
+                  "v1/avalanche/c-chain/eth_newblockfilter",
+                  "v1/avalanche/c-chain/eth_newfilter",
+                  "v1/avalanche/c-chain/eth_newpendingtransactionfilter",
+                  "v1/avalanche/c-chain/eth_sendrawtransaction",
+                  "v1/avalanche/c-chain/eth_subscribe",
+                  "v1/avalanche/c-chain/eth_syncing",
+                  "v1/avalanche/c-chain/eth_uninstallfilter",
+                  "v1/avalanche/c-chain/eth_unsubscribe",
+                  "v1/avalanche/c-chain/net_listening",
+                  "v1/avalanche/c-chain/net_peercount",
+                  "v1/avalanche/c-chain/net_version",
+                  "v1/avalanche/c-chain/web3_clientversion",
+                  "v1/avalanche/c-chain/web3_sha3",
+                  "v1/avalanche/c-chain/avax.getatomictx",
+                  "v1/avalanche/c-chain/avax.getatomictxstatus",
+                  "v1/avalanche/c-chain/avax.getutxos",
+                  "v1/avalanche/c-chain/avax.issuetx"
+                ]
+              },
+              {
+                "group": "X-Chain",
+                "root": "v1/avalanche/x-chain/index",
+                "pages": [
+                  "v1/avalanche/x-chain/avm.getassetdescription",
+                  "v1/avalanche/x-chain/avm.gettx"
+                ]
+              },
+              {
+                "group": "P-Chain",
+                "root": "v1/avalanche/p-chain/index",
+                "pages": [
+                  "v1/avalanche/p-chain/platform.getblockchainstatus",
+                  "v1/avalanche/p-chain/platform.getcurrentsupply",
+                  "v1/avalanche/p-chain/platform.getcurrentvalidators",
+                  "v1/avalanche/p-chain/platform.getheight",
+                  "v1/avalanche/p-chain/platform.getminstake",
+                  "v1/avalanche/p-chain/platform.getpendingvalidators",
+                  "v1/avalanche/p-chain/platform.getstakingassetid",
+                  "v1/avalanche/p-chain/platform.gettimestamp",
+                  "v1/avalanche/p-chain/platform.gettotalstake",
+                  "v1/avalanche/p-chain/platform.gettx",
+                  "v1/avalanche/p-chain/platform.gettxstatus",
+                  "v1/avalanche/p-chain/platform.getutxos",
+                  "v1/avalanche/p-chain/platform.issuetx",
+                  "v1/avalanche/p-chain/platform.samplevalidators",
+                  "v1/avalanche/p-chain/platform.validatedby",
+                  "v1/avalanche/p-chain/platform.validates"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Base",
+            "pages": [
+              "v1/base/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/base/execution-api/index",
+                "pages": [
+                  "v1/base/execution-api/eth_accounts",
+                  "v1/base/execution-api/eth_blocknumber",
+                  "v1/base/execution-api/eth_call",
+                  "v1/base/execution-api/eth_chainid",
+                  "v1/base/execution-api/eth_createaccesslist",
+                  "v1/base/execution-api/eth_estimategas",
+                  "v1/base/execution-api/eth_feehistory",
+                  "v1/base/execution-api/eth_gasprice",
+                  "v1/base/execution-api/eth_getbalance",
+                  "v1/base/execution-api/eth_getblockbyhash",
+                  "v1/base/execution-api/eth_getblockbynumber",
+                  "v1/base/execution-api/eth_getblockreceipts",
+                  "v1/base/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/base/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/base/execution-api/eth_getcode",
+                  "v1/base/execution-api/eth_getfilterchanges",
+                  "v1/base/execution-api/eth_getfilterlogs",
+                  "v1/base/execution-api/eth_getlogs",
+                  "v1/base/execution-api/eth_getproof",
+                  "v1/base/execution-api/eth_getstorageat",
+                  "v1/base/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/base/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/base/execution-api/eth_gettransactionbyhash",
+                  "v1/base/execution-api/eth_gettransactioncount",
+                  "v1/base/execution-api/eth_gettransactionreceipt",
+                  "v1/base/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/base/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/base/execution-api/eth_getunclecountbyblockhash",
+                  "v1/base/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/base/execution-api/eth_maxpriorityfeepergas",
+                  "v1/base/execution-api/eth_newblockfilter",
+                  "v1/base/execution-api/eth_newfilter",
+                  "v1/base/execution-api/eth_newpendingtransactionfilter",
+                  "v1/base/execution-api/eth_sendrawtransaction",
+                  "v1/base/execution-api/eth_subscribe",
+                  "v1/base/execution-api/eth_simulatev1",
+                  "v1/base/execution-api/eth_syncing",
+                  "v1/base/execution-api/eth_uninstallfilter",
+                  "v1/base/execution-api/eth_unsubscribe",
+                  "v1/base/execution-api/net_listening",
+                  "v1/base/execution-api/net_peercount",
+                  "v1/base/execution-api/net_version",
+                  "v1/base/execution-api/web3_clientversion",
+                  "v1/base/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/base/debug-api/index",
+                "pages": [
+                  "v1/base/debug-api/debug_traceblockbyhash",
+                  "v1/base/debug-api/debug_traceblockbynumber",
+                  "v1/base/debug-api/debug_tracecall",
+                  "v1/base/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Trace API",
+                "root": "v1/base/trace-api/index",
+                "pages": [
+                  "v1/base/trace-api/trace_block",
+                  "v1/base/trace-api/trace_call",
+                  "v1/base/trace-api/trace_filter",
+                  "v1/base/trace-api/trace_replayblocktransactions",
+                  "v1/base/trace-api/trace_replaytransaction",
+                  "v1/base/trace-api/trace_transaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Berachain",
+            "pages": [
+              "v1/berachain/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/berachain/execution-api/index",
+                "pages": [
+                  "v1/berachain/execution-api/eth_accounts",
+                  "v1/berachain/execution-api/eth_blocknumber",
+                  "v1/berachain/execution-api/eth_call",
+                  "v1/berachain/execution-api/eth_chainid",
+                  "v1/berachain/execution-api/eth_estimategas",
+                  "v1/berachain/execution-api/eth_gasprice",
+                  "v1/berachain/execution-api/eth_feehistory",
+                  "v1/berachain/execution-api/eth_getbalance",
+                  "v1/berachain/execution-api/eth_getblockbyhash",
+                  "v1/berachain/execution-api/eth_getblockbynumber",
+                  "v1/berachain/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/berachain/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/berachain/execution-api/eth_getcode",
+                  "v1/berachain/execution-api/eth_getfilterchanges",
+                  "v1/berachain/execution-api/eth_getfilterlogs",
+                  "v1/berachain/execution-api/eth_getlogs",
+                  "v1/berachain/execution-api/eth_getproof",
+                  "v1/berachain/execution-api/eth_getstorageat",
+                  "v1/berachain/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/berachain/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/berachain/execution-api/eth_gettransactionbyhash",
+                  "v1/berachain/execution-api/eth_gettransactioncount",
+                  "v1/berachain/execution-api/eth_gettransactionreceipt",
+                  "v1/berachain/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/berachain/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/berachain/execution-api/eth_getunclecountbyblockhash",
+                  "v1/berachain/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/berachain/execution-api/eth_maxpriorityfeepergas",
+                  "v1/berachain/execution-api/eth_newblockfilter",
+                  "v1/berachain/execution-api/eth_newfilter",
+                  "v1/berachain/execution-api/eth_newpendingtransactionfilter",
+                  "v1/berachain/execution-api/eth_sendrawtransaction",
+                  "v1/berachain/execution-api/eth_subscribe",
+                  "v1/berachain/execution-api/eth_syncing",
+                  "v1/berachain/execution-api/eth_uninstallfilter",
+                  "v1/berachain/execution-api/eth_unsubscribe",
+                  "v1/berachain/execution-api/net_listening",
+                  "v1/berachain/execution-api/net_peercount",
+                  "v1/berachain/execution-api/net_version",
+                  "v1/berachain/execution-api/txpool_content",
+                  "v1/berachain/execution-api/web3_clientversion",
+                  "v1/berachain/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/berachain/debug-api/index",
+                "pages": [
+                  "v1/berachain/debug-api/debug_traceblockbyhash",
+                  "v1/berachain/debug-api/debug_traceblockbynumber",
+                  "v1/berachain/debug-api/debug_tracecall",
+                  "v1/berachain/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "BNB Smart Chain",
+            "pages": [
+              "v1/bsc/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/bsc/execution-api/index",
+                "pages": [
+                  "v1/bsc/execution-api/eth_accounts",
+                  "v1/bsc/execution-api/eth_blocknumber",
+                  "v1/bsc/execution-api/eth_call",
+                  "v1/bsc/execution-api/eth_chainid",
+                  "v1/bsc/execution-api/eth_estimategas",
+                  "v1/bsc/execution-api/eth_gasprice",
+                  "v1/bsc/execution-api/eth_getbalance",
+                  "v1/bsc/execution-api/eth_getblockbyhash",
+                  "v1/bsc/execution-api/eth_getblockbynumber",
+                  "v1/bsc/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/bsc/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/bsc/execution-api/eth_getcode",
+                  "v1/bsc/execution-api/eth_getfilterchanges",
+                  "v1/bsc/execution-api/eth_getfilterlogs",
+                  "v1/bsc/execution-api/eth_getlogs",
+                  "v1/bsc/execution-api/eth_getstorageat",
+                  "v1/bsc/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/bsc/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/bsc/execution-api/eth_gettransactionbyhash",
+                  "v1/bsc/execution-api/eth_gettransactioncount",
+                  "v1/bsc/execution-api/eth_gettransactionreceipt",
+                  "v1/bsc/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/bsc/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/bsc/execution-api/eth_getunclecountbyblockhash",
+                  "v1/bsc/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/bsc/execution-api/eth_newblockfilter",
+                  "v1/bsc/execution-api/eth_newfilter",
+                  "v1/bsc/execution-api/eth_newpendingtransactionfilter",
+                  "v1/bsc/execution-api/eth_sendrawtransaction",
+                  "v1/bsc/execution-api/eth_subscribe",
+                  "v1/bsc/execution-api/eth_syncing",
+                  "v1/bsc/execution-api/eth_uninstallfilter",
+                  "v1/bsc/execution-api/eth_unsubscribe",
+                  "v1/bsc/execution-api/net_listening",
+                  "v1/bsc/execution-api/net_peercount",
+                  "v1/bsc/execution-api/net_version",
+                  "v1/bsc/execution-api/web3_clientversion",
+                  "v1/bsc/execution-api/web3_sha3",
+                  "v1/bsc/execution-api/txpool_content"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/bsc/debug-api/index",
+                "pages": [
+                  "v1/bsc/debug-api/debug_traceblockbyhash",
+                  "v1/bsc/debug-api/debug_traceblockbynumber",
+                  "v1/bsc/debug-api/debug_tracecall",
+                  "v1/bsc/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Bitcoin",
+            "pages": [
+              "v1/bitcoin/overview",
+              {
+                "group": "Blockchain RPCs",
+                "root": "v1/bitcoin/blockchain-rpcs/index",
+                "pages": [
+                  "v1/bitcoin/blockchain-rpcs/getbestblockhash",
+                  "v1/bitcoin/blockchain-rpcs/getblock",
+                  "v1/bitcoin/blockchain-rpcs/getblockchaininfo",
+                  "v1/bitcoin/blockchain-rpcs/getblockcount",
+                  "v1/bitcoin/blockchain-rpcs/getblockhash",
+                  "v1/bitcoin/blockchain-rpcs/getblockheader",
+                  "v1/bitcoin/blockchain-rpcs/getblockstats",
+                  "v1/bitcoin/blockchain-rpcs/getchaintips",
+                  "v1/bitcoin/blockchain-rpcs/getchaintxstats",
+                  "v1/bitcoin/blockchain-rpcs/getdifficulty",
+                  "v1/bitcoin/blockchain-rpcs/getmempoolancestors",
+                  "v1/bitcoin/blockchain-rpcs/getmempooldescendants",
+                  "v1/bitcoin/blockchain-rpcs/getmempoolinfo",
+                  "v1/bitcoin/blockchain-rpcs/getrawmempool",
+                  "v1/bitcoin/blockchain-rpcs/gettxout",
+                  "v1/bitcoin/blockchain-rpcs/gettxoutproof",
+                  "v1/bitcoin/blockchain-rpcs/gettxoutsetinfo"
+                ]
+              },
+              {
+                "group": "Control RPCs",
+                "root": "v1/bitcoin/control-rpcs/index",
+                "pages": [
+                  "v1/bitcoin/control-rpcs/getmemoryinfo"
+                ]
+              },
+              {
+                "group": "Network RPCs",
+                "root": "v1/bitcoin/network-rpcs/index",
+                "pages": [
+                  "v1/bitcoin/network-rpcs/getconnectioncount"
+                ]
+              },
+              {
+                "group": "Rawtransactions RPCs",
+                "root": "v1/bitcoin/rawtransactions-rpcs/index",
+                "pages": [
+                  "v1/bitcoin/rawtransactions-rpcs/decoderawtransaction",
+                  "v1/bitcoin/rawtransactions-rpcs/decodescript",
+                  "v1/bitcoin/rawtransactions-rpcs/getrawtransaction",
+                  "v1/bitcoin/rawtransactions-rpcs/sendrawtransaction",
+                  "v1/bitcoin/rawtransactions-rpcs/testmempoolaccept"
+                ]
+              },
+              {
+                "group": "Util RPCs",
+                "root": "v1/bitcoin/util-rpcs/index",
+                "pages": [
+                  "v1/bitcoin/util-rpcs/estimatesmartfee",
+                  "v1/bitcoin/util-rpcs/getindexinfo",
+                  "v1/bitcoin/util-rpcs/validateaddress",
+                  "v1/bitcoin/util-rpcs/verifymessage"
+                ]
+              },
+              {
+                "group": "Blockbook Indexer REST API",
+                "root": "v1/bitcoin/blockbook-indexer-rest-api/index",
+                "pages": [
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-block-hash",
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-transaction",
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-transaction-specific",
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-address",
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-xpub",
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-utxo",
+                  "v1/bitcoin/blockbook-indexer-rest-api/get-block",
+                  "v1/bitcoin/blockbook-indexer-rest-api/send-transaction",
+                  "v1/bitcoin/blockbook-indexer-rest-api/tickers-list",
+                  "v1/bitcoin/blockbook-indexer-rest-api/tickers",
+                  "v1/bitcoin/blockbook-indexer-rest-api/balance-history"
+                ]
+              },
+              {
+                "group": "Esplora HTTP API",
+                "root": "v1/bitcoin/esplora-http-api/index",
+                "pages": [
+                  {
+                    "group": "Transactions",
+                    "root": "v1/bitcoin/esplora-http-api/transactions/index",
+                    "pages": [
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-status",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-hex",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-raw",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-merkleblock-proof",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-merkle-proof",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-outspend-vout",
+                      "v1/bitcoin/esplora-http-api/transactions/get-tx-txid-outspends",
+                      "v1/bitcoin/esplora-http-api/transactions/post-tx"
+                    ]
+                  },
+                  {
+                    "group": "Addresses",
+                    "root": "v1/bitcoin/esplora-http-api/addresses/index",
+                    "pages": [
+                      "v1/bitcoin/esplora-http-api/addresses/get-address-address",
+                      "v1/bitcoin/esplora-http-api/addresses/get-scripthash-hash",
+                      "v1/bitcoin/esplora-http-api/addresses/get-address-address-txs",
+                      "v1/bitcoin/esplora-http-api/addresses/get-scripthash-hash-txs",
+                      "v1/bitcoin/esplora-http-api/addresses/get-address-address-txs-chain-last_seen_txid",
+                      "v1/bitcoin/esplora-http-api/addresses/get-scripthash-hash-txs-chain-last_seen_txid",
+                      "v1/bitcoin/esplora-http-api/addresses/get-address-address-txs-mempool",
+                      "v1/bitcoin/esplora-http-api/addresses/get-scripthash-hash-txs-mempool",
+                      "v1/bitcoin/esplora-http-api/addresses/get-address-address-utxo",
+                      "v1/bitcoin/esplora-http-api/addresses/get-scripthash-hash-utxo"
+                    ]
+                  },
+                  {
+                    "group": "Blocks",
+                    "root": "v1/bitcoin/esplora-http-api/blocks/index",
+                    "pages": [
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash-header",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash-status",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash-txs-start_index",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash-txids",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash-txid-index",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-hash-raw",
+                      "v1/bitcoin/esplora-http-api/blocks/get-block-height-height",
+                      "v1/bitcoin/esplora-http-api/blocks/get-blocks-start_height",
+                      "v1/bitcoin/esplora-http-api/blocks/get-blocks-tip-height",
+                      "v1/bitcoin/esplora-http-api/blocks/get-blocks-tip-hash"
+                    ]
+                  },
+                  {
+                    "group": "Mempool",
+                    "root": "v1/bitcoin/esplora-http-api/mempool/index",
+                    "pages": [
+                      "v1/bitcoin/esplora-http-api/mempool/get-mempool",
+                      "v1/bitcoin/esplora-http-api/mempool/get-mempool-txids",
+                      "v1/bitcoin/esplora-http-api/mempool/get-mempool-recent"
+                    ]
+                  },
+                  "v1/bitcoin/esplora-http-api/get-fee-estimates"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Conflux",
+            "pages": [
+              "v1/conflux/overview",
+              {
+                "group": "eSpace - Execution API",
+                "root": "v1/conflux/execution-api/index",
+                "pages": [
+                  "v1/conflux/execution-api/eth_accounts",
+                  "v1/conflux/execution-api/eth_blocknumber",
+                  "v1/conflux/execution-api/eth_call",
+                  "v1/conflux/execution-api/eth_chainid",
+                  "v1/conflux/execution-api/eth_estimategas",
+                  "v1/conflux/execution-api/eth_gasprice",
+                  "v1/conflux/execution-api/eth_getbalance",
+                  "v1/conflux/execution-api/eth_getblockbyhash",
+                  "v1/conflux/execution-api/eth_getblockbynumber",
+                  "v1/conflux/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/conflux/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/conflux/execution-api/eth_getcode",
+                  "v1/conflux/execution-api/eth_getfilterchanges",
+                  "v1/conflux/execution-api/eth_getfilterlogs",
+                  "v1/conflux/execution-api/eth_getlogs",
+                  "v1/conflux/execution-api/eth_getstorageat",
+                  "v1/conflux/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/conflux/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/conflux/execution-api/eth_gettransactionbyhash",
+                  "v1/conflux/execution-api/eth_gettransactioncount",
+                  "v1/conflux/execution-api/eth_gettransactionreceipt",
+                  "v1/conflux/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/conflux/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/conflux/execution-api/eth_getunclecountbyblockhash",
+                  "v1/conflux/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/conflux/execution-api/eth_newblockfilter",
+                  "v1/conflux/execution-api/eth_newfilter",
+                  "v1/conflux/execution-api/eth_newpendingtransactionfilter",
+                  "v1/conflux/execution-api/eth_sendrawtransaction",
+                  "v1/conflux/execution-api/eth_subscribe",
+                  "v1/conflux/execution-api/eth_syncing",
+                  "v1/conflux/execution-api/eth_uninstallfilter",
+                  "v1/conflux/execution-api/eth_unsubscribe",
+                  "v1/conflux/execution-api/web3_clientversion"
+                ]
+              },
+              {
+                "group": "eSpace - Debug API",
+                "root": "v1/conflux/debug-api/index",
+                "pages": [
+                  "v1/conflux/debug-api/debug_traceblockbyhash",
+                  "v1/conflux/debug-api/debug_traceblockbynumber",
+                  "v1/conflux/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Ethereum",
+            "pages": [
+              "v1/ethereum/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/ethereum/execution-api/index",
+                "pages": [
+                  "v1/ethereum/execution-api/eth_accounts",
+                  "v1/ethereum/execution-api/eth_blocknumber",
+                  "v1/ethereum/execution-api/eth_call",
+                  "v1/ethereum/execution-api/eth_chainid",
+                  "v1/ethereum/execution-api/eth_estimategas",
+                  "v1/ethereum/execution-api/eth_gasprice",
+                  "v1/ethereum/execution-api/eth_getbalance",
+                  "v1/ethereum/execution-api/eth_getblockbyhash",
+                  "v1/ethereum/execution-api/eth_getblockbynumber",
+                  "v1/ethereum/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/ethereum/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/ethereum/execution-api/eth_getcode",
+                  "v1/ethereum/execution-api/eth_getfilterchanges",
+                  "v1/ethereum/execution-api/eth_getfilterlogs",
+                  "v1/ethereum/execution-api/eth_getlogs",
+                  "v1/ethereum/execution-api/eth_getstorageat",
+                  "v1/ethereum/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/ethereum/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/ethereum/execution-api/eth_gettransactionbyhash",
+                  "v1/ethereum/execution-api/eth_gettransactioncount",
+                  "v1/ethereum/execution-api/eth_gettransactionreceipt",
+                  "v1/ethereum/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/ethereum/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/ethereum/execution-api/eth_getunclecountbyblockhash",
+                  "v1/ethereum/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/ethereum/execution-api/eth_maxpriorityfeepergas",
+                  "v1/ethereum/execution-api/eth_newblockfilter",
+                  "v1/ethereum/execution-api/eth_newfilter",
+                  "v1/ethereum/execution-api/eth_newpendingtransactionfilter",
+                  "v1/ethereum/execution-api/eth_sendrawtransaction",
+                  "v1/ethereum/execution-api/eth_subscribe",
+                  "v1/ethereum/execution-api/eth_syncing",
+                  "v1/ethereum/execution-api/eth_uninstallfilter",
+                  "v1/ethereum/execution-api/eth_unsubscribe",
+                  "v1/ethereum/execution-api/net_listening",
+                  "v1/ethereum/execution-api/net_peercount",
+                  "v1/ethereum/execution-api/net_version",
+                  "v1/ethereum/execution-api/txpool_content",
+                  "v1/ethereum/execution-api/web3_clientversion",
+                  "v1/ethereum/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Beacon API",
+                "root": "v1/ethereum/beacon-api/index",
+                "pages": [
+                  "v1/ethereum/beacon-api/eth-v1-beacon-genesis",
+                  "v1/ethereum/beacon-api/eth-v2-beacon-blocks-block_id",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-blocks-block_id-attestations",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-blocks-block_id-root",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-headers",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-headers-block_id",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-committees",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-finality_checkpoints",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-root",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-sync_committees",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-validator_balances",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-validators",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-validators-validator_id",
+                  "v1/ethereum/beacon-api/eth-v1-events",
+                  "v1/ethereum/beacon-api/eth-v1-validator-aggregate_attestation",
+                  "v1/ethereum/beacon-api/eth-v1-validator-blinded_blocks-slot",
+                  "v1/ethereum/beacon-api/eth-v1-validator-duties-proposer-epoch",
+                  "v1/ethereum/beacon-api/eth-v1-validator-sync_committee_contribution",
+                  "v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-fork"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/ethereum/debug-api/index",
+                "pages": [
+                  "v1/ethereum/debug-api/debug_getbadblocks",
+                  "v1/ethereum/debug-api/debug_traceblockbyhash",
+                  "v1/ethereum/debug-api/debug_traceblockbynumber",
+                  "v1/ethereum/debug-api/debug_tracecall",
+                  "v1/ethereum/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Trace API",
+                "root": "v1/ethereum/trace-api/index",
+                "pages": [
+                  "v1/ethereum/trace-api/trace_block",
+                  "v1/ethereum/trace-api/trace_call",
+                  "v1/ethereum/trace-api/trace_filter",
+                  "v1/ethereum/trace-api/trace_get",
+                  "v1/ethereum/trace-api/trace_rawtransaction",
+                  "v1/ethereum/trace-api/trace_replayblocktransactions",
+                  "v1/ethereum/trace-api/trace_replaytransaction",
+                  "v1/ethereum/trace-api/trace_transaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Hedera",
+            "pages": [
+              "v1/hedera/overview",
+              {
+                "group": "JSON RPC Relay API",
+                "root": "v1/hedera/json-rpc-relay-api/index",
+                "pages": [
+                  "v1/hedera/json-rpc-relay-api/debug_tracetransaction",
+                  "v1/hedera/json-rpc-relay-api/eth_blocknumber",
+                  "v1/hedera/json-rpc-relay-api/eth_call",
+                  "v1/hedera/json-rpc-relay-api/eth_chainid",
+                  "v1/hedera/json-rpc-relay-api/eth_estimategas",
+                  "v1/hedera/json-rpc-relay-api/eth_feehistory",
+                  "v1/hedera/json-rpc-relay-api/eth_gasprice",
+                  "v1/hedera/json-rpc-relay-api/eth_getbalance",
+                  "v1/hedera/json-rpc-relay-api/eth_getblockbyhash",
+                  "v1/hedera/json-rpc-relay-api/eth_getblockbynumber",
+                  "v1/hedera/json-rpc-relay-api/eth_getblockreceipts",
+                  "v1/hedera/json-rpc-relay-api/eth_getblocktransactioncountbyhash",
+                  "v1/hedera/json-rpc-relay-api/eth_getblocktransactioncountbynumber",
+                  "v1/hedera/json-rpc-relay-api/eth_getcode",
+                  "v1/hedera/json-rpc-relay-api/eth_getfilterchanges",
+                  "v1/hedera/json-rpc-relay-api/eth_getfilterlogs",
+                  "v1/hedera/json-rpc-relay-api/eth_getlogs",
+                  "v1/hedera/json-rpc-relay-api/eth_getstorageat",
+                  "v1/hedera/json-rpc-relay-api/eth_syncing",
+                  "v1/hedera/json-rpc-relay-api/eth_gettransactionbyblockhashandindex",
+                  "v1/hedera/json-rpc-relay-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/hedera/json-rpc-relay-api/eth_gettransactionbyhash",
+                  "v1/hedera/json-rpc-relay-api/eth_gettransactioncount",
+                  "v1/hedera/json-rpc-relay-api/eth_gettransactionreceipt",
+                  "v1/hedera/json-rpc-relay-api/eth_getunclebyblockhashandindex",
+                  "v1/hedera/json-rpc-relay-api/eth_getunclebyblocknumberandindex",
+                  "v1/hedera/json-rpc-relay-api/eth_getunclecountbyblockhash",
+                  "v1/hedera/json-rpc-relay-api/eth_getunclecountbyblocknumber",
+                  "v1/hedera/json-rpc-relay-api/eth_newfilter",
+                  "v1/hedera/json-rpc-relay-api/eth_newblockfilter",
+                  "v1/hedera/json-rpc-relay-api/eth_sendrawtransaction",
+                  "v1/hedera/json-rpc-relay-api/eth_subscribe",
+                  "v1/hedera/json-rpc-relay-api/eth_unsubscribe",
+                  "v1/hedera/json-rpc-relay-api/eth_uninstallfilter",
+                  "v1/hedera/json-rpc-relay-api/net_version",
+                  "v1/hedera/json-rpc-relay-api/web3_clientversion"
+                ]
+              },
+              {
+                "group": "REST Mirror Node API",
+                "root": "v1/hedera/rest-mirror-node-api/index",
+                "pages": [
+                  {
+                    "group": "Accounts",
+                    "root": "v1/hedera/rest-mirror-node-api/accounts/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/accounts/get-accounts",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-accounts-by-id",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-outstanding-token-airdrops",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-pending-token-airdrops",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-allowances",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-nft-allowances-by-account",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-token-allowances-by-account",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-nfts-by-account",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-rewards-by-account",
+                      "v1/hedera/rest-mirror-node-api/accounts/get-token-relationships-by-account"
+                    ]
+                  },
+                  {
+                    "group": "Balances",
+                    "root": "v1/hedera/rest-mirror-node-api/balances/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/balances/get-balances"
+                    ]
+                  },
+                  {
+                    "group": "Blocks",
+                    "root": "v1/hedera/rest-mirror-node-api/blocks/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/blocks/get-blocks",
+                      "v1/hedera/rest-mirror-node-api/blocks/get-block-by-hash-or-number"
+                    ]
+                  },
+                  {
+                    "group": "Contracts",
+                    "root": "v1/hedera/rest-mirror-node-api/contracts/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contracts",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-by-id",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-results",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-result-at-timestamp",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-logs",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-state",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-opcodes-traces",
+                      "v1/hedera/rest-mirror-node-api/contracts/call-contract",
+                      "v1/hedera/rest-mirror-node-api/contracts/list-all-contract-results",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-result-by-id-or-hash",
+                      "v1/hedera/rest-mirror-node-api/contracts/get-contract-actions-by-id-or-hash",
+                      "v1/hedera/rest-mirror-node-api/contracts/list-contracts-logs"
+                    ]
+                  },
+                  {
+                    "group": "Network",
+                    "root": "v1/hedera/rest-mirror-node-api/network/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/network/get-exchange-rate",
+                      "v1/hedera/rest-mirror-node-api/network/get-network-fees",
+                      "v1/hedera/rest-mirror-node-api/network/get-network-book-nodes",
+                      "v1/hedera/rest-mirror-node-api/network/get-network-stake-information",
+                      "v1/hedera/rest-mirror-node-api/network/get-network-supply"
+                    ]
+                  },
+                  {
+                    "group": "Schedules",
+                    "root": "v1/hedera/rest-mirror-node-api/schedules/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/schedules/get-schedules-entities",
+                      "v1/hedera/rest-mirror-node-api/schedules/get-schedule-by-id"
+                    ]
+                  },
+                  {
+                    "group": "Tokens",
+                    "root": "v1/hedera/rest-mirror-node-api/tokens/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/tokens/get-tokens",
+                      "v1/hedera/rest-mirror-node-api/tokens/get-token-by-id",
+                      "v1/hedera/rest-mirror-node-api/tokens/get-token-balances",
+                      "v1/hedera/rest-mirror-node-api/tokens/get-nfts",
+                      "v1/hedera/rest-mirror-node-api/tokens/get-nft-by-serial-number",
+                      "v1/hedera/rest-mirror-node-api/tokens/get-nft-transactions"
+                    ]
+                  },
+                  {
+                    "group": "Topics",
+                    "root": "v1/hedera/rest-mirror-node-api/topics/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/topics/get-topic-message",
+                      "v1/hedera/rest-mirror-node-api/topics/get-topic-message-by-id-and-sequence",
+                      "v1/hedera/rest-mirror-node-api/topics/get-topic-message-by-timestamp"
+                    ]
+                  },
+                  {
+                    "group": "Transactions",
+                    "root": "v1/hedera/rest-mirror-node-api/transactions/index",
+                    "pages": [
+                      "v1/hedera/rest-mirror-node-api/transactions/get-transactions",
+                      "v1/hedera/rest-mirror-node-api/transactions/get-transaction-by-id",
+                      "v1/hedera/rest-mirror-node-api/transactions/get-stateproof"
+                    ]
+                  },
+                  "v1/hedera/rest-mirror-node-api/docs"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Hyperliquid",
+            "pages": [
+              "v1/hyperliquid/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/hyperliquid/execution-api/index",
+                "pages": [
+                  "v1/hyperliquid/execution-api/eth_accounts",
+                  "v1/hyperliquid/execution-api/eth_blocknumber",
+                  "v1/hyperliquid/execution-api/eth_call",
+                  "v1/hyperliquid/execution-api/eth_chainid",
+                  "v1/hyperliquid/execution-api/eth_createaccesslist",
+                  "v1/hyperliquid/execution-api/eth_estimategas",
+                  "v1/hyperliquid/execution-api/eth_feehistory",
+                  "v1/hyperliquid/execution-api/eth_gasprice",
+                  "v1/hyperliquid/execution-api/eth_getbalance",
+                  "v1/hyperliquid/execution-api/eth_getblockbyhash",
+                  "v1/hyperliquid/execution-api/eth_getblockbynumber",
+                  "v1/hyperliquid/execution-api/eth_getblockreceipts",
+                  "v1/hyperliquid/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/hyperliquid/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/hyperliquid/execution-api/eth_getcode",
+                  "v1/hyperliquid/execution-api/eth_getfilterchanges",
+                  "v1/hyperliquid/execution-api/eth_getfilterlogs",
+                  "v1/hyperliquid/execution-api/eth_getlogs",
+                  "v1/hyperliquid/execution-api/eth_getstorageat",
+                  "v1/hyperliquid/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/hyperliquid/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/hyperliquid/execution-api/eth_gettransactionbyhash",
+                  "v1/hyperliquid/execution-api/eth_gettransactioncount",
+                  "v1/hyperliquid/execution-api/eth_gettransactionreceipt",
+                  "v1/hyperliquid/execution-api/eth_maxpriorityfeepergas",
+                  "v1/hyperliquid/execution-api/eth_newblockfilter",
+                  "v1/hyperliquid/execution-api/eth_newfilter",
+                  "v1/hyperliquid/execution-api/eth_sendrawtransaction",
+                  "v1/hyperliquid/execution-api/eth_simulatev1",
+                  "v1/hyperliquid/execution-api/eth_subscribe",
+                  "v1/hyperliquid/execution-api/eth_syncing",
+                  "v1/hyperliquid/execution-api/eth_uninstallfilter",
+                  "v1/hyperliquid/execution-api/eth_unsubscribe",
+                  "v1/hyperliquid/execution-api/net_peercount",
+                  "v1/hyperliquid/execution-api/net_version",
+                  "v1/hyperliquid/execution-api/web3_clientversion",
+                  "v1/hyperliquid/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "HyperEVM API",
+                "root": "v1/hyperliquid/hyperevm-api/index",
+                "pages": [
+                  "v1/hyperliquid/hyperevm-api/eth_bigblockgasprice",
+                  "v1/hyperliquid/hyperevm-api/eth_getsystemtxsbyblockhash",
+                  "v1/hyperliquid/hyperevm-api/eth_getsystemtxsbyblocknumber",
+                  "v1/hyperliquid/hyperevm-api/eth_usingbigblocks"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/hyperliquid/debug-api/index",
+                "pages": [
+                  "v1/hyperliquid/debug-api/debug_getbadblocks",
+                  "v1/hyperliquid/debug-api/debug_getrawblock",
+                  "v1/hyperliquid/debug-api/debug_getrawheader",
+                  "v1/hyperliquid/debug-api/debug_getrawreceipts",
+                  "v1/hyperliquid/debug-api/debug_getrawtransaction",
+                  "v1/hyperliquid/debug-api/debug_traceblock",
+                  "v1/hyperliquid/debug-api/debug_traceblockbyhash",
+                  "v1/hyperliquid/debug-api/debug_traceblockbynumber",
+                  "v1/hyperliquid/debug-api/debug_tracecall",
+                  "v1/hyperliquid/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Trace API",
+                "root": "v1/hyperliquid/trace-api/index",
+                "pages": [
+                  "v1/hyperliquid/trace-api/trace_block",
+                  "v1/hyperliquid/trace-api/trace_call",
+                  "v1/hyperliquid/trace-api/trace_callmany",
+                  "v1/hyperliquid/trace-api/trace_filter",
+                  "v1/hyperliquid/trace-api/trace_rawtransaction",
+                  "v1/hyperliquid/trace-api/trace_replayblocktransactions",
+                  "v1/hyperliquid/trace-api/trace_replaytransaction",
+                  "v1/hyperliquid/trace-api/trace_transaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "ICP",
+            "pages": [
+              "v1/icp/overview",
+              {
+                "group": "ICP",
+                "root": "v1/icp-1/index",
+                "pages": [
+                  {
+                    "group": "Data API",
+                    "root": "v1/icp-1/data-api/index",
+                    "pages": [
+                      {
+                        "group": "Account",
+                        "root": "v1/icp-1/data-api/account/index",
+                        "pages": [
+                          "v1/icp-1/data-api/account/balance"
+                        ]
+                      },
+                      {
+                        "group": "Block",
+                        "root": "v1/icp-1/data-api/block/index",
+                        "pages": [
+                          "v1/icp-1/data-api/block/transaction"
+                        ]
+                      },
+                      "v1/icp-1/data-api/call",
+                      {
+                        "group": "Network",
+                        "root": "v1/icp-1/data-api/network/index",
+                        "pages": [
+                          "v1/icp-1/data-api/network/list",
+                          "v1/icp-1/data-api/network/options",
+                          "v1/icp-1/data-api/network/status"
+                        ]
+                      },
+                      {
+                        "group": "Search",
+                        "root": "v1/icp-1/data-api/search/index",
+                        "pages": [
+                          "v1/icp-1/data-api/search/transactions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Construction API",
+                    "root": "v1/icp-1/construction-api/index",
+                    "pages": [
+                      "v1/icp-1/construction-api/combine",
+                      "v1/icp-1/construction-api/derive",
+                      "v1/icp-1/construction-api/metadata",
+                      "v1/icp-1/construction-api/payloads",
+                      "v1/icp-1/construction-api/preprocess",
+                      "v1/icp-1/construction-api/submit"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "ICRC",
+                "root": "v1/icrc/index",
+                "pages": [
+                  {
+                    "group": "Data API",
+                    "root": "v1/icrc/data-api/index",
+                    "pages": [
+                      {
+                        "group": "Account",
+                        "root": "v1/icrc/data-api/account/index",
+                        "pages": [
+                          "v1/icrc/data-api/account/balance"
+                        ]
+                      },
+                      {
+                        "group": "Block",
+                        "root": "v1/icrc/data-api/block/index",
+                        "pages": [
+                          "v1/icrc/data-api/block/transaction"
+                        ]
+                      },
+                      "v1/icrc/data-api/call",
+                      {
+                        "group": "Network",
+                        "root": "v1/icrc/data-api/network/index",
+                        "pages": [
+                          "v1/icrc/data-api/network/list",
+                          "v1/icrc/data-api/network/options",
+                          "v1/icrc/data-api/network/status"
+                        ]
+                      },
+                      {
+                        "group": "Search",
+                        "root": "v1/icrc/data-api/search/index",
+                        "pages": [
+                          "v1/icrc/data-api/search/transactions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Construction API",
+                    "root": "v1/icrc/construction-api/index",
+                    "pages": [
+                      "v1/icrc/construction-api/combine",
+                      "v1/icrc/construction-api/derive",
+                      "v1/icrc/construction-api/metadata",
+                      "v1/icrc/construction-api/payloads",
+                      "v1/icrc/construction-api/preprocess",
+                      "v1/icrc/construction-api/submit"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Mezo",
+            "pages": [
+              "v1/mezo/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/mezo/execution-api/index",
+                "pages": [
+                  "v1/mezo/execution-api/eth_accounts",
+                  "v1/mezo/execution-api/eth_blocknumber",
+                  "v1/mezo/execution-api/eth_call",
+                  "v1/mezo/execution-api/eth_chainid",
+                  "v1/mezo/execution-api/eth_estimategas",
+                  "v1/mezo/execution-api/eth_gasprice",
+                  "v1/mezo/execution-api/eth_getbalance",
+                  "v1/mezo/execution-api/eth_getblockbyhash",
+                  "v1/mezo/execution-api/eth_getblockbynumber",
+                  "v1/mezo/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/mezo/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/mezo/execution-api/eth_getcode",
+                  "v1/mezo/execution-api/eth_getfilterchanges",
+                  "v1/mezo/execution-api/eth_getfilterlogs",
+                  "v1/mezo/execution-api/eth_getlogs",
+                  "v1/mezo/execution-api/eth_getproof",
+                  "v1/mezo/execution-api/eth_getstorageat",
+                  "v1/mezo/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/mezo/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/mezo/execution-api/eth_gettransactionbyhash",
+                  "v1/mezo/execution-api/eth_gettransactioncount",
+                  "v1/mezo/execution-api/eth_gettransactionreceipt",
+                  "v1/mezo/execution-api/eth_newblockfilter",
+                  "v1/mezo/execution-api/eth_newfilter",
+                  "v1/mezo/execution-api/eth_newpendingtransactionfilter",
+                  "v1/mezo/execution-api/eth_sendrawtransaction",
+                  "v1/mezo/execution-api/eth_subscribe",
+                  "v1/mezo/execution-api/eth_unsubscribe",
+                  "v1/mezo/execution-api/eth_syncing",
+                  "v1/mezo/execution-api/eth_uninstallfilter",
+                  "v1/mezo/execution-api/net_listening",
+                  "v1/mezo/execution-api/net_peercount",
+                  "v1/mezo/execution-api/net_version",
+                  "v1/mezo/execution-api/txpool_content",
+                  "v1/mezo/execution-api/txpool_inspect",
+                  "v1/mezo/execution-api/txpool_status",
+                  "v1/mezo/execution-api/web3_clientversion",
+                  "v1/mezo/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/mezo/debug-api/index",
+                "pages": [
+                  "v1/mezo/debug-api/debug_traceblockbynumber",
+                  "v1/mezo/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Mezo namespace",
+                "root": "v1/mezo/mezo-namespace/index",
+                "pages": [
+                  "v1/mezo/mezo-namespace/mezo_estimatecost"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Monad",
+            "pages": [
+              "v1/monad/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/monad/execution-api/index",
+                "pages": [
+                  "v1/monad/execution-api/eth_blocknumber",
+                  "v1/monad/execution-api/eth_call",
+                  "v1/monad/execution-api/eth_chainid",
+                  "v1/monad/execution-api/eth_estimategas",
+                  "v1/monad/execution-api/eth_feehistory",
+                  "v1/monad/execution-api/eth_gasprice",
+                  "v1/monad/execution-api/eth_getbalance",
+                  "v1/monad/execution-api/eth_getblockbyhash",
+                  "v1/monad/execution-api/eth_getblockbynumber",
+                  "v1/monad/execution-api/eth_getblockreceipts",
+                  "v1/monad/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/monad/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/monad/execution-api/eth_getcode",
+                  "v1/monad/execution-api/eth_getlogs",
+                  "v1/monad/execution-api/eth_getproof",
+                  "v1/monad/execution-api/eth_getstorageat",
+                  "v1/monad/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/monad/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/monad/execution-api/eth_gettransactionbyhash",
+                  "v1/monad/execution-api/eth_gettransactioncount",
+                  "v1/monad/execution-api/eth_gettransactionreceipt",
+                  "v1/monad/execution-api/eth_maxpriorityfeepergas",
+                  "v1/monad/execution-api/eth_sendrawtransaction",
+                  "v1/monad/execution-api/eth_sendrawtransactionsync",
+                  "v1/monad/execution-api/eth_subscribe",
+                  "v1/monad/execution-api/eth_unsubscribe",
+                  "v1/monad/execution-api/eth_syncing",
+                  "v1/monad/execution-api/net_version",
+                  "v1/monad/execution-api/web3_clientversion"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/monad/debug-api/index",
+                "pages": [
+                  "v1/monad/debug-api/debug_getrawblock",
+                  "v1/monad/debug-api/debug_getrawheader",
+                  "v1/monad/debug-api/debug_getrawreceipts",
+                  "v1/monad/debug-api/debug_getrawtransaction",
+                  "v1/monad/debug-api/debug_traceblockbyhash",
+                  "v1/monad/debug-api/debug_traceblockbynumber",
+                  "v1/monad/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "opBNB",
+            "pages": [
+              "v1/opbnb/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/opbnb/execution-api/index",
+                "pages": [
+                  "v1/opbnb/execution-api/eth_accounts",
+                  "v1/opbnb/execution-api/eth_blocknumber",
+                  "v1/opbnb/execution-api/eth_call",
+                  "v1/opbnb/execution-api/eth_chainid",
+                  "v1/opbnb/execution-api/eth_estimategas",
+                  "v1/opbnb/execution-api/eth_gasprice",
+                  "v1/opbnb/execution-api/eth_getbalance",
+                  "v1/opbnb/execution-api/eth_getblockbyhash",
+                  "v1/opbnb/execution-api/eth_getblockbynumber",
+                  "v1/opbnb/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/opbnb/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/opbnb/execution-api/eth_getcode",
+                  "v1/opbnb/execution-api/eth_getfilterchanges",
+                  "v1/opbnb/execution-api/eth_getfilterlogs",
+                  "v1/opbnb/execution-api/eth_getlogs",
+                  "v1/opbnb/execution-api/eth_getstorageat",
+                  "v1/opbnb/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/opbnb/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/opbnb/execution-api/eth_gettransactionbyhash",
+                  "v1/opbnb/execution-api/eth_gettransactioncount",
+                  "v1/opbnb/execution-api/eth_gettransactionreceipt",
+                  "v1/opbnb/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/opbnb/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/opbnb/execution-api/eth_getunclecountbyblockhash",
+                  "v1/opbnb/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/opbnb/execution-api/eth_newblockfilter",
+                  "v1/opbnb/execution-api/eth_newfilter",
+                  "v1/opbnb/execution-api/eth_newpendingtransactionfilter",
+                  "v1/opbnb/execution-api/eth_sendrawtransaction",
+                  "v1/opbnb/execution-api/eth_subscribe",
+                  "v1/opbnb/execution-api/eth_syncing",
+                  "v1/opbnb/execution-api/eth_uninstallfilter",
+                  "v1/opbnb/execution-api/eth_unsubscribe",
+                  "v1/opbnb/execution-api/net_listening",
+                  "v1/opbnb/execution-api/net_peercount",
+                  "v1/opbnb/execution-api/net_version",
+                  "v1/opbnb/execution-api/web3_clientversion",
+                  "v1/opbnb/execution-api/web3_sha3",
+                  "v1/opbnb/execution-api/txpool_content"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/opbnb/debug-api/index",
+                "pages": [
+                  "v1/opbnb/debug-api/debug_traceblockbyhash",
+                  "v1/opbnb/debug-api/debug_traceblockbynumber",
+                  "v1/opbnb/debug-api/debug_tracecall",
+                  "v1/opbnb/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "OPTIMISM",
+            "pages": [
+              "v1/optimism/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/optimism/execution-api/index",
+                "pages": [
+                  "v1/optimism/execution-api/eth_accounts",
+                  "v1/optimism/execution-api/eth_blocknumber",
+                  "v1/optimism/execution-api/eth_call",
+                  "v1/optimism/execution-api/eth_chainid",
+                  "v1/optimism/execution-api/eth_estimategas",
+                  "v1/optimism/execution-api/eth_gasprice",
+                  "v1/optimism/execution-api/eth_getbalance",
+                  "v1/optimism/execution-api/eth_getblockbyhash",
+                  "v1/optimism/execution-api/eth_getblockbynumber",
+                  "v1/optimism/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/optimism/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/optimism/execution-api/eth_getcode",
+                  "v1/optimism/execution-api/eth_getfilterchanges",
+                  "v1/optimism/execution-api/eth_getfilterlogs",
+                  "v1/optimism/execution-api/eth_getlogs",
+                  "v1/optimism/execution-api/eth_getstorageat",
+                  "v1/optimism/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/optimism/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/optimism/execution-api/eth_gettransactionbyhash",
+                  "v1/optimism/execution-api/eth_gettransactioncount",
+                  "v1/optimism/execution-api/eth_gettransactionreceipt",
+                  "v1/optimism/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/optimism/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/optimism/execution-api/eth_getunclecountbyblockhash",
+                  "v1/optimism/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/optimism/execution-api/eth_maxpriorityfeepergas",
+                  "v1/optimism/execution-api/eth_newblockfilter",
+                  "v1/optimism/execution-api/eth_newfilter",
+                  "v1/optimism/execution-api/eth_newpendingtransactionfilter",
+                  "v1/optimism/execution-api/eth_sendrawtransaction",
+                  "v1/optimism/execution-api/eth_subscribe",
+                  "v1/optimism/execution-api/eth_syncing",
+                  "v1/optimism/execution-api/eth_uninstallfilter",
+                  "v1/optimism/execution-api/eth_unsubscribe",
+                  "v1/optimism/execution-api/net_listening",
+                  "v1/optimism/execution-api/net_peercount",
+                  "v1/optimism/execution-api/net_version",
+                  "v1/optimism/execution-api/web3_clientversion",
+                  "v1/optimism/execution-api/web3_sha3"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Polygon",
+            "pages": [
+              "v1/polygon/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/polygon/execution-api/index",
+                "pages": [
+                  "v1/polygon/execution-api/eth_accounts",
+                  "v1/polygon/execution-api/eth_blocknumber",
+                  "v1/polygon/execution-api/eth_call",
+                  "v1/polygon/execution-api/eth_chainid",
+                  "v1/polygon/execution-api/eth_estimategas",
+                  "v1/polygon/execution-api/eth_gasprice",
+                  "v1/polygon/execution-api/eth_getbalance",
+                  "v1/polygon/execution-api/eth_getblockbyhash",
+                  "v1/polygon/execution-api/eth_getblockbynumber",
+                  "v1/polygon/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/polygon/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/polygon/execution-api/eth_getcode",
+                  "v1/polygon/execution-api/eth_getfilterchanges",
+                  "v1/polygon/execution-api/eth_getfilterlogs",
+                  "v1/polygon/execution-api/eth_getlogs",
+                  "v1/polygon/execution-api/eth_getproof",
+                  "v1/polygon/execution-api/eth_getstorageat",
+                  "v1/polygon/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/polygon/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/polygon/execution-api/eth_gettransactionbyhash",
+                  "v1/polygon/execution-api/eth_gettransactioncount",
+                  "v1/polygon/execution-api/eth_gettransactionreceipt",
+                  "v1/polygon/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/polygon/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/polygon/execution-api/eth_getunclecountbyblockhash",
+                  "v1/polygon/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/polygon/execution-api/eth_newblockfilter",
+                  "v1/polygon/execution-api/eth_newfilter",
+                  "v1/polygon/execution-api/eth_newpendingtransactionfilter",
+                  "v1/polygon/execution-api/eth_sendrawtransaction",
+                  "v1/polygon/execution-api/eth_subscribe",
+                  "v1/polygon/execution-api/eth_syncing",
+                  "v1/polygon/execution-api/eth_uninstallfilter",
+                  "v1/polygon/execution-api/eth_unsubscribe",
+                  "v1/polygon/execution-api/net_listening",
+                  "v1/polygon/execution-api/net_peercount",
+                  "v1/polygon/execution-api/net_version",
+                  "v1/polygon/execution-api/web3_clientversion",
+                  "v1/polygon/execution-api/web3_sha3",
+                  "v1/polygon/execution-api/txpool_content"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/polygon/debug-api/index",
+                "pages": [
+                  "v1/polygon/debug-api/debug_traceblockbyhash",
+                  "v1/polygon/debug-api/debug_traceblockbynumber",
+                  "v1/polygon/debug-api/debug_tracecall",
+                  "v1/polygon/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Robinhood Chain",
+            "pages": [
+              "v1/robinhood-chain/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/robinhood-chain/execution-api/index",
+                "pages": [
+                  "v1/robinhood-chain/execution-api/eth_blocknumber",
+                  "v1/robinhood-chain/execution-api/eth_call",
+                  "v1/robinhood-chain/execution-api/eth_chainid",
+                  "v1/robinhood-chain/execution-api/eth_estimategas",
+                  "v1/robinhood-chain/execution-api/eth_feehistory",
+                  "v1/robinhood-chain/execution-api/eth_gasprice",
+                  "v1/robinhood-chain/execution-api/eth_getbalance",
+                  "v1/robinhood-chain/execution-api/eth_getblockbyhash",
+                  "v1/robinhood-chain/execution-api/eth_getblockbynumber",
+                  "v1/robinhood-chain/execution-api/eth_getblockreceipts",
+                  "v1/robinhood-chain/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/robinhood-chain/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/robinhood-chain/execution-api/eth_getcode",
+                  "v1/robinhood-chain/execution-api/eth_getlogs",
+                  "v1/robinhood-chain/execution-api/eth_getproof",
+                  "v1/robinhood-chain/execution-api/eth_getstorageat",
+                  "v1/robinhood-chain/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/robinhood-chain/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/robinhood-chain/execution-api/eth_gettransactionbyhash",
+                  "v1/robinhood-chain/execution-api/eth_gettransactioncount",
+                  "v1/robinhood-chain/execution-api/eth_gettransactionreceipt",
+                  "v1/robinhood-chain/execution-api/eth_sendrawtransaction",
+                  "v1/robinhood-chain/execution-api/eth_subscribe",
+                  "v1/robinhood-chain/execution-api/eth_unsubscribe",
+                  "v1/robinhood-chain/execution-api/net_version",
+                  "v1/robinhood-chain/execution-api/web3_clientversion",
+                  "v1/robinhood-chain/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/robinhood-chain/debug-api/index",
+                "pages": [
+                  "v1/robinhood-chain/debug-api/debug_traceblockbyhash",
+                  "v1/robinhood-chain/debug-api/debug_traceblockbynumber",
+                  "v1/robinhood-chain/debug-api/debug_tracecall",
+                  "v1/robinhood-chain/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Rayls",
+            "pages": [
+              "v1/rayls/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/rayls/execution-api/index",
+                "pages": [
+                  "v1/rayls/execution-api/eth_blocknumber",
+                  "v1/rayls/execution-api/eth_call",
+                  "v1/rayls/execution-api/eth_chainid",
+                  "v1/rayls/execution-api/eth_createaccesslist",
+                  "v1/rayls/execution-api/eth_estimategas",
+                  "v1/rayls/execution-api/eth_feehistory",
+                  "v1/rayls/execution-api/eth_gasprice",
+                  "v1/rayls/execution-api/eth_getbalance",
+                  "v1/rayls/execution-api/eth_getblockbyhash",
+                  "v1/rayls/execution-api/eth_getblockbynumber",
+                  "v1/rayls/execution-api/eth_getblockreceipts",
+                  "v1/rayls/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/rayls/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/rayls/execution-api/eth_getcode",
+                  "v1/rayls/execution-api/eth_getfilterchanges",
+                  "v1/rayls/execution-api/eth_getfilterlogs",
+                  "v1/rayls/execution-api/eth_getlogs",
+                  "v1/rayls/execution-api/eth_getproof",
+                  "v1/rayls/execution-api/eth_maxpriorityfeepergas",
+                  "v1/rayls/execution-api/eth_getstorageat",
+                  "v1/rayls/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/rayls/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/rayls/execution-api/eth_gettransactionbyhash",
+                  "v1/rayls/execution-api/eth_gettransactioncount",
+                  "v1/rayls/execution-api/eth_gettransactionreceipt",
+                  "v1/rayls/execution-api/eth_getunclecountbyblockhash",
+                  "v1/rayls/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/rayls/execution-api/eth_newblockfilter",
+                  "v1/rayls/execution-api/eth_newfilter",
+                  "v1/rayls/execution-api/eth_newpendingtransactionfilter",
+                  "v1/rayls/execution-api/eth_sendrawtransaction",
+                  "v1/rayls/execution-api/eth_subscribe",
+                  "v1/rayls/execution-api/eth_syncing",
+                  "v1/rayls/execution-api/eth_uninstallfilter",
+                  "v1/rayls/execution-api/eth_unsubscribe",
+                  "v1/rayls/execution-api/net_listening",
+                  "v1/rayls/execution-api/net_version",
+                  "v1/rayls/execution-api/web3_clientversion",
+                  "v1/rayls/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/rayls/debug-api/index",
+                "pages": [
+                  "v1/rayls/debug-api/debug_traceblockbyhash",
+                  "v1/rayls/debug-api/debug_traceblockbynumber",
+                  "v1/rayls/debug-api/debug_tracecall",
+                  "v1/rayls/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Trace API",
+                "root": "v1/rayls/trace-api/index",
+                "pages": [
+                  "v1/rayls/trace-api/trace_block",
+                  "v1/rayls/trace-api/trace_call",
+                  "v1/rayls/trace-api/trace_filter",
+                  "v1/rayls/trace-api/trace_replayblocktransactions",
+                  "v1/rayls/trace-api/trace_replaytransaction",
+                  "v1/rayls/trace-api/trace_transaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Solana",
+            "pages": [
+              "v1/solana/overview",
+              {
+                "group": "HTTP Methods",
+                "root": "v1/solana/http-methods/index",
+                "pages": [
+                  "v1/solana/http-methods/getaccountinfo",
+                  "v1/solana/http-methods/getbalance",
+                  "v1/solana/http-methods/getblock",
+                  "v1/solana/http-methods/getblockcommitment",
+                  "v1/solana/http-methods/getblockheight",
+                  "v1/solana/http-methods/getblockproduction",
+                  "v1/solana/http-methods/getblocktime",
+                  "v1/solana/http-methods/getblocks",
+                  "v1/solana/http-methods/getblockswithlimit",
+                  "v1/solana/http-methods/getclusternodes",
+                  "v1/solana/http-methods/getepochinfo",
+                  "v1/solana/http-methods/getepochschedule",
+                  "v1/solana/http-methods/getfeeformessage",
+                  "v1/solana/http-methods/getfirstavailableblock",
+                  "v1/solana/http-methods/getgenesishash",
+                  "v1/solana/http-methods/gethealth",
+                  "v1/solana/http-methods/gethighestsnapshotslot",
+                  "v1/solana/http-methods/getidentity",
+                  "v1/solana/http-methods/getinflationgovernor",
+                  "v1/solana/http-methods/getinflationrate",
+                  "v1/solana/http-methods/getinflationreward",
+                  "v1/solana/http-methods/getlargestaccounts",
+                  "v1/solana/http-methods/getlatestblockhash",
+                  "v1/solana/http-methods/getleaderschedule",
+                  "v1/solana/http-methods/getmaxretransmitslot",
+                  "v1/solana/http-methods/getmaxshredinsertslot",
+                  "v1/solana/http-methods/getminimumbalanceforrentexemption",
+                  "v1/solana/http-methods/getmultipleaccounts",
+                  "v1/solana/http-methods/getparsedblock",
+                  "v1/solana/http-methods/getparsedtransaction",
+                  "v1/solana/http-methods/getprogramaccounts",
+                  "v1/solana/http-methods/getrecentperformancesamples",
+                  "v1/solana/http-methods/getrecentprioritizationfees",
+                  "v1/solana/http-methods/getsignaturestatuses",
+                  "v1/solana/http-methods/getsignaturesforaddress",
+                  "v1/solana/http-methods/getslot",
+                  "v1/solana/http-methods/getslotleader",
+                  "v1/solana/http-methods/getslotleaders",
+                  "v1/solana/http-methods/getstakeminimumdelegation",
+                  "v1/solana/http-methods/getsupply",
+                  "v1/solana/http-methods/gettokenaccountbalance",
+                  "v1/solana/http-methods/gettokenaccountsbydelegate",
+                  "v1/solana/http-methods/gettokenaccountsbyowner",
+                  "v1/solana/http-methods/gettokenlargestaccounts",
+                  "v1/solana/http-methods/gettokensupply",
+                  "v1/solana/http-methods/gettransaction",
+                  "v1/solana/http-methods/gettransactioncount",
+                  "v1/solana/http-methods/getversion",
+                  "v1/solana/http-methods/getvoteaccounts",
+                  "v1/solana/http-methods/isblockhashvalid",
+                  "v1/solana/http-methods/minimumledgerslot",
+                  "v1/solana/http-methods/requestairdrop",
+                  "v1/solana/http-methods/sendtransaction",
+                  "v1/solana/http-methods/simulatetransaction"
+                ]
+              },
+              {
+                "group": "Websocket Stable Methods",
+                "root": "v1/solana/websocket-stable-methods/index",
+                "pages": [
+                  "v1/solana/websocket-stable-methods/accountsubscribe",
+                  "v1/solana/websocket-stable-methods/accountunsubscribe",
+                  "v1/solana/websocket-stable-methods/logssubscribe",
+                  "v1/solana/websocket-stable-methods/logunsubscribe",
+                  "v1/solana/websocket-stable-methods/programsubscribe",
+                  "v1/solana/websocket-stable-methods/programunsubscribe",
+                  "v1/solana/websocket-stable-methods/rootsubscribe",
+                  "v1/solana/websocket-stable-methods/rootunsubscribe",
+                  "v1/solana/websocket-stable-methods/signaturesubscribe",
+                  "v1/solana/websocket-stable-methods/signatureunsubscribe",
+                  "v1/solana/websocket-stable-methods/slotsubscribe",
+                  "v1/solana/websocket-stable-methods/slotunsubscribe"
+                ]
+              },
+              {
+                "group": "Websocket Unstable Methods",
+                "root": "v1/solana/websocket-unstable-methods/index",
+                "pages": [
+                  "v1/solana/websocket-unstable-methods/blocksubscribe",
+                  "v1/solana/websocket-unstable-methods/blockunsubscribe",
+                  "v1/solana/websocket-unstable-methods/slotsupdatessubscribe",
+                  "v1/solana/websocket-unstable-methods/slotsupdatesunsubscribe"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Somnia",
+            "pages": [
+              "v1/somnia/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/somnia/execution-api/index",
+                "pages": [
+                  "v1/somnia/execution-api/eth_accounts",
+                  "v1/somnia/execution-api/eth_blocknumber",
+                  "v1/somnia/execution-api/eth_call",
+                  "v1/somnia/execution-api/eth_chainid",
+                  "v1/somnia/execution-api/eth_estimategas",
+                  "v1/somnia/execution-api/eth_gasprice",
+                  "v1/somnia/execution-api/eth_getbalance",
+                  "v1/somnia/execution-api/eth_getblockbyhash",
+                  "v1/somnia/execution-api/eth_getblockbynumber",
+                  "v1/somnia/execution-api/eth_getblockreceipts",
+                  "v1/somnia/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/somnia/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/somnia/execution-api/eth_getcode",
+                  "v1/somnia/execution-api/eth_getlogs",
+                  "v1/somnia/execution-api/eth_getstorageat",
+                  "v1/somnia/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/somnia/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/somnia/execution-api/eth_gettransactionbyhash",
+                  "v1/somnia/execution-api/eth_gettransactioncount",
+                  "v1/somnia/execution-api/eth_gettransactionreceipt",
+                  "v1/somnia/execution-api/eth_sendrawtransaction",
+                  "v1/somnia/execution-api/eth_subscribe",
+                  "v1/somnia/execution-api/eth_unsubscribe",
+                  "v1/somnia/execution-api/eth_syncing",
+                  "v1/somnia/execution-api/net_listening",
+                  "v1/somnia/execution-api/net_version",
+                  "v1/somnia/execution-api/web3_clientversion",
+                  "v1/somnia/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/somnia/debug-api/index",
+                "pages": [
+                  "v1/somnia/debug-api/debug_tracecall",
+                  "v1/somnia/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Stellar",
+            "pages": [
+              "v1/stellar/overview",
+              {
+                "group": "Stellar RPC (formerly Soroban API)",
+                "root": "v1/stellar/stellar-rpc-formerly-soroban-api/index",
+                "pages": [
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getevents",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getfeestats",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/gethealth",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getlatestledger",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getledgerentries",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getledgers",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getnetwork",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/gettransaction",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/gettransactions",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/getversioninfo",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/queryevents",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/sendtransaction",
+                  "v1/stellar/stellar-rpc-formerly-soroban-api/simulatetransaction"
+                ]
+              },
+              {
+                "group": "Horizon API",
+                "root": "v1/stellar/horizon-api/index",
+                "pages": [
+                  "v1/stellar/horizon-api/root",
+                  {
+                    "group": "Accounts",
+                    "root": "v1/stellar/horizon-api/accounts/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/accounts/list-all-accounts",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-account",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-transactions",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-operations",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-payments",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-effects",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-offers",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-trades",
+                      "v1/stellar/horizon-api/accounts/retrieve-an-accounts-data"
+                    ]
+                  },
+                  {
+                    "group": "Assets",
+                    "root": "v1/stellar/horizon-api/assets/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/assets/list-all-assets"
+                    ]
+                  },
+                  {
+                    "group": "Claimable Balances",
+                    "root": "v1/stellar/horizon-api/claimable-balances/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/claimable-balances/list-all-claimable-balances",
+                      "v1/stellar/horizon-api/claimable-balances/retrieve-a-claimable-balance",
+                      "v1/stellar/horizon-api/claimable-balances/retrieve-related-transactions",
+                      "v1/stellar/horizon-api/claimable-balances/retrieve-related-operations"
+                    ]
+                  },
+                  {
+                    "group": "Effects",
+                    "root": "v1/stellar/horizon-api/effects/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/effects/effect-types",
+                      "v1/stellar/horizon-api/effects/list-all-effects"
+                    ]
+                  },
+                  "v1/stellar/horizon-api/fee-stats",
+                  {
+                    "group": "Ledgers",
+                    "root": "v1/stellar/horizon-api/ledgers/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/ledgers/list-all-ledgers",
+                      "v1/stellar/horizon-api/ledgers/retrieve-a-ledger",
+                      "v1/stellar/horizon-api/ledgers/retrieve-a-ledgers-transactions",
+                      "v1/stellar/horizon-api/ledgers/retrieve-a-ledgers-payments",
+                      "v1/stellar/horizon-api/ledgers/retrieve-a-ledgers-operations",
+                      "v1/stellar/horizon-api/ledgers/retrieve-a-ledgerss-effects"
+                    ]
+                  },
+                  {
+                    "group": "Liquidity Pools",
+                    "root": "v1/stellar/horizon-api/liquidity-pools/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/liquidity-pools/list-liquidity-pools",
+                      "v1/stellar/horizon-api/liquidity-pools/retrieve-a-liquidity-pool",
+                      "v1/stellar/horizon-api/liquidity-pools/retrieve-related-effects",
+                      "v1/stellar/horizon-api/liquidity-pools/retrieve-related-trades",
+                      "v1/stellar/horizon-api/liquidity-pools/retrieve-related-transactions",
+                      "v1/stellar/horizon-api/liquidity-pools/retrieve-related-operations"
+                    ]
+                  },
+                  {
+                    "group": "Offers",
+                    "root": "v1/stellar/horizon-api/offers/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/offers/list-all-offers",
+                      "v1/stellar/horizon-api/offers/retrieve-an-offer",
+                      "v1/stellar/horizon-api/offers/retrieve-an-offers-trades"
+                    ]
+                  },
+                  {
+                    "group": "Operations",
+                    "root": "v1/stellar/horizon-api/operations/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/operations/retrieve-an-operation",
+                      "v1/stellar/horizon-api/operations/retrieve-an-operations-effects",
+                      "v1/stellar/horizon-api/operations/list-all-operations",
+                      "v1/stellar/horizon-api/operations/list-all-payments"
+                    ]
+                  },
+                  {
+                    "group": "Order Books",
+                    "root": "v1/stellar/horizon-api/order-books/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/order-books/retrieve-an-order-book"
+                    ]
+                  },
+                  {
+                    "group": "Paths",
+                    "root": "v1/stellar/horizon-api/paths/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/paths/list-strict-receive-payment-paths",
+                      "v1/stellar/horizon-api/paths/list-strict-send-payment-paths"
+                    ]
+                  },
+                  {
+                    "group": "Payments",
+                    "root": "v1/stellar/horizon-api/payments/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/payments/list-all-payments",
+                      "v1/stellar/horizon-api/payments/retrieve-a-transactions-payments"
+                    ]
+                  },
+                  {
+                    "group": "Trades",
+                    "root": "v1/stellar/horizon-api/trades/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/trades/list-all-trades"
+                    ]
+                  },
+                  {
+                    "group": "Trade Aggregations",
+                    "root": "v1/stellar/horizon-api/trade-aggregations/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/trade-aggregations/list-trade-aggregations"
+                    ]
+                  },
+                  {
+                    "group": "Transactions",
+                    "root": "v1/stellar/horizon-api/transactions/index",
+                    "pages": [
+                      "v1/stellar/horizon-api/transactions/retrieve-a-transaction",
+                      "v1/stellar/horizon-api/transactions/retrieve-a-transactions-operations",
+                      "v1/stellar/horizon-api/transactions/retrieve-a-transactions-effects",
+                      "v1/stellar/horizon-api/transactions/list-all-transactions",
+                      "v1/stellar/horizon-api/transactions/submit-a-transaction"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Tempo",
+            "pages": [
+              "v1/tempo/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/tempo/execution-api/index",
+                "pages": [
+                  "v1/tempo/execution-api/eth_blocknumber",
+                  "v1/tempo/execution-api/eth_call",
+                  "v1/tempo/execution-api/eth_chainid",
+                  "v1/tempo/execution-api/eth_estimategas",
+                  "v1/tempo/execution-api/eth_feehistory",
+                  "v1/tempo/execution-api/eth_gasprice",
+                  "v1/tempo/execution-api/eth_getbalance",
+                  "v1/tempo/execution-api/eth_getblockbyhash",
+                  "v1/tempo/execution-api/eth_getblockbynumber",
+                  "v1/tempo/execution-api/eth_getblockreceipts",
+                  "v1/tempo/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/tempo/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/tempo/execution-api/eth_getcode",
+                  "v1/tempo/execution-api/eth_getfilterchanges",
+                  "v1/tempo/execution-api/eth_getfilterlogs",
+                  "v1/tempo/execution-api/eth_getlogs",
+                  "v1/tempo/execution-api/eth_getproof",
+                  "v1/tempo/execution-api/eth_getstorageat",
+                  "v1/tempo/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/tempo/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/tempo/execution-api/eth_gettransactionbyhash",
+                  "v1/tempo/execution-api/eth_gettransactioncount",
+                  "v1/tempo/execution-api/eth_gettransactionreceipt",
+                  "v1/tempo/execution-api/eth_getunclecountbyblockhash",
+                  "v1/tempo/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/tempo/execution-api/eth_newblockfilter",
+                  "v1/tempo/execution-api/eth_newfilter",
+                  "v1/tempo/execution-api/eth_newpendingtransactionfilter",
+                  "v1/tempo/execution-api/eth_sendrawtransaction",
+                  "v1/tempo/execution-api/eth_subscribe",
+                  "v1/tempo/execution-api/eth_syncing",
+                  "v1/tempo/execution-api/eth_uninstallfilter",
+                  "v1/tempo/execution-api/eth_unsubscribe",
+                  "v1/tempo/execution-api/net_listening",
+                  "v1/tempo/execution-api/net_peercount",
+                  "v1/tempo/execution-api/net_version",
+                  "v1/tempo/execution-api/txpool_content",
+                  "v1/tempo/execution-api/txpool_inspect",
+                  "v1/tempo/execution-api/txpool_status",
+                  "v1/tempo/execution-api/web3_clientversion",
+                  "v1/tempo/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/tempo/debug-api/index",
+                "pages": [
+                  "v1/tempo/debug-api/debug_traceblockbyhash",
+                  "v1/tempo/debug-api/debug_traceblockbynumber",
+                  "v1/tempo/debug-api/debug_tracecall",
+                  "v1/tempo/debug-api/debug_tracetransaction"
+                ]
+              },
+              {
+                "group": "Trace API",
+                "root": "v1/tempo/trace-api/index",
+                "pages": [
+                  "v1/tempo/trace-api/trace_block",
+                  "v1/tempo/trace-api/trace_call",
+                  "v1/tempo/trace-api/trace_filter",
+                  "v1/tempo/trace-api/trace_replayblocktransactions",
+                  "v1/tempo/trace-api/trace_replaytransaction",
+                  "v1/tempo/trace-api/trace_transaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Tron",
+            "pages": [
+              "v1/tron/overview",
+              {
+                "group": "Tron Full Node HTTP API",
+                "root": "v1/tron/tron-full-node-http-api/index",
+                "pages": [
+                  {
+                    "group": "Address Utilities",
+                    "root": "v1/tron/tron-full-node-http-api/address-utilities/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/address-utilities/validateaddress"
+                    ]
+                  },
+                  {
+                    "group": "Transactions",
+                    "root": "v1/tron/tron-full-node-http-api/transactions/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/transactions/broadcasttransaction",
+                      "v1/tron/tron-full-node-http-api/transactions/broadcasthex",
+                      "v1/tron/tron-full-node-http-api/transactions/createtransaction"
+                    ]
+                  },
+                  {
+                    "group": "Accounts",
+                    "root": "v1/tron/tron-full-node-http-api/accounts/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/accounts/createaccount",
+                      "v1/tron/tron-full-node-http-api/accounts/getaccount",
+                      "v1/tron/tron-full-node-http-api/accounts/updateaccount",
+                      "v1/tron/tron-full-node-http-api/accounts/accountpermissionupdate",
+                      "v1/tron/tron-full-node-http-api/accounts/getaccountbalance"
+                    ]
+                  },
+                  {
+                    "group": "Account Resources",
+                    "root": "v1/tron/tron-full-node-http-api/account-resources/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/account-resources/getaccountresource",
+                      "v1/tron/tron-full-node-http-api/account-resources/getaccountnet",
+                      "v1/tron/tron-full-node-http-api/account-resources/getdelegatedresource",
+                      "v1/tron/tron-full-node-http-api/account-resources/getdelegatedresourceaccountindex",
+                      "v1/tron/tron-full-node-http-api/account-resources/freezebalancev2",
+                      "v1/tron/tron-full-node-http-api/account-resources/unfreezebalancev2",
+                      "v1/tron/tron-full-node-http-api/account-resources/cancelallunfreezev2",
+                      "v1/tron/tron-full-node-http-api/account-resources/delegateresource",
+                      "v1/tron/tron-full-node-http-api/account-resources/undelegateresource",
+                      "v1/tron/tron-full-node-http-api/account-resources/withdrawexpireunfreeze",
+                      "v1/tron/tron-full-node-http-api/account-resources/getavailableunfreezecount",
+                      "v1/tron/tron-full-node-http-api/account-resources/getcanwithdrawunfreezeamount",
+                      "v1/tron/tron-full-node-http-api/account-resources/getcandelegatedmaxsize",
+                      "v1/tron/tron-full-node-http-api/account-resources/getdelegatedresourcev2",
+                      "v1/tron/tron-full-node-http-api/account-resources/getdelegatedresourceaccountindexv2"
+                    ]
+                  },
+                  {
+                    "group": "Query The Network",
+                    "root": "v1/tron/tron-full-node-http-api/query-the-network/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/query-the-network/getblock",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getblockbynum",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getblockbyid",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getblockbylatestnum",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getblockbylimitnext",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getnowblock",
+                      "v1/tron/tron-full-node-http-api/query-the-network/gettransactionbyid",
+                      "v1/tron/tron-full-node-http-api/query-the-network/gettransactioninfobyid",
+                      "v1/tron/tron-full-node-http-api/query-the-network/gettransactioninfobyblocknum",
+                      "v1/tron/tron-full-node-http-api/query-the-network/listnodes",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getnodeinfo",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getchainparameters",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getblockbalance",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getenergyprices",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getbandwidthprices",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getburntrx",
+                      "v1/tron/tron-full-node-http-api/query-the-network/getapprovedlist"
+                    ]
+                  },
+                  {
+                    "group": "TRC10 Token",
+                    "root": "v1/tron/tron-full-node-http-api/trc10-token/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/trc10-token/getassetissuebyaccount",
+                      "v1/tron/tron-full-node-http-api/trc10-token/getassetissuebyid",
+                      "v1/tron/tron-full-node-http-api/trc10-token/getassetissuebyname",
+                      "v1/tron/tron-full-node-http-api/trc10-token/getassetissuelist",
+                      "v1/tron/tron-full-node-http-api/trc10-token/getassetissuelistbyname",
+                      "v1/tron/tron-full-node-http-api/trc10-token/getpaginatedassetissuelist",
+                      "v1/tron/tron-full-node-http-api/trc10-token/transferasset",
+                      "v1/tron/tron-full-node-http-api/trc10-token/createassetissue",
+                      "v1/tron/tron-full-node-http-api/trc10-token/participateassetissue",
+                      "v1/tron/tron-full-node-http-api/trc10-token/unfreezeasset",
+                      "v1/tron/tron-full-node-http-api/trc10-token/updateasset"
+                    ]
+                  },
+                  {
+                    "group": "Smart Contracts",
+                    "root": "v1/tron/tron-full-node-http-api/smart-contracts/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/smart-contracts/getcontract",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/getcontractinfo",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/triggersmartcontract",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/triggerconstantcontract",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/deploycontract",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/updatesetting",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/updateenergylimit",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/clearabi",
+                      "v1/tron/tron-full-node-http-api/smart-contracts/estimateenergy"
+                    ]
+                  },
+                  {
+                    "group": "Voting & Super Representatives (SRs)",
+                    "root": "v1/tron/tron-full-node-http-api/voting-and-super-representatives-srs/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/voting-and-super-representatives-srs/votewitnessaccount"
+                    ]
+                  },
+                  {
+                    "group": "Proposals",
+                    "root": "v1/tron/tron-full-node-http-api/proposals/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/proposals/listproposals",
+                      "v1/tron/tron-full-node-http-api/proposals/getproposalbyid",
+                      "v1/tron/tron-full-node-http-api/proposals/proposalcreate",
+                      "v1/tron/tron-full-node-http-api/proposals/proposalapprove",
+                      "v1/tron/tron-full-node-http-api/proposals/proposaldelete"
+                    ]
+                  },
+                  {
+                    "group": "DEX Exchange",
+                    "root": "v1/tron/tron-full-node-http-api/dex-exchange/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/dex-exchange/listexchanges",
+                      "v1/tron/tron-full-node-http-api/dex-exchange/getexchangebyid",
+                      "v1/tron/tron-full-node-http-api/dex-exchange/exchangecreate",
+                      "v1/tron/tron-full-node-http-api/dex-exchange/exchangeinject",
+                      "v1/tron/tron-full-node-http-api/dex-exchange/exchangewithdraw",
+                      "v1/tron/tron-full-node-http-api/dex-exchange/exchangetransaction"
+                    ]
+                  },
+                  {
+                    "group": "Pending pool",
+                    "root": "v1/tron/tron-full-node-http-api/pending-pool/index",
+                    "pages": [
+                      "v1/tron/tron-full-node-http-api/pending-pool/gettransactionlistfrompending",
+                      "v1/tron/tron-full-node-http-api/pending-pool/gettransactionfrompending",
+                      "v1/tron/tron-full-node-http-api/pending-pool/getpendingsize"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Tron JSON-RPC API",
+                "root": "v1/tron/tron-json-rpc-api/index",
+                "pages": [
+                  "v1/tron/tron-json-rpc-api/buildtransaction",
+                  "v1/tron/tron-json-rpc-api/eth_accounts",
+                  "v1/tron/tron-json-rpc-api/eth_blocknumber",
+                  "v1/tron/tron-json-rpc-api/eth_call",
+                  "v1/tron/tron-json-rpc-api/eth_chainid",
+                  "v1/tron/tron-json-rpc-api/eth_estimategas",
+                  "v1/tron/tron-json-rpc-api/eth_gasprice",
+                  "v1/tron/tron-json-rpc-api/eth_getbalance",
+                  "v1/tron/tron-json-rpc-api/eth_getblockbyhash",
+                  "v1/tron/tron-json-rpc-api/eth_getblockbynumber",
+                  "v1/tron/tron-json-rpc-api/eth_getblocktransactioncountbyhash",
+                  "v1/tron/tron-json-rpc-api/eth_getblocktransactioncountbynumber",
+                  "v1/tron/tron-json-rpc-api/eth_getcode",
+                  "v1/tron/tron-json-rpc-api/eth_getfilterchanges",
+                  "v1/tron/tron-json-rpc-api/eth_getfilterlogs",
+                  "v1/tron/tron-json-rpc-api/eth_getlogs",
+                  "v1/tron/tron-json-rpc-api/eth_newblockfilter",
+                  "v1/tron/tron-json-rpc-api/eth_newfilter",
+                  "v1/tron/tron-json-rpc-api/eth_getstorageat",
+                  "v1/tron/tron-json-rpc-api/eth_gettransactionbyblockhashandindex",
+                  "v1/tron/tron-json-rpc-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/tron/tron-json-rpc-api/eth_gettransactionbyhash",
+                  "v1/tron/tron-json-rpc-api/eth_gettransactionreceipt",
+                  "v1/tron/tron-json-rpc-api/eth_getprotocolversion",
+                  "v1/tron/tron-json-rpc-api/eth_syncing",
+                  "v1/tron/tron-json-rpc-api/eth_uninstallfilter",
+                  "v1/tron/tron-json-rpc-api/net_listening",
+                  "v1/tron/tron-json-rpc-api/net_peercount",
+                  "v1/tron/tron-json-rpc-api/net_version",
+                  "v1/tron/tron-json-rpc-api/web3_clientversion",
+                  "v1/tron/tron-json-rpc-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Tron Solidity API",
+                "root": "v1/tron/tron-solidity-api/index",
+                "pages": [
+                  {
+                    "group": "Transactions",
+                    "root": "v1/tron/tron-solidity-api/transactions/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/transactions/gettransactionbyid",
+                      "v1/tron/tron-solidity-api/transactions/gettransactioninfobyid",
+                      "v1/tron/tron-solidity-api/transactions/gettransactioninfobyblocknum",
+                      "v1/tron/tron-solidity-api/transactions/gettransactioncountbyblocknum"
+                    ]
+                  },
+                  {
+                    "group": "Blocks",
+                    "root": "v1/tron/tron-solidity-api/blocks/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/blocks/getblock",
+                      "v1/tron/tron-solidity-api/blocks/getnowblock",
+                      "v1/tron/tron-solidity-api/blocks/getblockbynum",
+                      "v1/tron/tron-solidity-api/blocks/getblockbyid",
+                      "v1/tron/tron-solidity-api/blocks/getblockbylatestnum",
+                      "v1/tron/tron-solidity-api/blocks/getblockbylimitnext"
+                    ]
+                  },
+                  {
+                    "group": "Account Resources",
+                    "root": "v1/tron/tron-solidity-api/account-resources/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/account-resources/getaccount",
+                      "v1/tron/tron-solidity-api/account-resources/getdelegatedresource",
+                      "v1/tron/tron-solidity-api/account-resources/getdelegatedresourceaccountindex",
+                      "v1/tron/tron-solidity-api/account-resources/getcandelegatedmaxsize",
+                      "v1/tron/tron-solidity-api/account-resources/getcanwithdrawunfreezeamount",
+                      "v1/tron/tron-solidity-api/account-resources/getdelegatedresourceaccountindexv2",
+                      "v1/tron/tron-solidity-api/account-resources/getavailableunfreezecount"
+                    ]
+                  },
+                  {
+                    "group": "Node & Chain",
+                    "root": "v1/tron/tron-solidity-api/node-and-chain/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/node-and-chain/getnodeinfo",
+                      "v1/tron/tron-solidity-api/node-and-chain/getburntrx"
+                    ]
+                  },
+                  {
+                    "group": "Smart Contracts",
+                    "root": "v1/tron/tron-solidity-api/smart-contracts/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/smart-contracts/triggerconstantcontract",
+                      "v1/tron/tron-solidity-api/smart-contracts/estimateenergy"
+                    ]
+                  },
+                  {
+                    "group": "TRC10 Token",
+                    "root": "v1/tron/tron-solidity-api/trc10-token/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/trc10-token/getassetissuebyname",
+                      "v1/tron/tron-solidity-api/trc10-token/getassetissuebyid",
+                      "v1/tron/tron-solidity-api/trc10-token/getassetissuelist",
+                      "v1/tron/tron-solidity-api/trc10-token/getassetissuelistbyname",
+                      "v1/tron/tron-solidity-api/trc10-token/getpaginatedassetissuelist"
+                    ]
+                  },
+                  {
+                    "group": "DEX Exchange",
+                    "root": "v1/tron/tron-solidity-api/dex-exchange/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/dex-exchange/listexchanges",
+                      "v1/tron/tron-solidity-api/dex-exchange/getexchangebyid"
+                    ]
+                  },
+                  {
+                    "group": "Voting & Super Representatives",
+                    "root": "v1/tron/tron-solidity-api/voting-and-super-representatives/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/voting-and-super-representatives/listwitnesses",
+                      "v1/tron/tron-solidity-api/voting-and-super-representatives/getreward",
+                      "v1/tron/tron-solidity-api/voting-and-super-representatives/getbrokerage"
+                    ]
+                  },
+                  {
+                    "group": "TRONZ Shielded Smart Contract",
+                    "root": "v1/tron/tron-solidity-api/tronz-shielded-smart-contract/index",
+                    "pages": [
+                      "v1/tron/tron-solidity-api/tronz-shielded-smart-contract/scanshieldedtrc20notesbyivk",
+                      "v1/tron/tron-solidity-api/tronz-shielded-smart-contract/scanshieldedtrc20notesbyovk",
+                      "v1/tron/tron-solidity-api/tronz-shielded-smart-contract/isshieldedtrc20contractnotespent"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Unichain",
+            "pages": [
+              "v1/unichain/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/unichain/execution-api/index",
+                "pages": [
+                  "v1/unichain/execution-api/eth_accounts",
+                  "v1/unichain/execution-api/eth_blobbasefee",
+                  "v1/unichain/execution-api/eth_blocknumber",
+                  "v1/unichain/execution-api/eth_call",
+                  "v1/unichain/execution-api/eth_chainid",
+                  "v1/unichain/execution-api/eth_createaccesslist",
+                  "v1/unichain/execution-api/eth_estimategas",
+                  "v1/unichain/execution-api/eth_feehistory",
+                  "v1/unichain/execution-api/eth_gasprice",
+                  "v1/unichain/execution-api/eth_getbalance",
+                  "v1/unichain/execution-api/eth_getblockbyhash",
+                  "v1/unichain/execution-api/eth_getblockbynumber",
+                  "v1/unichain/execution-api/eth_getblockreceipts",
+                  "v1/unichain/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/unichain/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/unichain/execution-api/eth_getcode",
+                  "v1/unichain/execution-api/eth_getfilterchanges",
+                  "v1/unichain/execution-api/eth_getfilterlogs",
+                  "v1/unichain/execution-api/eth_getlogs",
+                  "v1/unichain/execution-api/eth_getproof",
+                  "v1/unichain/execution-api/eth_getrawtransactionbyhash",
+                  "v1/unichain/execution-api/eth_getstorageat",
+                  "v1/unichain/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/unichain/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/unichain/execution-api/eth_gettransactionbyhash",
+                  "v1/unichain/execution-api/eth_gettransactioncount",
+                  "v1/unichain/execution-api/eth_gettransactionreceipt",
+                  "v1/unichain/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/unichain/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/unichain/execution-api/eth_getunclecountbyblockhash",
+                  "v1/unichain/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/unichain/execution-api/eth_maxpriorityfeepergas",
+                  "v1/unichain/execution-api/eth_newblockfilter",
+                  "v1/unichain/execution-api/eth_newfilter",
+                  "v1/unichain/execution-api/eth_newpendingtransactionfilter",
+                  "v1/unichain/execution-api/eth_protocolversion",
+                  "v1/unichain/execution-api/eth_sendrawtransaction",
+                  "v1/unichain/execution-api/eth_simulatev1",
+                  "v1/unichain/execution-api/eth_subscribe",
+                  "v1/unichain/execution-api/eth_syncing",
+                  "v1/unichain/execution-api/eth_uninstallfilter",
+                  "v1/unichain/execution-api/eth_unsubscribe",
+                  "v1/unichain/execution-api/net_listening",
+                  "v1/unichain/execution-api/net_peercount",
+                  "v1/unichain/execution-api/net_version",
+                  "v1/unichain/execution-api/txpool_content",
+                  "v1/unichain/execution-api/web3_clientversion",
+                  "v1/unichain/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/unichain/debug-api/index",
+                "pages": [
+                  "v1/unichain/debug-api/debug_getbadblocks",
+                  "v1/unichain/debug-api/debug_traceblockbyhash",
+                  "v1/unichain/debug-api/debug_traceblockbynumber",
+                  "v1/unichain/debug-api/debug_tracecall",
+                  "v1/unichain/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Wemix",
+            "pages": [
+              "v1/wemix/overview",
+              {
+                "group": "Execution API",
+                "root": "v1/wemix/execution-api/index",
+                "pages": [
+                  "v1/wemix/execution-api/eth_accounts",
+                  "v1/wemix/execution-api/eth_blocknumber",
+                  "v1/wemix/execution-api/eth_call",
+                  "v1/wemix/execution-api/eth_chainid",
+                  "v1/wemix/execution-api/eth_estimategas",
+                  "v1/wemix/execution-api/eth_gasprice",
+                  "v1/wemix/execution-api/eth_getbalance",
+                  "v1/wemix/execution-api/eth_getblockbyhash",
+                  "v1/wemix/execution-api/eth_getblockbynumber",
+                  "v1/wemix/execution-api/eth_getblocktransactioncountbyhash",
+                  "v1/wemix/execution-api/eth_getblocktransactioncountbynumber",
+                  "v1/wemix/execution-api/eth_getcode",
+                  "v1/wemix/execution-api/eth_getfilterchanges",
+                  "v1/wemix/execution-api/eth_getfilterlogs",
+                  "v1/wemix/execution-api/eth_getlogs",
+                  "v1/wemix/execution-api/eth_getstorageat",
+                  "v1/wemix/execution-api/eth_gettransactionbyblockhashandindex",
+                  "v1/wemix/execution-api/eth_gettransactionbyblocknumberandindex",
+                  "v1/wemix/execution-api/eth_gettransactionbyhash",
+                  "v1/wemix/execution-api/eth_gettransactioncount",
+                  "v1/wemix/execution-api/eth_gettransactionreceipt",
+                  "v1/wemix/execution-api/eth_getunclebyblockhashandindex",
+                  "v1/wemix/execution-api/eth_getunclebyblocknumberandindex",
+                  "v1/wemix/execution-api/eth_getunclecountbyblockhash",
+                  "v1/wemix/execution-api/eth_getunclecountbyblocknumber",
+                  "v1/wemix/execution-api/eth_newblockfilter",
+                  "v1/wemix/execution-api/eth_newfilter",
+                  "v1/wemix/execution-api/eth_newpendingtransactionfilter",
+                  "v1/wemix/execution-api/eth_sendrawtransaction",
+                  "v1/wemix/execution-api/eth_subscribe",
+                  "v1/wemix/execution-api/eth_syncing",
+                  "v1/wemix/execution-api/eth_uninstallfilter",
+                  "v1/wemix/execution-api/eth_unsubscribe",
+                  "v1/wemix/execution-api/net_listening",
+                  "v1/wemix/execution-api/net_peercount",
+                  "v1/wemix/execution-api/net_version",
+                  "v1/wemix/execution-api/txpool_content",
+                  "v1/wemix/execution-api/web3_clientversion",
+                  "v1/wemix/execution-api/web3_sha3"
+                ]
+              },
+              {
+                "group": "Debug API",
+                "root": "v1/wemix/debug-api/index",
+                "pages": [
+                  "v1/wemix/debug-api/debug_traceblockbyhash",
+                  "v1/wemix/debug-api/debug_traceblockbynumber",
+                  "v1/wemix/debug-api/debug_tracecall",
+                  "v1/wemix/debug-api/debug_tracetransaction"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "XRP Ledger (XRPL)",
+            "pages": [
+              "v1/xrp-ledger-xrpl/overview",
+              "v1/xrp-ledger-xrpl/account_channels",
+              "v1/xrp-ledger-xrpl/account_currencies",
+              "v1/xrp-ledger-xrpl/account_info",
+              "v1/xrp-ledger-xrpl/account_lines",
+              "v1/xrp-ledger-xrpl/account_nfts",
+              "v1/xrp-ledger-xrpl/account_objects",
+              "v1/xrp-ledger-xrpl/account_offers",
+              "v1/xrp-ledger-xrpl/account_tx",
+              "v1/xrp-ledger-xrpl/amm_info",
+              "v1/xrp-ledger-xrpl/book_changes",
+              "v1/xrp-ledger-xrpl/book_offers",
+              "v1/xrp-ledger-xrpl/channel_verify",
+              "v1/xrp-ledger-xrpl/deposit_authorized",
+              "v1/xrp-ledger-xrpl/feature",
+              "v1/xrp-ledger-xrpl/fee",
+              "v1/xrp-ledger-xrpl/gateway_balances",
+              "v1/xrp-ledger-xrpl/get_aggregate_price",
+              "v1/xrp-ledger-xrpl/ledger",
+              "v1/xrp-ledger-xrpl/ledger_closed",
+              "v1/xrp-ledger-xrpl/ledger_current",
+              "v1/xrp-ledger-xrpl/ledger_data",
+              "v1/xrp-ledger-xrpl/ledger_entry",
+              "v1/xrp-ledger-xrpl/ledger_index",
+              "v1/xrp-ledger-xrpl/ledger_range",
+              "v1/xrp-ledger-xrpl/manifest",
+              "v1/xrp-ledger-xrpl/nft_buy_offers",
+              "v1/xrp-ledger-xrpl/nft_history",
+              "v1/xrp-ledger-xrpl/nft_info",
+              "v1/xrp-ledger-xrpl/nft_sell_offers",
+              "v1/xrp-ledger-xrpl/nfts_by_issuer",
+              "v1/xrp-ledger-xrpl/noripple_check",
+              "v1/xrp-ledger-xrpl/ping",
+              "v1/xrp-ledger-xrpl/random",
+              "v1/xrp-ledger-xrpl/ripple_path_find",
+              "v1/xrp-ledger-xrpl/server_definitions",
+              "v1/xrp-ledger-xrpl/server_info",
+              "v1/xrp-ledger-xrpl/server_state",
+              "v1/xrp-ledger-xrpl/simulate",
+              "v1/xrp-ledger-xrpl/submit",
+              "v1/xrp-ledger-xrpl/submit_multisigned",
+              "v1/xrp-ledger-xrpl/subscribe",
+              "v1/xrp-ledger-xrpl/transaction_entry",
+              "v1/xrp-ledger-xrpl/tx",
+              "v1/xrp-ledger-xrpl/unsubscribe",
+              "v1/xrp-ledger-xrpl/vault_info"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Staking",
+        "groups": [
+          {
+            "group": "Staking",
+            "pages": [
+              "staking/index",
+              "staking/staking/faq"
+            ]
+          },
+          {
+            "group": "Ethereum",
+            "pages": [
+              {
+                "group": "Staking Tutorial",
+                "root": "staking/ethereum/staking-tutorial/index",
+                "pages": [
+                  {
+                    "group": "API",
+                    "root": "staking/ethereum/staking-tutorial/api/index",
+                    "pages": [
+                      "staking/ethereum/staking-tutorial/api/prerequisites",
+                      "staking/ethereum/staking-tutorial/api/authenticating-with-auth0",
+                      "staking/ethereum/staking-tutorial/api/setting-up-a-wallet",
+                      "staking/ethereum/staking-tutorial/api/get-staking-transaction",
+                      "staking/ethereum/staking-tutorial/api/signing-a-transaction",
+                      "staking/ethereum/staking-tutorial/api/broadcast-transaction",
+                      "staking/ethereum/staking-tutorial/api/full-code"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Staking API Reference",
+                "root": "staking/ethereum/staking-api-reference/index",
+                "pages": [
+                  "staking/ethereum/staking-api-reference/authentication",
+                  "staking/ethereum/staking-api-reference/get-validators",
+                  "staking/ethereum/staking-api-reference/stake-transaction",
+                  "staking/ethereum/staking-api-reference/broadcast-transaction",
+                  "staking/ethereum/staking-api-reference/exit-validators",
+                  "staking/ethereum/staking-api-reference/presigned-exit-request"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "SOLANA",
+            "pages": [
+              {
+                "group": "Solana Staking Reporting API",
+                "root": "staking/solana/solana-staking-reporting-api/index",
+                "pages": [
+                  "staking/solana/solana-staking-reporting-api/authentication",
+                  "staking/solana/solana-staking-reporting-api/register-a-solana-delegator-wallet",
+                  "staking/solana/solana-staking-reporting-api/list-registered-solana-wallets",
+                  "staking/solana/solana-staking-reporting-api/get-solana-staking-rewards-json",
+                  "staking/solana/solana-staking-reporting-api/get-solana-staking-rewards-csv",
+                  "staking/solana/solana-staking-reporting-api/remove-registered-solana-wallet"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Mavrik",
+        "groups": [
+          {
+            "group": "Mavrik",
+            "pages": [
+              "mavrik/index",
+              "mavrik/mavrik/plans-and-billing",
+              "mavrik/mavrik/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Agents",
+        "groups": [
+          {
+            "group": "Agents",
+            "pages": [
+              "agents/index",
+              "agents/mcp",
+              "agents/cli"
+            ]
+          }
         ]
       }
     ]

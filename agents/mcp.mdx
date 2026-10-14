@@ -1,0 +1,156 @@
+---
+title: "MCP Server"
+description: "Connect Claude Code, Codex, Cursor, VS Code or any MCP client to Mavrik and your Node API account."
+---
+
+The Validation Cloud MCP server gives AI coding agents access to Mavrik and to your team's Node API account through the [Model Context Protocol](https://modelcontextprotocol.io/specification). It is a remote server, so there is nothing to install or run locally.
+
+|                |                                              |
+| -------------- | -------------------------------------------- |
+| Server URL     | `https://mcp.validationcloud.io/mcp`         |
+| Authentication | OAuth 2.1 with your Validation Cloud account |
+
+## Authentication
+
+You connect with your Validation Cloud account. The first time a client connects, it opens a browser window: log in and click **Accept** on the **Authorize App** screen. The client stores the token and refreshes it for you.
+
+<Info>
+
+The **Authorize App** screen shows a notice like _External App - Verify you recognize the domain http://localhost:64483/callback_. That address is your MCP client on your own machine, where it receives the login result. Accept it when you started the connection from your client.
+
+</Info>
+
+## Connect your client
+
+The examples name the server `validation-cloud`; any name works.
+
+### Claude Code
+
+```bash
+claude mcp add --transport http validation-cloud https://mcp.validationcloud.io/mcp
+```
+
+Then run `/mcp` in Claude Code, select `validation-cloud`, choose **Authenticate** and log in. The server is added for the current project; add `--scope user` to use it in every project.
+
+### Codex
+
+Add the server to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.validation-cloud]
+url = "https://mcp.validationcloud.io/mcp"
+```
+
+Then run `codex mcp login validation-cloud` and log in when the browser opens.
+
+### Cursor
+
+Use [Install in Cursor](https://cursor.com/install-mcp?name=validation-cloud\&config=eyJ1cmwiOiJodHRwczovL21jcC52YWxpZGF0aW9uY2xvdWQuaW8vbWNwIn0%3D), or add the server to `~/.cursor/mcp.json` and restart Cursor:
+
+```json
+{
+  "mcpServers": {
+    "validation-cloud": {
+      "url": "https://mcp.validationcloud.io/mcp"
+    }
+  }
+}
+```
+
+Then open **Customize > MCPs** (**Settings > Tools & MCP** in some versions) and select **Connect** next to `validation-cloud`.
+
+### VS Code
+
+Requires VS Code 1.101 or later. Use [Install in VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=validation-cloud\&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.validationcloud.io%2Fmcp%22%7D), or add the server to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "validation-cloud": {
+      "type": "http",
+      "url": "https://mcp.validationcloud.io/mcp"
+    }
+  }
+}
+```
+
+Start it from **MCP: List Servers** > `validation-cloud` > **Start Server**, then select **Allow** when VS Code asks to authenticate.
+
+### Other clients
+
+Point any client that supports remote MCP servers at `https://mcp.validationcloud.io/mcp`. The client must support OAuth 2.1 with Dynamic Client Registration. Discovery starts at `https://mcp.validationcloud.io/.well-known/oauth-protected-resource/mcp`, which names `https://auth.validationcloud.io/` as the authorization server.
+
+### Check the connection
+
+Ask your agent to call `nodeapi.get_health`. It returns your team and your role on it:
+
+```json
+{
+  "status": "ok",
+  "team_id": "8b1f2c3e-1d4a-4f6b-9a2e-5c7d8e9f0a1b",
+  "role": "admin"
+}
+```
+
+## Tools
+
+Tool names are the ones the server exposes. Some clients rewrite the dot: Claude Code shows `nodeapi.get_account` as `mcp__validation-cloud__nodeapi_get_account`.
+
+### Node API
+
+| Tool                             | Arguments                                   | What it returns                                                                                                                     |
+| -------------------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `nodeapi.rpc_call`               | `endpoint_id`, `body`                       | Sends a JSON-RPC request or batch through one of your endpoints and returns the node's response unchanged. Metered in compute units like any request to that endpoint. |
+| `nodeapi.get_health`             | none                                        | Your team ID and role.                                                                                                              |
+| `nodeapi.get_account`            | none                                        | Plan, compute-unit quota, usage this billing cycle, and the cycle's start and end.                                                  |
+| `nodeapi.list_chains`            | none                                        | Supported chains and networks, with WebSocket and archive support.                                                                 |
+| `nodeapi.get_compute_unit_costs` | `chain_network`, for example `base/mainnet` | Compute-unit cost per RPC method for that chain and network.                                                                       |
+| `nodeapi.list_endpoints`         | none                                        | Your team's endpoints, including API keys and RPC URLs.                                                                            |
+| `nodeapi.get_endpoint`           | `id`                                        | One endpoint, including its API key and RPC URLs.                                                                                  |
+| `nodeapi.get_team_usage`         | `from`, `to`, `granularity`                 | Compute-unit usage for the team.                                                                                                   |
+| `nodeapi.get_endpoint_usage`     | `id`, `from`, `to`, `granularity`           | Compute-unit usage for one endpoint, including deleted endpoints.                                                                  |
+| `nodeapi.create_endpoint`        | `name`, `chain`, `network`                  | Creates an endpoint. Over your endpoint limit, it is created disabled. Not idempotent: check `nodeapi.list_endpoints` before retrying. |
+| `nodeapi.delete_endpoint`        | `id`                                        | Deletes the endpoint and revokes its API key.                                                                                      |
+
+Every tool works on every plan except `nodeapi.create_endpoint` and `nodeapi.delete_endpoint`, which need the Scale plan. `nodeapi.delete_endpoint` also needs the team Admin role.
+
+For the usage tools, `from` (inclusive) and `to` (exclusive) are RFC 3339 timestamps and default to the current UTC month. `granularity` is `HOUR` (up to 7 days), `DAY` (the default, up to 92 days), `WEEK` or `MONTH` (up to 366 days). Endpoint `id` values, and `endpoint_id` for `nodeapi.rpc_call`, are the UUIDs returned by `nodeapi.list_endpoints`. `body` is a JSON-RPC 2.0 request object or a non-empty batch.
+
+<Warning>
+
+`nodeapi.list_endpoints` and `nodeapi.get_endpoint` return endpoint API keys, so the keys end up in your agent's context and logs.
+
+</Warning>
+
+### Mavrik
+
+| Tool                    | Arguments                                                | What it returns                                                            |
+| ----------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `mavrik.answerQuestion` | `question`; optional `generateChart`, `generateSummary` | Mavrik's answer to a question about blockchains and digital-asset markets. |
+
+## Errors
+
+A failed call returns a tool error whose text is a JSON object:
+
+```json
+{ "code": "plan_not_eligible", "message": "writes require the Scale plan" }
+```
+
+| Code                | Meaning                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `unauthorized`      | The login is missing or expired. Log in again from your client.                         |
+| `forbidden`         | You aren't a member of the team, or your role can't do this (deleting needs Admin).     |
+| `plan_not_eligible` | The tool needs the Scale plan.                                                           |
+| `invalid_request`   | An argument is missing or malformed.                                                     |
+| `not_found`         | The endpoint doesn't exist or belongs to another team.                                   |
+| `rate_limited`      | Too many calls. Wait `retry_after_seconds`, then retry.                                  |
+| `internal_error`    | Something failed on our side. Retry, and contact support if it persists.                 |
+
+## Troubleshooting
+
+* **`getaddrinfo ENOTFOUND mcp.validationcloud.io`**: check the server URL and your network.
+* **The client shows "Needs authentication"**: run its login step from [Connect your client](#connect-your-client).
+* **To switch account or team**, sign out and log in again: **Clear authentication** under `/mcp` in Claude Code, `codex mcp logout validation-cloud` in Codex, or **Sign Out** on the server in VS Code.
+* **Cursor login hangs**: Cursor receives the login on port 8787, so that port must be free while you log in.
+
+See also [Team Accounts](/v1/about/team-accounts) for how roles differ.

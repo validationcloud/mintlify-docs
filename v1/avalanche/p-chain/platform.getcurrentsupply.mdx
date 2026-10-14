@@ -1,0 +1,62 @@
+---
+title: "platform.getCurrentSupply"
+---
+
+Returns an upper bound on amount of tokens that exist that can stake the requested Subnet. This is an upper bound because it does not account for burnt tokens, including transaction fees.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformgetcurrentsupply)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+* `supply` - string - The upper bound on the number of AVAX that exist, denominated in nAVAX.
+
+```json
+// Result 
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "supply": "365865167637779183"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getCurrentSupply",
+    "params": {
+        "subnetID": "11111111111111111111111111111111LpoYY"
+    },
+    "id": 1
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getCurrentSupply",
+    "params": {
+        "subnetID": "11111111111111111111111111111111LpoYY"
+    },
+    "id": 1
+}'
+```
+
+</CodeGroup>

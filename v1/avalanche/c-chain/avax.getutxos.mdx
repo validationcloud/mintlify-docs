@@ -1,0 +1,96 @@
+---
+title: "avax.getUTXOs"
+---
+
+Gets the UTXOs that reference a given address.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/c-chain/api#avaxgetutxos)
+
+## **Parameters**
+
+* `addresses` - \[]string - A list of addresses.
+* `limit` - int - (optional) The limit of UTXOs to return. If limit is omitted or greater than 1024, it is set to 1024.
+* `startIndex` - object - (optional) If startIndex is omitted, will fetch all UTXOs up to limit. When using pagination (i.e when startIndex is provided), UTXOs are not guaranteed to be unique across multiple calls. That is, a UTXO may appear in the result of the first call, and then again in the second call.
+
+1. `address` - string
+2. `utxo - string`
+
+* `sourceChain` - string - The ID or alias of the chain the asset is being imported from.
+* `encoding` - string - (optional) Sets the format for the returned UTXOs. Can only be hex when a value is provided.
+
+## Returns
+
+* `numFetched` - int - (optional) Number of UTXOs fetched.
+* `utxos` - \[]string - a list of UTXOs such that each UTXO references at least one address in addresses.
+* `endIndex` - object - Denotes the last UTXO returned. To get the next set of UTXOs, use the value of endIndex as startIndex in the next call.
+
+1. `address` - string
+2. `utxo` - string
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "numFetched": "3",
+    "utxos": [
+      "0x0000a799e7448acf74ca9223159a04f93b948f99cf28509f908839532b2f85baffc300000001dbcf890f77f49b96857648b72b77f9f82937f28a68704af05da0dc12ba53f2db00000007000003a352a38240000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c22d23171",
+      "0x00006385c683d43bdbe754c224be36c5004ea7ce49c0849cadeaea6af93dae18cc7700000001dbcf890f77f49b96857648b72b77f9f82937f28a68704af05da0dc12ba53f2db00000007000003a352a38240000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29cb81cc877",
+      "0x000038137283c94582351b86c3e90808312636769e3f5c14fbf1152d6634f770695c00000001dbcf890f77f49b96857648b72b77f9f82937f28a68704af05da0dc12ba53f2db00000007000003a352a38240000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c7412490e"
+    ],
+    "endIndex": {
+      "address": "C-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5",
+      "utxo": "0x9333ef8a05f26acf2d8766f94723f749870fa2ca80c19c33cc945d79013d7c50fd023beb"
+    },
+    "encoding": "hex"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/C/avax \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc":"2.0",
+    "id"     :1,
+    "method" :"avax.getUTXOs",
+    "params" :{
+        "addresses":["C-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"],
+        "sourceChain": "X",
+        "startIndex": {
+            "address": "C-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5",
+            "utxo": "22RXW7SWjBrrxu2vzDkd8uza7fuEmNpgbj58CxBob9UbP37HSB"
+        },
+        "encoding": "hex"
+    }
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/C/avax \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc":"2.0",
+    "id"     :1,
+    "method" :"avax.getUTXOs",
+    "params" :{
+        "addresses":["C-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"],
+        "sourceChain": "X",
+        "startIndex": {
+            "address": "C-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5",
+            "utxo": "22RXW7SWjBrrxu2vzDkd8uza7fuEmNpgbj58CxBob9UbP37HSB"
+        },
+        "encoding": "hex"
+    }
+}'
+```
+
+</CodeGroup>

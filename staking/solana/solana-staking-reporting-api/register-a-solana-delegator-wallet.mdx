@@ -1,0 +1,39 @@
+---
+title: "Register a Solana Delegator Wallet"
+---
+
+### POST /v1/api/solana/solana/mainnet/wallet
+
+Register the Solana delegator wallet you want to track. This is a **one-time action per wallet** and starts the rewards indexing process, which can take up to 24 hours to complete.
+
+**Note:** it is expected that there are two `/solana` elements in the URL path.
+
+#### Request
+
+```bash
+curl --request POST \
+  --url https://api.staking.validationcloud.io/v1/api/solana/solana/mainnet/wallet \
+  --header 'Authorization: Bearer eyJ...<rest_of_bearer_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "wallet_address": "BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF"
+}'
+```
+
+#### Request body
+
+| Field            | Type   | Description                                                                                                        |
+| ---------------- | ------ | ------------------------------------------------------------------------------------------------------------------ |
+| `wallet_address` | string | The Solana delegator wallet address to track. This is the wallet holding stake authority over your stake accounts. |
+
+There is currently a limit of 3 delegator wallets per `client_id`. If you need more, contact Validation Cloud.
+
+If you try to add a wallet that is already indexed by Validation Cloud, you will get the following response:
+
+```
+"wallet has already been registered: BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF (mainnet)"
+```
+
+This means the wallet is already being tracked, so there is no need to register it again. You can proceed directly to [Get Solana Staking Rewards](/staking/solana/solana-staking-reporting-api/get-solana-staking-rewards-json).&#x20;
+
+**Note:** If the wallet was registered recently, indexing may still be in progress and the rewards response may be empty or incomplete until it finishes.

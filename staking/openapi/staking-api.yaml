@@ -1,0 +1,563 @@
+openapi: 3.0.3
+
+info:
+  title: "Validation Cloud Staking API"
+  version: "1.0.0"
+
+servers:
+  - url: https://ethereum-staking.sprd.validationcloud.io
+
+components:
+  schemas:
+    GetTokenRequest:
+      type: object
+      properties:
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        grant_type:
+          type: string
+          default: client_credentials
+          enum:
+            - client_credentials
+        audience:
+          type: string
+          default: staking
+          enum:
+            - staking
+    GetTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        scope:
+          type: string
+        expires_in:
+          type: string
+        token_type:
+          type: string
+    BroadcastTransactionRequest:
+      type: object
+      properties:
+        signed_transaction:
+          example: "0xf903161d8459682f0a8301616a94053508a6967c54b7a3b8efadeaf6e9979890006a8901bc16d674ec800000b902a44f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000000000000000000000000000000000000000000260000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000030b0610af502e6b151d495a4c7e69fc7e4c876d9230b46596344e3d03fa1836b18eae9ddb7461d88e36ba125cb88f1f15f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000200100000000000000000000005a920ec8ca81f53709a3f7bda0fa5911c905721800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000006085789b2015da4a648d3425650ed67d5bd574ac4e4caa4b4f47ba328b08263bb24b3da59d52d971a371f157fe0cafab5e179ff41e1f9a3c7de209ea1216bcf2edbb84c3bbd24ddfb48b3d312e443394624cab98b611746c68fbcc48cb5ad82e5400000000000000000000000000000000000000000000000000000000000000015aac24df74e5cc353816b3d07c262c8189da601edca2cff3dd1a49f6b3a4273f831e84a3a0175fd3ede02885649560dae0a390aa86eab0c878fd6ddcb930fabb87d07cfaaca0659cd03e5a0e847fd0720850c802f030afe47f3bd5b175f64aa75dd126d69539"
+          format: binary
+          type: string
+          description: |-
+            The signed transaction in RLP canonical encoding that will be broadcasted to the Ethereum network.
+    BroadcastTransactionResponse:
+      type: object
+      properties:
+        transaction_hash:
+          example: "0x9282185208634e55e0b8bfca0c63cc5dd9078f687cbff6c2dcd1222eafa04ca5"
+          format: binary
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+    ValidatorKey:
+      type: object
+      properties:
+        public_key:
+          example: "0x134dea3b9a72b811ef33e63977c78ea11da9b5a7d8409384f9349739821d84af1a7988e4c30cd05db21410cdc5c020c90eaca75aaff6c50a5c0b06b411699008"
+          format: binary
+          type: string
+      description: |-
+        The public key of a validator.
+    ExitValidatorsRequest:
+      properties:
+        validators:
+          items:
+            $ref: '#/components/schemas/ValidatorKey'
+          type: array
+        transaction_type:
+          example: 2
+          type: integer
+          default: 0
+          description: |
+              Type of the returned transaction.
+              0 for legacy transactions.
+              2 for EIP-1559 transactions.
+      required:
+        - validators
+      type: object
+    Rewards:
+      properties:
+        all:
+          example: 267626726
+          type: integer
+          description: |-
+            The total amount of rewards earned by the validator.
+        last_30_days:
+          example: 120272088
+          type: integer
+          description: |-
+            The amount of rewards earned by the validator in the last 30 days.
+        last_365_days:
+          example: 267626726
+          type: integer
+          description: |-
+              The amount of rewards earned by the validator in the last 365 days.
+      type: object
+    StakeTransactionAPIRequest:
+      properties:
+        num_validators:
+          example: 1
+          type: integer
+          description: |-
+            The number of validators that will be created.
+        wallet_address:
+          example: 0x43a930733e3d493b42bb3ce70848e476c171371f5b
+          format: binary
+          type: string
+          description: |-
+              The address of the wallet that will be used to pay for the transaction. The deposit and exit transactions for the validators must be signed by this wallet. Make absolutely sure not to lose possession of it.
+        transaction_type:
+          example: 2
+          type: integer
+          default: 0
+          description: |-
+              Type of the returned transaction.
+              0 for legacy transactions.
+              2 for EIP-1559 transactions.
+      type: object
+    Transaction:
+      type: object
+      properties:
+        data:
+          example: "0x4f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000000000000000000000000000000000000000000260000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000030b6f69f0e68fbbf1512af9c2b7d983be5adc6737212426ca97eb4e773858bcab8989712a927c8ee2f238ceb839dd4ba67000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000200100000000000000000000004cec5c275f89f6e091f0af5272b2a205a39a61b8000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000060ab3b820d0df8e892c54caa268c7bd9536c8889674999bd2f247ece9a893c2a047ff188f463d5ba89747f2f13dbf83c430f55b715a80975117a513fe7903683303e389eb610ff207e13e29df382f0e9a1e019e25980c9d227a44998ec13f589f600000000000000000000000000000000000000000000000000000000000000010714268a0278aff8c0a6f65a3125b920020450c02f63bb46475413b354c6444a"
+          format: binary
+          type: string
+          description: |-
+            The data that will be sent to the contract.
+        gas:
+          example: 87936
+          type: integer
+          description: |-
+            The amount of gas that will be used to execute the transaction.
+        gas_price:
+          example: "27"
+          type: string
+          description: |-
+              The price of gas in Gwei.
+        nonce:
+          example: 35
+          type: integer
+          description: |-
+              The nonce of the transaction. This is used to prevent replay attacks.
+        to:
+          example: "0x0ab8792f74261e83b1a3fe41c89017c359dcd52b"
+          format: binary
+          type: string
+          description: |-
+              The address of the contract that will be called.
+        transaction_serialized:
+          example: "0xf904b61e8459682f0a8301fb7594053508a6967c54b7a3b8efadeaf6e9979890006a8903782dace9d9000000b904444f498c73000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000001a0000000000000000000000000000000000000000000000000000000000000028000000000000000000000000000000000000000000000000000000000000003e00000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000030a420a76ff09e2fc3f068a5759a560f5b9eaca8cf85dd73e697cdc49014be23c8b468426d719a5cc84dcbcdda0a1abf6f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000030a0f09e0e9230ab68a1f488969b14c584cff1479fe34a348dd84d6c4194366d3d5b569ea7e72cfa2e2b06bac60452cb9b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000200100000000000000000000005a920ec8ca81f53709a3f7bda0fa5911c905721800000000000000000000000000000000000000000000000000000000000000200100000000000000000000005a920ec8ca81f53709a3f7bda0fa5911c90572180000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000060842a230f68819ede9099c9cfa33c3def570323a9c8417a28c3b3db1a6af11d4903998b889be33a14848f89e1fad858af0adadc92f051c68dddf410d7b1cc875970fc4630dd47f375517c4336cfd75b9a8e5a92e96a2b54c0306d82336650f7c1000000000000000000000000000000000000000000000000000000000000006089e1449c9d81135d19c2f66a823837d18f4dda1d26276bd66e99a048e28cb513b10d776c1636a8f37d133c8558e019560f86d88c5625d5acf9af05902703a14b5dbbd50975c8ea3e480db59a8930b95713cba4b65d9a41cbc1ac27bcbe36d1470000000000000000000000000000000000000000000000000000000000000002252f2f9e049cee403ec2201a878309b7f448e228097c2a4b09b145057d8e1ff60921ddabd3905a3bad998ae97092a8f2815246f156cc884242f1841f55895dd1831e84a3a0e1ce9dbebe355eba4aea58da6de44f2a34e150cd5fd9cb00245384fb420e5591a03da5fd33679a2923ac5a22a696a69a456ec73efdeec88b8a5d9527b171fe7771"
+          format: binary
+          type: string
+          description: |-
+              The canonical RLP encoding of the transaction
+        value:
+          example: "32000000000000000000"
+          type: string
+          description: |-
+              The amount of Ether that will be sent to the contract.
+      description: |-
+        The transaction that will need to be signed to be broadcasted to the Ethereum network.
+    StakeTransactionAPIResponse:
+      properties:
+        transaction:
+          $ref: '#/components/schemas/Transaction'
+        validator_keys:
+          items:
+            $ref: '#/components/schemas/ValidatorKey'
+          type: array
+      type: object
+    Validator:
+      type: object
+      properties:
+        created_at:
+          example: "2023-07-21T20:33:24Z"
+          type: string
+          description:
+            The date and time when the validator was created.
+        index:
+          example: 112948
+          type: integer
+          description: |-
+              The index of the validator.
+        public_key:
+          example: "0x80002a239517f5034e51bccb897f783eb38147538b661e2c870c302cbefa48d86178a0f8ffdf75eb9f07e0afdfef3cd2"
+          type: string
+          description: |-
+              The public key of the validator.
+        rewards:
+          $ref: '#/components/schemas/Rewards'
+        status:
+          example: "active_ongoing"
+          type: string
+          description: |-
+              The status of the validator.
+        withdrawal_address:
+          example: "0x86008d099756bf129d332d0a923311e935ba936075"
+          type: string
+          description: |-
+              The address where the rewards will be sent. Upon exiting, the initial deposit will also be withdrawn to this address.
+    PresignedExitRequest:
+      type: object
+      required:
+        - payload
+        - signature
+      properties:
+        payload:
+          type: string
+          example: "{\"type\":\"presigned_exit_request\",\"timestamp\":\"2025-04-08T20:28:39.678Z\",\"validators\":[{\"public_key\":\"0xb31cb9c715b7a8a16ca7764f35b45883fce75699f25f90c44cae4e6a386d9f2c0dfd16303e1864cfbc0ae4dc194e872e\"}]}"
+          description: |
+            A JSON-encoded string containing the presigned exit request payload.
+            Must include:
+              - `type`: must be `"presigned_exit_request"`
+              - `timestamp`: ISO8601 UTC timestamp
+              - `validators`: array of validator public keys, all must share the same withdrawal address
+        signature:
+          type: string
+          example: "0x7b2274797065223a227072657369676e65645f657869745f72657175657374222c2274696d657374616d70223a22323032352d30342d30385432303a32383a33392e3637385a222c2276616c696461746f7273223a5b7b227075626c69635f6b6579223a223078623331636239633731356237613861313663613737363466333562343538383366636537353639396632356639306334346361653465366133383664396632633064666431363330336531383634636662633061653464633139346538373265227d5d7d"
+          description: |
+            ERC-191 signature of the payload string, signed by the withdrawal address of the specified validators.
+
+    SignedExitMessage:
+      type: array
+      description: |
+        A list of pre-signed voluntary exit messages that can be submitted to a beacon node to initiate validator exits.
+      items:
+        type: object
+        properties:
+          validator_key:
+            type: string
+            description: Public key of the validator
+          exit_request:
+            type: object
+            description: A voluntary exit message
+            properties:
+              message:
+                type: object
+              signature:
+                type: string
+      example: [
+        {
+          "validator_key": "0xb31cb9c715b7a8a16ca7764f35b45883fce75699f25f90c44cae4e6a386d9f2c0dfd16303e1864cfbc0ae4dc194e872e",
+          "exit_request": {
+            "message": {
+              "epoch": "5040",
+              "validator_index": "1091615"
+            },
+            "signature": "0xb77505b425ff7486d5a4a08ab6bf85a9ac8d778b8609421683d36e7a3d10b3243b7b4d22490ff5620ea9d46ff4e4c13308ac689368852af4872e1cdb837ad2d2d170a407c22fa1981ec543e8b05b3cc7836b7f9d300d7796412023ff6b13f3aa"
+          }
+        }
+      ]
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  /oauth/token:
+    post:
+      servers:
+        - url: https://validationcloud.us.auth0.com
+      description: Allows users to securely authenticate with API credentials through Auth0, and in return, provides a JSON Web Token (JWT) that can be used to access the rest of the API endpoints.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTokenRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/GetTokenResponse'
+      tags:
+        - Authentication
+
+  /v1/api/ethereum/{network}/validators:
+    get:
+      description: Retrieves a list of validators established by the user.
+      parameters:
+        - name: network
+          in: path
+          required: true
+          schema:
+            type: string
+            default: mainnet
+            enum:
+              - mainnet
+              - hoodi
+          description: The network
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Validator'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "403":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Staking
+  /v1/api/ethereum/{network}/stake_transaction:
+    post:
+      description: Supplies a transaction that, once signed and broadcasted, facilitates
+        the creation of stake validators.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StakeTransactionAPIRequest'
+      parameters:
+        - name: network
+          in: path
+          required: true
+          schema:
+            type: string
+            default: mainnet
+            enum:
+              - mainnet
+              - holesky
+          description: The network
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StakeTransactionAPIResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "403":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Staking
+  /v1/api/ethereum/{network}/broadcast_transaction:
+    parameters:
+      - name: network
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+            - mainnet
+            - holesky
+        description: The network
+    post:
+      description: Sends a signed deposit transaction to the Ethereum network, initiating
+        validator creation. Both legacy and EIP-1559 transactions are supported.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BroadcastTransactionRequest'
+      parameters:
+        - name: network
+          in: path
+          required: true
+          schema:
+            type: string
+            default: mainnet
+            enum:
+              - mainnet
+              - holesky
+          description: The network
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BroadcastTransactionResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "403":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Staking
+  /v1/api/ethereum/{network}/exit_validators:
+    post:
+      description: Provides a transaction, which after being signed and broadcasted,
+        enables the specified validators to exit.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExitValidatorsRequest'
+      parameters:
+        - name: network
+          in: path
+          required: true
+          schema:
+            type: string
+            default: mainnet
+            enum:
+              - mainnet
+              - holesky
+          description: The network
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "403":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Staking
+  /v1/api/ethereum/{network}/presigned_exit_request:
+    post:
+      description: |
+        Returns a pre-signed voluntary exit message that can be submitted to the Ethereum beacon chain
+        at any time by any party. The signature must come from the withdrawal address associated with the 
+        specified validators.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PresignedExitRequest'
+      parameters:
+        - name: network
+          in: path
+          required: true
+          schema:
+            type: string
+            default: mainnet
+            enum:
+              - mainnet
+              - holesky
+          description: The Ethereum network.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedExitMessage'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Staking
+
+
+security:
+  - bearerAuth: []

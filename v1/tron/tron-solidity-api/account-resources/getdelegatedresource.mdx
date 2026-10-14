@@ -1,0 +1,50 @@
+---
+title: "GetDelegatedResource"
+---
+
+Returns all resources delegations from an account to another account during stake1.0 phase. The fromAddress can be retrieved from the GetDelegatedResourceAccountIndex API (Confirmed state).
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `fromAddress` - String - <span style={{color: "red"}}>Required</span> - Energy from address, default hexString
+* `toAddress` - String - <span style={{color: "red"}}>Required</span> - Energy delegation information
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+delegatedResource - List: A list of resources that an address delegates to a target address. A DelegatedResource object contains the following fields:
+
+| Field                           | Type   | Description                                       |
+| ------------------------------- | ------ | ------------------------------------------------- |
+| from                            | string | delegate account                                  |
+| to                              | string | resource receiving account                        |
+| frozen\_balance\_for\_bandwidth | int64  | bandwidth delegate share                          |
+| frozen\_balance\_for\_energy    | int64  | energy delegate share                             |
+| expire\_time\_for\_bandwidth    | int64  | Deadline of this delegate bandwidth's lock period |
+| expire\_time\_for\_energy       | int64  | Deadline of this delegate energy's lock period    |
+
+```json
+// Result
+{}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getdelegatedresource \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "fromAddress": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "toAddress": "TPswDDCAWhJAZGdHPidFg5nEf8TkNToDX1",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

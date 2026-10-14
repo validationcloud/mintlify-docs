@@ -1,0 +1,988 @@
+{
+  "components": {
+    "schemas": {
+      "admin.accountResponse": {
+        "properties": {
+          "billing_cycle_end": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "billing_cycle_start": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "cu_quota": {
+            "example": 10000000,
+            "format": "int64",
+            "type": "integer"
+          },
+          "cu_remaining": {
+            "example": 9765433,
+            "format": "int64",
+            "type": "integer"
+          },
+          "cu_used": {
+            "example": 234567,
+            "format": "int64",
+            "type": "integer"
+          },
+          "plan": {
+            "type": "string"
+          },
+          "unlimited": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "admin.chainsResponse": {
+        "properties": {
+          "chains": {
+            "items": {
+              "$ref": "#/components/schemas/adminapi.Chain"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
+      "admin.createEndpointRequest": {
+        "properties": {
+          "chain": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "network": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "admin.cuCostsResponse": {
+        "properties": {
+          "compute_unit_costs": {
+            "items": {
+              "$ref": "#/components/schemas/adminapi.CUCostEntry"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
+      "admin.endpointListResponse": {
+        "properties": {
+          "endpoints": {
+            "items": {
+              "$ref": "#/components/schemas/adminapi.Endpoint"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
+      "admin.endpointResponse": {
+        "properties": {
+          "api_key": {
+            "type": "string"
+          },
+          "chain": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "network": {
+            "type": "string"
+          },
+          "urls": {
+            "$ref": "#/components/schemas/adminapi.EndpointURLs"
+          }
+        },
+        "type": "object"
+      },
+      "admin.errorBody": {
+        "properties": {
+          "code": {
+            "enum": [
+              "unauthorized",
+              "forbidden",
+              "invalid_request",
+              "not_found",
+              "endpoint_limit_reached",
+              "plan_not_eligible",
+              "rate_limited",
+              "internal_error"
+            ],
+            "example": "invalid_request",
+            "type": "string"
+          },
+          "message": {
+            "example": "from must be an RFC3339 timestamp",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "admin.errorEnvelope": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/admin.errorBody"
+          }
+        },
+        "type": "object"
+      },
+      "admin.healthResponse": {
+        "properties": {
+          "scope": {
+            "enum": [
+              "READ",
+              "WRITE"
+            ],
+            "example": "READ",
+            "type": "string"
+          },
+          "status": {
+            "example": "ok",
+            "type": "string"
+          },
+          "team_id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "admin.usageResponse": {
+        "properties": {
+          "compute_units": {
+            "example": 22,
+            "format": "int64",
+            "type": "integer"
+          },
+          "from": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/adminapi.UsagePoint"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "to": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "adminapi.CUCostEntry": {
+        "properties": {
+          "chain": {
+            "type": "string"
+          },
+          "cu_cost": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string"
+          },
+          "network": {
+            "type": "string"
+          },
+          "protocol": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "adminapi.Chain": {
+        "properties": {
+          "display_name": {
+            "type": "string"
+          },
+          "iso": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "networks": {
+            "items": {
+              "$ref": "#/components/schemas/adminapi.Network"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "wss": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "adminapi.Endpoint": {
+        "properties": {
+          "api_key": {
+            "type": "string"
+          },
+          "chain": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "network": {
+            "type": "string"
+          },
+          "urls": {
+            "$ref": "#/components/schemas/adminapi.EndpointURLs"
+          }
+        },
+        "type": "object"
+      },
+      "adminapi.EndpointURLs": {
+        "properties": {
+          "https": {
+            "type": "string"
+          },
+          "wss": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "adminapi.Network": {
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "is_archive": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "adminapi.UsagePoint": {
+        "properties": {
+          "compute_units": {
+            "example": 15,
+            "format": "int64",
+            "type": "integer"
+          },
+          "time": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "AdminApiKey": {
+        "description": "Admin API key under the `ApiKey` scheme: `Authorization: ApiKey vc_adm_...`. Each key is bound to one team and carries a READ or WRITE scope; the usage endpoints require only READ.",
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "description": "Programmatic, API-key-authenticated surface for managing\nValidation Cloud RPC endpoints and retrieving usage. Only the\ncurrently-implemented endpoints are documented; the broader PRD\nsurface is intentionally omitted until served.\n\n`/admin/v1` is a strict contract \u2014 breaking changes are made\nunder `/admin/v2`, never in place. Clients branch on the stable\n`error.code` enum, not on HTTP status alone.",
+    "title": "Validation Cloud Node API \u2014 Admin API",
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "",
+    "url": ""
+  },
+  "paths": {
+    "/account": {
+      "get": {
+        "description": "Plan tier, compute-unit quota, cycle-to-date usage, and billing cycle bounds for the team the admin key is bound to. Unlimited-plan teams return `unlimited: true` with the quota and remaining fields omitted.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.accountResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Account information",
+        "tags": [
+          "Account"
+        ]
+      }
+    },
+    "/chains": {
+      "get": {
+        "description": "Catalogue of blockchain chains and networks that can be used when creating an endpoint.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.chainsResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Supported chains",
+        "tags": [
+          "Account"
+        ]
+      }
+    },
+    "/compute-unit-costs": {
+      "get": {
+        "description": "CU price per method, chain, network, and protocol. Use to predict the cost of a request before sending it.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.cuCostsResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Compute-unit cost list",
+        "tags": [
+          "Account"
+        ]
+      }
+    },
+    "/endpoints": {
+      "get": {
+        "description": "List the calling team's endpoints. Deleted endpoints are never returned.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.endpointListResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "List endpoints",
+        "tags": [
+          "Endpoints"
+        ]
+      },
+      "post": {
+        "description": "Mint a new RPC endpoint for the calling team. Subject to the per-team endpoint limit and the team's CU-quota gating (an over-quota team's endpoint is created disabled).",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/admin.createEndpointRequest",
+                "summary": "request",
+                "description": "Endpoint to create"
+              }
+            }
+          },
+          "description": "Endpoint to create",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.endpointResponse"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Create an endpoint",
+        "tags": [
+          "Endpoints"
+        ]
+      }
+    },
+    "/endpoints/{id}": {
+      "delete": {
+        "description": "Soft-delete the endpoint. After deletion it is invisible: subsequent gets return 404 and it never reappears in list.",
+        "parameters": [
+          {
+            "description": "Endpoint UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Delete an endpoint",
+        "tags": [
+          "Endpoints"
+        ]
+      },
+      "get": {
+        "description": "Fetch a single endpoint owned by the calling team. An endpoint owned by another team or one that has been deleted returns 404, indistinguishable from one that never existed.",
+        "parameters": [
+          {
+            "description": "Endpoint UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.endpointResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Get an endpoint",
+        "tags": [
+          "Endpoints"
+        ]
+      }
+    },
+    "/endpoints/{id}/usage": {
+      "get": {
+        "description": "Compute-unit series for a single endpoint, which must belong to the calling team. An endpoint owned by another team returns 404, indistinguishable from one that never existed; the team's own deleted endpoints remain readable. Defaults to the current calendar month (UTC) when from/to are omitted.",
+        "parameters": [
+          {
+            "description": "Endpoint UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Inclusive window start, RFC3339",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exclusive window end, RFC3339",
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Bucket size. Max window per granularity: HOUR 7d, DAY 92d, WEEK/MONTH 366d; at most 750 buckets per request.",
+            "in": "query",
+            "name": "granularity",
+            "schema": {
+              "default": "DAY",
+              "enum": [
+                "HOUR",
+                "DAY",
+                "WEEK",
+                "MONTH"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.usageResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Per-endpoint compute-unit usage",
+        "tags": [
+          "Usage"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Returns 200 and echoes the resolved team and scope when the admin key authenticates.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.healthResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Liveness and authentication check",
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/usage": {
+      "get": {
+        "description": "Aggregated compute-unit usage for the team the admin key is bound to. Defaults to the current calendar month (UTC) when from/to are omitted.",
+        "parameters": [
+          {
+            "description": "Inclusive window start, RFC3339",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exclusive window end, RFC3339",
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Bucket size. Max window per granularity: HOUR 7d, DAY 92d, WEEK/MONTH 366d; at most 750 buckets per request.",
+            "in": "query",
+            "name": "granularity",
+            "schema": {
+              "default": "DAY",
+              "enum": [
+                "HOUR",
+                "DAY",
+                "WEEK",
+                "MONTH"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.usageResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/admin.errorEnvelope"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "AdminApiKey": []
+          }
+        ],
+        "summary": "Team-wide compute-unit usage",
+        "tags": [
+          "Usage"
+        ]
+      }
+    }
+  },
+  "openapi": "3.1.0",
+  "servers": [
+    {
+      "url": "https://api.validationcloud.io/admin/v1"
+    }
+  ]
+}

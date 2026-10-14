@@ -1,0 +1,74 @@
+---
+title: "Get Solana Staking Rewards (JSON)"
+---
+
+### GET /v1/api/solana/solana/mainnet/rewards\_detailed
+
+Retrieve detailed staking rewards for a registered delegator wallet within a date range. Rewards are returned per epoch, per stake account. For a daily summary in CSV format instead, see [Get Solana Staking Rewards (CSV)](/staking/solana/solana-staking-reporting-api/get-solana-staking-rewards-csv).
+
+**Note:** it is expected that there are two `/solana` elements in the path.
+
+#### Query parameters
+
+| Parameter           | Type   | Required | Description                                                                             |
+| ------------------- | ------ | -------- | --------------------------------------------------------------------------------------- |
+| `delegator_address` | string | Yes      | The delegator wallet address. Must already be registered and indexed.                   |
+| `start_date`        | string | Yes      | Start of the date range, in `YYYY-MM-DD` format.                                        |
+| `end_date`          | string | No       | End of the date range, in `YYYY-MM-DD` format. Defaults to the current date if omitted. |
+
+#### Request
+
+```bash
+curl --request GET \
+  --url 'https://api.staking.validationcloud.io/v1/api/solana/solana/mainnet/rewards_detailed?delegator_address=BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF&start_date=2025-06-12&end_date=2025-06-16' \
+  --header 'Authorization: Bearer eyJh...<rest_of_bearer_token>'
+```
+
+#### Response
+
+Rewards amounts are denominated in lamports (1 SOL = 1,000,000,000 lamports).&#x20;
+
+Each entry includes the `validator_address` the stake is delegated to, the `staking_account` (stake account) that earned the reward, and a `yield_type` identifying the kind of reward, for example `REWARD` for staking rewards and `JITO_TIP` for Jito MEV tips.
+
+```json
+{
+    "delegator_address": "BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF",
+    "coin_denom": "lamport",
+    "rewards": [
+        {
+            "timestamp": "2025-06-13T05:56:01Z",
+            "epoch": "801",
+            "amount": "35832540",
+            "validator_address": "Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf",
+            "staking_account": "5sMKauZgM4jEuzJy5r4iKdeddmqs6y8nefq361jMtgdh",
+            "yield_type": "REWARD"
+        },
+        {
+            "timestamp": "2025-06-13T05:56:01Z",
+            "epoch": "801",
+            "amount": "3057588",
+            "validator_address": "Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf",
+            "staking_account": "5sMKauZgM4jEuzJy5r4iKdeddmqs6y8nefq361jMtgdh",
+            "yield_type": "JITO_TIP"
+        },
+        {
+            "timestamp": "2025-06-15T05:59:10Z",
+            "epoch": "802",
+            "amount": "35704571",
+            "validator_address": "Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf",
+            "staking_account": "5sMKauZgM4jEuzJy5r4iKdeddmqs6y8nefq361jMtgdh",
+            "yield_type": "REWARD"
+        },
+        {
+            "timestamp": "2025-06-15T05:59:10Z",
+            "epoch": "802",
+            "amount": "2727488",
+            "validator_address": "Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf",
+            "staking_account": "5sMKauZgM4jEuzJy5r4iKdeddmqs6y8nefq361jMtgdh",
+            "yield_type": "JITO_TIP"
+        }
+    ]
+}
+```
+
+Rewards data updates daily, shortly after midnight UTC. We suggest calling the API around 4am UTC each day to get the latest data.

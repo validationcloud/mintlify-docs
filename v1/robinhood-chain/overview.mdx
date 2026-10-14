@@ -1,0 +1,67 @@
+---
+title: "Overview"
+---
+
+Robinhood Chain is an EVM-compatible blockchain built by Robinhood.
+
+Block explorer (mainnet): [https://robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com)
+Block explorer (testnet): [https://explorer.testnet.chain.robinhood.com](https://explorer.testnet.chain.robinhood.com)
+
+### Network Support
+
+| Network            | Full History / Archive | HTTPS | WSS |
+| ------------------ | ---------------------- | ----- | --- |
+| Robinhood Chain Mainnet | ✅                      | ✅     | ✅   |
+| Robinhood Chain Testnet | ✅                      | ✅     | ✅   |
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Methods & Compute Units
+
+<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>debug_traceBlockByHash</td><td>80</td></tr><tr><td>debug_traceBlockByNumber</td><td>80</td></tr><tr><td>debug_traceCall</td><td>80</td></tr><tr><td>debug_traceTransaction</td><td>80</td></tr><tr><td>eth_blockNumber</td><td>20</td></tr><tr><td>eth_call</td><td>40</td></tr><tr><td>eth_chainId</td><td>10</td></tr><tr><td>eth_estimateGas</td><td>40</td></tr><tr><td>eth_feeHistory</td><td>20</td></tr><tr><td>eth_gasPrice</td><td>40</td></tr><tr><td>eth_getBalance</td><td>40</td></tr><tr><td>eth_getBlockByHash</td><td>40</td></tr><tr><td>eth_getBlockByNumber</td><td>40</td></tr><tr><td>eth_getBlockReceipts</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByHash</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByNumber</td><td>40</td></tr><tr><td>eth_getCode</td><td>40</td></tr><tr><td>eth_getLogs</td><td>80</td></tr><tr><td>eth_getProof</td><td>40</td></tr><tr><td>eth_getStorageAt</td><td>40</td></tr><tr><td>eth_getTransactionByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByHash</td><td>40</td></tr><tr><td>eth_getTransactionCount</td><td>40</td></tr><tr><td>eth_getTransactionReceipt</td><td>40</td></tr><tr><td>eth_sendRawTransaction</td><td>80</td></tr><tr><td>eth_subscribe</td><td>20</td></tr><tr><td>eth_unsubscribe</td><td>20</td></tr><tr><td>net_version</td><td>10</td></tr><tr><td>web3_clientVersion</td><td>40</td></tr><tr><td>web3_sha3</td><td>40</td></tr></tbody></table>
+
+### Endpoint Capabilities
+
+Robinhood Chain endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* blockchain data queries
+* smart contract deployment and interaction
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* real-time transaction monitoring
+* event subscriptions
+* live dashboards and analytics
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on Robinhood Chain, connect your application to a Robinhood Chain endpoint and send standard Ethereum JSON-RPC requests.
+
+Example request:
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+```bash title="testnet"
+curl https://testnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>

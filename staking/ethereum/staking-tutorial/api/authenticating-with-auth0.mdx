@@ -1,0 +1,38 @@
+---
+title: "Authenticating with Auth0"
+description: "Initializing your developer environment with the authentication provider"
+---
+
+The code contains functions that obtain Auth0 Client ID and Client Secret from an environment variable, along with getting a token from Auth0:
+
+```javascript
+const auth0 = require('auth0');
+const ethers = require('ethers');
+
+const AUTH0_DOMAIN = 'validationcloud.us.auth0.com';
+
+async function getAuth0Credentials() {
+  const clientId = process.env.CLIENT_ID;
+  if (!clientId) {
+    throw 'CLIENT_ID environment variable must be defined';
+  }
+  const clientSecret = process.env.CLIENT_SECRET;
+  if (!clientSecret) {
+    throw 'CLIENT_SECRET environment variable must be defined';
+  }
+  return { clientId, clientSecret };
+}
+
+async function getToken() {
+  const { clientId, clientSecret } = await getAuth0Credentials();
+  const authClient = new auth0.AuthenticationClient({
+    domain: AUTH0_DOMAIN,
+    clientId: clientId,
+    clientSecret: clientSecret,
+  });
+  const { data: tokens } = await authClient.oauth.clientCredentialsGrant({
+    audience: 'staking',
+  });
+  return tokens.access_token;
+}
+```

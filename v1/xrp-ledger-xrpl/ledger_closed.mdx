@@ -1,0 +1,47 @@
+---
+title: "ledger_closed"
+---
+
+Returns the unique identifiers of the most recently closed ledger. This ledger is not necessarily validated and immutable yet.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/ledger-methods/ledger_closed)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+* `ledger_hash` (string) The unique hash of this ledger version, in hexadecimal.
+* `ledger_index` (unsigned integer) The ledger index of this ledger version.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "3FF4EFB0A896061499DCE559C21A44563F74C040226019033B06BA6FC383B450",
+    "ledger_index": 107292935,
+    "status": "success"
+  },
+  "status": "success",
+  "type": "response",
+  "forwarded": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ledger_closed","params":[{}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"ledger_closed"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

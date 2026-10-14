@@ -1,0 +1,102 @@
+---
+title: "eth_feeHistory"
+---
+
+Returns the collection of historical gas information.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+1. `blockCount`, String/Integer - The number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query. It will return less than the requested range if not all blocks are available.
+2. `newestBlock` - String - hexadecimal block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+3.  `rewardPercentiles` - Integer - A list of values that go up in order, showing how much people are willing to pay to have their transactions processed quickly. These values are based on:
+
+    1. Looking at each block in the time period you're interested in
+    2. Ranking the transactions by how much extra tip they offered per unit of gas
+    3. Calculating the typical tip amount for different levels (percentiles)
+    4. Taking into account how much gas each transaction used
+
+    This helps you understand what people are typically paying to get their transactions processed at different speed levels.
+
+## Returns
+
+* `oldestBlock` - The lowest number block of the returned range encoded in hexadecimal format.
+* `baseFeePerGas` - An array of block base fees per gas. This includes the next block after the newest of the returned range, because this value can be derived from the newest block. Zeroes are returned for pre-EIP-1559 blocks.
+* `gasUsedRatio` - An array of block gas used ratios. These are calculated as the ratio of gasUsed and gasLimit.
+* `reward -` An array of effective priority fees per gas data points from a single block. All zeroes are returned if the block is empty.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"oldestBlock": "0x16c72ec",
+		"reward": [
+			[
+				"0xf4240",
+				"0x85d734"
+			],
+			[
+				"0xf4240",
+				"0x98967f"
+			],
+			[
+				"0xf4240",
+				"0xc152b3"
+			],
+			[
+				"0xf4240",
+				"0x10d8647"
+			]
+		],
+		"baseFeePerGas": [
+			"0x1514ada",
+			"0x151632e",
+			"0x150ff88",
+			"0x150a201",
+			"0x1510f92"
+		],
+		"gasUsedRatio": [
+			0.17840781666666666,
+			0.118594325,
+			0.1214943875,
+			0.21964249583333334
+		],
+		"baseFeePerBlobGas": [
+			"0x1",
+			"0x1",
+			"0x1",
+			"0x1",
+			"0x1"
+		],
+		"blobGasUsedRatio": [
+			0,
+			0,
+			0,
+			0
+		]
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.base.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_feeHistory","params":[4, "latest", [25, 75]],"id":1}'
+```
+
+```bash title="testnet"
+curl https://sepolia.base.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_feeHistory","params":[4, "latest", [25, 75]],"id":1}'
+```
+
+</CodeGroup>

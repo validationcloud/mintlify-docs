@@ -1,0 +1,54 @@
+---
+title: "GET /tx/:txid/merkle-proof"
+---
+
+Returns a merkle inclusion proof for the transaction using [Electrum's `blockchain.transaction.get_merkle`](https://electrumx.readthedocs.io/en/latest/protocol-methods.html#blockchain-transaction-get-merkle) format.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`txid`**- transaction hash, required.&#x20;
+
+Example: `92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655`
+
+## Returns
+
+Returns a merkle inclusion proof for the transaction using [Electrum's `blockchain.transaction.get_merkle`](https://electrumx.readthedocs.io/en/latest/protocol-methods.html#blockchain-transaction-get-merkle) format.
+
+```json wrap
+{
+	"block_height": 910150,
+	"merkle": [
+		"61516177797bb487d08bdb1d54a20603ee07609a6070f8f74ed4468e3e65972c",
+		"e5702e5f347c365862fee895200da0e7b8a938e85dda75815b1eb0b8a41b833d",
+		"67eaa0a08c0386f0da6a6db3f60a2b1225d5c5253a1a733abb33c32d5e1709f3",
+		"7c8a65a8433548a137ef3eaf2732a8de9cc3cb708704e0cd40beace380d65d49",
+		"e26d5fca7dcb44b633575bebca6627ac5103dcf6a5683ae6d25e91d8c25b6d6e",
+		"6b1ceb36bed13fba5e7e6d9e80248cc21433a8400ecc7b3f91e347dcd744a53d",
+		"e4d6b96e261e9f88e6dc66136692a2812c2510546e4409e709f0c33970f22fb5",
+		"e08ad34c4c2068f08a66b8773e10d0fb79f51a9f75683fb094bae36c5a721e98",
+		"47af6d0d46397f6bc6f1acc20b970c364a81d0c5f53007fbc0ba4a10a3d83563",
+		"fe54a3c18c5986d5e2a6421e9683e78b7f2d93ed8ec6988d3f5bfe6154dc5b88",
+		"d7e4aeaf34ccb1c703c4e530a506772b912c7186e696dcae02a156dcdbe10141",
+		"671881bd8dc927238f2b484d11a1b2e25c8cda3c51345971a04034df06ab0f1c"
+	],
+	"pos": 2
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/merkle-proof \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/merkle-proof \
+ -X GET
+```
+
+</CodeGroup>

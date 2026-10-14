@@ -1,0 +1,41 @@
+---
+title: "GetCanWithdrawUnfreezeAmount"
+---
+
+Stake2.0 API: Query the withdrawable balance at the specified timestamp (confirmed state).
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Owner address, default hexString
+* `timestamp` - Int64 - Query cutoff timestamp, in milliseconds
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+`amount` - Int64 : withdrawable balance, unit is sun.
+
+```json
+// Result
+{}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getcanwithdrawunfreezeamount \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "timestamp": 1667977444000,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

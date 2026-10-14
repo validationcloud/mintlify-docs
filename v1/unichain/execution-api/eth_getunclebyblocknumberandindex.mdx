@@ -1,0 +1,38 @@
+---
+title: "eth_getUncleByBlockNumberAndIndex"
+---
+
+Returns information about a uncle of a block by number and uncle index position.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclebyblocknumberandindex)
+
+## **Parameters**
+
+1. `QUANTITY|TAG` - a block number, or the string `"earliest"`, `"latest"` or `"pending"`, as in the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+2. `QUANTITY` - the uncle's index position.
+
+```json
+params: [
+  "0x3a64324",
+  "0x0"
+]
+```
+
+## Returns
+
+See [eth\_getBlockByHash](/v1/unichain/execution-api/eth_getblockbyhash)
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getUncleByBlockNumberAndIndex","params":["0x3a64324","0x0"],"id":1}'
+```
+
+</CodeGroup>

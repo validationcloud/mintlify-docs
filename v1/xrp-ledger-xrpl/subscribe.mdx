@@ -1,0 +1,71 @@
+---
+title: "subscribe"
+---
+
+Requests push notifications from the server over WebSocket when certain events happen, such as a new validated ledger, transactions affecting an account, or changes to an order book. Available over WebSocket only.
+
+This method will use `20` [Compute Units](/v1/about/billing) and each notification pushed on the subscription will use `10` Compute Units regardless of size.
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/subscription-methods/subscribe)
+
+## **Parameters**
+
+* `streams` (array, optional) Streams to subscribe to. Each member must be the string name of a stream. Supported on this endpoint:
+  * `ledger` sends a `ledgerClosed` message whenever the consensus process declares a new validated ledger.
+  * `transactions` sends a `transaction` message whenever a transaction is included in a validated ledger.
+  * `transactions_proposed` sends a `transaction` message for validated transactions and for some proposed transactions that have not yet been validated and may never be.
+  * `validations` sends a `validationReceived` message whenever the server receives a validation message, whether or not it trusts the validator.
+  * `manifests` sends a `manifestReceived` message whenever the server receives an update to a validator's ephemeral signing key.
+  * `book_changes` sends a `bookChanges` message with order book changes whenever a new ledger is validated.
+* `accounts` (array, optional) Addresses of accounts to monitor for validated transactions. The server sends a `transaction` message whenever a transaction affects at least one of these accounts.
+* `accounts_proposed` (array, optional) Like `accounts`, but also includes transactions that are not yet finalized.
+* `books` (array, optional) Order books to monitor. Each member is an object with `taker_gets` and `taker_pays` (currency objects without amounts) and the optional fields `both` (return both sides of the book), `snapshot` (send the current state of the book once when you subscribe), `taker` (perspective account) and `domain` (permissioned DEX).
+
+The `peer_status`, `consensus` and `server` streams are not available on this endpoint; requesting one of them returns an error. The admin-only `url` callback fields are not supported.
+
+## Returns
+
+* `result` (object) Depends on what was subscribed. For the `ledger` stream it carries the current ledger state: `fee_base`, `ledger_hash`, `ledger_index`, `ledger_time`, `network_id`, `reserve_base`, `reserve_inc` and `validated_ledgers`. Subscribing to `books` with `snapshot: true` returns the current offers in `result.offers` (or `result.asks` and `result.bids` when `both` is `true`). For every other stream and for `accounts`, `result` is an empty object.
+
+Each subsequent push message is a JSON object with a `type` field that identifies the stream. A `ledger` stream message looks like this:
+
+```bash
+// Result
+// Captured from our endpoint: the acknowledgement, then the first ledgerClosed message
+{"id":1,"result":{"network_id":0,"ledger_index":107334674,"ledger_hash":"0705FC87C96C67F40DFD4AC1B8E6AF0E235704CBA8BC9BBFE2F0A8D2B45300D8","ledger_time":844077070,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"32570-107334674"},"status":"success","type":"response"}
+
+{
+  "type": "ledgerClosed",
+  "ledger_index": 107334675,
+  "ledger_hash": "2471C26C1A629496D7267B2E5F919B98667DD7FDDAF81F39347D25645D437C20",
+  "ledger_time": 844077071,
+  "fee_base": 10,
+  "reserve_base": 1000000,
+  "reserve_inc": 200000,
+  "validated_ledgers": "32570-107334675",
+  "txn_count": 57,
+  "network_id": 0
+}
+```
+
+* `ledgerClosed` (ledger stream): `fee_base`, `ledger_hash`, `ledger_index`, `ledger_time`, `network_id`, `reserve_base`, `reserve_inc`, `txn_count` and `validated_ledgers`.
+* `transaction` (transactions, transactions_proposed, accounts, accounts_proposed and books): `engine_result`, `engine_result_code`, `engine_result_message`, `ledger_hash`, `ledger_index`, `meta`, `tx_json` (the transaction), `validated` and, for proposed transactions, `status: "proposed"`.
+* `validationReceived` (validations stream): `ledger_hash`, `ledger_index`, `validation_public_key`, `master_key`, `signing_time`, `signature`, `full`, `flags`, `cookie` and, when present, `amendments`, `base_fee`, `reserve_base` and `reserve_inc`.
+* `manifestReceived` (manifests stream): `master_key`, `signing_key`, `seq`, `signature` and `master_signature`.
+* `bookChanges` (book_changes stream): the same fields as the `book_changes` method (`ledger_hash`, `ledger_index`, `ledger_time` and a `changes` array).
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+
+{"id":1,"command":"subscribe","streams":["ledger"]}
+{"id":1,"result":{"network_id":0,"ledger_index":107334674,"ledger_hash":"0705FC87C96C67F40DFD4AC1B8E6AF0E235704CBA8BC9BBFE2F0A8D2B45300D8","ledger_time":844077070,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"32570-107334674"},"status":"success","type":"response"}
+{"type":"ledgerClosed","ledger_index":107334675,"ledger_hash":"2471C26C1A629496D7267B2E5F919B98667DD7FDDAF81F39347D25645D437C20","ledger_time":844077071,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"32570-107334675","txn_count":57,"network_id":0}
+```
+
+</CodeGroup>
+
+The native XRPL request shape shown above puts the parameters at the top level next to `command`. The JSON-RPC shaped request `{"jsonrpc":"2.0","id":1,"method":"subscribe","params":[{"streams":["ledger"]}]}` is also accepted on the same WebSocket connection. To watch specific accounts or an order book, add `accounts` or `books` to the same request, for example `{"id":2,"command":"subscribe","accounts":["rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De"]}`. Subscriptions end when you send `unsubscribe` or close the connection.

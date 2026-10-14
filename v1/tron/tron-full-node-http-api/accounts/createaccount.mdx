@@ -1,0 +1,48 @@
+---
+title: "CreateAccount"
+---
+
+Activate an account. Uses an already activated account to activate a new account. Users have to generate an account locally with wallet-cli or others SDKs like TronWeb, and then use this API to activate the account generated, or just simply transfer TRX to it.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - An activated account, converted to a hex String. If the owner\_address has enough bandwidth obtained by freezing TRX, then creating an account will only consume bandwidth, otherwise, 0.1 TRX will be burned to pay for bandwidth, and at the same time, 1 TRX will be required to be created.
+* `account_address` - String - The address of the new account, converted to a hex string, this address needs to be calculated in advance
+* `visible` -  Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+* `permission_id` - int32 - Optional - For multi-signature use
+
+## **Returns**
+
+Transaction - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `AccountCreateContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field            | Type   | Description                                                                                            |
+| ---------------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| owner\_address   | string | Transaction initiator address                                                                          |
+| account\_address | string | Account address to be activated                                                                        |
+| type             | int    | Account type. The external account type is 0, and this field will not be displayed in the return value |
+
+```bash
+// Result
+{}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/createaccount \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "account_address": "TFgY1uN8buRxAtV2r6Zy5sG3ACko6pJT1y",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

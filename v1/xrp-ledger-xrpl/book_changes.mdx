@@ -1,0 +1,64 @@
+---
+title: "book_changes"
+---
+
+Reports information about changes to the order books in the decentralized exchange compared with the previous ledger version. Useful for building candlestick charts.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/path-and-order-book-methods/book_changes)
+
+## **Parameters**
+
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`.
+
+## Returns
+
+* `type` (string) The string `bookChanges`.
+* `ledger_hash` (string) The identifying hash of the ledger version used.
+* `ledger_index` (number) The ledger index of the ledger version used.
+* `ledger_time` (number) The official close time of the ledger, in seconds since the Ripple Epoch.
+* `validated` (boolean) If `true`, the information comes from a validated ledger version.
+* `changes` (array) One book update object per order book that was updated in this ledger, each with `currency_a` (`XRP_drops` for XRP, otherwise `issuer/currency`), `currency_b`, `volume_a`, `volume_b`, `high`, `low`, `open` and `close`. Empty if no order books were updated.
+
+```bash
+// Result
+{
+  "result": {
+    "type": "bookChanges",
+    "ledger_hash": "925A0E8F39F21363E351A8F4551AEEC2751142B5997816FB722B7A1BF1D61F9A",
+    "ledger_index": 107292936,
+    "ledger_time": 843914960,
+    "validated": true,
+    "changes": [
+      {
+        "currency_a": "XRP_drops",
+        "currency_b": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De/524C555344000000000000000000000000000000",
+        "volume_a": "30601560",
+        "volume_b": "46.4167",
+        "high": "659279.0956703084",
+        "low": "659279.0956703084",
+        "open": "659279.0956703084",
+        "close": "659279.0956703084"
+      }
+    ],
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"book_changes","params":[{"ledger_index":"validated"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"book_changes","ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

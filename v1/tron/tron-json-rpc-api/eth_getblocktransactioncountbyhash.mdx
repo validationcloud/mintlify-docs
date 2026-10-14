@@ -1,0 +1,41 @@
+---
+title: "eth_getBlockTransactionCountByHash"
+---
+
+Returns the number of transactions in a block from a block matching the given block hash.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`DATA`, 32 Bytes - hash of a block
+
+```bash
+params: ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+```
+
+## **Returns**
+
+`QUANTITY` - integer of the number of transactions in this block.
+
+```bash
+// Result
+{
+  "id":1,
+  "jsonrpc": "2.0",
+  "result": "0xa" // 10
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByHash","params":["00000000047c0cb1efd01c35857847dbf33b33a73c97bd0acfc31237f63033ae"],"id":1}'
+```
+
+</CodeGroup>

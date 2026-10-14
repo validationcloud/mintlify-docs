@@ -1,0 +1,68 @@
+---
+title: "transaction_entry"
+---
+
+Retrieves information on a single transaction from a specific ledger version. The `tx` method, by contrast, searches the whole available history (ledger 32,570 onward) for the specified transaction and is usually the better choice.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/transaction-methods/transaction_entry)
+
+## **Parameters**
+
+* `tx_hash` (string, required) Unique hash of the transaction you are looking up.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (string or unsigned integer, optional) The ledger index of the ledger to use. The transaction must be in this exact ledger, so pass the ledger that contains it rather than a shortcut such as `validated`.
+
+## Returns
+
+* `ledger_index` (number) The ledger index of the ledger version the transaction was found in.
+* `ledger_hash` (string) The identifying hash of the ledger version the transaction was found in.
+* `metadata` (object) The transaction metadata, which shows the exact results of the transaction in detail.
+* `tx_json` (object) JSON representation of the transaction.
+* `validated` (boolean) If `true`, the transaction is in a validated ledger.
+
+```bash
+// Result
+{
+  "result": {
+    "validated": true,
+    "metadata": {
+      "AffectedNodes": [
+        // ...
+      ],
+      "TransactionIndex": 59,
+      "TransactionResult": "tesSUCCESS"
+    },
+    "tx_json": {
+      "Account": "rGexjC9cQtQp5u7YcRYnCQh29sRft8kd3D",
+      "Fee": "10",
+      "LastLedgerSequence": 107045840,
+      "OfferSequence": 101502984,
+      "Sequence": 101502987,
+      "SigningPubKey": "ED7D6BA7CF7693941BF4B6C1B17AD65069476235CAC2877E3E6D05172358CED43D",
+      "TransactionType": "OfferCancel",
+      "TxnSignature": "610CEF3AD62289319E5C0A6AB5323FB4731F1141...",
+      "hash": "EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E"
+    },
+    "ledger_index": 107045822,
+    "ledger_hash": "99398CEAAFF913CD408155ECE6C1A53F9E7F0CBEC0E04941A8E1B3BA646CF29B",
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"transaction_entry","params":[{"tx_hash":"EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E","ledger_index":107045822}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"transaction_entry","tx_hash":"EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E","ledger_index":107045822}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

@@ -1,0 +1,59 @@
+---
+title: "getBlocksWithLimit"
+---
+
+Returns a list of confirmed blocks starting at the given slot.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `start_slot` string _<span style={{color: "red"}}>Required</span>_. The start slot encoded as an u64 integer.
+* `limit` string _<span style={{color: "red"}}>Required</span>_. The limit encoded as u64, 64-bit unsigned integer.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string.&#x20;
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string.
+      * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+
+## Returns
+
+* `result` An array of u64 integers listing confirmed blocks between the start\_slot and either end\_slot - if provided, or latest confirmed block, inclusive. The maximum range allowed is 500,000 slots.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		319942456,
+		319942457,
+		319942458,
+		319942459,
+		319942460
+	],
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0","id": 1,"method": "getBlocksWithLimit","params": [319942456,5]}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0","id": 1,"method": "getBlocksWithLimit","params": [319942456,5]}'
+    
+```
+
+</CodeGroup>

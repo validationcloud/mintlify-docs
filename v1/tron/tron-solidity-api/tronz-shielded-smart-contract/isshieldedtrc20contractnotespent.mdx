@@ -1,0 +1,37 @@
+---
+title: "IsShieldedTrc20ContractNoteSpent"
+---
+
+Checks whether a specific shielded TRC20 contract note has been spent or not.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `ak` - String - <span style={{color: "red"}}>Required</span> - A string representing the address key (ak)
+* `nk` - String - <span style={{color: "red"}}>Required</span> - A string representing the note key (nk)
+* `position` - String - <span style={{color: "red"}}>Required</span> - The position of the shielded TRC20 contract note
+* `shielded_TRC20_contract_address` - String - <span style={{color: "red"}}>Required</span> - The address of the shielded TRC20 contract
+
+## **Returns**
+
+`is_spent` - indicates whether the specified shielded TRC20 contract note has been spent or not
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/isshieldedtrc20contractnotespent \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "ak": "ADDRESS_KEY",
+      "nk": "NOTE_KEY",
+      "position": "POSITION",
+      "shielded_TRC20_contract_address": "CONTRACT_ADDRESS"
+}
+''
+```
+
+</CodeGroup>

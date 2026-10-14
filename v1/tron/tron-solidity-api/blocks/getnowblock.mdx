@@ -1,0 +1,89 @@
+---
+title: "GetNowBlock"
+---
+
+Get the latest block.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `None`
+
+## **Returns**
+
+| Field                                    | Type           | Description                                                                                                                                                                            |
+| ---------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| blockID                                  | string         | block hash                                                                                                                                                                             |
+| block\_header.raw\_data.timestamp        | int64          | block timestamp                                                                                                                                                                        |
+| block\_header.raw\_data.txTrieRoot       | string         | the root of transaction merkle tree                                                                                                                                                    |
+| block\_header.raw\_data.parentHash       | string         | parent block hash                                                                                                                                                                      |
+| block\_header.raw\_data.number           | int64          | block number                                                                                                                                                                           |
+| block\_header.raw\_data.witness\_id      | int64          | super representative id                                                                                                                                                                |
+| block\_header.raw\_data.witness\_address | string         | super representative address                                                                                                                                                           |
+| block\_header.raw\_data.version          | int32          | version                                                                                                                                                                                |
+| block\_header.raw\_data.accountStateRoot | string         | the root of account state tree                                                                                                                                                         |
+| block\_header.witness\_signature         | string         | the signature of SR                                                                                                                                                                    |
+| transactions                             | Transaction\[] | Transaction information in the block, please refer to [gettransactionbyid](https://developers.tron.network/reference/gettransactionbyid) for the content contained in each transaction |
+
+```json
+// Result
+{
+	"blockID": "00000000048706a84450debab9fb527719da665c0b0e6ff23fba31c291741bcb",
+	"block_header": {
+		"raw_data": {
+			"number": 75957928,
+			"txTrieRoot": "c050dab321f0ab4d4a89bb91588c71592b0ce8b0f40b30fbef0bf4d72204e7b7",
+			"witness_address": "41a4ce68cfcdd27884bde52cec653354048e0aa989",
+			"parentHash": "00000000048706a737f3c5ed665e9408758211d82f8caa027fe5236c860121c9",
+			"version": 32,
+			"timestamp": 1758533865000
+		},
+		"witness_signature": "936fc40565317d76f9b75397157e3c795059adfa061d7f6d44f3caddfe4e556834078e5e17fa73a956736f03cbb28cf6f01a38722e793b04c4957f64ed3692b401"
+	},
+	"transactions": [
+		{
+			"ret": [
+				{
+					"contractRet": "SUCCESS"
+				}
+			],
+			"signature": [
+				"c0b549e811403bb6489df9dff1ad3ca4a171b7e3c322a33ec3b421b54bdbbf4209fdd35c6c1e14f660f735a5bd8c017eb84e783cff4d46bee59d5aa4d200819200"
+			],
+			"txID": "e187cb8c26e584e6086dc1a4512ef662f8d961338c2d1f2e6b8f491b43420fed",
+			"raw_data": {
+				"contract": [
+					{
+						"parameter": {
+							"value": {
+								"amount": 2,
+								"owner_address": "41c17ee95239df650fb25e95e18015b39bc4208d0a",
+								"to_address": "415783c0533c55a6e10c8b0e519903a372d30ad68e"
+							},
+							"type_url": "type.googleapis.com/protocol.TransferContract"
+						},
+						"type": "TransferContract"
+					}
+				],
+				"ref_block_bytes": "0694",
+				"ref_block_hash": "11f97e2b0cda1340",
+				"expiration": 1758533921230,
+				"timestamp": 1758533861230
+			},
+			"raw_data_hex": "0a020694220811f97e2b0cda134040ced3a88697335a65080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541c17ee95239df650fb25e95e18015b39bc4208d0a1215415783c0533c55a6e10c8b0e519903a372d30ad68e180270eefea4869733"
+		},
+		...
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getnowblock \
+    -X GET
+```
+
+</CodeGroup>

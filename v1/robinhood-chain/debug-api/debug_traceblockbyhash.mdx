@@ -1,0 +1,80 @@
+---
+title: "debug_traceBlockByHash"
+---
+
+Traces every transaction in the block specified by block hash and returns the tracer result for each one.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`blockHash` - String - <span style={{color: "red"}}>Required</span> - The block hash.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or`prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - An array of transactions for that block, each containing:
+
+* `txHash` - The transaction hash of the transaction
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+* `calls` - A list of sub-calls.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		{
+			"txHash": "0xba24440370fb591d6fd505dd4fe8e590c5061cb431bc694111dcd14cdd25ba65",
+			"result": {
+				"from": "0x5c166d3f2becdea16a957d2eb119c3de3426635d",
+				"gas": "0x39480",
+				"gasUsed": "0x36f52",
+				"to": "0xe957a692c97566efc85f995162fa404091232b2e",
+				"input": "0xa1305b17000000000000000000000000d102c33b9bbf34b752fc4922d6021e5670cf7ef9000000000000000000000000dc3a1d0db41d9cbc43abb61ee627d675f3730b2b000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000be000000000000000000000000000000000000000000000000000000000000022000000000000000000000000000000000000000000000000022be7ef4399c9851000000000000000000000000e71cae6aa5bbcd817587dacbd47875b745737c5000000000000000000000000000000000000000000000000000000000000002a000000000000000000000000000000000000000000000000000000000000000e43266df5b0000000000000000000000006630472ce02639432f36cef14359f011c851d8e400000000000000000000000000000000fee58de376624911af8f1805a23c4f7a00000000000000000000dc0839ce1c7911c2fb0670145d60c4f8689f878a16f8000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000d80000000000000000000000005bfeb60fca8760a70f1027a1ef51a73542cf620f0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041293faceaf15b351d7fa50a9e01825419a156cf17d9585ce373c21a210a8e64bb22d28547a1d60f4d8a885dbfdbe5c53d8a1c688e691f64c4b4c8f64a4ccacd5b1b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041a0f40886bfbd918d1a658a9e4177957be31a9469627acbdd67bd4756752a2cb7331d947651ef939ff8491d7b8fbc73cd673f1b8f7b4315a906ec306aa6a78c081c00000000000000000000000000000000000000000000000000000000000000",
+				"calls": [
+					{
+						"from": "0xe957a692c97566efc85f995162fa404091232b2e",
+						"gas": "0x301db",
+						"gasUsed": "0x1f04",
+						"to": "0xf2ae0038696774d65e67892c9d301c5f2cbbda58",
+						"input": "0x70a08231000000000000000000000000e957a692c97566efc85f995162fa404091232b2e",
+						"output": "0x000000000000000000000000000000000000000000000b0e70357269e1ae26f3",
+						...
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["0x484ba363658acb0a75d4ff3cc7e47818935f1006a865d4b0e084f3600dbb6423", {"tracer": "callTracer"}],"id":1}'
+    
+```
+
+```bash title="testnet"
+curl https://testnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["0x484ba363658acb0a75d4ff3cc7e47818935f1006a865d4b0e084f3600dbb6423", {"tracer": "callTracer"}],"id":1}'
+    
+```
+
+</CodeGroup>

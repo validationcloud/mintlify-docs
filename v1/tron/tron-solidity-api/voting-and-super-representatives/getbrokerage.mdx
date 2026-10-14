@@ -1,0 +1,41 @@
+---
+title: "GetBrokerage"
+---
+
+Get Super Representative brokerage ratio (Confirmed state).
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `address` - String - Super representative's account address
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+`brokerage` - int64 : Brokerage rate
+
+```json
+// Result
+{
+  "brokerage": 100
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getBrokerage \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "address": "TCuM8e98jmPwT1RU2jW7dekUC5HpXbGzFG",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

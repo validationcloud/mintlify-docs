@@ -1,0 +1,106 @@
+---
+title: "trace_block"
+---
+
+Returns traces created at given block.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span> - The block number as a string in hexadecimal format or tags. The supported tag values include:
+
+* `earliest` - For the earliest/genesis block
+* `latest` for the latest mined block
+* `safe` for the most recent secure block
+* `finalized` for the most recent secure block accepted by more than 2/3 of validators
+
+## **Returns**
+
+`array` - The block traces, which have the following fields (all return types are hexadecimal unless otherwise noted):
+
+* `action` - object The ParityTrace action object containing call details
+  * `from` - string - The address of the sender
+  * `callType` - string - The type of method such as call, staticcall, delegatecall
+  * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+  * `input` - string - The input data sent along with the transaction
+  * `to` - string - The address of the receiver
+  * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+* `blockHash` - string - The hash of the block where this transaction was in
+* `blockNumber` - integer - The block number where this transaction was in
+* `result` - object - The ParityTrace result object containing execution outcome
+  * `gasUsed` - string -The amount of gas used by this specific transaction
+  * `output` - string - The return value of the contract call, empty if no RETURN executed
+* `subtraces` - integer - The number of subtraces (internal calls) made by the transaction
+* `traceAddress` - array - The list of addresses where the call executed, including parent addresses and call order
+* `transactionHash` - string - The hash of the transaction
+* `transactionPosition` - integer - The transaction index position within the block
+* `type` - string - The type of the trace, such as call or create
+* `error` - string - The error message, if any
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+      {
+        "action": {
+          "from": "0x786d1ecc7ad626f48d6d95ccb2c0500e52e4a15b",
+          "callType": "call",
+          "gas": "0x168ef8",
+          "input": "0xa9059cbb0000000000000000000000009406c483929bac16a41efae8665d8dab68c33eea0000000000000000000000000000000000000000000000000000000002fa2d30",
+          "to": "0x20c0000000000000000000000000000000000000",
+          "value": "0x0"
+        },
+        "blockHash": "0xe1dd033a33e1b2be07a6c3f5256b177b0e09f2d81f8f306eb0a3bb19203d47c2",
+        "blockNumber": 8148608,
+        "result": {
+          "gasUsed": "0x7cf1e",
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "subtraces": 0,
+        "traceAddress": [],
+        "transactionHash": "0x9c5c434a92a5efa222d510a77e35d0e0b02b607cf31195dcb80c536271060ebd",
+        "transactionPosition": 0,
+        "type": "call"
+      },
+      {
+        "action": {
+          "from": "0xe7667c20ef0d18721ea91f327d7cbb3fe83b66fc",
+          "gas": "0x127e754",
+          "init": "0x608060405260405162001480...",
+          "value": "0x0",
+          "creationMethod": "create"
+        },
+        "blockHash": "0xe1dd033a33e1b2be07a6c3f5256b177b0e09f2d81f8f306eb0a3bb19203d47c2",
+        "blockNumber": 8148608,
+        "result": {
+          "address": "0x27b1bb23c768bac9e08384e3135c4ccc7fbc92ec",
+          "code": "0x60806040526004361061009f...",
+          "gasUsed": "0x636c29"
+        },
+        "subtraces": 0,
+        "traceAddress": [],
+        "transactionHash": "0x9e2eea4b46aa76ed8c30a57d9bdbc68a16becba529f0d665788e748476db0dad",
+        "transactionPosition": 1,
+        "type": "create"
+      }
+      // ...
+    ]
+  }
+```
+
+<CodeGroup>
+
+```bash title="testnet"
+curl https://testnet.tempo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_block","params":["0x7c5680"],"id":1}'
+    
+```
+
+</CodeGroup>

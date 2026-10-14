@@ -1,0 +1,139 @@
+---
+title: "GetBlockByLatestNum"
+---
+
+Returns a list of block objects.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `num` - int32 - The number of blocks to query.
+
+## **Returns**
+
+Block list, please refer to [/wallet/getblock](/v1/tron/tron-full-node-http-api/query-the-network/getblock) for the content contained in block.
+
+```bash
+// Result
+{
+  "block": [
+    {
+      "blockID": "00000000036fb5a80e59f3fd32892f7a986f8ea871463732e5eeac9dfa1a5fbf",
+      "block_header": {
+        "raw_data": {
+          "number": 57652648,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41839d08f05ade5b365e81d1a66c20af13ebb2991d",
+          "parentHash": "00000000036fb5a7b804bf7b4f0f330403f9871207e4f862ac9c199819f60fbd",
+          "version": 32,
+          "timestamp": 1756891608000
+        },
+        "witness_signature": "bad95f746d55b3f0ccbba4d907444c80e192e758cef786444bbc1431b01901897ebed7b5abfff17b34b72332226f81c330e7b188c79dc4eaef2a5e70e33130c101"
+      }
+    },
+    {
+      "blockID": "00000000036fb5a9bef9a5df4a874bae3e52e8605ddf7b45deac49f56a56486a",
+      "block_header": {
+        "raw_data": {
+          "number": 57652649,
+          "txTrieRoot": "5f3a07e9cb77f21a33540af0e1b9ceb483d4698a64038449bbed59ea04937fcd",
+          "witness_address": "419bfe696dc52b3e3fc64af93b44e40cda3d8d4e1f",
+          "parentHash": "00000000036fb5a80e59f3fd32892f7a986f8ea871463732e5eeac9dfa1a5fbf",
+          "version": 32,
+          "timestamp": 1756891611000
+        },
+        "witness_signature": "3d3f660ba009cd2977c7c498ae4809f998701369eb80fc02ab11ca754b0c0ef646db01acb7b001750e0f18047a58bade09ca00137cd80cd39f33b8ce169f3dfa00"
+      },
+      "transactions": [
+        {
+          "ret": [
+            {
+              "contractRet": "SUCCESS"
+            }
+          ],
+          "signature": [
+            "9d8e9678eb5faf39f050bc4a72e372eb8c9a5915a6244a2449eadd6049ecb6bf6792a97ab46b1c301c087e631ae4d40be1bf29e36d3c44d403f5dd338e654c5000"
+          ],
+          "txID": "212f2879e6969534685af0c674c6ce4a18a4afcc0f8206609af7e4b50093dc3a",
+          "raw_data": {
+            "contract": [
+              {
+                "parameter": {
+                  "value": {
+                    "amount": 36000000,
+                    "owner_address": "41199fd0e98de56e1f030ff620b37130af26e20dd3",
+                    "to_address": "410acbe049aca50cba60a31ffdd1deddf4e7760cb0"
+                  },
+                  "type_url": "type.googleapis.com/protocol.TransferContract"
+                },
+                "type": "TransferContract"
+              }
+            ],
+            "ref_block_bytes": "b595",
+            "ref_block_hash": "7bf4768cb417c7cb",
+            "expiration": 1756895265000,
+            "timestamp": 1756891607857
+          },
+          "raw_data_hex": "0a02b59522087bf4768cb417c7cb40e881f9f890335a68080112640a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541199fd0e98de56e1f030ff620b37130af26e20dd31215410acbe049aca50cba60a31ffdd1deddf4e7760cb01880a2951170b1e699f79033"
+        }
+      ]
+    },
+    {
+      "blockID": "00000000036fb5aada21b0acb7c8108d04d64a7d6d0bc85848d480ab68ff4e31",
+      "block_header": {
+        "raw_data": {
+          "number": 57652650,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41202d802d6f3db2ce59c632c13abe1b78a91528b7",
+          "parentHash": "00000000036fb5a9bef9a5df4a874bae3e52e8605ddf7b45deac49f56a56486a",
+          "version": 32,
+          "timestamp": 1756891614000
+        },
+        "witness_signature": "2032485be90f0c623912a8a8c53c4069872949df47de509bc7467ea3b6947fe009640148002d9f827ad2f4a74a2f188423507fd2c0541843f724a3954aed537701"
+      }
+    },
+    {
+      "blockID": "00000000036fb5ab9700007132f870858f3fe797e75fdf7281c087a212eb819a",
+      "block_header": {
+        "raw_data": {
+          "number": 57652651,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "4116b099335c674960a9a2b8dc6e3b90f5a74807ec",
+          "parentHash": "00000000036fb5aada21b0acb7c8108d04d64a7d6d0bc85848d480ab68ff4e31",
+          "version": 32,
+          "timestamp": 1756891617000
+        },
+        "witness_signature": "46ef7c08057f48dfb3b4703c585be4618eb815ba89391f2faef5fef82cff2fa85c7461e55f81734547e3977b0dace038b0ee7ca390d416056d2d0e187005cddb01"
+      }
+    },
+    {
+      "blockID": "00000000036fb5ac22ded3aa07db1dc2e2bc6b44a0fabc679c3c71709ada4713",
+      "block_header": {
+        "raw_data": {
+          "number": 57652652,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41f16412b9a17ee9408646e2a21e16478f72ed1e95",
+          "parentHash": "00000000036fb5ab9700007132f870858f3fe797e75fdf7281c087a212eb819a",
+          "version": 32,
+          "timestamp": 1756891620000
+        },
+        "witness_signature": "e117def9768c72dea0c737d73a803c973a65a385a52047be31ca6cfe4884be9a74b57dae1e41b3018c95475b9c87473cb689925553c4977b897b21d8ff1e681700"
+      }
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getblockbylatestnum \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"num":5}'
+```
+
+</CodeGroup>

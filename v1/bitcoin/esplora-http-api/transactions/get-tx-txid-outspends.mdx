@@ -1,0 +1,44 @@
+---
+title: "GET /tx/:txid/outspends"
+---
+
+Returns the spending status of all transaction outputs.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`txid`**- transaction hash, required.&#x20;
+
+Example: `92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655`
+
+## Returns
+
+Returns the spending status of all transaction outputs.
+
+```json
+[
+	{
+		"spent": false
+	},
+	{
+		"spent": false
+	}
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/outspends \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/outspends \
+ -X GET
+```
+
+</CodeGroup>

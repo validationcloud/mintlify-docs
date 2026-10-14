@@ -1,0 +1,1497 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ICP Rosetta API",
+    "description": "OpenAPI v3 spec for ICP Rosetta endpoints on the Internet Computer.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://icp-mainnet.icp.validationcloud.io/v1/<YOUR_API_KEY_HERE>"
+    }
+  ],
+  "paths": {
+    "/account/balance": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get an account balance",
+        "description": "Returns the balance of an account on the Internet Computer network.",
+        "requestBody": {
+          "description": "Rosetta AccountBalanceRequest",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountBalanceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful account balance response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountBalanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/call": {
+      "post": {
+        "tags": [
+          "Call"
+        ],
+        "summary": "Make a custom call",
+        "description": "Invokes a custom call endpoint (specific to ICP).",
+        "requestBody": {
+          "description": "Rosetta CallRequest",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful call response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/network/list": {
+      "post": {
+        "tags": [
+          "Network"
+        ],
+        "summary": "Get list of available networks",
+        "requestBody": {
+          "description": "Rosetta MetadataRequest (often empty or optional)",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetadataRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful network list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkListResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/network/options": {
+      "post": {
+        "tags": [
+          "Network"
+        ],
+        "summary": "Get network options",
+        "description": "Returns the version and allowed operations for this network.",
+        "requestBody": {
+          "description": "Rosetta NetworkRequest",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Network options",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkOptionsResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/network/status": {
+      "post": {
+        "tags": [
+          "Network"
+        ],
+        "summary": "Get network status",
+        "description": "Gets the current status of the network including the current block identifier, genesis block identifier, and sync status.",
+        "requestBody": {
+          "description": "Rosetta NetworkRequest",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Network status response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkStatusResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block": {
+      "post": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Get a block",
+        "description": "Fetches a block by index or hash.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Block response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/transaction": {
+      "post": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Get a transaction within a block",
+        "description": "Fetches the details of a transaction in a specified block.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Block transaction response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockTransactionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/mempool": {
+      "post": {
+        "tags": [
+          "Mempool"
+        ],
+        "summary": "Get mempool transactions",
+        "description": "Returns all transaction hashes in the mempool.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MempoolRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mempool response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MempoolResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/mempool/transaction": {
+      "post": {
+        "tags": [
+          "Mempool"
+        ],
+        "summary": "Get a mempool transaction",
+        "description": "Fetch details of a transaction currently in the mempool by its hash.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MempoolTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mempool transaction response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MempoolTransactionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found in mempool"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/combine": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Combine partial signatures",
+        "description": "Combines multiple signatures into a single signed transaction.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionCombineRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed transaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstructionCombineResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/derive": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Derive account address from public key",
+        "description": "Returns an AccountIdentifier for a given public key.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionDeriveRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account identifier derived",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstructionDeriveResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/hash": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Get transaction hash",
+        "description": "Derives a transaction hash for a signed transaction.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionHashRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction hash",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionIdentifierResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/metadata": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Get transaction metadata",
+        "description": "Fetches any metadata needed for transaction construction.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionMetadataRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Construction metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstructionMetadataResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/parse": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Parse a constructed transaction",
+        "description": "Parses the transaction to understand its operations and signers.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionParseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Parsed transaction details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstructionParseResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/payloads": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Create transaction payloads to sign",
+        "description": "Given a set of operations, create payloads that must be signed to create a valid transaction.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionPayloadsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payloads to be signed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstructionPayloadsResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/preprocess": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Preprocess a set of operations for construction",
+        "description": "Provides any additional metadata required for transaction construction based on the requested operations.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionPreprocessRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Preprocess output",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConstructionPreprocessResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/construction/submit": {
+      "post": {
+        "tags": [
+          "Construction"
+        ],
+        "summary": "Submit a signed transaction",
+        "description": "Pushes a signed transaction to the network.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConstructionSubmitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "TransactionIdentifier of the submitted transaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionIdentifierResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/search/transactions": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Search for transactions",
+        "description": "Allows searching for transactions by various criteria (account, block, etc.).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTransactionsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTransactionsResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NetworkIdentifier": {
+        "type": "object",
+        "required": [
+          "blockchain",
+          "network"
+        ],
+        "properties": {
+          "blockchain": {
+            "type": "string",
+            "example": "Internet Computer"
+          },
+          "network": {
+            "type": "string",
+            "example": "00000000000000020101"
+          },
+          "sub_network_identifier": {
+            "$ref": "#/components/schemas/SubNetworkIdentifier"
+          }
+        }
+      },
+      "SubNetworkIdentifier": {
+        "type": "object",
+        "required": [
+          "network"
+        ],
+        "properties": {
+          "network": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "AccountIdentifier": {
+        "type": "object",
+        "required": [
+          "address"
+        ],
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "sub_account": {
+            "$ref": "#/components/schemas/SubAccountIdentifier"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "SubAccountIdentifier": {
+        "type": "object",
+        "required": [
+          "address"
+        ],
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "AccountBalanceRequest": {
+        "type": "object",
+        "required": [
+          "network_identifier",
+          "account_identifier"
+        ],
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "account_identifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "block_identifier": {
+            "$ref": "#/components/schemas/PartialBlockIdentifier"
+          }
+        }
+      },
+      "PartialBlockIdentifier": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "hash": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountBalanceResponse": {
+        "type": "object",
+        "properties": {
+          "block_identifier": {
+            "$ref": "#/components/schemas/BlockIdentifier"
+          },
+          "balances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Amount"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "BlockIdentifier": {
+        "type": "object",
+        "required": [
+          "index",
+          "hash"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "hash": {
+            "type": "string"
+          }
+        }
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "Currency": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "decimals": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "CallRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "method": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "CallResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "idempotent": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "MetadataRequest": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "NetworkListResponse": {
+        "type": "object",
+        "properties": {
+          "network_identifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NetworkIdentifier"
+            }
+          }
+        }
+      },
+      "NetworkRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          }
+        }
+      },
+      "NetworkOptionsResponse": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "object",
+            "properties": {
+              "rosetta_version": {
+                "type": "string"
+              },
+              "node_version": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "allow": {
+            "$ref": "#/components/schemas/Allow"
+          }
+        }
+      },
+      "Allow": {
+        "type": "object",
+        "properties": {
+          "operation_statuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OperationStatus"
+            }
+          },
+          "operation_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "historical_balance_lookup": {
+            "type": "boolean"
+          },
+          "mempool_coins": {
+            "type": "boolean"
+          },
+          "call_methods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "OperationStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "successful": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          },
+          "retriable": {
+            "type": "boolean"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "NetworkStatusResponse": {
+        "type": "object",
+        "properties": {
+          "current_block_identifier": {
+            "$ref": "#/components/schemas/BlockIdentifier"
+          },
+          "current_block_timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "genesis_block_identifier": {
+            "$ref": "#/components/schemas/BlockIdentifier"
+          },
+          "peers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Peer"
+            }
+          }
+        }
+      },
+      "Peer": {
+        "type": "object",
+        "properties": {
+          "peer_id": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "BlockRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "block_identifier": {
+            "$ref": "#/components/schemas/PartialBlockIdentifier"
+          }
+        }
+      },
+      "BlockResponse": {
+        "type": "object",
+        "properties": {
+          "block": {
+            "$ref": "#/components/schemas/Block"
+          },
+          "other_transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionIdentifier"
+            }
+          }
+        }
+      },
+      "Block": {
+        "type": "object",
+        "properties": {
+          "block_identifier": {
+            "$ref": "#/components/schemas/BlockIdentifier"
+          },
+          "parent_block_identifier": {
+            "$ref": "#/components/schemas/BlockIdentifier"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "transaction_identifier": {
+            "$ref": "#/components/schemas/TransactionIdentifier"
+          },
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Operation"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "TransactionIdentifier": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          }
+        }
+      },
+      "Operation": {
+        "type": "object",
+        "properties": {
+          "operation_identifier": {
+            "$ref": "#/components/schemas/OperationIdentifier"
+          },
+          "related_operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OperationIdentifier"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "account": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "OperationIdentifier": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "network_index": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "BlockTransactionRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "block_identifier": {
+            "$ref": "#/components/schemas/BlockIdentifier"
+          },
+          "transaction_identifier": {
+            "$ref": "#/components/schemas/TransactionIdentifier"
+          }
+        }
+      },
+      "BlockTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction"
+          }
+        }
+      },
+      "MempoolRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          }
+        }
+      },
+      "MempoolResponse": {
+        "type": "object",
+        "properties": {
+          "transaction_identifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionIdentifier"
+            }
+          }
+        }
+      },
+      "MempoolTransactionRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "transaction_identifier": {
+            "$ref": "#/components/schemas/TransactionIdentifier"
+          }
+        }
+      },
+      "MempoolTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ConstructionCombineRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "unsigned_transaction": {
+            "type": "string"
+          },
+          "signatures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Signature"
+            }
+          }
+        }
+      },
+      "Signature": {
+        "type": "object",
+        "properties": {
+          "signing_payload": {
+            "$ref": "#/components/schemas/SigningPayload"
+          },
+          "public_key": {
+            "$ref": "#/components/schemas/PublicKey"
+          },
+          "signature_type": {
+            "type": "string"
+          },
+          "hex_bytes": {
+            "type": "string"
+          }
+        }
+      },
+      "SigningPayload": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "account_identifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "hex_bytes": {
+            "type": "string"
+          },
+          "signature_type": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicKey": {
+        "type": "object",
+        "properties": {
+          "hex_bytes": {
+            "type": "string"
+          },
+          "curve_type": {
+            "type": "string"
+          }
+        }
+      },
+      "ConstructionCombineResponse": {
+        "type": "object",
+        "properties": {
+          "signed_transaction": {
+            "type": "string"
+          }
+        }
+      },
+      "ConstructionDeriveRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "public_key": {
+            "$ref": "#/components/schemas/PublicKey"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ConstructionDeriveResponse": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "account_identifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ConstructionHashRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "signed_transaction": {
+            "type": "string"
+          }
+        }
+      },
+      "TransactionIdentifierResponse": {
+        "type": "object",
+        "properties": {
+          "transaction_identifier": {
+            "$ref": "#/components/schemas/TransactionIdentifier"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ConstructionMetadataRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "options": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "public_keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicKey"
+            }
+          }
+        }
+      },
+      "ConstructionMetadataResponse": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "suggested_fee": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Amount"
+            }
+          }
+        }
+      },
+      "ConstructionParseRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "signed": {
+            "type": "boolean"
+          },
+          "transaction": {
+            "type": "string"
+          }
+        }
+      },
+      "ConstructionParseResponse": {
+        "type": "object",
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Operation"
+            }
+          },
+          "signers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicKey"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ConstructionPayloadsRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Operation"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "public_keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicKey"
+            }
+          }
+        }
+      },
+      "ConstructionPayloadsResponse": {
+        "type": "object",
+        "properties": {
+          "unsigned_transaction": {
+            "type": "string"
+          },
+          "payloads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SigningPayload"
+            }
+          }
+        }
+      },
+      "ConstructionPreprocessRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Operation"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ConstructionPreprocessResponse": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "required_public_keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountIdentifier"
+            }
+          }
+        }
+      },
+      "ConstructionSubmitRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "signed_transaction": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchTransactionsRequest": {
+        "type": "object",
+        "properties": {
+          "network_identifier": {
+            "$ref": "#/components/schemas/NetworkIdentifier"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "max_block": {
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "transaction_identifier": {
+            "$ref": "#/components/schemas/TransactionIdentifier"
+          },
+          "account_identifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "coin_identifier": {
+            "$ref": "#/components/schemas/CoinIdentifier"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          }
+        }
+      },
+      "CoinIdentifier": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchTransactionsResponse": {
+        "type": "object",
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "total_count": {
+            "type": "integer"
+          },
+          "next_offset": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

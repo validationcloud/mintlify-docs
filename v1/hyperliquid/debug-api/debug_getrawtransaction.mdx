@@ -1,0 +1,44 @@
+---
+title: "debug_getRawTransaction"
+---
+
+Returns the EIP-2718 binary-encoded transaction for a transaction hash.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+<Info>
+
+This method is served by nanoreth, the HyperEVM archive client, and works for any block back to genesis. On blocks that carry a HyperCore deposit, block-level traces include the deposit as their first entry; see [Overview](/v1/hyperliquid/overview).
+
+</Info>
+
+## **Parameters**
+
+`tx_hash` - String <span style={{color: "red"}}>Required</span>  - The transaction hash.
+
+## **Returns**
+
+`result` - The EIP-2718 binary-encoded transaction, as a hexadecimal string.
+
+```json wrap
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "0x02f8ad8203e70280840bebc20082e04094b9cd945141f7d99fd562a6222accde5043350ad480b844a9059cbb000000000000000000000000ae054f4e67bd9c95844e0152f5face89ee4e7e450000000000000000000000000000000000000000000023b5482ca79b97450164c080a0238d82920a753540979a0e0dfd9442d65418e40e832e397da9fe45533e03411ba0226040ac6053c264f14fca94c3b1b321b35afb6974f91d173c56ed0d0395bbf2",
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_getRawTransaction","params":["0x86a487d74f726697ffc06cca32975d8217142401ee459a1a604b8174315f2378"],"id":1}'
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,122 @@
+---
+title: "DeployContract"
+---
+
+Deploys a contract. Returns TransactionExtention, which contains an unsigned transaction.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `abi` - json - Required - The smart contract application binary interface
+* `bytecode` - String - Required - The compiled contract identifier, used to interact with the Virtual Machine
+* `fee_limit` - int32 - Required - The maximum TRX consumption, measured in SUN
+* `parameter` - String - Required - The parameter passed to the constructor of the contract
+* `origin_energy_limit` - int32 - Required - The max energy which will be consumed by the owner in the process of execution or creation of the contract, is an integer which should be greater than 0
+* `owner_address` - String - Required - The contract owner address, converted to a hex string
+* `name` - String - Required - The Contract name
+* `call_value` - String - Required - The amount of TRX transferred with this transaction, measured in SUN
+* `consume_user_resource_percent` - int32 - Requried - The consume user resource percentage. It should be an integer between \[0, 100]. if 0, means it does not consume user resource until the developer resource has been used up
+* `permission_id` - int32 - Optional. The ID of the permission that is required to execute the transaction
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `CreateSmartContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field              | Type          | Description                                                                                                                                     |
+| ------------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| owner\_address     | string        | Account address                                                                                                                                 |
+| new\_contract      | SmartContract | Deployed contract data, the fields contained in it, please refer to [GetContract](https://developers.tron.network/reference/wallet-getcontract) |
+| call\_token\_value | int64         | The amount of TRC-10 transferred into the contract                                                                                              |
+| token\_id          | int64         | TRC-10 token id                                                                                                                                 |
+
+```json
+// Result
+{
+  "visible": true,
+  "txID": "3f95939ae417f34dba4e94ad3cd90429b5a1ab1ad5a1379f502b1fdd6bd49d89",
+  "contract_address": "4173cc1b8222e5b0c59bcdf969d33aaeb9f3807e3d",
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "owner_address": "TJmmqjb1DK9TTZbQXzRQ2AuA94z4gKAPFh",
+            "new_contract": {
+              "bytecode": "608060405234801561001057600080fd5b5060de8061001f6000396000f30060806040526004361060485763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631ab06ee58114604d5780639507d39a146067575b600080fd5b348015605857600080fd5b506065600435602435608e565b005b348015607257600080fd5b50607c60043560a0565b60408051918252519081900360200190f35b60009182526020829052604090912055565b600090815260208190526040902054905600a165627a7a72305820fdfe832221d60dd582b4526afa20518b98c2e1cb0054653053a844cf265b25040029",
+              "name": "SomeContract",
+              "origin_address": "TJmmqjb1DK9TTZbQXzRQ2AuA94z4gKAPFh",
+              "abi": {
+                "entrys": [
+                  {
+                    "inputs": [
+                      {
+                        "name": "key",
+                        "type": "uint256"
+                      },
+                      {
+                        "name": "value",
+                        "type": "uint256"
+                      }
+                    ],
+                    "name": "set",
+                    "stateMutability": "Nonpayable",
+                    "type": "Function"
+                  },
+                  {
+                    "outputs": [
+                      {
+                        "name": "value",
+                        "type": "uint256"
+                      }
+                    ],
+                    "constant": true,
+                    "inputs": [
+                      {
+                        "name": "key",
+                        "type": "uint256"
+                      }
+                    ],
+                    "name": "get",
+                    "stateMutability": "View",
+                    "type": "Function"
+                  }
+                ]
+              }
+            }
+          },
+          "type_url": "type.googleapis.com/protocol.CreateSmartContract"
+        },
+        "type": "CreateSmartContract"
+      }
+    ],
+    "ref_block_bytes": "545d",
+    "ref_block_hash": "a0a11b7ba9c0fb92",
+    "expiration": 1757412033000,
+    "timestamp": 1757411973397
+  },
+  "raw_data_hex": "0a02545d2208a0a11b7ba9c0fb9240e883aeef92335ad703081e12d2030a30747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e437265617465536d617274436f6e7472616374129d030a1541608f8da72479edc7dd921e4c30bb7e7cddbe722e1283030a1541608f8da72479edc7dd921e4c30bb7e7cddbe722e1a5c0a2b1a03736574220e12036b65791a0775696e743235362210120576616c75651a0775696e74323536300240030a2d10011a03676574220e12036b65791a0775696e743235362a10120576616c75651a0775696e743235363002400222fd01608060405234801561001057600080fd5b5060de8061001f6000396000f30060806040526004361060485763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631ab06ee58114604d5780639507d39a146067575b600080fd5b348015605857600080fd5b506065600435602435608e565b005b348015607257600080fd5b50607c60043560a0565b60408051918252519081900360200190f35b60009182526020829052604090912055565b600090815260208190526040902054905600a165627a7a72305820fdfe832221d60dd582b4526afa20518b98c2e1cb0054653053a844cf265b250400293a0c536f6d65436f6e74726163747095b2aaef9233"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/deploycontract \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "abi": "[{\"constant\":false,\"inputs\":[{\"name\":\"key\",\"type\":\"uint256\"},{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"key\",\"type\":\"uint256\"}],\"name\":\"get\",\"outputs\":[{\"name\":\"value\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]",
+  "bytecode": "608060405234801561001057600080fd5b5060de8061001f6000396000f30060806040526004361060485763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631ab06ee58114604d5780639507d39a146067575b600080fd5b348015605857600080fd5b506065600435602435608e565b005b348015607257600080fd5b50607c60043560a0565b60408051918252519081900360200190f35b60009182526020829052604090912055565b600090815260208190526040902054905600a165627a7a72305820fdfe832221d60dd582b4526afa20518b98c2e1cb0054653053a844cf265b25040029",
+  "owner_address": "TJmmqjb1DK9TTZbQXzRQ2AuA94z4gKAPFh",
+  "name": "SomeContract",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

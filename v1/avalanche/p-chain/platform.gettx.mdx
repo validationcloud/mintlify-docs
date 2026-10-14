@@ -1,0 +1,110 @@
+---
+title: "platform.getTx"
+---
+
+Gets a transaction by its ID.
+
+Optional `encoding` parameter to specify the format for the returned transaction. Can be either `hex` or `json`. Defaults to `hex`.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformgettx)
+
+## **Parameters**
+
+* `encoding` - string - Optional encoding parameter to specify the format for the returned transaction. Can be either "hex" or "json". Defaults to "hex".
+* `txID` - string - The transaction id.
+
+## Returns
+
+* `txID` - string - The id of the subnet.
+* `encoding` - string - Specifies the encoding format used in the request.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "tx": {
+      "unsignedTx": {
+        "inputs": {
+          "networkID": 5,
+          "blockchainID": "11111111111111111111111111111111LpoYY",
+          "outputs": [],
+          "inputs": [
+            {
+              "txID": "2QYG5yR6YW55ixmBvR4zXLCZKV9we9bmSWHHiGppF4Ko17bTPn",
+              "outputIndex": 0,
+              "assetID": "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK",
+              "fxID": "spdxUxVJQbX85MGxMHbKw1sHxMnSqJ3QBzDyDYEP3h6TLuxqQ",
+              "input": {
+                "amount": 1998000000,
+                "signatureIndices": [0]
+              }
+            }
+          ],
+          "memo": "0x"
+        },
+        "destinationChain": "yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp",
+        "exportedOutputs": [
+          {
+            "assetID": "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK",
+            "fxID": "spdxUxVJQbX85MGxMHbKw1sHxMnSqJ3QBzDyDYEP3h6TLuxqQ",
+            "output": {
+              "addresses": ["P-fuji1yhem6kev6gkfsyse3m5z09e6qsuxujz0arpw8v"],
+              "amount": 1997000000,
+              "locktime": 0,
+              "threshold": 1
+            }
+          }
+        ]
+      },
+      "credentials": [
+        {
+          "signatures": [
+            "0xdbc03ebd7d06927baacf7aea85cdebd7e0b95cf5b57715a09981fd5a75dac2cb610636bf3657ba4ca47dad4beed2e7f0ec692e7f12f1bbc9f3c34fc5c18ae35d01"
+          ]
+        }
+      ]
+    },
+    "encoding": "json"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getTx",
+    "params": {
+        "txID":"2Eug3Y6j1yD745y5bQ9bFCf5nvU2qT1eB53GSpD15EkGUfu8xh",
+        "encoding": "json"
+    },
+    "id": 1
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getTx",
+    "params": {
+        "txID":"2Eug3Y6j1yD745y5bQ9bFCf5nvU2qT1eB53GSpD15EkGUfu8xh",
+        "encoding": "json"
+    },
+    "id": 1
+}'
+```
+
+</CodeGroup>

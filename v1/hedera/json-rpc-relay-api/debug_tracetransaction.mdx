@@ -1,0 +1,96 @@
+---
+title: "debug_traceTransaction"
+---
+
+Returns debugging information for historical transactions created by smart contract calls, attempting to run the transaction in the exact same manner as it was executed on the network.
+
+This method will use `500` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/hashgraph/hedera-json-rpc-relay/main/docs/openrpc.json\&uiSchema%5BappBar%5D%5Bui:splitView%5D=false\&uiSchema%5BappBar%5D%5Bui:input%5D=false\&uiSchema%5BappBar%5D%5Bui:examplesDropdown%5D=false)
+
+## **Parameters**
+
+* **transactionHash** `string` <span style={{color: "red"}}>required</span>
+
+Example transctionHash from testnet: 0x5dee41c73116ff6b57c4b0adc45f9ff4472dd643549a0fd31e929fa4350c77da
+
+Note: If retrieving a transactionHash from the [HashScan explorer](https://hashscan.io/mainnet/dashboard), it needs to be a transaction from the "Smart Contract Calls" section and when you copy the Transaction Hash, it needs to be truncated to 64 characters to work with this method call.
+
+* **tracer** `string enum:` `callTracer` or `opcodeLogger` <span style={{color: "red"}}>required</span>
+* **tracerConfig** `object` <span style={{color: "red"}}>required\*</span> _tracerConfig should not be required but currently needs to be included with at least one property due to a bug with Hedera, see_ [_reported issue_](https://github.com/hashgraph/hedera-json-rpc-relay/issues/2627)_._
+
+Example traceConfig with all available properties set to `true`
+
+```json
+tracerConfig {
+    "onlyTopCall": true,
+    "enableMemory": true,
+    "disableStack": true,
+    "disableStorage": true,
+    "enableReturnData": true
+}
+```
+
+## Returns
+
+```json
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"type": "CALL",
+		"from": "0xc8aabc230695df0e36047abe353fcc432c54efb3",
+		"to": "0x0000000000000000000000000000000000437aa3",
+		"value": "0x0",
+		"gas": "0x2625a0",
+		"gasUsed": "0x1e8480",
+		"input": "0x0fc4d33c0000000000000000000000000000000000000000000000000000000000000025",
+		"output": "0x"
+	},
+	"id": "73"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hedera.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0",
+	"method": "debug_traceTransaction",
+	"params": [
+		"0x05fdd02b8496b4993f49dfb946bf88984196c7c06883ffd597ab76dc1b696d3a",
+		{
+			"tracer": "callTracer",
+			"tracerConfig": {
+				"onlyTopCall": true
+			}
+		}
+	],
+	"id": "73"
+}'
+```
+
+```bash title="testnet"
+curl https://testnet.hedera.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0",
+	"method": "debug_traceTransaction",
+	"params": [
+		"0x5dee41c73116ff6b57c4b0adc45f9ff4472dd643549a0fd31e929fa4350c77da",
+		{
+			"tracer": "callTracer",
+			"tracerConfig": {
+				"onlyTopCall": true
+			}
+		}
+	],
+	"id": "73"
+}'
+```
+
+</CodeGroup>

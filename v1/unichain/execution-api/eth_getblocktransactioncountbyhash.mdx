@@ -1,0 +1,45 @@
+---
+title: "eth_getBlockTransactionCountByHash"
+---
+
+Returns the number of transactions in a block from a block matching the given block hash.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbyhash)
+
+## **Parameters**
+
+`DATA`, 32 Bytes - hash of a block
+
+```bash
+params: [
+  "0x801f9b08c43e9363292af641cd5a950bfa74e248314f2967a1bbc9693ed8089e"
+]
+```
+
+## **Returns**
+
+`QUANTITY` - integer of the number of transactions in this block.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x8"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByHash","params":["0x801f9b08c43e9363292af641cd5a950bfa74e248314f2967a1bbc9693ed8089e"],"id":1}'
+```
+
+</CodeGroup>

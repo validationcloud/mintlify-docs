@@ -1,0 +1,45 @@
+---
+title: "ProposalApprove"
+---
+
+Approves proposed transaction.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Approver address
+* `proposal_id` - int32 - Proposal ID
+* `is_add_approval` - boolean - Whether to agree with the proposal
+* `permission_id` - int32 - Optional, for multi-signature use
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `ProposalApproveContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field             | Type   | Description                        |
+| ----------------- | ------ | ---------------------------------- |
+| owner\_address    | string | Account address                    |
+| proposal\_id      | int64  | Proposal id                        |
+| is\_add\_approval | bool   | Whether to agree with the proposal |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/proposalapprove \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TUeTYVYJFfmBj3hVyopAZB97yc432Aay4N",
+  "proposal_id": 109,
+  "is_add_approval": true,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

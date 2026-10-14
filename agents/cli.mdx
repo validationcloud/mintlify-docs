@@ -1,0 +1,304 @@
+---
+title: "CLI"
+description: "Manage Node API endpoints and query Mavrik from your terminal, shell scripts, CI jobs and AI agents."
+---
+
+`valcloud` is the Validation Cloud command-line tool. It connects to the same MCP gateway that Claude Code and other AI clients use, and turns every tool on that gateway into a subcommand. The command list is fetched from the gateway at runtime, so new Node API and Mavrik capabilities show up in `valcloud` without upgrading the CLI.
+
+```bash
+valcloud nodeapi list-chains
+valcloud nodeapi list-endpoints
+valcloud mavrik answer-question "What was the total USDC transfer volume on Ethereum yesterday?"
+```
+
+## Install
+
+`valcloud` requires [Node.js](https://nodejs.org/) 22.12 or newer.
+
+<Tabs>
+<Tab title="npm">
+
+Install `valcloud` globally:
+
+```bash
+npm install -g @validationcloud/cli
+```
+
+</Tab>
+
+<Tab title="npx">
+
+Run `valcloud` without installing it:
+
+```bash
+npx @validationcloud/cli --help
+```
+
+Replace `valcloud` with `npx @validationcloud/cli` in any example on this page.
+
+</Tab>
+</Tabs>
+
+Check the installed version:
+
+```bash
+valcloud --version
+```
+
+Then sign in and run your first command:
+
+```bash
+valcloud auth login
+valcloud nodeapi list-endpoints
+```
+
+## Authenticate
+
+Sign in with your Validation Cloud account:
+
+```bash
+valcloud auth login
+```
+
+The CLI opens your browser, completes the sign-in (OAuth authorization code with PKCE) and stores the credentials locally. Expired access tokens are refreshed automatically. If a refresh fails, the command exits with code `3` and asks you to run `valcloud auth login` again.
+
+<Info>
+
+Login waits up to 5 minutes for the browser redirect on `http://localhost:38417/callback`. If another process is using port `38417`, the command fails and names the address that is taken.
+
+</Info>
+
+### Headless and remote environments
+
+If the CLI can't open a browser, print the sign-in URL and open it yourself:
+
+```bash
+valcloud auth login --no-browser
+```
+
+The sign-in still redirects to `localhost:38417` on the machine where you open the URL. When `valcloud` runs on a remote host, forward that port over SSH so the redirect reaches the CLI:
+
+```bash
+# On your machine
+ssh -L 38417:localhost:38417 user@remote-host
+
+# Then, on the remote host
+valcloud auth login --no-browser
+```
+
+Device-code login isn't supported. For CI and other non-interactive environments, see [Authenticating without a browser](#authenticating-without-a-browser).
+
+### Manage your session
+
+| Command          | Description                                                                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `valcloud auth login`  | Sign in through the browser. `--no-browser` prints the URL instead of opening it.                                                               |
+| `valcloud auth status` | Show the gateway URL, whether you're signed in, token expiry and subject. Prints no secrets, exits with `3` when signed out. Supports `--json`. |
+| `valcloud auth token`  | Print the current access token, refreshing it first if it has expired                                                                          |
+| `valcloud auth logout` | Delete the stored credentials and cached command list for the current gateway                                                                  |
+
+## Your first commands
+
+List the commands available to your account:
+
+```bash
+valcloud tools
+```
+
+Explore a namespace, then the options of a single command:
+
+```bash
+valcloud nodeapi --help
+valcloud nodeapi get-endpoint --help
+```
+
+Try a few Node API reads:
+
+```bash
+valcloud nodeapi list-chains
+valcloud nodeapi list-endpoints
+valcloud nodeapi get-endpoint 00000000-0000-0000-0000-000000000000 --json
+```
+
+## How commands work
+
+Every command is a tool on the Validation Cloud MCP gateway. The CLI maps each tool to `valcloud <namespace> <command> [options]`, where the namespace is the part of the tool name before the first dot, and names are converted from `snake_case` and `camelCase` to `kebab-case`:
+
+| Tool                    | Command                     |
+| ----------------------- | --------------------------- |
+| `nodeapi.get_endpoint`  | `valcloud nodeapi get-endpoint`   |
+| `mavrik.answerQuestion` | `valcloud mavrik answer-question` |
+
+Each input property of a tool becomes a `--kebab-case` flag, and the tool's descriptions appear in `--help`:
+
+| Input type              | Flag                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| String, integer, number | `--flag <value>`. An invalid number is a usage error.        |
+| Boolean                 | `--flag` and `--no-flag`                                     |
+| Enum                    | `--flag <value>`. Allowed values are listed in `--help`.     |
+| Object, array           | `--flag '<json>'`. The JSON must match the declared shape.   |
+
+Required properties are required flags. When a tool has exactly one required property, you can also pass it as a positional argument: `valcloud nodeapi get-endpoint <id>` is the same as `valcloud nodeapi get-endpoint --id <id>`.
+
+To pass all arguments at once, use `--input` with a JSON object, or `--input -` to read it from stdin. Explicit flags override values from `--input`:
+
+```bash
+valcloud nodeapi get-endpoint --input '{"id":"00000000-0000-0000-0000-000000000000"}'
+echo '{"id":"00000000-0000-0000-0000-000000000000"}' | valcloud nodeapi get-endpoint --input -
+```
+
+<Info>
+
+The command list is cached for one hour and refreshed by `valcloud auth login`, `valcloud auth logout` and `valcloud tools --refresh`. If a command you expect is missing, or the gateway rejects a command as unknown or its arguments as invalid, run `valcloud tools --refresh`.
+
+</Info>
+
+## Command reference
+
+Commands come from the gateway, so the tables below reflect the time of writing and what your account can call may differ. Run `valcloud tools` for the current list and `valcloud <namespace> <command> --help` for every option.
+
+### Built-in commands
+
+| Command                                 | Description                                                                                                                     |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `valcloud auth <login\|status\|token\|logout>` | Sign in and manage stored credentials. See [Manage your session](#manage-your-session).                                         |
+| `valcloud tools`                              | List the commands the gateway offers, marked `read-only` or `destructive`. `--json` prints JSON, `--refresh` refetches the list. |
+| `valcloud --help`                             | Show the built-in commands and, once you're signed in, every namespace                                                          |
+| `valcloud --version`                          | Print the CLI version. Alias: `-V`.                                                                                             |
+
+### Node API
+
+| Command                          | Description                                                                         |
+| -------------------------------- | ----------------------------------------------------------------------------------- |
+| `valcloud nodeapi list-chains`         | List the chains and networks available on Node API                                  |
+| `valcloud nodeapi list-endpoints`      | List your team's Node API endpoints                                                 |
+| `valcloud nodeapi get-endpoint <id>`   | Get a single endpoint by ID                                                         |
+| `valcloud nodeapi get-health`          | Check that Node API is reachable and your credentials are accepted                  |
+| `valcloud nodeapi delete-endpoint <id>` | Delete an endpoint. Destructive: asks for confirmation, or pass `--yes`.           |
+
+### Mavrik
+
+| Command                                  | Description                                                                 |
+| ---------------------------------------- | --------------------------------------------------------------------------- |
+| `valcloud mavrik answer-question "<question>"` | Ask a natural-language question about on-chain activity and get an answer drawn from indexed blockchain and protocol data |
+
+### Tool command flags
+
+Every tool command accepts:
+
+| Flag                 | Description                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| `--json`             | Print the result as JSON                                                                     |
+| `--input <json\|->`  | Tool arguments as a JSON object, or `-` to read it from stdin. Flags override it.            |
+| `--dry-run`          | Print the tool name and resolved arguments as JSON without calling the tool                  |
+| `--help`             | Show the command's flags with their descriptions                                             |
+
+Destructive commands also accept:
+
+| Flag               | Description                                    |
+| ------------------ | ---------------------------------------------- |
+| `-y, --yes`        | Proceed without asking for confirmation        |
+| `--no-interactive` | Never prompt; refuse unless `--yes` is given   |
+
+A tool input property whose flag would clash with one of these flags, or with another property, has no flag of its own. Its `--help` says so, and you can set it through `--input`.
+
+## Output
+
+Results go to stdout. Diagnostics, prompts and hints go to stderr. Output is never colored.
+
+| Format         | Description                                                                                                                                                                                                                                 |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Human (TSV)    | The default. A list becomes a table with an uppercase header row, nested objects are flattened to dot paths, and arrays are printed as JSON inside the cell. Any other result prints one `key<TAB>value` line per field. |
+| JSON           | With `--json`. Pretty-printed in a terminal, compact when piped.                                                                                                                                                                            |
+
+TSV works with standard Unix tools, and JSON works with `jq`:
+
+```bash
+# Count commands per namespace
+valcloud tools | tail -n +2 | cut -f1 | sort | uniq -c
+
+# List destructive commands
+valcloud tools --json | jq -r '.tools[] | select(.destructive) | "\(.namespace) \(.command)"'
+```
+
+Errors are printed to stderr as `<code>: <message>`. With `--json`, stderr gets `{"error":{"code":"...","message":"..."}}` instead, including for usage errors.
+
+## Scripts, CI and AI agents
+
+`valcloud` is designed to be called from scripts, CI jobs and AI agents:
+
+* `--json` gives structured results on stdout and structured errors on stderr
+* Exit codes separate tool, usage and authentication failures
+* `--dry-run` shows exactly what would be sent, without calling the tool
+* Destructive commands never block waiting for input when there's no terminal
+
+### Confirmations
+
+A command is destructive unless its tool is marked read-only or non-destructive. `valcloud tools` shows which commands are destructive.
+
+Without `--yes`, `valcloud` asks `[y/N]` on stderr only when stdin is a terminal and neither `--no-interactive` nor `CI` is set. Otherwise it refuses with exit code `2` before contacting the gateway. Any answer other than `y` aborts with exit code `1`.
+
+```bash
+# Asks for confirmation in a terminal
+valcloud nodeapi delete-endpoint 00000000-0000-0000-0000-000000000000
+
+# Preview the call without making it
+valcloud nodeapi delete-endpoint 00000000-0000-0000-0000-000000000000 --dry-run
+
+# Proceed without asking (scripts and CI)
+valcloud nodeapi delete-endpoint 00000000-0000-0000-0000-000000000000 --yes
+```
+
+<Warning>
+
+`--input -` reads the arguments from stdin, so a destructive command that uses it can't ask for confirmation. Pass `--yes` explicitly.
+
+</Warning>
+
+### Authenticating without a browser
+
+Set `VC_TOKEN` to an access token you already have, for example one printed by `valcloud auth token`, and store it in your CI secret store:
+
+```bash
+VC_TOKEN="$VALIDATION_CLOUD_TOKEN" valcloud nodeapi list-endpoints --json
+```
+
+`VC_TOKEN` takes precedence over stored credentials and is never refreshed, so commands fail with exit code `3` once the token expires.
+
+### Exit codes
+
+| Code  | Meaning                                                                                       |
+| ----- | --------------------------------------------------------------------------------------------- |
+| `0`   | Success                                                                                       |
+| `1`   | Tool or runtime error (the tool reported an error, network failure), or confirmation declined |
+| `2`   | Usage error (bad flags or arguments, destructive command without `--yes`)                     |
+| `3`   | Authentication required or failed                                                             |
+| `130` | Interrupted with Ctrl-C at the confirmation prompt                                            |
+
+## Configuration
+
+### Environment variables
+
+| Variable     | Effect                                                                                                    |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| `VC_TOKEN`   | Bearer token used instead of stored credentials; never refreshed                                          |
+| `VC_MCP_URL` | Use a different MCP gateway (development, self-hosted). Must be `https`, or `http` on `localhost` only.   |
+| `CI`         | When set, destructive commands never prompt; pass `--yes`                                                 |
+
+By default, `valcloud` connects to `https://mcp.validationcloud.io/mcp`. Credentials and the cached command list are kept per gateway URL, so each gateway has its own login and command list.
+
+### Stored files
+
+| What                             | macOS                           | Linux               |
+| -------------------------------- | ------------------------------- | ------------------- |
+| Credentials (`credentials.json`) | `~/Library/Preferences/vcloud/` | `~/.config/vcloud/` |
+| Command list cache               | `~/Library/Caches/vcloud/`      | `~/.cache/vcloud/`  |
+
+`credentials.json` is written with mode `0600` inside a `0700` directory. Tokens are printed only by `valcloud auth token`, and tool results are never written to disk.
+
+## Next steps
+
+* [Admin API Keys](/v1/about/admin-api-keys): manage endpoints and read usage over REST
+* [Supported Chains and Networks](/v1/about/supported-chains)
+* [Validation Cloud skills](https://github.com/validationcloud/skills) for Claude Code, Codex and other AI harnesses
+* [`@validationcloud/cli` on npm](https://www.npmjs.com/package/@validationcloud/cli)

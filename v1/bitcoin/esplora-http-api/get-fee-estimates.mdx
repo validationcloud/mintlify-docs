@@ -1,0 +1,35 @@
+---
+title: "GET /fee-estimates"
+---
+
+Get an object where the key is the confirmation target (in number of blocks) and the value is the estimated feerate (in sat/vB).
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+Returns an object where the key is the confirmation target (in number of blocks) and the value is the estimated feerate (in sat/vB).
+
+The available confirmation targets are 1-25, 144, 504 and 1008 blocks.
+
+For example: `{ "1": 87.882, "2": 87.882, "3": 87.882, "4": 87.882, "5": 81.129, "6": 68.285, ..., "144": 1.027, "504": 1.027, "1008": 1.027 }`
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/fee-estimates \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/fee-estimates \
+ -X GET
+```
+
+</CodeGroup>

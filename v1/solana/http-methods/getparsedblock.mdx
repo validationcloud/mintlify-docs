@@ -1,0 +1,124 @@
+---
+title: "getParsedBlock"
+---
+
+Returns identity and transaction information about a confirmed block in the ledger.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+<Info>
+
+The `getParsedBlock` method is only supported with the @solana/web3.js SDK. To use cURL or solana.py, check out the [`getBlock`](/v1/solana/http-methods/getblock) method examples where the encoding is set to jsonParsed.
+
+</Info>
+
+## **Parameters**
+
+* `slot_number` string. The slot number encoded as u64, 64-bit unsigned integer.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string.
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string.
+      * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string.
+      * The node will query its most recent block. Note that the block may not be complete.
+* `encoding` string. (default: json) The encoding format for account data. It can be one of base58 (slow), base64, base64+zstd or jsonParsed.
+* `transactionDetails` string (default: full). It specifies the level of transaction details to include in the response. The possible values are full, signatures, and none.
+* `rewards` boolean (default: true) It determines whether to populate the rewards array or not.
+* `maxSupportedTransactionVersion` boolean. The maximum transaction version to return in responses. If the requested block contains a transaction with a higher version, an error will be returned. If this parameter is omitted, only legacy transactions will be returned, and a block containing any versioned transaction will prompt an error.
+* `legacy` boolean. The older transaction format with no additional benefit.
+* `0` boolean. The additional support for Address Lookup Tables.
+
+## Returns
+
+`result` object. Null if the account doesn't exist otherwise RpcResponse JSON object with the following fields:
+
+* `blockhash`. The hash of the block encoded as base-58 string.
+* `previousBlockhash`. The blockhash of this block's parent encoded as base-58 string.
+* `parentSlot`. The slot number of this block's parent.
+* `transactions`. An array of transaction objects within the block. Each transaction object contains the following fields:
+  * `meta`. The transaction status metadata object with the following fields:
+    * `err`. Error code if the transaction failed or null if the transaction succeeds.
+    * `fee`. The total fees paid by all transactions in the block encoded as u64 integer.
+    * `innerInstructions`. The list of inner instructions and it's omitted or null if inner instruction recording was not yet enabled during the transaction.
+    * `loadedAddresses` The list of loaded addresses objects.
+      * `readonly` The ordered list of base-58 encoded addresses for readonly loaded accounts.
+      * `writable` The ordered list of base-58 encoded addresses for writable loaded accounts.
+    * `logMessages`. An array of string log messages. Omitted or null if log message recording was not yet enabled during the transaction
+    * `postBalances`. An array of lamport balances for each account in the block after the transactions were processed.
+    * `postTokenBalances`. The list of token balances from after the transaction was processed and it's omitted if inner instruction recording was not yet enabled during the transaction
+    * `preBalances`. An array of lamport balances for each account in the block before the transactions were processed.
+    * `preTokenBalances`. The list of token balances from before the transaction was processed and it's omitted if inner instruction recording was not yet enabled during the transaction
+    * `rewards`. An array of reward objects detailing the rewards for this block. It is only present if rewards are requested; an array of JSON objects with the following fields:
+      * `pubkey`. The public key of the account that received the award encoded as base-58 string.
+      * `lamports`. The number of reward lamports credited or debited by the account.
+      * `postBalance`. The account balance in lamports after the reward was applied.
+      * `rewardType`. The type of reward. It could be fee, rent, voting, staking.
+      * `commission`. The vote account commission when the reward was credited, only present for voting and staking rewards.
+    * `status`. The status of the transaction. It returns Ok if the transaction was successful and Err if the transaction failed with TransactionError.
+  * `transaction`. The transaction object with the following fields:
+    * `message`. The transaction message containing the following fields:
+      * `accountKeys`. An array of public keys involved in the transaction.
+      * `header` An object containing the transaction's header, including the following fields:
+        * `numRequiredSignatures` The number of required signatures for the transaction.
+        * `numReadonlySignedAccounts` The number of readonly accounts that have signed the transaction.
+        * `numReadonlyUnsignedAccounts` The number of readonly accounts that have not signed the transaction.
+      * `instructions`. An array of instruction objects for the transaction with the following fields:
+        * `accounts` An array of integers representing the indices of accounts involved in the instruction.
+        * `data` The instruction data encoded in the specified format.
+        * `programIdIndex` The index of the program ID in the accountKeys.
+    * `recentBlockhash`. The most recent blockhash used for the transaction
+    * `signatures`. An array of signatures strings corresponding to the transaction order in the block.
+
+```bash
+// Result
+{
+  blockHeight: 298644815,
+  blockTime: 1739446039,
+  blockhash: 'Eh3ZqHY8v6UZ2QrxRMWQFDUZ6AjSHiB85MWCowh76FUS',
+  parentSlot: 320370618,
+  previousBlockhash: 'EGmnTMSAXxARGcTZv7LzgSv5KPJHEsBq5ZCrgUwKCugU',
+  rewards: [
+    {
+      commission: null,
+      lamports: 29980255,
+      postBalance: 268538384670,
+      pubkey: 'Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD',
+      rewardType: 'Fee'
+    }
+  ],
+  transactions: [
+    { meta: [Object], transaction: [Object], version: 'legacy' },
+    { meta: [Object], transaction: [Object], version: 'legacy' },
+    ...
+  ]
+  ...
+}
+```
+
+<CodeGroup>
+
+```javascript title="mainnet"
+const web3 = require("@solana/web3.js");
+(async () => {
+  const solana = new web3.Connection("https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY>");
+  console.log(
+    await solana.getParsedBlock(320370619, { maxSupportedTransactionVersion: 0 })
+  );
+})();
+```
+
+```javascript title="devnet"
+const web3 = require("@solana/web3.js");
+(async () => {
+  const solana = new web3.Connection("https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY>");
+  console.log(
+    await solana.getParsedBlock(320370619, { maxSupportedTransactionVersion: 0 })
+  );
+})();
+```
+
+</CodeGroup>

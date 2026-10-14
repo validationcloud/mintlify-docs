@@ -1,0 +1,39 @@
+---
+title: "ScanShieldedTrc20NotesByOvk"
+---
+
+Scan outgoing notes (spent) (Confirmed state).
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `start_block_index` - Int32 - <span style={{color: "red"}}>Required</span> - An integer representing the starting block index for the shielded TRC20 contract events
+* `end_block_index` - Int32 - <span style={{color: "red"}}>Required</span> - An integer representing the ending block index for the shielded TRC20 contract events
+* `shielded_TRC20_contract_address` - String - <span style={{color: "red"}}>Required</span> - The address of the shielded TRC20 contract
+* `ovk` - String - <span style={{color: "red"}}>Required</span> - A string representing the optional viewing key (ovk) for the shielded TRC20 contract
+* `visible` - boolean - <span style={{color: "red"}}>Required</span> - A boolean value indicating whether the events should be visible or not
+
+## **Returns**
+
+`is_spent` - indicates whether the specified shielded TRC20 contract note has been spent or not
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/scanshieldedtrc20notesbyovk \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "start_block_index": 434,
+      "end_block_index": 567,
+      "shielded_TRC20_contract_address": "CONTRACT_ADDRESS",
+      "ovk": "OPTICAL_VIEWING_KEY",
+      "visible": true
+    }
+'
+```
+
+</CodeGroup>

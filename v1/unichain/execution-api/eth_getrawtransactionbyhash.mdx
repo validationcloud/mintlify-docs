@@ -1,0 +1,45 @@
+---
+title: "eth_getRawTransactionByHash"
+---
+
+Returns the raw, signed and RLP-encoded bytes of a transaction, given its hash.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.github.io/execution-apis/api-documentation/)
+
+## **Parameters**
+
+`DATA`, 32 Bytes - Hash of a transaction.
+
+```json
+params: [
+  "0x1328b3f80fdaaebb014ab126e04ad71c297da7060194203b18db668db96c6e73"
+]
+```
+
+## **Returns**
+
+`DATA` - The raw transaction bytes, or `null` when no transaction was found.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x02f8808182840bfe939f808307a1208255789400000000000000000000000000000000000000008096426c6f636b204e756d6265723a203631323234363032c0..."
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getRawTransactionByHash","params":["0x1328b3f80fdaaebb014ab126e04ad71c297da7060194203b18db668db96c6e73"],"id":1}'
+```
+
+</CodeGroup>

@@ -1,0 +1,54 @@
+---
+title: "eth_getTransactionCount"
+---
+
+Returns the number of transactions sent from an address.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactioncount)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - address.
+2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+```bash
+params: [
+  "0x102cB4Da51a9936ba2297be8C930B4Ca658586DA",
+  "latest", // state at the latest block
+]
+```
+
+## Returns
+
+`QUANTITY` - String hex value representing integer of the number of transactions sent from this address.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "0x17320", // 95,008
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x102cB4Da51a9936ba2297be8C930B4Ca658586DA","latest"],"id":1}'
+```
+
+```bash title="testnet"
+curl https://testnet.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x8d86Bc475bEDCB08179c5e6a4d494EbD3b44Ea8B","latest"],"id":1}'
+```
+
+</CodeGroup>

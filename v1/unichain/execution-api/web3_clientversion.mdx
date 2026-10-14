@@ -1,0 +1,39 @@
+---
+title: "web3_clientVersion"
+---
+
+Returns the current client version.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#web3_clientversion)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`string` - The current client version
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 67,
+  "result": "op-reth/v2.4.4-7e167ae2/x86_64-linux"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+```
+
+</CodeGroup>

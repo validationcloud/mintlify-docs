@@ -1,0 +1,46 @@
+---
+title: "eth_getProof"
+---
+
+Returns the account and storage values of the specified account including the Merkle-proof.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+1. `address`- String - The address of the account for which the balance is to be checked.
+2. `storageKeys` - Array\[Strings] - An array of storage-keys that should be proofed and included.
+3. `blockNumber` - String -  The block number as a string in hexadecimal format or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+
+## Returns
+
+* `address` - The address associated with the account.
+* `accountProof` - An array of rlp-serialized MerkleTree-Nodes which starts with the stateRoot-Node and follows the path of the SHA3 address as key.
+* `balance` - The current balance of the account in wei.
+* `codeHash` - A 32 byte hash of the code of the account.
+* `nonce` - The hash of the generated proof-of-work. Null if pending.
+* `storageHash` - A 32 byte SHA3 of the storageRoot. All storage will deliver a MerkleProof starting with this rootHash.
+* `storageProof` - An array of storage-entries as requested. Each entry is an object with the following fields:
+  * `key` - The requested storage key.
+  * `value` - The storage value.
+  * `proof` - An array of rlp-serialized MerkleTree-Nodes which starts with the stateRoot-Node and follows the path of the SHA3 address as key.
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.polygon.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0", "method": "eth_getProof", "id": 1, "params": ["0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0", ["0x0"], "latest"]}'
+```
+
+```bash title="testnet"
+curl https://amoy.polygon.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0", "method": "eth_getProof", "id": 1, "params": ["0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0", ["0x0"], "latest"]}'
+```
+
+</CodeGroup>

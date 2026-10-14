@@ -1,0 +1,37 @@
+---
+title: "GET /tx/:txid/merkleblock-proof"
+---
+
+Returns a merkle inclusion proof for the transaction using [bitcoind's merkleblock](https://bitcoin.org/en/glossary/merkle-block) format.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`txid`**- transaction hash, required.&#x20;
+
+Example: `92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655`
+
+## Returns
+
+Returns a merkle inclusion proof for the transaction using [bitcoind's merkleblock](https://bitcoin.org/en/glossary/merkle-block) format.
+
+```text wrap
+0000ac2511730758cca9d49bb6cfb80f2e71a78208370d939a91010000000000000000008f4315a66896bb5e2ef5d3778d09e3f34ab568c16614832ddefafdc015eb4c96ab0d9f68b32c02174576cd9dec0900000d3d831ba4b8b01e5b8175da5de838a9b8e7a00d2095e8fe6258367c345f2e70e55546995bed3d6f6a74ae5e16e08514a6fa517f57d453fcb2d69fd7a3561de6922c97653e8e46d44ef7f870609a6007ee0306a2541ddb8bd087b47b7977615161f309175e2dc333bb3a731a3a25c5d525122b0af6b36d6adaf086038ca0a0ea67495dd680e3acbe40cde0048770cbc39cdea83227af3eef37a1483543a8658a7c6e6d5bc2d8915ed2e63a68a5f6dc0351ac2766caeb5b5733b644cb7dca5f6de23da544d7dc47e3913f7bcc0e40a83314c28c24809e6d7e5eba3fd1be36eb1c6bb52ff27039c3f009e709446e5410252c81a292661366dce6889f1e266eb9d6e4981e725a6ce3ba94b03f68759f1af579fbd0103e77b8668af068204c4cd38ae06335d8a3104abac0fb0730f5c5d0814a360c970bc2acf1c66b7f39460d6daf47885bdc5461fe5b3f8d98c68eed932d7f8be783961e42a6e2d586598cc1a354fe4101e1dbdc56a102aedc96e686712c912b7706a530e5c403c7b1cc34afaee4d71c0fab06df3440a0715934513cda8c5ce2b2a1114d482b8f2327c98dbd81186704ff370000
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/merkleblock-proof \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/merkleblock-proof \
+ -X GET
+```
+
+</CodeGroup>

@@ -1,0 +1,24 @@
+---
+title: "Overview"
+---
+
+Somnia is a high-performance, cost-efficient EVM-compatible Layer 1 blockchain capable of processing over 1,000,000 transactions per second (TPS) with sub-second finality. \
+\
+It is suitable for serving millions of users and building real-time mass-consumer applications like games, social applications, metaverses, and more, all fully on-chain.
+
+You can find a block explorer for mainnet at: [https://explorer.somnia.network/](https://explorer.somnia.network/) and for testnet at: [https://shannon-explorer.somnia.network/](https://shannon-explorer.somnia.network/)
+
+Here are links to Somnia's website if you want to explore their [user documentation](https://somnia.network/) or [developer docs](https://docs.somnia.network/).
+
+## Network Support
+
+| Network | HTTPS | WSS |
+| ------- | ----- | --- |
+| Mainnet | ✅     | ✅   |
+| Testnet | ✅     | ✅   |
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Methods & Compute Units
+
+<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>debug_traceCall</td><td>80</td></tr><tr><td>debug_traceTransaction</td><td>80</td></tr><tr><td>eth_accounts</td><td>20</td></tr><tr><td>eth_blockNumber</td><td>20</td></tr><tr><td>eth_call</td><td>40</td></tr><tr><td>eth_chainId</td><td>10</td></tr><tr><td>eth_estimateGas</td><td>40</td></tr><tr><td>eth_gasPrice</td><td>40</td></tr><tr><td>eth_getBalance</td><td>40</td></tr><tr><td>eth_getBlockByHash</td><td>40</td></tr><tr><td>eth_getBlockByNumber</td><td>40</td></tr><tr><td>eth_getBlockReceipts</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByHash</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByNumber</td><td>40</td></tr><tr><td>eth_getCode</td><td>40</td></tr><tr><td>eth_getLogs</td><td>80</td></tr><tr><td>eth_getStorageAt</td><td>40</td></tr><tr><td>eth_getTransactionByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByHash</td><td>40</td></tr><tr><td>eth_getTransactionCount</td><td>40</td></tr><tr><td>eth_getTransactionReceipt</td><td>40</td></tr><tr><td>eth_sendRawTransaction</td><td>80</td></tr><tr><td>eth_subscribe</td><td>20</td></tr><tr><td>eth_unsubscribe</td><td>20</td></tr><tr><td>eth_syncing</td><td>10</td></tr><tr><td>net_listening</td><td>10</td></tr><tr><td>net_version</td><td>10</td></tr><tr><td>web3_clientVersion</td><td>40</td></tr><tr><td>web3_sha3</td><td>40</td></tr></tbody></table>

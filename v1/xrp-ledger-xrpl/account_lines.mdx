@@ -1,0 +1,71 @@
+---
+title: "account_lines"
+---
+
+Returns information about an account's trust lines, which contain balances in all non-XRP currencies and assets. All information retrieved is relative to a particular version of the ledger.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/account-methods/account_lines)
+
+## **Parameters**
+
+* `account` (string, required) Look up trust lines connected to this account, from this account's perspective.
+* `ignore_default` (boolean, optional) If `true`, don't return trust lines where this account's side is in the default state. The default is `false`.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `limit` (number, optional) Limit the number of trust lines to retrieve. Must be within the inclusive range 10 to 400. The default is 200.
+* `marker` (marker, optional) Value from a previous paginated response. Resume retrieving data where that response left off.
+* `peer` (string, optional) A second account; if provided, filter results to trust lines connecting the two accounts.
+
+## Returns
+
+* `account` (string) The perspective account for these trust lines.
+* `lines` (array) Array of trust line objects. Each has `account` (counterparty), `balance`, `currency`, `limit`, `limit_peer`, `quality_in`, `quality_out`, and may include `no_ripple`, `no_ripple_peer`, `authorized`, `peer_authorized`, `freeze` and `freeze_peer`.
+* `ledger_current_index` (number) Only provided when using an open ledger version.
+* `ledger_index` (number) Only provided when using a closed ledger version.
+* `ledger_hash` (string) The identifying hash of the ledger version used.
+* `marker` (marker) Server-defined value indicating the response is paginated. Omitted when there are no additional pages.
+* `limit` (number) The maximum number of trust lines retrieved.
+
+```bash
+// Result
+{
+  "result": {
+    "account": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+    "ledger_hash": "DF018504A94B1DEC419322D390C2AAACD27621F3EBC47BB38DD844AAE5DD87A9",
+    "ledger_index": 107292915,
+    "validated": true,
+    "limit": 10,
+    "lines": [
+      {
+        "account": "rMwNibdiFaEzsTaFCG1NnmAM3Rv3vHUy5L",
+        "balance": "-0.00204230364",
+        "currency": "524C555344000000000000000000000000000000",
+        "limit": "0",
+        "limit_peer": "1000000000",
+        "quality_in": 0,
+        "quality_out": 0
+      },
+      // ...
+    ],
+    "marker": "0C9844B21E960CFBB1F4A96F2ECA185C57F4C53681ECCD56DCE9E4C45E065058,1",
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_lines","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated","limit":10}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"account_lines","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated","limit":10}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

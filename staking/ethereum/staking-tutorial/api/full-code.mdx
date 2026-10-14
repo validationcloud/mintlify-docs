@@ -1,0 +1,123 @@
+---
+title: "Full Code"
+description: "Below is a full code snippet for the staking API process"
+---
+
+```javascript
+const auth0 = require('auth0');
+const ethers = require('ethers');
+
+const STAKING_BASE_API_URL = 'https://ethereum-staking.sprd.validationcloud.io/v1/api';
+const STAKING_REQUEST_URL = `${STAKING_BASE_API_URL}/ethereum/mainnet/stake_transaction`;
+const STAKING_BROADCAST_TX_URL = `${STAKING_BASE_API_URL}/ethereum/mainnet/broadcast_transaction`;
+const AUTH0_DOMAIN = 'validationcloud.us.auth0.com';
+
+async function getAuth0Credentials() {
+  const clientId = process.env.CLIENT_ID;
+  if (!clientId) {
+    throw 'CLIENT_ID environment variable must be defined';
+  }
+
+  const clientSecret = process.env.CLIENT_SECRET;
+  if (!clientSecret) {
+    throw 'CLIENT_SECRET environment variable must be defined';
+  }
+
+  return { clientId, clientSecret };
+}
+
+async function getToken() {
+  const { clientId, clientSecret } = await getAuth0Credentials();
+
+  const authClient = new auth0.AuthenticationClient({
+    domain: AUTH0_DOMAIN,
+    clientId: clientId,
+    clientSecret: clientSecret,
+  });
+
+  const { data: tokens } = await authClient.oauth.clientCredentialsGrant({
+    audience: 'staking',
+  });
+
+  return tokens.access_token;
+}
+
+async function createStakeTransaction(token, walletAddress, num) {
+  const jsonBody = JSON.stringify({
+    num_validators: num,
+    wallet_address: walletAddress,
+  });
+
+  const response = await fetch(STAKING_REQUEST_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: jsonBody,
+  });
+
+  return await response.json();
+}
+
+async function broadcastStakingTransaction(token, signedTx) {
+  const jsonBody = JSON.stringify({
+    signed_transaction: signedTx,
+  });
+
+  const response = await fetch(STAKING_BROADCAST_TX_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: jsonBody,
+  });
+
+  return await response.json();
+}
+
+function getWallet() {
+  const privateKey = process.env.PRIVATE_KEY;
+  if (!privateKey) {
+    throw 'PRIVATE_KEY environment variable must be defined';
+  }
+
+  return new ethers.Wallet(privateKey);
+}
+
+async function signTransaction(wallet, transaction) {
+  console.log(transaction);
+  return await wallet.signTransaction({
+    type: 0,
+    to: transaction.to,
+    from: wallet.address,
+    nonce: transaction.nonce,
+    gasLimit: transaction.gas,
+    gasPrice: transaction.gas_price,
+    data: transaction.data,
+    value: transaction.value,
+    chainId: ethers.toBeHex(transaction.chain_id),
+  });
+}
+
+async function stakeValidators(num) {
+  const authToken = await getToken();
+  const wallet = getWallet();
+  const stakeRequest = await createStakeTransaction(authToken, wallet.address, num);
+  const signedTx = await signTransaction(wallet, stakeRequest.transaction);
+  const broadcastTxResponse = await broadcastStakingTransaction(authToken, signedTx);
+  console.log(broadcastTxResponse);
+}
+
+const NUM_OF_VALIDATORS = 1;
+
+stakeValidators(NUM_OF_VALIDATORS)
+  .then(() => {
+    console.log('Staking successful');
+  })
+  .catch(error => {
+    console.log('Failed to stake with error');
+    console.log(error);
+  });
+```
