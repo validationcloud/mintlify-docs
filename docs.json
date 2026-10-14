@@ -32,12 +32,256 @@
   },
   "redirects": [
     {
-      "source": "/v1/about/admin-api-keys/models",
-      "destination": "/v1/about/admin-api-keys"
+      "source": "/mavrik/mavrik",
+      "destination": "/mavrik"
+    },
+    {
+      "source": "/staking/staking",
+      "destination": "/staking"
+    },
+    {
+      "source": "/staking/about/staking",
+      "destination": "/staking"
+    },
+    {
+      "source": "/staking/about",
+      "destination": "/staking"
+    },
+    {
+      "source": "/staking/about/faq",
+      "destination": "/staking/staking/faq"
+    },
+    {
+      "source": "/staking/ethereum",
+      "destination": "/staking/ethereum/staking-tutorial"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/authenticating-with-auth0",
+      "destination": "/staking/ethereum/staking-tutorial/api/authenticating-with-auth0"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/broadcast-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/broadcast-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/full-code",
+      "destination": "/staking/ethereum/staking-tutorial/api/full-code"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/get-staking-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/get-staking-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/prerequisites",
+      "destination": "/staking/ethereum/staking-tutorial/api/prerequisites"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/setting-up-a-wallet",
+      "destination": "/staking/ethereum/staking-tutorial/api/setting-up-a-wallet"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/signing-a-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/signing-a-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/authenticating-with-auth0",
+      "destination": "/staking/ethereum/staking-tutorial/api/authenticating-with-auth0"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/broadcast-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/broadcast-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/full-code",
+      "destination": "/staking/ethereum/staking-tutorial/api/full-code"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/get-staking-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/get-staking-transaction"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/setting-up-a-wallet",
+      "destination": "/staking/ethereum/staking-tutorial/api/setting-up-a-wallet"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api/prerequisites/signing-a-transaction",
+      "destination": "/staking/ethereum/staking-tutorial/api/signing-a-transaction"
+    },
+    {
+      "source": "/staking/solana",
+      "destination": "/staking/solana/solana-staking-reporting-api"
+    },
+    {
+      "source": "/staking/staking/staking-overview",
+      "destination": "/staking"
+    },
+    {
+      "source": "/v1/about",
+      "destination": "/v1"
+    },
+    {
+      "source": "/v1/about/supported-private-chains",
+      "destination": "/v1/about/supported-chains"
+    },
+    {
+      "source": "/v1/aptos",
+      "destination": "/v1/aptos/overview"
+    },
+    {
+      "source": "/v1/arbitrum",
+      "destination": "/v1/arbitrum/overview"
+    },
+    {
+      "source": "/v1/arc",
+      "destination": "/v1/arc/overview"
+    },
+    {
+      "source": "/v1/avalanche",
+      "destination": "/v1/avalanche/overview"
+    },
+    {
+      "source": "/v1/base",
+      "destination": "/v1/base/overview"
+    },
+    {
+      "source": "/v1/berachain",
+      "destination": "/v1/berachain/overview"
+    },
+    {
+      "source": "/v1/bitcoin",
+      "destination": "/v1/bitcoin/overview"
+    },
+    {
+      "source": "/v1/bitcoin/indexer-rest-api/:slug*",
+      "destination": "/v1/bitcoin/blockbook-indexer-rest-api/:slug*"
+    },
+    {
+      "source": "/v1/bitcoin/indexer-rest-api",
+      "destination": "/v1/bitcoin/blockbook-indexer-rest-api"
+    },
+    {
+      "source": "/v1/bsc",
+      "destination": "/v1/bsc/overview"
+    },
+    {
+      "source": "/v1/conflux",
+      "destination": "/v1/conflux/overview"
+    },
+    {
+      "source": "/v1/conflux/espace-execution-api/eth_subscribe",
+      "destination": "/v1/conflux/execution-api/eth_subscribe"
+    },
+    {
+      "source": "/v1/conflux/espace-execution-api/eth_unsubscribe",
+      "destination": "/v1/conflux/execution-api/eth_unsubscribe"
+    },
+    {
+      "source": "/v1/ethereum",
+      "destination": "/v1/ethereum/overview"
+    },
+    {
+      "source": "/v1/ethereum/beacon-api/eth-v1-beacon-blocks-block_id-attestations/eth-v1-beacon-states-state_id-sync_committees",
+      "destination": "/v1/ethereum/beacon-api/eth-v1-beacon-states-state_id-sync_committees"
+    },
+    {
+      "source": "/v1/hedera",
+      "destination": "/v1/hedera/overview"
+    },
+    {
+      "source": "/v1/hyperliquid",
+      "destination": "/v1/hyperliquid/overview"
+    },
+    {
+      "source": "/v1/icp",
+      "destination": "/v1/icp/overview"
+    },
+    {
+      "source": "/v1/mezo",
+      "destination": "/v1/mezo/overview"
+    },
+    {
+      "source": "/v1/monad",
+      "destination": "/v1/monad/overview"
+    },
+    {
+      "source": "/v1/opbnb",
+      "destination": "/v1/opbnb/overview"
+    },
+    {
+      "source": "/v1/optimism",
+      "destination": "/v1/optimism/overview"
+    },
+    {
+      "source": "/v1/polygon",
+      "destination": "/v1/polygon/overview"
+    },
+    {
+      "source": "/v1/rayls",
+      "destination": "/v1/rayls/overview"
+    },
+    {
+      "source": "/v1/robinhood/:slug*",
+      "destination": "/v1/robinhood-chain/:slug*"
+    },
+    {
+      "source": "/v1/robinhood-chain",
+      "destination": "/v1/robinhood-chain/overview"
+    },
+    {
+      "source": "/v1/solana",
+      "destination": "/v1/solana/overview"
+    },
+    {
+      "source": "/v1/somnia",
+      "destination": "/v1/somnia/overview"
+    },
+    {
+      "source": "/v1/stellar",
+      "destination": "/v1/stellar/overview"
+    },
+    {
+      "source": "/v1/stellar/soroban-api/:slug*",
+      "destination": "/v1/stellar/stellar-rpc-formerly-soroban-api/:slug*"
+    },
+    {
+      "source": "/v1/stellar/soroban-api",
+      "destination": "/v1/stellar/stellar-rpc-formerly-soroban-api"
+    },
+    {
+      "source": "/v1/tempo",
+      "destination": "/v1/tempo/overview"
+    },
+    {
+      "source": "/v1/tron",
+      "destination": "/v1/tron/overview"
+    },
+    {
+      "source": "/v1/unichain",
+      "destination": "/v1/unichain/overview"
+    },
+    {
+      "source": "/v1/wemix",
+      "destination": "/v1/wemix/overview"
+    },
+    {
+      "source": "/v1/xrp-ledger-xrpl",
+      "destination": "/v1/xrp-ledger-xrpl/overview"
     },
     {
       "source": "/v1/xrpl/:slug*",
       "destination": "/v1/xrp-ledger-xrpl/:slug*"
+    },
+    {
+      "source": "/v1/about/admin-api-keys/models",
+      "destination": "/v1/about/admin-api-keys"
+    },
+    {
+      "source": "/v1/execution-api/:slug*",
+      "destination": "/v1/ethereum/execution-api/:slug*"
+    },
+    {
+      "source": "/v1/execution-api",
+      "destination": "/v1/ethereum/execution-api"
     }
   ],
   "navigation": {

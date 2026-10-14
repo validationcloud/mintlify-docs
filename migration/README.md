@@ -9,7 +9,17 @@ The site content was generated from the GitBook Git Sync exports in `validationc
 | `mavrik/`       | `migration-mavrik`                     | `mavrik/`     |
 | `agents/`       | `nsw-519` (PR #71)                     | `agents/`     |
 
-URLs match the GitBook site (`docs.validationcloud.io/v1/...`, `/staking/...`, `/mavrik/...`), so no per-page redirects are needed.
+URLs match the GitBook site (`docs.validationcloud.io/v1/...`, `/staking/...`, `/mavrik/...`): all 1,652 migrated page URLs return 200 on GitBook.
+
+## Redirects
+
+The GitBook sites have no site-level redirects (checked with the GitBook API). GitBook does serve automatic redirects, and `docs.json` reproduces them as 63 rules covering 158 URLs, each verified against the live site:
+
+- **Page moves:** 108 Node API redirects come from page renames in the `validationcloud/docs` history and from file paths that differ from the published URL (for example `xrpl/` and `robinhood/`). 17 Staking redirects come from the GitBook change-request revisions.
+- **Section URLs:** 33 section URLs (for example `/v1/aptos` or `/staking/solana`) redirect to their first page.
+- **Extras:** `/v1/about/admin-api-keys/models` redirects to the Admin API overview, and the 2023-era `/v1/execution-api/*` paths redirect to `/v1/ethereum/execution-api/*`.
+
+The rules live in `migration/docs.base.json` and are copied into `docs.json` when the converter runs.
 
 ## Re-run the conversion
 
