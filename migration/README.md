@@ -50,5 +50,6 @@ Edit `migration/docs.base.json` (not `docs.json`) for site settings until the mi
 - The GitBook org-level specs, which are not in the export, are added by hand:
   - Admin API: from `node-api/docs/adminapi/swagger.json`, with the server set to `https://api.validationcloud.io/admin/v1`.
   - Staking API: from the `staking swagger 9th april 2025 2.yaml` asset, which matches the live endpoints.
+- GitBook page covers (`cover:` frontmatter) become an `<img className="page-cover">` banner at the top of the page, styled in `style.css` to GitBook's 1990×480 frame. Mintlify has no cover field, so the banner sits below the page title instead of above it.
 - `<details>` becomes `Accordion`, `<figure>` becomes an image or a `Frame` with a caption, and `<mark style>` becomes a styled `span`.
 - Relative `.md` links, absolute `docs.validationcloud.io` links and `app.gitbook.com` editor links become site-relative paths.
