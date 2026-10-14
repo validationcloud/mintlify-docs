@@ -266,7 +266,7 @@ def split_frontmatter(text):
         return fm, text
     lines = m.group(1).splitlines()
     for j, l in enumerate(lines):
-        k = re.match(r'^(description|icon):\s*(.*)$', l)
+        k = re.match(r'^(description|icon|cover):\s*(.*)$', l)
         if not k:
             continue
         val = k.group(2).strip()
@@ -525,6 +525,9 @@ def convert_page(sec, rel):
         head.append('openapi: %s' % json.dumps('%s %s %s' % (spec, a['method'].upper(), a['path'])))
         report['openapi'].append((spec, a['method'].upper(), a['path'], pages[(sec, rel)]['dest']))
     head.append('---')
+    if fm.get('cover'):  # GitBook page cover -> full-width banner, styled by .page-cover in style.css
+        cover_abs = os.path.normpath(os.path.join(EXPORT, sec, os.path.dirname(rel), fm['cover']))
+        body = '<img className="page-cover" src="%s" alt="" noZoom />\n\n%s' % (copy_asset(sec, cover_abs), body)
     imports = '\n'.join(sorted(ctx['imports']))
     out = '\n'.join(head) + '\n\n' + (imports + '\n\n' if imports else '') + body
     dest = os.path.join(OUT, pages[(sec, rel)]['dest'])
