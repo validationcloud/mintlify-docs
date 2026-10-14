@@ -7,7 +7,7 @@ The site content was generated from the GitBook Git Sync exports in `validationc
 | `v1/`           | `migration`                            | `v1/`         |
 | `staking/`      | `migration-staking`                    | `staking/`    |
 | `mavrik/`       | `migration-mavrik`                     | `mavrik/`     |
-| `agents/`       | `nsw-519` (PR #71)                     | `agents/`     |
+| `agents/`       | `main` (added in PR #71)               | `agents/`     |
 
 URLs match the GitBook site (`docs.validationcloud.io/v1/...`, `/staking/...`, `/mavrik/...`): all 1,652 migrated page URLs return 200 on GitBook.
 
@@ -31,7 +31,7 @@ cd ~/git/docs && git fetch origin
 git archive origin/migration v1 | tar -x -C "$EXPORT"
 git archive origin/migration-staking staking | tar -x -C "$EXPORT"
 git archive origin/migration-mavrik mavrik | tar -x -C "$EXPORT"
-git archive origin/nsw-519 agents | tar -x -C "$EXPORT"
+git archive origin/main agents | tar -x -C "$EXPORT"
 
 cd ~/git/mintlify-docs
 rm -rf v1 staking mavrik agents snippets
