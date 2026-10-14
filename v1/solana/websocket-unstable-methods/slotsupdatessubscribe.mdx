@@ -1,0 +1,47 @@
+---
+title: "slotsUpdatesSubscribe"
+---
+
+Subscribe to receive a notification anytime a new block is Confirmed or Finalized.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` integer The subscription id (needed to unsubscribe).
+
+`slotsUpdatesNotification` object. The notification object with the following fields:
+
+* `parent` integer The parent slot.
+* `slot` integer The newly updated slot.
+* `timestamp` integer The Unix timestamp of the update.
+* `type` string The update type, which may be one of the following: 'firstShredReceived', 'completed', 'createdBank', 'frozen', 'dead', 'optimisticConfirmation' or 'root'.
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": 0, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method":"slotsUpdatesSubscribe"}
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method":"slotsUpdatesSubscribe"}
+    
+```
+
+</CodeGroup>

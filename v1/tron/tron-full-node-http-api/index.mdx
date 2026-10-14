@@ -1,0 +1,17 @@
+---
+title: "Tron Full Node HTTP API"
+---
+
+Per [Tron's documentation](https://developers.tron.network/reference/full-node-api-overview):
+
+The Full Node HTTP API is the core API service provided by Tron nodes. Users can use HTTP API to send transactions. The general process includes the following three steps:
+
+* Create a transaction via system contract APIs
+* Sign the transaction using SDK
+* Broadcast the transaction by `BroadcastTransaction`
+
+To distinguish HEX and Base58check addresses, a `visible` parameter is introduced.
+
+To handle multi-sign, a `Permission_id` parameter is introduced to select the underlying permission type.
+
+**Note**: When using the HTTP API, you can choose to use GET or POST to request data. When choosing to use the POST method, currently parameters are only supported passing to the HTTP message body in JSON format.

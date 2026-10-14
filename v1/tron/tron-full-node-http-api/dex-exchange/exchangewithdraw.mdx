@@ -1,0 +1,48 @@
+---
+title: "ExchangeWithdraw"
+---
+
+Withdraws the transaction pair.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Address of the transaction creator
+* `exchange_id` - int32 - Transaction Pair ID
+* `token_id` - String - Token ID; usually is the token name, which needs to be in hexString format
+* `quant` - int32 - Number of tokens divested
+* `permission_id` - int32 - Optional, for multi-signature use
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `ExchangeWithdrawContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field          | Type   | Description                          |
+| -------------- | ------ | ------------------------------------ |
+| owner\_address | string | Account address                      |
+| exchange\_id   | int64  | Exchange id                          |
+| token\_id      | string | The id of the token to be withdrawn  |
+| quant          | int64  | The amount of tokens to be withdrawn |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/exchangewithdraw \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "exchange_id": 12,
+  "token_id": "31303030343837",
+  "quant": 100,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

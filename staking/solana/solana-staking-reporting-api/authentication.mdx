@@ -1,0 +1,42 @@
+---
+title: "Authentication"
+---
+
+### POST /oauth/token
+
+Authenticate with your API credentials through Auth0 to receive a JSON Web Token (JWT). Use this token as a bearer token in the `Authorization` header for all other API calls.
+
+**Server:** `https://validationcloud.us.auth0.com`
+
+<Warning>
+
+Note: If you do not currently have a `client_id` and `client_secret` you will need to contact your Validation Cloud point of contact to get them before you can make the below request.
+
+</Warning>
+
+#### Request
+
+```bash
+curl --request POST \
+  --url https://validationcloud.us.auth0.com/oauth/token \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "client_id": "<Your_client_id>",
+    "client_secret": "<Your_client_secret>",
+    "grant_type": "client_credentials",
+    "audience": "staking"
+}'
+```
+
+#### Response
+
+```json
+{
+    "access_token": "eyJh....<rest_of_token>",
+    "scope": "read:validators write:validators",
+    "expires_in": 2592000,
+    "token_type": "Bearer"
+}
+```
+
+Bearer tokens are valid for 30 days. Use the `access_token` value as the bearer token in the API calls that follow.

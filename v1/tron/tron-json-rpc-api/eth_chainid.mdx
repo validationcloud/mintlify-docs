@@ -1,0 +1,37 @@
+---
+title: "eth_chainId"
+---
+
+Returns the chain ID used for signing replay-protected transactions.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`chainId`, hexadecimal value as a string representing the integer of the current chain id.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"id": 67,
+	"result": "0x2b6653dc"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":67}'
+```
+
+</CodeGroup>

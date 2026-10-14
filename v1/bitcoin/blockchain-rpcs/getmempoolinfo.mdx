@@ -1,0 +1,54 @@
+---
+title: "getmempoolinfo"
+---
+
+Returns details on the active state of the TX memory pool.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://developer.bitcoin.org/reference/rpc/getmempoolinfo.html)
+
+## Result
+
+```json
+{                            (json object)
+  "loaded" : true|false,     (boolean) True if the mempool is fully loaded
+  "size" : n,                (numeric) Current tx count
+  "bytes" : n,               (numeric) Sum of all virtual transaction sizes as defined in BIP 141. Differs from actual serialized size because witness data is discounted
+  "usage" : n,               (numeric) Total memory usage for the mempool
+  "maxmempool" : n,          (numeric) Maximum memory usage for the mempool
+  "mempoolminfee" : n,       (numeric) Minimum fee rate in BTC/kB for tx to be accepted. Is the maximum of minrelaytxfee and minimum mempool fee
+  "minrelaytxfee" : n,       (numeric) Current minimum relay fee for transactions
+  "unbroadcastcount" : n     (numeric) Current number of transactions that haven't passed initial broadcast yet
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getmempoolinfo",
+	"params": []
+}'
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getmempoolinfo",
+	"params": []
+}'
+```
+
+</CodeGroup>

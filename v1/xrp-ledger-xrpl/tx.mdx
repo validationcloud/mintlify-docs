@@ -1,0 +1,73 @@
+---
+title: "tx"
+---
+
+Retrieves information on a single transaction, by its identifying hash or its CTID. Served from Clio with full public history, so any transaction validated in ledger 32,570 or later can be looked up.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/transaction-methods/tx)
+
+## **Parameters**
+
+* `transaction` (string, optional) The 256-bit hash of the transaction to look up, as hexadecimal. Provide this or `ctid`.
+* `ctid` (string, optional) The compact transaction identifier of the transaction to look up. Must use uppercase hexadecimal only.
+* `binary` (boolean, optional) If `true`, return transaction data and metadata as binary serialized to hexadecimal strings. The default is `false`.
+* `min_ledger` (number, optional) Use with `max_ledger` to specify a range of up to 1000 ledger indexes, starting with this ledger (inclusive).
+* `max_ledger` (number, optional) Use with `min_ledger` to specify a range of up to 1000 ledger indexes, ending with this ledger (inclusive).
+
+## Returns
+
+* `hash` (string) The unique identifying hash of the transaction.
+* `ctid` (string) The transaction's compact transaction identifier.
+* `date` (number) The close time of the ledger in which the transaction was applied, in seconds since the Ripple Epoch.
+* `ledger_index` (number) The ledger index of the ledger that includes this transaction. `inLedger` is a deprecated alias.
+* `meta` (object or string) Transaction metadata describing the results of the transaction (hex string in binary mode).
+* `validated` (boolean) If `true`, this data comes from a validated ledger version.
+* Various transaction fields (`Account`, `TransactionType`, `Fee`, `Sequence`, `SigningPubKey`, `TxnSignature` and the type-specific fields) at the top level of `result`, or `tx` (hex string) in binary mode.
+* `searched_all` (boolean) Only in a not-found response when `min_ledger` and `max_ledger` were provided. If `true`, all of the specified ledgers were searched.
+
+```bash
+// Result
+{
+  "result": {
+    "Account": "rGexjC9cQtQp5u7YcRYnCQh29sRft8kd3D",
+    "Fee": "10",
+    "LastLedgerSequence": 107045840,
+    "OfferSequence": 101502984,
+    "Sequence": 101502987,
+    "SigningPubKey": "ED7D6BA7CF7693941BF4B6C1B17AD65069476235CAC2877E3E6D05172358CED43D",
+    "TransactionType": "OfferCancel",
+    "TxnSignature": "610CEF3AD62289319E5C0A6AB5323FB4731F1141...",
+    "hash": "EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E",
+    "ctid": "C66163BE003B0000",
+    "meta": {
+      "AffectedNodes": [
+        // ...
+      ],
+      "TransactionIndex": 59,
+      "TransactionResult": "tesSUCCESS"
+    },
+    "validated": true,
+    "date": 842959291,
+    "ledger_index": 107045822,
+    "inLedger": 107045822,
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"tx","params":[{"transaction":"EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E","binary":false}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"tx","transaction":"EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E","binary":false}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

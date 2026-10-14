@@ -1,0 +1,41 @@
+---
+title: "ping"
+---
+
+Returns an acknowledgement, so that clients can test the connection status and latency.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/utility-methods/ping)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+* A successful result contains no fields other than `status`. Measure the round-trip time from request to response as latency.
+
+```bash
+// Result
+{
+  "result": {
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ping","params":[{}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"ping"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

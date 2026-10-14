@@ -1,0 +1,53 @@
+---
+title: "manifest"
+---
+
+Reports the current manifest information for a given validator public key. The manifest is a block of data that authorizes an ephemeral signing key with a signature from the validator's master key pair.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/server-info-methods/manifest)
+
+## **Parameters**
+
+* `public_key` (string, required) The base58-encoded public key of the validator to look up. This can be the master public key or ephemeral public key.
+
+## Returns
+
+* `details` (object) The data contained in this manifest: `domain`, `ephemeral_key`, `master_key` and `seq`. When the server has no manifest for the requested key, `details` is still returned with only `ephemeral_key` and `master_key`, both set to the requested key, and `manifest` is omitted; the example below shows that case.
+* `manifest` (string) May be omitted. The full manifest data in base64 format.
+* `requested` (string) The `public_key` from the request.
+
+```bash
+// Result
+{
+  "result": {
+    "details": {
+      "ephemeral_key": "nHUFE9prPXPrHcG3SkwP1UzAQbSphqyQkQK9ATXLZsfkezhhda3p",
+      "master_key": "nHUFE9prPXPrHcG3SkwP1UzAQbSphqyQkQK9ATXLZsfkezhhda3p"
+    },
+    "requested": "nHUFE9prPXPrHcG3SkwP1UzAQbSphqyQkQK9ATXLZsfkezhhda3p",
+    "status": "success"
+  },
+  "status": "success",
+  "type": "response",
+  "forwarded": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"manifest","params":[{"public_key":"nHUFE9prPXPrHcG3SkwP1UzAQbSphqyQkQK9ATXLZsfkezhhda3p"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"manifest","public_key":"nHUFE9prPXPrHcG3SkwP1UzAQbSphqyQkQK9ATXLZsfkezhhda3p"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> The public key in this example is the documented xrpl.org sample; the response was captured live. A key the server has no manifest for returns `details` with the same value for `ephemeral_key` and `master_key` and no `manifest` field.

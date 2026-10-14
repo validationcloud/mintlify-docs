@@ -1,0 +1,93 @@
+---
+title: "trace_replayBlockTransactions"
+---
+
+Replays all transactions in a block returning the requested traces for each transaction.
+
+This method will use `270` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span> - The block number as a string in hexadecimal format or tags. The supported tag values include:
+
+* `earliest` - For the earliest/genesis block
+* `latest` for the latest mined block
+* `safe` for the most recent secure block
+* `finalized` for the most recent secure block accepted by more than 2/3 of validators
+
+`array` - array - <span style={{color: "red"}}>Required</span> - The type of trace, which can be one of the following:
+
+* `vmTrace` string - To get a full trace of the virtual machine's state during the execution of the given transaction, including for any subcalls
+* `trace` - string - To get the basic trace of the given transaction
+* `stateDiff` - string - To get information on altered Ethereum state due to execution of the given transaction
+
+## **Returns**
+
+`array` - array - The block traces, which have the following fields
+
+* `output` - string - The data returned as output encoded in hexadecimal format
+* `stateDiff` - object - The altered state due to execution of the given transaction, or null if not available
+* `trace` - array - An array of basic trace objects for the given transaction containing:
+  * `action` - object The ParityTrace action object containing call details
+    * `from` - string - The address of the sender
+    * `callType` - string - The type of method such as call, staticcall, delegatecall
+    * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+    * `input` - string - The input data sent along with the transaction
+    * `to` - string - The address of the receiver
+    * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+  * `result` - object - The execution result of the trace
+    * `gasUsed` - string - The amount of gas used by this trace
+    * `output` - string - The return value of the contract call, empty if no RETURN executed
+  * `subtraces` - integer - The number of subtraces (internal calls) within this trace
+  * `traceAddress` - array - The list of addresses where the call executed, including parent calls and order
+  * `type` - string The type of the trace, such as call or create
+* `vmTrace` - object - The full trace of the virtual machine's state during execution, including sub-calls, or null if not available
+* `transactionHash` - string - The transaction hash
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+      {
+        "output": "0x",
+        "stateDiff": null,
+        "trace": [
+          {
+            "type": "call",
+            "action": {
+              "from": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0001",
+              "callType": "call",
+              "gas": "0xf4240",
+              "input": "0x3db6be2b...",
+              "to": "0x4200000000000000000000000000000000000015",
+              "value": "0x0"
+            },
+            "result": {
+              "gasUsed": "0xb496",
+              "output": "0x"
+            },
+            "subtraces": 1,
+            "traceAddress": []
+          }
+        ],
+        "vmTrace": null,
+        "transactionHash": "0x68b429e28b5fdd1fb5fe555b2444ff96732a87c9303f112bca30044f688182e2"
+      }
+    ]
+  }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.base.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_replayBlockTransactions","params":["0x2ce4a40",["trace"]],"id":1}'
+```
+
+</CodeGroup>

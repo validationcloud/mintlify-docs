@@ -1,0 +1,46 @@
+---
+title: "eth_chainId"
+---
+
+Returns the chain ID used for signing replay-protected transactions.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_chainid)
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`chainId`, hexadecimal value as a string representing the integer of the current chain id.
+
+```json
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "0x279f", // 10143 Monad Testnet
+	"id": 67
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":67}'
+```
+
+```bash title="testnet"
+curl https://testnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":67}'
+```
+
+</CodeGroup>

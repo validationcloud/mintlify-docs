@@ -1,0 +1,83 @@
+---
+title: "account_info"
+---
+
+Retrieves information about an account, its activity, and its XRP balance. All information retrieved is relative to a particular version of the ledger.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/account-methods/account_info)
+
+## **Parameters**
+
+* `account` (string, required) The account to look up.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `queue` (boolean, optional) If `true`, return stats about queued transactions sent by this account. Can only be used when querying the current open ledger.
+* `signer_lists` (boolean, optional) If `true`, return any SignerList objects associated with this account.
+
+## Returns
+
+* `account_data` (object) The AccountRoot ledger object with this account's information, as stored in the ledger.
+* `account_flags` (object) The account's flag statuses (for example `defaultRipple`, `depositAuth`, `disableMasterKey`, `globalFreeze`, `requireAuthorization`, `requireDestinationTag`), based on the `Flags` field of the account.
+* `signer_lists` (array) Omitted unless the request specified `signer_lists` and at least one SignerList is associated with the account.
+* `ledger_current_index` (number) Omitted if `ledger_index` is provided instead. The ledger index of the current in-progress ledger.
+* `ledger_index` (number) Omitted if `ledger_current_index` is provided instead. The ledger index of the ledger version used.
+* `queue_data` (object) Omitted unless `queue` is `true` and querying the current open ledger. Information about queued transactions sent by this account.
+* `validated` (boolean) True if this data is from a validated ledger version.
+
+```bash
+// Result
+{
+  "result": {
+    "account_data": {
+      "Account": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+      "Balance": "99808735",
+      "Domain": "68747470733A2F2F726970706C652E636F6D2F",
+      "Flags": 2174353408,
+      "LedgerEntryType": "AccountRoot",
+      "OwnerCount": 19,
+      "PreviousTxnID": "58C7183FAFD82139CB60103E176BD5609AFC3F9F8159F5A981EA67825F6C88B8",
+      "PreviousTxnLgrSeq": 107292791,
+      "Sequence": 89926395,
+      "index": "383BB05FBB110F9BE530B75C44DF100F86C5600F0F146593D3E7133FD1C99FF2"
+    },
+    "ledger_hash": "DF018504A94B1DEC419322D390C2AAACD27621F3EBC47BB38DD844AAE5DD87A9",
+    "ledger_index": 107292915,
+    "validated": true,
+    "account_flags": {
+      "defaultRipple": true,
+      "depositAuth": true,
+      "disableMasterKey": true,
+      "disallowIncomingXRP": true,
+      "globalFreeze": false,
+      "noFreeze": false,
+      "passwordSpent": false,
+      "requireAuthorization": false,
+      "requireDestinationTag": true,
+      "disallowIncomingNFTokenOffer": false,
+      "disallowIncomingCheck": false,
+      "disallowIncomingPayChan": false,
+      "disallowIncomingTrustline": false,
+      "allowTrustLineClawback": true,
+      "allowTrustLineLocking": false
+    },
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_info","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"account_info","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

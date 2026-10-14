@@ -1,0 +1,62 @@
+---
+title: "debug_traceTransaction"
+---
+
+Returns all traces of a given transaction.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`transactionHash` - String - <span style={{color: "red"}}>Required</span> - The transaction hash to be traced.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+* `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
+
+## **Returns**
+
+`result` - An object with the result of the trace, containing:
+
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"from": "0x0a8683c3b94820ffdfdac7a2f70be8790491884b",
+		"gas": "0x5208",
+		"gasUsed": "0x5208",
+		"to": "0x487719abbbdffb54aa469c67e70c03d10691def1",
+		"input": "0x",
+		"value": "0x68ff2a4050dfd651fc",
+		"type": "CALL"
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.wemix.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x43ae0b5870f3fe2e5357d9f1ab6bec874e6512710130c368b471d7b9d9e3b965", {"tracer": "callTracer"}],"id":1}'
+```
+
+</CodeGroup>

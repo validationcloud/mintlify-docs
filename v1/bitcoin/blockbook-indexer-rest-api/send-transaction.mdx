@@ -1,0 +1,57 @@
+---
+title: "Send transaction"
+---
+
+Sends new transaction.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#send-transaction)
+
+```bash
+POST /api/v2/sendtx/ (hex tx data in request body)  NB: the '/' symbol at the end is mandatory.
+```
+
+Note: Only the POST request of sendtx is currently supported by Validation Cloud, not the GET version.
+
+## **Parameters**
+
+**`hex tx data`** - string, required in request body.
+
+## Returns
+
+Successful response:
+
+```bash
+{
+  "result": "7c3be24063f268aaa1ed81b64776798f56088757641a34fb156c4f51ed2e9d25"
+}
+```
+
+Or in case of error:
+
+```bash
+{
+  "error": {
+    "message": "error message"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/sendtx/ \
+ -X POST \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/sendtx/ \
+ -X POST \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

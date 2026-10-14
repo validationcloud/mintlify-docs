@@ -1,0 +1,25 @@
+---
+title: "C-Chain"
+---
+
+Supported JSON-RPC methods for Avalanche mainnet and fuji testnet.
+
+Contract Chain (C-Chain):
+
+The Contract Chain is the default smart contract blockchain on Avalanche and enables the creation of any Ethereum-compatible smart contracts. This blockchain is for applications that require total ordering (for faster asset transfers or any other commutative application, use the Exchange Chain). The Contract Chain implements the [Snowman](https://support.avax.network/en/articles/4058299-what-is-the-snowman-consensus-protocol) consensus protocol.&#x20;
+
+The trailing endpoint for C-Chain calls is:
+
+```
+To interact with C-Chain via the JSON-RPC endpoint via HTTPS:
+/ext/bc/C/rpc (for all eth_ methods)
+/ext/bc/C/avax (for all avax. methods)
+
+To interact with C-Chain via the JSON-RPC endpoint via Websocket:
+/ext/bc/C/ws
+
+To interact with other instances of the EVM via the JSON-RPC endpoint:
+/ext/bc/blockchainID/rpc
+
+(where "blockchainID" is the ID of the EVM chain)
+```

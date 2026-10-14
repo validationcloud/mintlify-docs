@@ -1,0 +1,45 @@
+---
+title: "GetDelegatedResourceAccountIndex"
+---
+
+Query the resource delegation by an account during stake1.0 phase. i.e. list all addresses that have delegated resources to an account.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `value` - String - Address, default hexString
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+| Field        | Type      | Description                                                                   |
+| ------------ | --------- | ----------------------------------------------------------------------------- |
+| account      | string    | account address                                                               |
+| fromAccounts | string\[] | A list of account addresses which delegate resource to this account           |
+| toAccounts   | string\[] | A list of account addresses which receive resources delegated by this account |
+
+```json
+// Result
+{
+  "account": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getdelegatedresourceaccountindex \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "value": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

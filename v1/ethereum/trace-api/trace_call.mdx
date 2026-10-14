@@ -1,0 +1,105 @@
+---
+title: "trace_call"
+---
+
+Executes a new message call and returns a number of possible traces.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`object` - object - <span style={{color: "red"}}>Required</span> - The transaction call object
+
+* `from` - string - The address the transaction is sent from
+* `to` - string - The address the transaction is directed to
+* `gas` - string - The gas provided for the transaction execution, encoded as hexadecimal
+* `gasPrice` - string - The gas price for each paid gas, encoded as hexadecimal
+* `value` - string - The value sent with this transaction, encoded as hexadecimal
+* `data` - string - The call data: the 4-byte function selector followed by the ABI-encoded parameters
+
+`array` - array - <span style={{color: "red"}}>Required</span> - The type of trace, which can be one of the following:
+
+* `trace` - string - To get the basic trace of the given call
+* `stateDiff` - string - To get information on altered state due to execution of the given call
+* `vmTrace` - string - To get a full trace of the virtual machine's state during execution
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span> - The block number as a string in hexadecimal format or tags. The supported tag values include:
+
+* `earliest` - For the earliest/genesis block
+* `latest` for the latest mined block
+* `safe` for the most recent secure block
+* `finalized` for the most recent secure block accepted by more than 2/3 of validators
+
+## **Returns**
+
+`object` - object -The transaction trace result object
+
+* `output` - string - The data returned as output encoded in hexadecimal format
+* `stateDiff` - object - The altered Ethereum state due to execution of the given transaction, or null if not available
+* `trace` - array - An array of basic trace objects for the given transaction containing:
+  * `action` - object The ParityTrace action object containing call details
+    * `from` - string - The address of the sender
+    * `callType` - string - The type of method such as call, staticcall, delegatecall
+    * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+    * `input` - string - The input data sent along with the transaction
+    * `to` - string - The address of the receiver
+    * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+  * `result` - object - The execution result of the trace
+    * `gasUsed` - string - The amount of gas used by this trace
+    * `output` - string - The return value of the contract call, empty if no RETURN executed
+  * `subtraces` - integer - The number of subtraces (internal calls) within this trace
+  * `traceAddress` - array - The list of addresses where the call executed, including parent calls and order
+  * `type` - string The type of the trace, such as call or create
+* `vmTrace` - object - The full trace of the virtual machine's state during execution, including sub-calls, or null if not available
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "output": "0x",
+        "stateDiff": null,
+        "trace": [
+            {
+                "type": "call",
+                "action": {
+                    "from": "0xd2700e7bbe0a8af6d6c5b3f61d27855daa425a53",
+                    "callType": "call",
+                    "gas": "0x2fa9e38",
+                    "input": "0xd0e30db0",
+                    "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                    "value": "0x1"
+                },
+                "result": {
+                    "gasUsed": "0x1ada",
+                    "output": "0x"
+                },
+                "subtraces": 0,
+                "traceAddress": []
+            }
+        ],
+        "vmTrace": null
+    }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_call","params":[{"from":"0xd2700e7bbe0a8af6d6c5b3f61d27855daa425a53","to":"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","data":"0xd0e30db0","value":"0x1"},["trace"],"latest"],"id":1}'
+```
+
+```bash title="testnet"
+curl https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_call","params":[{"from":"0xa2A6d93439144FFE4D27c9E088dCD8b783946263","to":"0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14","data":"0xd0e30db0","value":"0x1"},["trace"],"latest"],"id":1}'
+```
+
+</CodeGroup>

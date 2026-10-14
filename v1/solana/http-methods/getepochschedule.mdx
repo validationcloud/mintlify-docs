@@ -1,0 +1,58 @@
+---
+title: "getEpochSchedule"
+---
+
+Returns epoch schedule information from this cluster's genesis config.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` An object with the following fields:
+
+* `firstNormalEpoch`. The first normal-length epoch, log2(slotsPerEpoch) - log2(MINIMUM\_SLOTS\_PER\_EPOCH).
+* `firstNormalSlot`. The slot number of the first normal slot. MINIMUM\_SLOTS\_PER\_EPOCH \* (2.pow(firstNormalEpoch) - 1).
+* `leaderScheduleSlotOffset`. The number of slots before beginning of an epoch to calculate a leader schedule for that epoch.
+* `slotsPerEpoch`. The maximum number of slots in each epoch.
+* `warmup`. Whether epochs start short and grow.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"firstNormalEpoch": 0,
+		"firstNormalSlot": 0,
+		"leaderScheduleSlotOffset": 432000,
+		"slotsPerEpoch": 432000,
+		"warmup": false
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getEpochSchedule"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getEpochSchedule"}'
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,81 @@
+---
+title: "getRecentPerformanceSamples"
+---
+
+Returns a list of recent performance samples, in reverse slot order. Performance samples are taken every 60 seconds and include the number of transactions and slots that occur in a given time window.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `limit` string. The number of samples to return (maximum 720).
+
+## Returns
+
+`result` A JSON object with the following fields:
+
+* `numNonVoteTransactions` The number of non-vote transactions during the specified sample period.
+* `numSlots` The number of slots in the sample.
+* `numTransactions` The number of transactions in the sample.
+* `samplePeriodSecs` The number of seconds in the sample window.
+* `slot` The slot in which the sample was taken at.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		{
+			"numNonVoteTransactions": 67446,
+			"numSlots": 153,
+			"numTransactions": 273901,
+			"samplePeriodSecs": 60,
+			"slot": 320159096
+		},
+		{
+			"numNonVoteTransactions": 59615,
+			"numSlots": 150,
+			"numTransactions": 267266,
+			"samplePeriodSecs": 60,
+			"slot": 320158943
+		},
+		{
+			"numNonVoteTransactions": 62675,
+			"numSlots": 154,
+			"numTransactions": 271136,
+			"samplePeriodSecs": 60,
+			"slot": 320158793
+		},
+		{
+			"numNonVoteTransactions": 75845,
+			"numSlots": 179,
+			"numTransactions": 324128,
+			"samplePeriodSecs": 60,
+			"slot": 320158639
+		}
+	],
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getRecentPerformanceSamples", "params": [4]}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getRecentPerformanceSamples", "params": [4]}'
+    
+```
+
+</CodeGroup>

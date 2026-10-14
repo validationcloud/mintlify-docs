@@ -1,0 +1,68 @@
+---
+title: "Two-Factor Authentication (2FA) for Sign In"
+description: "As a user of Validation Cloud's platform you can enable Two-Factor Authentication for extra security."
+---
+
+## **What is Two-Factor Authentication (2FA)?**
+
+_Plan restrictions: None, available to all users on all plans_
+
+Two-Factor Authentication (2FA), also called Multi-Factor Authentication (MFA), adds a second step when you sign in to the Validation Cloud platform at [app.validationcloud.io](https://app.validationcloud.io).
+
+2FA is optional and per user. If configured and enabled for a user, after entering a password, you confirm it's you with one of:
+
+* **Authenticator app**: one-time codes from an app such as Google Authenticator, 1Password or Authy.
+* **Device biometrics**: Touch ID, Face ID or Windows Hello on the device you set it up on.
+* **Security key**: a hardware key such as a YubiKey.
+
+_You can enable 2FA whether you use email/password to sign in to Validation Cloud, a Google Sign In, a Microsoft account or Github._
+
+Each person in a team needs to enable it for their own login. It protects the platform sign-in as Node API, Staking and Mavrik share the same login. It does not apply to Node API endpoint keys or Admin API keys, which are protected by the keys themselves and, for endpoints, by Allow Lists if configured, see: [Allow Lists for Node API Endpoints](/v1/about/security/allow-lists-for-node-api-endpoints).
+
+### **Where it is and who can use it**
+
+* Account page: [app.validationcloud.io/account](https://app.validationcloud.io/account), section **Two-Factor Authentication**, with an **On** / **Off** badge. Example screenshot below:
+
+![](/v1/assets/screenshot-2026-09-25-at-17-28-20-2.png)
+
+* Plans: all users on all plans, including Free.
+* Roles: no role restriction. Admins and Team Members can each enable it for themselves.
+* The Node API user interface is the only place to configure Two-Factor Authentication, this functionality is not currently in the Admin API.
+
+### **How to use Two-Factor Authentication (2FA) with your account**
+
+**Turning it on**
+
+1. Go to **Account** ([app.validationcloud.io/account](https://app.validationcloud.io/account) or click on your name in the bottom left of the screen and click Account) and find **Two-Factor Authentication**.
+2. Click **Set up two-factor authentication.**
+3.  Choose a method (authenticator app, device biometrics or security key) and follow the prompts, e.g. scan the QR code with your authenticator app. Example screenshots below:
+
+    1.  Example showing choosing an additional authentication (options vary depending on your device):
+
+        ![](/v1/assets/screenshot-2026-09-25-at-17-29-00.png)
+    2. Example showing QR code for authenticator (QR redacted):
+
+    ![](/v1/assets/screenshot-2026-09-25-at-17-29-19-2.png)
+4.  **IMPORTANT**: Save the recovery code shown at the end, **it is only shown once**. Keep it somewhere safe, e.g. your password manager. Example screenshot below (recovery code redacted):
+
+    ![](/v1/assets/screenshot-2026-09-25-at-17-30-16-2.png)
+5.  You're returned to the Account page. The badge shows **On** and your method is listed with the date it was added. Example screenshot below:
+
+    ![](/v1/assets/screenshot-2026-09-25-at-17-31-42-2.png)
+
+**Signing in with 2FA on**
+
+* After your password you will be asked for your second factor.
+
+**If you lose your device**
+
+* Enter your recovery code at the second step instead.
+* If you've lost your device _and_ the recovery code, contact us: [https://www.validationcloud.io/contact](https://www.validationcloud.io/contact). We'll review your account and reset 2FA for you to set it up again at your next sign-in.
+
+**Changing method**
+
+* One method per user at a time. To switch, remove the one you have (bin icon next to it) and set up again with the new method.
+
+**Turning off Two-Factor Authentication**
+
+* Click the bin icon next to your method. It's removed straight away and the recovery code is discarded with it.

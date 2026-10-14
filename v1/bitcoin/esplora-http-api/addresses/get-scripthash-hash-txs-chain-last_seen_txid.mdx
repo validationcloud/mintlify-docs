@@ -1,0 +1,35 @@
+---
+title: "GET /scripthash/:hash/txs/chain[/:last_seen_txid]"
+---
+
+Get confirmed transaction history for the specified scripthash, sorted with newest first.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`scripthash`** - required.&#x20;
+
+**`last_seen_txid`** - optional, to retrieve more than 25 transactions.
+
+## Returns
+
+Get confirmed transaction history for the specified scripthash, sorted with newest first.
+
+Returns 25 transactions per page. More can be requested by specifying the last txid seen by the previous query.
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/scripthash/<scripthash>/txs/chain[/:last_seen_txid] \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/scripthash/<scripthash>/txs/chain[/:last_seen_txid] \
+ -X GET
+```
+
+</CodeGroup>

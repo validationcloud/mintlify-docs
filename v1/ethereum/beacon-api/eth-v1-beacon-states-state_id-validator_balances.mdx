@@ -1,0 +1,21 @@
+---
+title: "/eth/v1/beacon/states/{state_id}/validator_balances"
+description: "Get validator balances from state"
+openapi: "/v1/openapi/beacon-node-oapi-v2.json GET /eth/v1/beacon/states/{state_id}/validator_balances"
+---
+
+<CodeGroup>
+
+```bash title="Mainnet"
+curl -X GET \
+    "https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/validator_balances?id=0xb8309891538bca2c1cb416a0a60378185ea705f665b8cf7e60b4b22380145bc611fb711062a835bf599b86d04e0d449a" \
+    -H "Content-Type: application/json" 
+```
+
+```bash title="Testnet"
+curl -X GET \
+    "https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/validator_balances?id=0xb8309891538bca2c1cb416a0a60378185ea705f665b8cf7e60b4b22380145bc611fb711062a835bf599b86d04e0d449a" \
+    -H "Content-Type: application/json" 
+```
+
+</CodeGroup>

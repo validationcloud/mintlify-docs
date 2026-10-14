@@ -1,0 +1,101 @@
+---
+title: "Overview"
+---
+
+Solana is a high-performance, layer 1 blockchain designed to support decentralized applications (dApps) requiring scalability. \
+\
+Solana's native token is `SOL`, it's used for transactions, executing smart contracts, and staking.&#x20;
+
+`Lamports` are the smallest unit of currency on the Solana blockchain, there are 1 billion lamports in 1 SOL.
+
+## Network Support
+
+<table><thead><tr><th width="292">Network</th><th>HTTPS</th><th>WSS</th></tr></thead><tbody><tr><td>Mainnet <br />(also known as Mainnet-beta)</td><td>✅</td><td>✅</td></tr><tr><td>Devnet</td><td>✅</td><td>✅</td></tr></tbody></table>
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Compute Units
+
+### HTTP Methods
+
+| getAccountInfo                    | 30  |
+| --------------------------------- | --- |
+| getBalance                        | 30  |
+| getBlock                          | 30  |
+| getBlockCommitment                | 30  |
+| getBlockHeight                    | 30  |
+| getBlockProduction                | 30  |
+| getBlockTime                      | 30  |
+| getBlocks                         | 30  |
+| getBlocksWithLimit                | 30  |
+| getClusterNodes                   | 30  |
+| getConfirmedBlock                 | 30  |
+| getConfirmedBlocks                | 30  |
+| getConfirmedBlocksWithLimit       | 30  |
+| getConfirmedTransaction           | 30  |
+| getEpochInfo                      | 30  |
+| getEpochSchedule                  | 30  |
+| getFeeCalculatorForBlockhash      | 30  |
+| getFeeForMessage                  | 30  |
+| getFirstAvailableBlock            | 30  |
+| getGenesisHash                    | 30  |
+| getHealth                         | 30  |
+| getHighestSnapshotSlot            | 30  |
+| getIdentity                       | 30  |
+| getInflationGovernor              | 30  |
+| getInflationRate                  | 30  |
+| getInflationReward                | 30  |
+| getLatestBlockhash                | 30  |
+| getLeaderSchedule                 | 30  |
+| getMaxRetransmitSlot              | 30  |
+| getMaxShredInsertSlot             | 30  |
+| getMinimumBalanceForRentExemption | 30  |
+| getMultipleAccounts               | 30  |
+| getParsedBlock                    | 30  |
+| getParsedTransaction              | 30  |
+| getProgramAccounts                | 30  |
+| getRecentPerformanceSamples       | 30  |
+| getRecentPrioritizationFees       | 30  |
+| getSignatureStatuses              | 30  |
+| getSignaturesForAddress           | 30  |
+| getSlot                           | 30  |
+| getSlotLeader                     | 30  |
+| getSlotLeaders                    | 30  |
+| getSnapshotSlot                   | 30  |
+| getStakeMinimumDelegation         | 30  |
+| getStakeActivation                | 30  |
+| getSupply                         | 160 |
+| getTokenAccountBalance            | 30  |
+| getTokenAccountsByOwner           | 30  |
+| getTokenLargestAccounts           | 30  |
+| getTokenSupply                    | 30  |
+| getTransaction                    | 30  |
+| getTransactionCount               | 30  |
+| getVersion                        | 30  |
+| getVoteAccounts                   | 30  |
+| isBlockhashValid                  | 30  |
+| minimumLedgerSlot                 | 30  |
+| requestAirdrop                    | 30  |
+| sendTransaction                   | 30  |
+| simulateTransaction               | 30  |
+
+### Websocket Methods
+
+| accountSubscribe                 | 20 |
+| -------------------------------- | -- |
+| accountUnsubscribe               | 20 |
+| logsSubscribe                    | 20 |
+| logUnsubscribe                   | 20 |
+| programSubscribe                 | 20 |
+| programUnsubscribe               | 20 |
+| rootSubscribe                    | 20 |
+| rootUnsubscribe                  | 20 |
+| signatureSubscribe               | 20 |
+| signatureUnsubscribe             | 20 |
+| slotSubscribe                    | 20 |
+| slotUnsubscribe                  | 20 |
+| _——— Websocket Unstable Methods_ |    |
+| blockSubscribe                   | 20 |
+| blockUnsubscribe                 | 20 |
+| slotsUpdatesSubscribe            | 20 |
+| slotsUpdatesUnsubscribe          | 20 |

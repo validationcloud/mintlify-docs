@@ -1,0 +1,75 @@
+---
+title: "CreateTransaction"
+---
+
+Create a TRX transfer transaction. If to\_address does not exist, then create the account on the blockchain.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - the transfer address, converted to a hex string
+* `to_address` - String - To\_address is the transfer address, converted to a hex string
+* `amount` - int64 - Amount is the transfer amount, the unit is sun
+* `Permission_id` - int32 - Optional, for multi-signature use
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+* `extra_data` - String - Optional, any extra data to be included in the transaction, HEX format
+
+## **Returns**
+
+Transaction - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) in the Tron documentation for the fields contained in it. Since the transaction type is `TransferContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field          | Type   | Description                   |
+| -------------- | ------ | ----------------------------- |
+| owner\_address | string | Transaction initiator address |
+| to\_address    | string | Destination address           |
+| amount         | int64  | Transfer TRX amount, in sun   |
+
+```json
+// Result
+{
+  "visible": true,
+  "txID": "7f582b84f4d976ca68bfdb5d32a51e40419b991c0ec046d3ad53b7daeb1fc0db",
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "amount": 1000,
+            "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+            "to_address": "TPswDDCAWhJAZGdHPidFg5nEf8TkNToDX1"
+          },
+          "type_url": "type.googleapis.com/protocol.TransferContract"
+        },
+        "type": "TransferContract"
+      }
+    ],
+    "ref_block_bytes": "56fe",
+    "ref_block_hash": "89ca16671fbb995c",
+    "expiration": 1756818288000,
+    "timestamp": 1756818229185
+  },
+  "raw_data_hex": "0a0256fe220889ca16671fbb995c4080db9ed490335a66080112620a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412310a1541fd49eda0f23ff7ec1d03b52c3a45991c24cd440e12154198927ffb9f554dc4a453c64b2e553a02d6df514b18e80770c18f9bd49033"
+}
+
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/createtransaction \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "to_address": "TPswDDCAWhJAZGdHPidFg5nEf8TkNToDX1",
+  "amount": 1000,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

@@ -1,0 +1,46 @@
+---
+title: "debug_getRawHeader"
+---
+
+Returns an RLP-encoded header.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - Quantity (hex) | Tag - <span style={{color: "red"}}>Required</span>  - The block number as a string in hexadecimal format or latest
+
+## **Returns**
+
+`result` - The RLP encoded header
+
+```json
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "0xf90267a087190141975a957b1ba...",
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_getRawHeader","params":["latest"],"id":1}'
+    
+```
+
+```bash title="testnet"
+curl https://testnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_getRawHeader","params":["latest"],"id":1}'
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,77 @@
+---
+title: "Get utxo"
+---
+
+Returns array of unspent transaction outputs of address or xpub, applicable only for Bitcoin-type coins. By default, the list contains both confirmed and unconfirmed transactions.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#get-utxo)
+
+```bash
+GET /api/v2/utxo/<address|xpub|descriptor>[?confirmed=true]
+```
+
+## **Parameters**
+
+**`address OR xpub OR descriptor`**- string, required.&#x20;
+
+Example: `bc1q262qeyyhdakrje5qaux8m2a3r4z8sw8vu5mysh` (address)
+
+**`confirmed`**- boolean, optional.
+
+Example: _confirmed=true_ disables return of unconfirmed transactions
+
+## Returns
+
+```bash
+[
+	{
+		"txid": "8dba6839c844c643cae3f2dcef81b9856cd8cca02d9a5119faf049b0defde753",
+		"vout": 0,
+		"value": "2310",
+		"height": 842567,
+		"confirmations": 1
+	},
+	{
+		"txid": "c2ed02b01dc21e01a53d1b13f5f819a6684e9b1e6c8277b3cb57163414467e36",
+		"vout": 0,
+		"value": "2310",
+		"height": 842567,
+		"confirmations": 1
+	},
+	{
+		"txid": "7251593434b9feea3758fff2c954fe442d66226aca546de5cf26f84a683e3fe7",
+		"vout": 0,
+		"value": "2310",
+		"height": 842558,
+		"confirmations": 10
+	},
+	.....
+	{
+		"txid": "9157c20a42d0879635882e34083b93bfb7f518c4818ca2f19aabaedff19a0555",
+		"vout": 0,
+		"value": "330",
+		"height": 830963,
+		"confirmations": 11605
+	}
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/block-index/785365 \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/block-index/785365 \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

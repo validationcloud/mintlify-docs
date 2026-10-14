@@ -1,0 +1,65 @@
+---
+title: "platform.getTotalStake"
+---
+
+Get the total amount of tokens staked on the requested Subnet.
+
+This method will use `90` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformgettotalstake)
+
+## **Parameters**
+
+`None`&#x20;
+
+## Returns
+
+* `stake` - int - The the total amount of nAVAX staked on the Primary Network.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "stake": "279825917679866811",
+    "weight": "279825917679866811"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getTotalStake",
+    "params": {
+      "subnetID": "11111111111111111111111111111111LpoYY"
+    },
+    "id": 1
+}
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getTotalStake",
+    "params": {
+      "subnetID": "11111111111111111111111111111111LpoYY"
+    },
+    "id": 1
+}
+}'
+```
+
+</CodeGroup>

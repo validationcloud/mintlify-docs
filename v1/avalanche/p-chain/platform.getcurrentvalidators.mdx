@@ -1,0 +1,127 @@
+---
+title: "platform.getCurrentValidators"
+---
+
+List the current validators of the given Subnet.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformgetcurrentvalidators)
+
+## **Parameters**
+
+* `subnetID` - string - (optional) The subnet whose current validators are returned. If omitted, returns the current validators of the Primary Network
+* `nodeIDs` - string - (optional) A list of the nodeIDs of pending validators to request. If omitted, all pending validators are returned. If a specified nodeID is not in the set of pending validators, it will not be included in the response
+
+## Returns
+
+* `subnetID` is the Subnet whose current validators are returned. If omitted, returns the current validators of the Primary Network.
+* `nodeIDs` is a list of the NodeIDs of current validators to request. If omitted, all current validators are returned. If a specified NodeID is not in the set of current validators, it will not be included in the response.
+* `validators`:
+  * `txID` is the validator transaction.
+  * `startTime` is the Unix time when the validator starts validating the Subnet.
+  * `endTime` is the Unix time when the validator stops validating the Subnet.
+  * `stakeAmount` is the amount of tokens this validator staked. Omitted if `subnetID` is not a PoS Subnet.
+  * `nodeID` is the validator’s node ID.
+  * `weight` is the validator’s weight when sampling validators. Omitted if `subnetID` is a PoS Subnet.
+  * `validationRewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`. Specifies the owner of the potential reward earned from staking. Omitted if `subnetID` is not a PoS Subnet.
+  * `delegationRewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`. Specifies the owner of the potential reward earned from delegations. Omitted if `subnetID` is not a PoS Subnet.
+  * `potentialReward` is the potential reward earned from staking. Omitted if `subnetID` is not a PoS Subnet.
+  * `delegationFeeRate` is the percent fee this validator charges when others delegate stake to them. Omitted if `subnetID` is not a PoS Subnet.
+  * `uptime` is the % of time the queried node has reported the peer as online and validating the Subnet.
+  * `connected` is if the node is connected and tracks the Subnet.
+  * `signer` is the node's BLS public key and proof of possession. Omitted if the validator doesn't have a BLS public key.
+  * `delegatorCount` is the number of delegators on this validator. Omitted if `subnetID` is not a PoS Subnet.
+  * `delegatorWeight` is total weight of delegators on this validator. Omitted if `subnetID` is not a PoS Subnet.
+  * `delegators` is the list of delegators to this validator. Omitted if `subnetID` is not a PoS Subnet. Omitted unless `nodeIDs` specifies a single NodeID.
+    * `txID` is the delegator transaction.
+    * `startTime` is the Unix time when the delegator started.
+    * `endTime` is the Unix time when the delegator stops.
+    * `stakeAmount` is the amount of nAVAX this delegator staked.
+    * `nodeID` is the validating node’s node ID.
+    * `rewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`.
+    * `potentialReward` is the potential reward earned from staking
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "validators": [
+      {
+        "txID": "2NNkpYTGfTFLSGXJcHtVv6drwVU2cczhmjK2uhvwDyxwsjzZMm",
+        "startTime": "1600368632",
+        "endTime": "1602960455",
+        "stakeAmount": "2000000000000",
+        "nodeID": "NodeID-5mb46qkSBj81k9g9e4VFjGGSbaaSLFRzD",
+        "validationRewardOwner": {
+          "locktime": "0",
+          "threshold": "1",
+          "addresses": ["P-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"]
+        },
+        "delegationRewardOwner": {
+          "locktime": "0",
+          "threshold": "1",
+          "addresses": ["P-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"]
+        },
+        "potentialReward": "117431493426",
+        "delegationFee": "10.0000",
+        "uptime": "0.0000",
+        "connected": false,
+        "delegatorCount": "1",
+        "delegatorWeight": "25000000000",
+        "delegators": [
+          {
+            "txID": "Bbai8nzGVcyn2VmeYcbS74zfjJLjDacGNVuzuvAQkHn1uWfoV",
+            "startTime": "1600368523",
+            "endTime": "1602960342",
+            "stakeAmount": "25000000000",
+            "nodeID": "NodeID-5mb46qkSBj81k9g9e4VFjGGSbaaSLFRzD",
+            "rewardOwner": {
+              "locktime": "0",
+              "threshold": "1",
+              "addresses": ["P-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"]
+            },
+            "potentialReward": "11743144774"
+          }
+        ]
+      }
+    ]
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getCurrentValidators",
+    "params": {
+      "nodeIDs": ["NodeID-5mb46qkSBj81k9g9e4VFjGGSbaaSLFRzD"]
+    },
+    "id": 1
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getCurrentValidators",
+    "params": {
+      "nodeIDs": ["NodeID-5mb46qkSBj81k9g9e4VFjGGSbaaSLFRzD"]
+    },
+    "id": 1
+}'
+```
+
+</CodeGroup>

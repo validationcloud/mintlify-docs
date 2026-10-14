@@ -1,0 +1,56 @@
+---
+title: "account_offers"
+---
+
+Retrieves a list of offers made by a given account that are outstanding as of a particular ledger version.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/account-methods/account_offers)
+
+## **Parameters**
+
+* `account` (string, required) Look up Offers placed by this account.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `limit` (number, optional) Limit the number of Offers to retrieve. Must be within the inclusive range 10 to 400. The default is 200.
+* `marker` (marker, optional) Value from a previous paginated response. Resume retrieving data where that response left off.
+
+## Returns
+
+* `account` (string) The account that made the offers.
+* `offers` (array) Array of offer objects, each with `flags`, `seq`, `taker_gets`, `taker_pays`, `quality` and optionally `expiration`.
+* `ledger_current_index` (number) Omitted if `ledger_hash` or `ledger_index` was provided.
+* `ledger_index` (number) The ledger index of the ledger version used.
+* `ledger_hash` (string) The identifying hash of the ledger version used.
+* `marker` (marker) Server-defined value indicating the response is paginated. Omitted when there are no additional pages.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "DF018504A94B1DEC419322D390C2AAACD27621F3EBC47BB38DD844AAE5DD87A9",
+    "ledger_index": 107292915,
+    "validated": true,
+    "account": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+    "offers": [],
+    "marker": "0C9844B21E960CFBB1F4A96F2ECA185C57F4C53681ECCD56DCE9E4C45E065058,1",
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_offers","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated","limit":10}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"account_offers","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated","limit":10}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

@@ -1,0 +1,54 @@
+---
+title: "DelegateResource"
+---
+
+Delegate bandwidth or energy resources to other accounts in Stake2.0.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String, required - Owner address, default hexString
+* `receiver_address` - String, required - Resource receiver address
+* `balance` - int64 - Amount of TRX staked for resources to be delegated, unit is sun
+* `lock` - Boolean - Whether it is locked (default is false), if it is set to true, the delegated resources cannot be undelegated within the lock period specified by `lock_period`.&#x20;
+  * When the lock time is not over, if the owner delegates the same type of resources using the lock to the same address, the lock time will be set to the value specified by `lock_period`. If it is false, that means there is no lock-up period for this resource delegation, and the resource for the target address can be canceled at any time. The default value of this field is false
+* `lock_period` - int64 - Lock time.&#x20;
+  * The unit is block interval(3 seconds), indicates the time of how many blocks which the delegation will be locked. Only when lock is true, this field is valid. If the delegate lock period is 1 day, the lock\_period is: 28800. The minimum value of lock\_period is the remaining lock period of this type of resource that was delegated last time, and the maximum value is 864000 (30 days). If lock is true and lock\_period is not set or set to 0, lock\_period will be set to the default value 86400 (3 days) automatically
+* `Permission_id` - int32 - Optional, for multi-signature use
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `DelegateResourceContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field             | Type   | Description                                                                                                                                                                                                                                |
+| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| owner\_address    | string | Account address                                                                                                                                                                                                                            |
+| resource          | string | Resource type                                                                                                                                                                                                                              |
+| receiver\_address | string | Resource receiver address                                                                                                                                                                                                                  |
+| balance           | Int64  | Resource delegate amount, the unit is sun                                                                                                                                                                                                  |
+| lock              | bool   | Whether to lock the resource delegation, `true` means locked the delegation, the delegating cannot be canceled within the period specified by `lock_period`, `false` means non-locked, the resource delegating can be canceled at any time |
+| lock\_period      | Int64  | Lock period, the unit is block interval(3 seconds). Only when lock is `true`, this field is valid. If the delegate lock period is 1 day, the lock\_period is 28800.                                                                        |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/delegateresource \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "receiver_address": "TPswDDCAWhJAZGdHPidFg5nEf8TkNToDX1",
+  "balance": 1000000,
+  "resource": "BANDWIDTH",
+  "lock": false,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

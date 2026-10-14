@@ -1,0 +1,68 @@
+---
+title: "getEpochInfo"
+---
+
+Returns information about the current epoch.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string
+      * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string
+      * The node will query its most recent block. Note that the block may not be complete.
+  * `minContextSlot` integer. The minimum slot at which the request can be evaluated.
+
+## Returns
+
+`result` An object with the following fields:
+
+* `absoluteSlot`. The current slot
+* `blockHeight`. The current block height
+* `epoch`. The current epoch.
+* `slotIndex`. The current slot relative to the start of the current epoch.
+* `slotsInEpoch`. The number of slots in this epoch.
+* `transactionCount`. The total number of transactions processed during the current epoch
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"absoluteSlot": 320140530,
+		"blockHeight": 298415408,
+		"epoch": 741,
+		"slotIndex": 28530,
+		"slotsInEpoch": 432000,
+		"transactionCount": 371783637194
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getEpochInfo"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getEpochInfo"}'
+    
+```
+
+</CodeGroup>

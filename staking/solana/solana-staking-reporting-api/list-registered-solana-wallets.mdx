@@ -1,0 +1,37 @@
+---
+title: "List Registered Solana Wallets"
+---
+
+### GET /v1/api/solana/solana/mainnet/wallets
+
+List the delegator wallets that have been registered with your `client_id`. Use this to check which wallets you are already tracking and how many of your available wallet registrations are in use.
+
+**Note:** it is expected that there are two `/solana` elements in the path.
+
+#### Request
+
+```bash
+curl --request GET \
+  --url https://api.staking.validationcloud.io/v1/api/solana/solana/mainnet/wallets \
+  --header 'Authorization: Bearer eyJ...<rest_of_bearer_token>'
+```
+
+#### Response
+
+```json
+{
+    "wallets": [
+        {
+            "id": "1c56ae9e-7f14-4c3e-9d2b-8a4f5e6b7c8d",
+            "wallet_address": "BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF"
+        }
+    ]
+}
+```
+
+| Field            | Type   | Description                                    |
+| ---------------- | ------ | ---------------------------------------------- |
+| `id`             | string | Unique identifier for the wallet registration. |
+| `wallet_address` | string | The registered delegator wallet address.       |
+
+The response only includes wallets registered with your own `client_id`. There is currently a limit of 3 delegator wallets per `client_id`. If you need more, contact Validation Cloud.

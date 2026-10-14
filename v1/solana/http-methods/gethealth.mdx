@@ -1,0 +1,46 @@
+---
+title: "getHealth"
+---
+
+Returns the current health of the node.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` Ok, if the node is healthy or JSON RPC error response, if the node is unhealthy. Please note that the specifics of the error response are UNSTABLE and may change in the future.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "ok",
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getHealth"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getHealth"}'
+    
+```
+
+</CodeGroup>

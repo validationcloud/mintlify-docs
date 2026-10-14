@@ -1,0 +1,73 @@
+---
+title: "UpdateSetting"
+---
+
+Update the consume\_user\_resource\_percent parameter of a smart contract.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Required - The contract owner address, converted to a hex string
+* `contract_address` - String - Required - The address of the contract to be modified, in hex string format
+* `consume_user_resource_percent` - int32 - Requried - The consume user resource percentage. It should be an integer between \[0, 100]. if 0, means it does not consume user resource until the developer resource has been used up
+* `permission_id` - int32 - Optional. The ID of the permission that is required to execute the transaction, for multi-signature use
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `UpdateSettingContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field                            | Type   | Description            |
+| -------------------------------- | ------ | ---------------------- |
+| owner\_address                   | string | Account address        |
+| contract\_address                | string | Contract address       |
+| consume\_user\_resource\_percent | int64  | User Energy Proportion |
+
+```json
+// Result
+{
+  "visible": true,
+  "txID": "0f3db4bf5c6a0160dca8d0ab1a6308839e4e4ff20eae8125eb0ae932c659e4f1",
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "consume_user_resource_percent": 10,
+            "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+            "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs"
+          },
+          "type_url": "type.googleapis.com/protocol.UpdateSettingContract"
+        },
+        "type": "UpdateSettingContract"
+      }
+    ],
+    "ref_block_bytes": "552d",
+    "ref_block_hash": "c19cbb971f9a0743",
+    "expiration": 1757412663000,
+    "timestamp": 1757412603514
+  },
+  "raw_data_hex": "0a02552d2208c19cbb971f9a074340d8bdd4ef92335a6a082112660a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e55706461746553657474696e67436f6e747261637412300a1541b3dcf27c251da9363f1a4888257c16676cf54edf12154142a1e39aefa49290f2b3f9ed688d7cecf86cd6e0180a70faecd0ef9233"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/updatesetting \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+  "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+  "consume_user_resource_percent": 10,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

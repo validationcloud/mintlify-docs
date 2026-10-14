@@ -1,0 +1,29 @@
+---
+title: "Get Staking Transaction"
+description: "Running your first API call"
+---
+
+The code snippet below makes a request against Validation Cloud Staking API to obtain the staking transaction that will be signed later on, and broadcasted to the network:
+
+```javascript
+const STAKING_BASE_API_URL = 'https://ethereum-staking.sprd.validationcloud.io/v1/api';
+const STAKING_REQUEST_URL = `${STAKING_BASE_API_URL}/ethereum/mainnet/stake_transaction`;
+
+async function createStakeTransaction(token, walletAddress, num) {
+  const jsonBody = JSON.stringify({
+    num_validators: num,
+    wallet_address: walletAddress,
+  });
+
+  const response = await fetch(STAKING_REQUEST_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: jsonBody,
+  });
+
+  return await response.json();
+}
+```

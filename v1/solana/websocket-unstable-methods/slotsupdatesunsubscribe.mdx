@@ -1,0 +1,42 @@
+---
+title: "slotsUpdatesUnsubscribe"
+---
+
+Unsubscribe from slot-update notifications.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`subscriptionID` integer _<span style={{color: "red"}}>Required</span>_. The subscription id to cancel, ensuring it matches the previously generated subscription ID from the 'slotsUpdatesSubscribe' method.
+
+## Returns
+
+`result` boolean. The result will be a boolean value with unsubscribed success message.
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": true, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method": "slotsUpdatesUnsubscribe", "params": [SUBSCRIPTION_ID]}
+
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method": "slotsUpdatesUnsubscribe", "params": [SUBSCRIPTION_ID]}
+
+    
+```
+
+</CodeGroup>

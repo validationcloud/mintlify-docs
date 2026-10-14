@@ -1,0 +1,48 @@
+---
+title: "Solana Staking Reporting API"
+---
+
+import SolanaStakingSequenceDiagram from "/snippets/solana-staking-sequence-diagram.mdx";
+
+The Solana Staking Reporting API lets you programmatically retrieve staking rewards earned by a wallet that delegates stake to a Solana Mainnet Validator, such as the [Solana validator operated by Validation Cloud](https://solscan.io/account/Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf).
+
+Once a delegator wallet is registered, Validation Cloud indexes its rewards history and keeps it up to date, so you can query detailed per-epoch rewards for any date range with a single API call.&#x20;
+
+This is useful for accounting, reporting, and reconciliation of staking rewards without running your own Solana infrastructure.
+
+### How it works
+
+1. **Authenticate** with your API credentials to receive a bearer token.
+2. **Register the Solana delegator wallet** you want to track (one-time per wallet). Validation Cloud then indexes the wallet's rewards history, which can take up to 24 hours.
+3. **Query rewards** for the wallet over any date range and receive a detailed per-epoch breakdown.
+
+### Sequence Diagram
+
+<SolanaStakingSequenceDiagram />
+
+### What is a delegator wallet address on Solana?
+
+On Solana the delegator wallet address is the wallet that holds **stake authority** over your stake accounts.&#x20;
+
+On Solscan ([Validation Cloud's Solana validator](https://solscan.io/account/Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf)), a validator's _Delegators_ tab shows three address columns. The one the API needs is **Staker**:
+
+| Solscan column | Use with this API?                                                        |
+| -------------- | ------------------------------------------------------------------------- |
+| Stake Pubkey   | No. This is an individual stake account, not the wallet that controls it. |
+| Withdrawer     | No. This is the withdraw authority.                                       |
+| Staker         | **Yes. This is the delegator wallet address to register and query.**      |
+
+Note that explorers often display a name label in place of the raw address for well-known wallets; click the label or its copy icon to get the underlying address.
+
+### Base URLs
+
+* Authentication: `https://validationcloud.us.auth0.com`
+* All other calls: `https://api.staking.validationcloud.io`
+
+### Access
+
+You will need a `client_id` and `client_secret` to interact with the Solana Staking Reporting API. These are shared with you separately by Validation Cloud. If you do not yet have credentials, contact your Validation Cloud representative.
+
+### Data freshness
+
+Rewards data updates daily, shortly after midnight UTC. We suggest calling the API around 4am UTC each day to get the latest data. The most recent complete data will be for the day before the current date.

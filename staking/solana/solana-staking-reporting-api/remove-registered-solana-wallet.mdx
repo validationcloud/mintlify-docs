@@ -1,0 +1,37 @@
+---
+title: "Remove Registered Solana Wallet"
+---
+
+### DELETE /v1/api/solana/solana/mainnet/wallet/\{id\}
+
+Remove a registered delegator wallet. This frees one of your available wallet registrations.
+
+<Danger>
+
+**Warning: deleting a wallet permanently removes its indexed rewards history.** If you register the wallet again later, indexing starts from scratch and can take up to 24 hours before rewards data is available. Only delete a wallet if you no longer need its rewards data.
+
+</Danger>
+
+**Note:** it is expected that there are two `/solana` elements in the path.
+
+#### Path parameters
+
+| Parameter | Type   | Description                                                                                                                   |
+| --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `id`      | string | The wallet registration `id` (UUID) returned by List Registered Wallets. This is the registration id, not the wallet address. |
+
+#### Request
+
+```bash
+curl --request DELETE \
+  --url https://api.staking.validationcloud.io/v1/api/solana/solana/mainnet/wallet/1c56ae9e-7f14-4c3e-9d2b-8a4f5e6b7c8d \
+  --header 'Authorization: Bearer eyJ...<rest_of_bearer_token>'
+```
+
+#### Response
+
+A successful deletion returns HTTP 200 with an empty JSON object:
+
+```json
+{}
+```

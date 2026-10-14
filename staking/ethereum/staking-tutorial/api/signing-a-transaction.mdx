@@ -1,0 +1,23 @@
+---
+title: "Signing a Transaction"
+---
+
+The code snippet below signs the staking transaction with the wallet constructed earlier.:
+
+```javascript
+async function signTransaction(wallet, transaction) {
+
+  return await wallet.signTransaction({
+    type: 0,
+    to: transaction.to,
+    from: wallet.address,
+    nonce: transaction.nonce,
+    gasLimit: transaction.gas,
+    gasPrice: transaction.gas_price,
+    data: transaction.data,
+    value: transaction.value,
+    chainId: ethers.toBeHex(transaction.chain_id),
+  });
+  
+}
+```

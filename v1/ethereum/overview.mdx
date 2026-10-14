@@ -1,0 +1,24 @@
+---
+title: "Overview"
+---
+
+Ethereum is a decentralized Layer-1 blockchain that enables developers to build and deploy smart contracts and decentralized applications (dApps) using the Ethereum Virtual Machine (EVM).
+
+As the foundational environment for EVM-compatible chains, Ethereum has become a standard for smart contract execution across a wide range of blockchain ecosystems.
+
+The native token on Ethereum is ETH.
+
+Block explorer: [https://etherscan.io/](https://etherscan.io/)
+
+## Network Support
+
+| Network           | Full History / Archive | HTTPS | WSS |
+| ----------------- | ---------------------- | ----- | --- |
+| Mainnet           | ✅                      | ✅     | ✅   |
+| Testnet (Sepolia) | ✅                      | ✅     | ✅   |
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Compute Units
+
+<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>debug_getBadBlocks</td><td>80</td></tr><tr><td>debug_traceBlockByHash</td><td>80</td></tr><tr><td>debug_traceBlockByNumber</td><td>80</td></tr><tr><td>debug_traceCall</td><td>80</td></tr><tr><td>debug_traceTransaction</td><td>80</td></tr><tr><td>eth_accounts</td><td>20</td></tr><tr><td>eth_blockNumber</td><td>20</td></tr><tr><td>eth_call</td><td>40</td></tr><tr><td>eth_chainId</td><td>10</td></tr><tr><td>eth_estimateGas</td><td>40</td></tr><tr><td>eth_gasPrice</td><td>40</td></tr><tr><td>eth_getBalance</td><td>40</td></tr><tr><td>eth_getBlockByHash</td><td>40</td></tr><tr><td>eth_getBlockByNumber</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByHash</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByNumber</td><td>40</td></tr><tr><td>eth_getCode</td><td>40</td></tr><tr><td>eth_getFilterChanges</td><td>40</td></tr><tr><td>eth_getFilterLogs</td><td>40</td></tr><tr><td>eth_getLogs</td><td>80</td></tr><tr><td>eth_getStorageAt</td><td>40</td></tr><tr><td>eth_getTransactionByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByHash</td><td>40</td></tr><tr><td>eth_getTransactionCount</td><td>40</td></tr><tr><td>eth_getTransactionReceipt</td><td>40</td></tr><tr><td>eth_getUncleByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getUncleByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getUncleCountByBlockHash</td><td>40</td></tr><tr><td>eth_getUncleCountByBlockNumber</td><td>40</td></tr><tr><td>eth_newBlockFilter</td><td>40</td></tr><tr><td>eth_maxPriorityFeePerGas</td><td>20</td></tr><tr><td>eth_newFilter</td><td>40</td></tr><tr><td>eth_newPendingTransactionFilter</td><td>40</td></tr><tr><td>eth_sendRawTransaction</td><td>80</td></tr><tr><td>eth_subscribe</td><td>20</td></tr><tr><td>eth_syncing</td><td>10</td></tr><tr><td>eth_uninstallFilter</td><td>20</td></tr><tr><td>eth_unsubscribe</td><td>20</td></tr><tr><td>net_listening</td><td>10</td></tr><tr><td>net_peerCount</td><td>20</td></tr><tr><td>net_version</td><td>10</td></tr><tr><td>trace_block</td><td>80</td></tr><tr><td>trace_call</td><td>80</td></tr><tr><td>trace_filter</td><td>80</td></tr><tr><td>trace_get</td><td>80</td></tr><tr><td>trace_rawTransaction</td><td>80</td></tr><tr><td>trace_replayBlockTransactions</td><td>270</td></tr><tr><td>trace_replayTransaction</td><td>270</td></tr><tr><td>trace_transaction</td><td>80</td></tr><tr><td>txpool_content</td><td>500</td></tr><tr><td>web3_clientVersion</td><td>40</td></tr><tr><td>web3_sha3</td><td>40</td></tr></tbody></table>

@@ -1,0 +1,21 @@
+---
+title: "/eth/v1/beacon/states/{state_id}/fork"
+description: "Get Fork object for requested state"
+openapi: "/v1/openapi/beacon-node-oapi-v2.json GET /eth/v1/beacon/states/{state_id}/fork"
+---
+
+<CodeGroup>
+
+```bash title="Mainnet"
+curl -X GET \
+    "https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/fork" \
+    -H "Content-Type: application/json"
+```
+
+```bash title="Testnet"
+curl -X GET \
+    "https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/fork" \
+    -H "Content-Type: application/json" 
+```
+
+</CodeGroup>

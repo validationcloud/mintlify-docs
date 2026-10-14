@@ -1,0 +1,52 @@
+---
+title: "sendTransaction"
+---
+
+Submits a signed transaction to the cluster for processing.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `transaction` string The transaction as an encoded string.
+* `object` _optional._ Configuration object containing the following fields:
+  * `skipPreflight` boolean (default: false) If true, skip the preflight transaction checks.
+  * `preflightCommitment` string (default: finalized) The commitment level to use for preflight.
+  * `encoding` string The encoding format for account data. It can be one of base58 (slow), base64, base64+zstd or jsonParsed.
+  * `maxRetries` usize The maximum number of times for the RPC node to retry sending the transaction to the leader. If this parameter is not provided, the RPC node will retry the transaction until it is finalized or until the blockhash expires.
+  * `minContextSlot` integer. The minimum slot at which the request can be evaluated.
+
+## Returns
+
+`result` The First Transaction Signature embedded in the transaction, as base-58 encoded string (transaction id).
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": "2id3YC2jK9G5Wo2phDx4gJVAew8DcY5NAojnVuao8rkxwPYPe8cSwE5GzhEgJA2y8fVjDEo6iR6ykBvDxrTQrtpb",
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"sendTransaction","params":["ENTER_ENCODED_TRANSACTION_ID"],"id":1,"jsonrpc":"2.0"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"sendTransaction","params":["ENTER_ENCODED_TRANSACTION_ID"],"id":1,"jsonrpc":"2.0"}'
+    
+```
+
+</CodeGroup>

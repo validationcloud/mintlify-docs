@@ -1,0 +1,67 @@
+---
+title: "GetTransactionFromPending"
+---
+
+Get transaction details from the pending pool.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `value` - String - Transaction ID
+
+## **Returns**
+
+Transaction details, for explanation of each parameter, please refer to [gettransactionbyid](/v1/tron/tron-full-node-http-api/query-the-network/gettransactioninfobyid).
+
+```json
+// Result
+{
+  "ret": [
+    {
+      "contractRet": "SUCCESS"
+    }
+  ],
+  "signature": [
+    "693ad22a762a6228423f77cdb36440a3b93d7b1cbec7aa3822454e6146fb2af5075e541f298fcc8d68e51f3d0ae34e7b713e4f1582e70b0eba1b1436c848b15a1b"
+  ],
+  "txID": "f34f1c799700a9d83b67fdcadd7be697010a8dbbcd520de4ac46a648e3e7ae3d",
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "amount": 234000000,
+            "owner_address": "4192c47b086eae54ed142d75ce4806df751bac7551",
+            "to_address": "411113df41d4f3b8b46acc40c266bee87eca42c73d"
+          },
+          "type_url": "type.googleapis.com/protocol.TransferContract"
+        },
+        "type": "TransferContract"
+      }
+    ],
+    "ref_block_bytes": "6d64",
+    "ref_block_hash": "f35991f9b546f69f",
+    "expiration": 1616394384000,
+    "timestamp": 1616394325960
+  },
+  "raw_data_hex": "0a026d642208f35991f9b546f69f4080e5f3c4852f5a68080112640a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a154192c47b086eae54ed142d75ce4806df751bac75511215411113df41d4f3b8b46acc40c266bee87eca42c73d18809dca6f70c89ff0c4852f"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/gettransactionfrompending \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "value": "f34f1c799700a9d83b67fdcadd7be697010a8dbbcd520de4ac46a648e3e7ae3d"
+}
+'
+```
+
+</CodeGroup>

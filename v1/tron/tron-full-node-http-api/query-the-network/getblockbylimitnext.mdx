@@ -1,0 +1,98 @@
+---
+title: "GetBlockByLimitNext"
+---
+
+Returns the list of Block Objects included in the 'Block Height' range specified.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `startNum` - int32 - Starting block height, including this block.
+* `endNum` - int32 - Ending block height, excluding that block.
+
+## **Returns**
+
+Block list, please refer to [/wallet/getblock](/v1/tron/tron-full-node-http-api/query-the-network/getblock) for the content contained in block.
+
+```bash
+// Result
+{
+  "block": [
+    {
+      "blockID": "0000000000000001049f911bc1069bfd2c2225bc3cd210abd02fb219751813f0",
+      "block_header": {
+        "raw_data": {
+          "number": 1,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41f16412b9a17ee9408646e2a21e16478f72ed1e95",
+          "parentHash": "0000000000000000de1aa88295e1fcf982742f773e0419c5a9c134c994a9059e",
+          "version": 9,
+          "timestamp": 1575594015000
+        },
+        "witness_signature": "a3feb861edcf246bd51a447f8f91636c1d7e6868b346eb2773e24859aacceaed4aa032664c2433bce5dc58e6febe87d3a7e70841684536964670fcad05fe111601"
+      }
+    },
+    {
+      "blockID": "00000000000000028e917e1dcf24b45bf9ba16d59d77f9a1846bc4861e7045e4",
+      "block_header": {
+        "raw_data": {
+          "number": 2,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41f16412b9a17ee9408646e2a21e16478f72ed1e95",
+          "parentHash": "0000000000000001049f911bc1069bfd2c2225bc3cd210abd02fb219751813f0",
+          "version": 9,
+          "timestamp": 1575594024000
+        },
+        "witness_signature": "076e8610191e5e1b010697ed40fc4a8b316010374e27add85ca117160582223559e14195c7f475020b66f6136807a96c8aaea4b8a8061a9ab50d1d19234034eb00"
+      }
+    },
+    {
+      "blockID": "0000000000000003e7025004f6a699db79bd9d5f20bc5e363344f8b01f959394",
+      "block_header": {
+        "raw_data": {
+          "number": 3,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41f16412b9a17ee9408646e2a21e16478f72ed1e95",
+          "parentHash": "00000000000000028e917e1dcf24b45bf9ba16d59d77f9a1846bc4861e7045e4",
+          "version": 9,
+          "timestamp": 1575594027000
+        },
+        "witness_signature": "fa4bf8994324f816b8ad1e85ae06b93b33e24cce84255c5656415573641b01410f5e2152d328c32525b8a03ca06dc6100e26fddb2c4836e3e4357134399372a901"
+      }
+    },
+    {
+      "blockID": "00000000000000044a56ccc0ee2c6ce0f6d1aeeeca788486ea0f6ad52853749c",
+      "block_header": {
+        "raw_data": {
+          "number": 4,
+          "txTrieRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "witness_address": "41f16412b9a17ee9408646e2a21e16478f72ed1e95",
+          "parentHash": "0000000000000003e7025004f6a699db79bd9d5f20bc5e363344f8b01f959394",
+          "version": 9,
+          "timestamp": 1575594030000
+        },
+        "witness_signature": "192eadd1f1ae870d0e7464a72829307e5b214e1e3be16e03f223d264acf9c2f715b4b647e836c62cb88a428752b225aa8f3c6d9c85696c8f06635091b1c1982600"
+      }
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getblockbylimitnext \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "startNum": 1,
+  "endNum": 5
+}
+'
+```
+
+</CodeGroup>

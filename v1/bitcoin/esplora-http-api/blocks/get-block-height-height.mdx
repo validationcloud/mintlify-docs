@@ -1,0 +1,37 @@
+---
+title: "GET /block-height/:height"
+---
+
+Returns the hash of the block currently at `height`.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`block height`** -  required.&#x20;
+
+Example: `910883`
+
+## Returns
+
+Returns the hash of the block currently at `height`.
+
+```json wrap
+00000000000000000001129bff5a606bd4999e3594613fa13453a0f3635ed35b
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block-height/:height \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block-height/:height \
+ -X GET
+```
+
+</CodeGroup>

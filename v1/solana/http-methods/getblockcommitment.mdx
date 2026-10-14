@@ -1,0 +1,86 @@
+---
+title: "getBlockCommitment"
+---
+
+Returns commitment for particular block.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `block number` integer _<span style={{color: "red"}}>Required</span>_. The block number identified by the slot.
+
+## Returns
+
+* `result` object. A custom object with the following fields:
+  * `commitment`. The commitment values for the block. It could be either:
+    * `null`. Null if the block is unknown.
+    * `array`. An array of u64 integers logging the amount of cluster stake in lamports that has voted on the block at each depth from 0 to MAX\_LOCKOUT\_HISTORY + 1&#x20;
+  * `totalStake`. The total number of lamports being used by validators to participate in the block production and voting process.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"commitment": [
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			311482914814158,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			384876486517217675
+		],
+		"totalStake": 385365171580261965
+	},
+	"id": 1
+}		
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getBlockCommitment","params":[319935753]}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getBlockCommitment","params":[319935753]}'
+    
+```
+
+</CodeGroup>

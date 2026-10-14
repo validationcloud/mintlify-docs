@@ -1,0 +1,54 @@
+---
+title: "TransferAsset"
+---
+
+Transfer TRC10 token.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - the owner address, converted to a hex string
+* `to_address` - String - Receiving address, converted to a hex string
+* `asset_name` - String - Token id, default hexString
+* `amount` - int64 - Amount is the transfer amount, the unit is sun
+* `Permission_id` - int32 - Optional, for multi-signature use
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+* `extra_data` - String - Optional, any extra data to be included in the transaction, HEX format
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `TransferAssetContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field          | Type   | Description                      |
+| -------------- | ------ | -------------------------------- |
+| owner\_address | string | Account address                  |
+| asset\_name    | string | The token id to transfer         |
+| to\_address    | string | The target address to transfer   |
+| amount         | int64  | The amount of token to transfer. |
+
+```json
+// Result
+{}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/transferasset \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "to_address": "TPswDDCAWhJAZGdHPidFg5nEf8TkNToDX1",
+  "asset_name": "31303030303031",
+  "amount": null,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

@@ -1,0 +1,90 @@
+---
+title: "GET /address/:address/txs/mempool"
+---
+
+Get unconfirmed transaction history for the specified address.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`address`** - required.&#x20;
+
+Example: `bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2`
+
+## Returns
+
+Get unconfirmed transaction history for the specified address/scripthash.
+
+Returns up to 50 transactions (no paging).
+
+```json
+[] -- Empty if address has no transactions in the mempool
+
+-- As below if address does have transactions in the mempool
+[
+	{
+		"txid": "768b41a40c783518638f132e7b822ecf810b9f8111f4333f80afb8c1808a0531",
+		"version": 2,
+		"locktime": 0,
+		"vin": [
+			{
+				"txid": "8cf16a2918340949d7817e49f465dfa6f81e320a8f7772aff498c7a1d6adc740",
+				"vout": 0,
+				"prevout": {
+					"scriptpubkey": "5120e89e62c361a4b5af6ef76d9d2c95f00765089296cbc613b9c0c9c9ccd3b522b7",
+					"scriptpubkey_asm": "OP_PUSHNUM_1 OP_PUSHBYTES_32 e89e62c361a4b5af6ef76d9d2c95f00765089296cbc613b9c0c9c9ccd3b522b7",
+					"scriptpubkey_type": "v1_p2tr",
+					"scriptpubkey_address": "bc1paz0x9smp5j667mhhdkwje90sqajs3y5ke0rp8wwqe8yue5a4y2mskzea6c",
+					"value": 54953
+				},
+				"scriptsig": "",
+				"scriptsig_asm": "",
+				"witness": [
+					"4aeeb8a9471d515f99a7e1c80b6c61658f435adb11b209448dff3193bf9b93a132bbdcb3c6f26b987fb09bf9789edd1db77b48a73f525b638de8bdef44332563"
+				],
+				"is_coinbase": false,
+				"sequence": 4294967293
+			}
+		],
+		"vout": [
+			{
+				"scriptpubkey": "5120e89e62c361a4b5af6ef76d9d2c95f00765089296cbc613b9c0c9c9ccd3b522b7",
+				"scriptpubkey_asm": "OP_PUSHNUM_1 OP_PUSHBYTES_32 e89e62c361a4b5af6ef76d9d2c95f00765089296cbc613b9c0c9c9ccd3b522b7",
+				"scriptpubkey_type": "v1_p2tr",
+				"scriptpubkey_address": "bc1paz0x9smp5j667mhhdkwje90sqajs3y5ke0rp8wwqe8yue5a4y2mskzea6c",
+				"value": 54771
+			},
+			{
+				"scriptpubkey": "6a5d1cff7f8192ec82d08b80808280848090c0c12dff7fdd80c4928890ad01",
+				"scriptpubkey_asm": "OP_RETURN OP_PUSHNUM_13 OP_PUSHBYTES_28 ff7f8192ec82d08b80808280848090c0c12dff7fdd80c4928890ad01",
+				"scriptpubkey_type": "op_return",
+				"value": 0
+			}
+		],
+		"size": 202,
+		"weight": 604,
+		"fee": 182,
+		"status": {
+			"confirmed": false
+		}
+	},
+	...
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/address/bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2/txs/mempool \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/address/bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2/txs/mempool \
+ -X GET
+```
+
+</CodeGroup>

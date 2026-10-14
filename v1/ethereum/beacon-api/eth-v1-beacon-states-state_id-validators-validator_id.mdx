@@ -1,0 +1,51 @@
+---
+title: "/eth/v1/beacon/states/{state_id}/validators/{validator_id}"
+description: "Get validator from state by id"
+---
+
+## Parameters:
+
+1. state\_id - string - (Required) State identifier. Can be one of: "head" (canonical head in node's view), "genesis", "finalized", "justified", \{slot\}, \{hex encoded stateRoot with 0x prefix\}.
+2. validator\_id - string - (Required) Either hex encoded public key (any bytes48 with 0x prefix) or validator index.
+
+## Returns:
+
+1. execution\_optimistic - boolean - True if the response references an unverified execution payload. Optimistic information may be invalidated at a later time. If the field is not present, assume the False value.
+2. data - object - with the following values:
+   1. index - string - Index of validator in validator registry.
+   2. balance - string - Current validator balance in gwei.
+   3. status - string - Possible statuses:
+
+**pending\_initialized** - When the first deposit is processed, but not enough funds are available (or not yet the end of the first epoch) to get validator into the activation queue
+
+**pending\_queued** - When validator is waiting to get activated, and have enough funds etc. while in the queue, validator activation epoch keeps changing until it gets to the front and make it through (finalization is a requirement here too).
+
+**active\_ongoing** - When validator must be attesting, and have not initiated any exit.
+
+**active\_exiting** - When validator is still active, but filed a voluntary request to exit.
+
+**active\_slashed** - When validator is still active, but have a slashed status and is scheduled to exit.
+
+**exited\_unslashed** - When validator has reached reguler exit epoch, not being slashed, and doesn't have to attest any more, but cannot withdraw yet.
+
+**exited\_slashed** - When validator has reached reguler exit epoch, but was slashed, have to wait for a longer withdrawal period.
+
+**withdrawal\_possible** - After validator has exited, a while later is permitted to move funds, and is truly out of the system.
+
+**withdrawal\_done** - (not possible in phase0, except slashing full balance) - actually having moved funds away.
+
+<CodeGroup>
+
+```bash title="Mainnet"
+curl -X GET \
+    "https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/validators/0xa263cec6f692c3f2a4edcbf7b791634ae964ae959e2dfab032cbe9234004ca34b02015ede753db15bd98bd12e3cd039b" \
+    -H "Content-Type: application/json"
+```
+
+```bash title="Testnet"
+curl -X GET \
+    "https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/validators/0xa263cec6f692c3f2a4edcbf7b791634ae964ae959e2dfab032cbe9234004ca34b02015ede753db15bd98bd12e3cd039b" \
+    -H "Content-Type: application/json"
+```
+
+</CodeGroup>

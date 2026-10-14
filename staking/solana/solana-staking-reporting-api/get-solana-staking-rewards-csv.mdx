@@ -1,0 +1,55 @@
+---
+title: "Get Solana Staking Rewards (CSV)"
+---
+
+### GET /v1/api/solana/solana/mainnet/rewards/report
+
+Download staking rewards for a registered delegator wallet as a CSV report. The report contains one row per validator per day, making it suitable for accounting and reconciliation workflows. For per-epoch, per-stake-account detail in JSON, see [Get Solana Staking Rewards (JSON)](/staking/solana/solana-staking-reporting-api/get-solana-staking-rewards-json).
+
+**Note:** it is expected that there are two `/solana` elements in the path.
+
+#### Query parameters
+
+| Parameter           | Type   | Required | Description                                                                             |
+| ------------------- | ------ | -------- | --------------------------------------------------------------------------------------- |
+| `delegator_address` | string | Yes      | The delegator wallet address. Must already be registered and indexed.                   |
+| `start_date`        | string | Yes      | Start of the date range, in `YYYY-MM-DD` format.                                        |
+| `end_date`          | string | No       | End of the date range, in `YYYY-MM-DD` format. Defaults to the current date if omitted. |
+
+#### Request
+
+```bash
+curl --request GET \
+  --url 'https://api.staking.validationcloud.io/v1/api/solana/solana/mainnet/rewards/report?delegator_address=BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF&start_date=2025-06-13&end_date=2025-06-16' \
+  --header 'Authorization: Bearer eyJ...<rest_of_bearer_token>' \
+  --output report.csv
+```
+
+#### Response
+
+The response is a CSV file (`Content-Type: text/csv`, served as an attachment named `report.csv`) with the following columns:
+
+| Column                       | Description                                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Date`                       | The day covered by the row.                                                                                                                                                                                                                                                                                                                                                                           |
+| `Delegator Address`          | The delegator wallet address.                                                                                                                                                                                                                                                                                                                                                                         |
+| `Validator Name`             | The validator's display name, where available.                                                                                                                                                                                                                                                                                                                                                        |
+| `Validator Address`          | <p>The validator the stake is delegated to. <br /><br />Amounts not attributed to a validator delegation, such as the wallet's undelegated balance, appear in separate rows with the value `native`.</p>                                                                                                                                                                                       |
+| `Token`                      | The token the amounts are denominated in (`LAMPORT` for Solana).                                                                                                                                                                                                                                                                                                                                      |
+| `Denomination`               | The denomination of the amounts (`lamport`; 1 SOL = 1,000,000,000 lamports).                                                                                                                                                                                                                                                                                                                          |
+| `Generated Rewards`          | <p>Staking rewards generated on that day, in lamports, rounded to the nearest 1,000 lamports. <br /><br />Solana credits staking rewards at epoch boundaries (roughly every two days), so days without an epoch boundary show `0`. MEV tips (such as Jito tips) are not included in this column, <a href="/staking/solana/solana-staking-reporting-api/get-solana-staking-rewards-json">use the JSON endpoint</a> to retrieve those.</p> |
+| `Fiat Price USD - Coingecko` | <p>The USD value of that day's Generated Rewards, calculated using the SOL price (sourced from Coingecko) at the time the report is generated. <br /><br />Shows `0` on days with no generated rewards.</p>                                                                                                                                                                                    |
+| `Claimable Rewards`          | Rewards claimable as of that day, in lamports.                                                                                                                                                                                                                                                                                                                                                        |
+| `Locked`                     | The amount actively staked (locked in stake) as of that day, in lamports.                                                                                                                                                                                                                                                                                                                             |
+
+Example:
+
+```csv
+Date,Delegator Address,Validator Name,Validator Address,Token,Denomination,Generated Rewards,Fiat Price USD - Coingecko,Claimable Rewards,Locked
+2025-06-13,BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF,(n/a),Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf,LAMPORT,lamport,35833000,2.64411707,0,100135833000
+2025-06-14,BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF,(n/a),Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf,LAMPORT,lamport,0,0,0,100174595000
+2025-06-15,BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF,(n/a),Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf,LAMPORT,lamport,35705000,2.63467195,0,100174595000
+2025-06-16,BjoYYxH6C85YhLm3YboRsb9NDs38YrygZbguir8orboF,(n/a),Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf,LAMPORT,lamport,0,0,0,100212751000
+```
+
+Rewards data updates daily, shortly after midnight UTC. We suggest calling the API around 4am UTC each day to get the latest data.

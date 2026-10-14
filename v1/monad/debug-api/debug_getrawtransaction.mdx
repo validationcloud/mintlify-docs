@@ -1,0 +1,46 @@
+---
+title: "debug_getRawTransaction"
+---
+
+Returns an array of EIP-2718 binary-encoded transactions.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`tx_hash` - String <span style={{color: "red"}}>Required</span>  - The transaction hash.
+
+## **Returns**
+
+`result` - An array of EIP-2718 binary-encoded transactions.
+
+```json wrap
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "0x02f8d682279f82038685012a05f200850ba43b7400830186a094e0fa8195ae92b9c473c0c0c12c2d6bcbd245de4780b86425c09963904b1f779bbeed102280d515ea7462b36ab01fbaa11a1ad0e28876837b2cf86800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002020108050603010307000001020000c001a0503803a7aa2ec2f67ac4256a7c693bbb18f677d2f5c10b8b0e4aabc6251b1c12a073ec04a9f5dec05157451d7cbb6fa492f13b33241faa4240363360832142ac84",
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_getRawTransaction","params":["0xd1aebfa7489a49ececaa115c3f437206da3788605e08c9b09b85e4dc7fd56712"],"id":1}'
+    
+```
+
+```bash title="testnet"
+curl https://testnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_getRawTransaction","params":["0xd1aebfa7489a49ececaa115c3f437206da3788605e08c9b09b85e4dc7fd56712"],"id":1}'
+    
+```
+
+</CodeGroup>

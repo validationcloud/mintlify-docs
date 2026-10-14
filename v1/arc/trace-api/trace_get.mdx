@@ -1,0 +1,84 @@
+---
+title: "trace_get"
+---
+
+Returns a single trace of a transaction, selected by its position in the transaction's trace tree.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`hash` - String - <span style={{color: "red"}}>Required</span> - The hash of a transaction
+
+`indices` - Array - <span style={{color: "red"}}>Required</span> - A single hexadecimal index into the flat list that `trace_transaction` returns for the same transaction. `["0x0"]` returns the top-level call (`traceAddress: []`), `["0x1"]` returns the next trace in that list, which is the first sub-call (`traceAddress: [0]`), and so on. Arc runs reth, which returns `null` for selectors with more than one element.
+
+## **Returns**
+
+`object` - The selected trace, which has the following fields (all return types are hexadecimal unless otherwise noted):
+
+* `action` - object - The ParityTrace action object containing call details
+  * `from` - string - The address of the sender
+  * `callType` - string - The type of method such as call, staticcall, delegatecall
+  * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+  * `input` - string - The input data sent along with the transaction
+  * `to` - string - The address of the receiver
+  * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+* `blockHash` - string - The hash of the block where this transaction was included
+* `blockNumber` - integer - The block number where this transaction was in
+* `result` - object - The result of the trace execution
+  * `gasUsed` - string - The amount of gas used by this specific trace
+  * `output` - string - The return value of the contract call, empty if no RETURN executed
+* `subtraces` - integer - The number of subtraces (internal calls) made by this trace
+* `traceAddress` - array - The list of addresses where the call executed, including parent addresses and call order
+* `transactionHash` - string - The hash of the transaction
+* `transactionPosition` - integer - The transaction index position within the block
+* `type` - string - The type of the trace, such as call or create
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "action": {
+      "from": "0x29c7dbf15e5d385f936076736a0005433efaabf6",
+      "callType": "call",
+      "gas": "0x50178",
+      "input": "0x095ea7b3000000000000000000000000af3e2d2ac9ff1c451c1d4bce1dd4b130ab4327dbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "to": "0xb329284a02508a4d09bedfdcedd4fc4ec55f3701",
+      "value": "0x0"
+    },
+    "blockHash": "0x99457683cc3daf91edd01d11af09f1392f8dda3967c597379ca0b5787b5a3434",
+    "blockNumber": 21150986,
+    "result": {
+      "gasUsed": "0x5efd",
+      "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    "subtraces": 0,
+    "traceAddress": [],
+    "transactionHash": "0xf89e2d15ad2932b3884f1564e478dbc9620f12b01542a594c026d946fba3984e",
+    "transactionPosition": 0,
+    "type": "call"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_get","params":["0xf89e2d15ad2932b3884f1564e478dbc9620f12b01542a594c026d946fba3984e",["0x0"]],"id":1}'
+```
+
+```bash title="testnet"
+curl https://testnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_get","params":["0xc2204a951f028f475aae6a3c26b0872b01c41ec6d3549187fd14ef4dc040b40a",["0x0"]],"id":1}'
+```
+
+</CodeGroup>

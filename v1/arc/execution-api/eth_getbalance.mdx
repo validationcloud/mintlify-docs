@@ -1,0 +1,47 @@
+---
+title: "eth_getBalance"
+---
+
+Returns the balance of the account of given address.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getbalance)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - address to check for balance.
+2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`INTEGER` - Hex value representing integer of the current balance in WEI.
+
+```bash
+// Result
+{
+  "id":83,
+  "jsonrpc": "2.0",
+  "result": "0x2abfcdcfa71e54e" 
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x95abDa53Bc5E9fBBDce34603614018d32CED219e", "latest"],"id":1}'
+```
+
+```bash title="testnet"
+curl https://testnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x95abDa53Bc5E9fBBDce34603614018d32CED219e", "latest"],"id":1}'
+```
+
+</CodeGroup>

@@ -1,0 +1,46 @@
+---
+title: "getFirstAvailableBlock"
+---
+
+Returns the slot of the lowest confirmed block that has not been purged from the ledger.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` An integer slot of the lowest confirmed block as u64 (64-bit unsigned integer) integer.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": 319916978,
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getFirstAvailableBlock"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getFirstAvailableBlock"}'
+    
+```
+
+</CodeGroup>

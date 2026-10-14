@@ -1,0 +1,19 @@
+---
+title: "Setting up a Wallet"
+description: "Initializing an ethers.js wallet constructed from a private Ethereum key."
+---
+
+The code snippet below returns an ethers wallet constructed from a private Ethereum key.&#x20;
+
+Note: For secure production environments, we recommend utilizing a secrets manager or vault to invoke the private key, instead of a plain-text environment variable.
+
+```javascript
+function getWallet() {
+  const privateKey = process.env.PRIVATE_KEY;
+  if (!privateKey) {
+    throw 'PRIVATE_KEY environment variable must be defined';
+  }
+
+  return new ethers.Wallet(privateKey);
+}
+```

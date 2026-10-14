@@ -1,0 +1,12 @@
+---
+title: "Submit a Transaction"
+openapi: "/v1/openapi/horizon-openapi-vc.json POST /transactions"
+---
+
+This endpoint actually submits a transaction to the Stellar network. It only takes a single, required parameter: the signed transaction. Refer to the Transactions page for details on how to craft a proper one. If you submit a transaction that has already been included in a ledger, this endpoint will return the same response as would’ve been returned for the original transaction submission. This allows for safe resubmission of transactions in error scenarios, as highlighted in the error-handling guide.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://developers.stellar.org/network/horizon/api-reference/resources/submit-a-transaction)

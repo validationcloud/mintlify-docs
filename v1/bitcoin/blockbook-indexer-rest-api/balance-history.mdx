@@ -1,0 +1,82 @@
+---
+title: "Balance history"
+---
+
+Returns a balance history for the specified XPUB or address.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#balance-history)
+
+```bash
+GET /api/v2/balancehistory/<XPUB | address>?from=<dateFrom>&to=<dateTo>[&fiatcurrency=<currency>&groupBy=<groupBySeconds>]
+```
+
+## **Parameters**
+
+Required parameters
+
+**`XPUB or address`**- string, required.&#x20;
+
+Example: `bc1q262qeyyhdakrje5qaux8m2a3r4z8sw8vu5mysh` (address)\
+\
+&#xNAN;**`dateFrom`**- Unix timestamp, required.&#x20;
+
+Example: `1704067200`
+
+**`dateTo`**- Unix timestamp, required.&#x20;
+
+Example: `1715160143`
+
+Optional parameters
+
+* _**`fiatcurrency`**_: if specified, the response will contain secondary (fiat) rate at the time of transaction. If not, all available currencies will be returned.
+* _**`groupBy`**_: an interval in seconds, to group results by. Default is 3600 seconds.&#x20;
+
+## Returns
+
+Example response (fiatcurrency=usd):
+
+```bash
+[
+	{
+		"time": 1708239600,
+		"txs": 9,
+		"received": "2970",
+		"sent": "0",
+		"sentToSelf": "0",
+		"rates": {
+			"usd": 51518.35
+		}
+	},
+	....
+	{
+		"time": 1715144400,
+		"txs": 1,
+		"received": "2310",
+		"sent": "0",
+		"sentToSelf": "0",
+		"rates": {
+			"usd": 62560.055
+		}
+	}
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/api/v2/balancehistory/bc1q262qeyyhdakrje5qaux8m2a3r4z8sw8vu5mysh?from=1704067200&to=1715160143&fiatcurrency=usd \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/api/v2/balancehistory/bc1q262qeyyhdakrje5qaux8m2a3r4z8sw8vu5mysh?from=1704067200&to=1715160143&fiatcurrency=usd \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

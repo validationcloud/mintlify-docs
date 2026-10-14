@@ -1,4 +1,3 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
 > For Mintlify product knowledge (components, configuration, writing standards),
 > install the Mintlify skill: `npx skills add https://mintlify.com/docs`
 
@@ -6,11 +5,26 @@
 
 ## About this project
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
+- This is the Validation Cloud documentation site, built on [Mintlify](https://mintlify.com) and served at `docs.validationcloud.io`
 - Pages are MDX files with YAML frontmatter
 - Configuration lives in `docs.json`
 - Run `mint dev` to preview locally
-- Run `mint broken-links` to check links
+- Run `mint validate` and `mint broken-links` before committing
+
+## Structure
+
+Each top-level folder is one navigation tab, and its path is part of the public URL:
+
+- `v1/`: Node API (`/v1/...`), one folder per chain, plus `about/`
+- `staking/`: Staking API (`/staking/...`)
+- `mavrik/`: Mavrik (`/mavrik/...`)
+- `agents/`: MCP server and CLI (`/agents/...`)
+- `snippets/`: shared reusable content
+- `<section>/assets/`: images, and `<section>/openapi/`: OpenAPI specs (JSON)
+
+Keep existing page paths stable: they match the former GitBook URLs. If you move a page, add a redirect in `docs.json`.
+
+The content was migrated from GitBook. See `migration/README.md`.
 
 ## Terminology
 

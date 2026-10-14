@@ -1,0 +1,75 @@
+---
+title: "Allow Lists for Node API Endpoints"
+description: "Allow Lists provide a way to restrict which IPs and/or domains can make requests to your Node API endpoints."
+---
+
+## What are Allow Lists?
+
+_Plan restrictions: Teams on Scale Plan and above_
+
+Every Node API endpoint key now has an **Allow Lists** tab. For those teams on qualifying plans, this lets you restrict which clients may use Node API endpoint keys in two ways:
+
+1. **Allowed IPs**, this is sometimes known as whitelisting IPs: only requests coming from these IPv4 addresses or CIDR ranges are served.
+2. **Allowed origins**: only requests from these web origins (protocol://hostname:port) are served. This is for browser apps that call the endpoint directly from the user's browser.
+
+Both lists are per endpoint key, not per team. The default behavior for new and existing Node API keys is no entries in either list, i.e. anyone who has the key can make requests using it.
+
+### **Where it is and who can use it**
+
+*   Node API: [app.validationcloud.io/node](https://app.validationcloud.io/node)
+
+    * Click on one of your endpoints or create a new one
+    * Then, click the **Allow Lists** tab, example screenshot below:
+
+    ![](/v1/assets/node-api-allow-list-example.png)
+* Plans: **Scale and Enterprise**. Free teams see the tab but with an "Unlock allow lists with Scale" overlay and an Upgrade button.
+* Roles: only **Team Admins** can add, remove or save entries. Team Members can view the saved lists but cannot edit them. If nothing is set, members see "None, open to all".
+* The Node API user interface is the only place to set Allow Lists for endpoints, this functionality is not currently in the Admin API.
+
+### How to create or edit Allow Lists for a Node API endpoint key
+
+1. Go to Node API and click on the endpoint you want to restrict.
+2. Select the **Allow Lists** tab (_Note you need to be a Team Admin in a Scale or Enterprise plan to modify Allow Lists as described below_)
+3.  Under **Allowed IPs**, click **Add IP address** and enter an IPv4 address or CIDR range. Repeat for each address. Example screenshot:
+
+    ![](/v1/assets/node-api-allow-list-ip-set-keys-redacted.png)
+4. Under **Allowed origins**, click **Add origin** and enter the full URL of the site that will call the endpoint from the browser.
+5. Click **Save**. Changes apply within a few minutes.
+6. To remove a restriction, click the X next to an entry. To reopen the key to all clients, remove all entries and click Save.
+
+Before you save an IP list, confirm the public IP your servers actually egress from (for example `curl` [`https://api.ipify.org`](https://api.ipify.org) from the server)
+
+### **How it works**
+
+**Formats**
+
+* IPs: IPv4 only, either a single address (203.0.113.24) or a CIDR block (198.51.100.0/24), wildcards are not accepted, IP ranges are the way to cover many addresses.
+* Origins: a full URL with a protocol and host, for example [https://app.example.com](https://app.example.com) or [https://staging.example.com:8545](https://staging.example.com:8545). The port matters if specified, for instance [https://example.com](https://example.com) and [https://example.com:8545](https://example.com:8545) are different origins.
+
+**Matching rules**
+
+* A request must pass **both lists if both are set**. The IP check runs first.
+* An empty list means "no restriction" for that list. Remove every row and Save to reopen a key.
+* The IP we check is the public IP the request arrives from. Customers behind NAT, a corporate proxy or a cloud NAT gateway need to allow their egress IP, not a machine's private address.
+* Applies to HTTPS and WebSocket endpoints alike. For WebSockets the check happens when the connection is opened.
+
+#### **When a request is blocked, what does it look like?**
+
+**IP Not Allowed**
+
+HTTP 403 with a small JSON body. This is not a JSON-RPC error object, so RPC libraries usually surface it as an HTTP error.
+
+```
+HTTP/1.1 403 Forbidden
+{"error":"ip address is not allowed"}
+```
+
+Screenshot example, curl request to an endpoint with IP restrictions, request from an IP not on that list:
+
+![](/v1/assets/node-api-endpoint-allow-list-fail-key-redacted.png)
+
+**Origin not allowed**
+
+Browser apps calling from a non-allowed origin will see a CORS failure in the console rather than the 403 body, because the preflight response carries no CORS headers for that origin.&#x20;
+
+Allowed origins get a proper Access-Control-Allow-Origin header back.

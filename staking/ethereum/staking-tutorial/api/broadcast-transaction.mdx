@@ -1,0 +1,26 @@
+---
+title: "Broadcast Transaction"
+---
+
+The code snippet below makes a request to broadcast the signed transaction. The signed transaction is sent to the Validation Cloud backend that will validate it and forward it to the Ethereum network.
+
+```javascript
+const STAKING_BROADCAST_TX_URL = `${STAKING_BASE_API_URL}/ethereum/mainnet/broadcast_transaction`;
+
+async function broadcastStakingTransaction(token, signedTx) {
+  const jsonBody = JSON.stringify({
+    signed_transaction: signedTx,
+  });
+
+  const response = await fetch(STAKING_BROADCAST_TX_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: jsonBody,
+  });
+
+  return await response.json();
+}
+```

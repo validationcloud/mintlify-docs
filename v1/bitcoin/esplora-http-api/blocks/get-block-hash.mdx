@@ -1,0 +1,55 @@
+---
+title: "GET /block/:hash"
+---
+
+Returns information about a block.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+**`block`**- block hash, required.&#x20;
+
+Example: `0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a`
+
+## Returns
+
+Returns information about the transaction.
+
+Available fields: `txid`, `version`, `locktime`, `size`, `weight`, `fee`, `vin`, `vout` and `status` (see [transaction format](https://github.com/Blockstream/esplora/blob/master/API.md#transaction-format) for details).
+
+The response from this endpoint can be cached indefinitely.
+
+```json
+{
+	"id": "0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a",
+	"height": 910150,
+	"version": 632029184,
+	"timestamp": 1755254187,
+	"tx_count": 2540,
+	"size": 1207691,
+	"weight": 2978336,
+	"merkle_root": "964ceb15c0fdfade2d831466c168b54af3e3098d77d3f52e5ebb9668a615438f",
+	"previousblockhash": "00000000000000000001919a930d370882a7712e0fb8cfb69bd4a9cc58077311",
+	"mediantime": 1755252751,
+	"nonce": 2647488069,
+	"bits": 386018483,
+	"difficulty": 129435235580344.81
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a \
+ -X GET
+```
+
+</CodeGroup>

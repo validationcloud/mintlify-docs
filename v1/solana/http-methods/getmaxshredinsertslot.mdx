@@ -1,0 +1,46 @@
+---
+title: "getMaxShredInsertSlot"
+---
+
+Get the max slot seen from after shred insert.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` The slot number encoded as u64, 64-bit unsigned integer.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": 320154221,
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getMaxShredInsertSlot"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getMaxShredInsertSlot"}'
+    
+```
+
+</CodeGroup>

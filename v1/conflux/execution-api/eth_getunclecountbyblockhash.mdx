@@ -1,0 +1,52 @@
+---
+title: "eth_getUncleCountByBlockHash"
+---
+
+Returns the number of uncles in a block from a block matching the given block hash.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+**Note**: There is no concept of uncle (aka ommer) blocks in Conflux. The `eth_getUncleCountByBlockHash` and `eth_getUncleCountByBlockNumber` methods return zero for valid block IDs and null for invalid block IDs.
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclecountbyblockhash)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - hash of a block
+
+```bash
+params: ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+```
+
+## Returns
+
+`QUANTITY` - integer of the number of uncles in this block.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "0x0", // 0
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getUncleCountByBlockHash","params":["0xf6e5d0e39d2c922c6772abba968eec0dbf2d82d7d26ec2342fb11fb7c5118548"],"id":1}'
+```
+
+```bash title="testnet"
+curl https://testnet.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getUncleCountByBlockHash","params":["0xb4e54eb9c573ebd122be4aa4625082c414d16355bab67647dd9668c9389fb527"],"id":1}'
+```
+
+</CodeGroup>

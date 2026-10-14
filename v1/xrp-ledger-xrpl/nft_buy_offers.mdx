@@ -1,0 +1,63 @@
+---
+title: "nft_buy_offers"
+---
+
+Returns a list of buy offers for a given NFToken object.
+
+This method will use `40` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/path-and-order-book-methods/nft_buy_offers)
+
+## **Parameters**
+
+* `nft_id` (string, required) The unique identifier of an NFToken object.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `limit` (integer, optional) Limit the number of NFT buy offers to retrieve. Cannot be lower than 50 or more than 500. The default is 250.
+* `marker` (marker, optional) Value from a previous paginated response. Resume retrieving data where that response left off.
+
+## Returns
+
+* `nft_id` (string) The NFToken these offers are for, as specified in the request.
+* `offers` (array) A list of buy offers for the token. Each has `amount` (drops of XRP as a string, or a token amount object), `flags`, `nft_offer_index`, `owner` and optionally `destination` and `expiration`.
+* `limit` (number, may be omitted) The `limit` from the request. Our endpoint did not return it in the example below.
+* `marker` (marker) Server-defined value indicating the response is paginated. Omitted when there are no more pages.
+* `validated` (boolean) If `true`, the information comes from a validated ledger version.
+
+```bash
+// Result
+{
+  "result": {
+    "nft_id": "0008170207397A8AA414511E6E0649C9980E185E1C19D74010CEAF0005E46EE3",
+    "validated": true,
+    "offers": [
+      {
+        "nft_offer_index": "1C5F10AC53860F6D2E4F325BD0F53B23E29398115B1F8136D6A1CC8367D764A7",
+        "flags": 0,
+        "owner": "rGNtXLja1ZJk2Kcum2wDdvaAk12pXHCcro",
+        "amount": "3350000",
+        "destination": "rpx9JThQ2y37FaGeeJP7PXDUVEXY3PHZSC",
+        "expiration": 844001353
+      }
+    ],
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"nft_buy_offers","params":[{"nft_id":"0008170207397A8AA414511E6E0649C9980E185E1C19D74010CEAF0005E46EE3","ledger_index":"validated","limit":50}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"nft_buy_offers","nft_id":"0008170207397A8AA414511E6E0649C9980E185E1C19D74010CEAF0005E46EE3","ledger_index":"validated","limit":50}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> If the token has no buy offers the response is an `objectNotFound` error (HTTP 200 with `"status": "error"`), not an empty list.

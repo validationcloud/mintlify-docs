@@ -1,0 +1,46 @@
+---
+title: "slotSubscribe"
+---
+
+(Subscription Websocket) Subscribe to receive notification anytime a slot is processed by the validator.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` The result will be an RpcResponse JSON object with id equal to the subscription id (needed to unsubscribe).
+
+`Notification Format:` The notification format is the same as seen in the getAccountInfo RPC HTTP method
+
+* `parent` The parent slot.
+* `root` The current root slot.
+* `slot` The newly set slot.
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": 0, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method": "slotSubscribe" }
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method": "slotSubscribe" }
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,41 @@
+---
+title: "debug_getBadBlocks"
+---
+
+Returns the most recent blocks the node received from the network that failed validation, with the reason each one was rejected. Returns an empty array when the node has not seen any bad blocks since it started.
+
+This method will use `80` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## **Returns**
+
+`array` - An array of bad block objects, each containing:
+
+* `hash` - string - The hash of the rejected block
+* `rlp` - string - The RLP-encoded block, as a hexadecimal string
+* `block` - object - The decoded block, with the same fields as [eth\_getBlockByHash](/v1/unichain/execution-api/eth_getblockbyhash)
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": []
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_getBadBlocks","params":[],"id":1}'
+```
+
+</CodeGroup>

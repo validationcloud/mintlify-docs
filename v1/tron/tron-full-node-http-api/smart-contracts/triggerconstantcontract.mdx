@@ -1,0 +1,99 @@
+---
+title: "TriggerConstantContract"
+---
+
+Invoke the readonly function (modified by the `view` or `pure` modifier) of a contract for contract data query; or Invoke the non-readonly function of a contract for predicting whether the transaction can be successfully executed and estimating the energy consumption; or estimate the energy consumption of contract deployment.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+**Note:**<br />
+
+* TriggerConstantContract operation will not generate an on-chain transaction, nor will it change the status of the current node.
+* For estimating energy
+  * To estimate the energy consumption of contract deployment just by passing the bytecode of contract through the `data` field
+  * To estimate energy consumption of Contract Calls by calling non-read-only methods of contracts
+* When using triggerconstantcontract to estimate energy consumption, the `energy_used` field in the returned value is the energy consumption. Therefore, the `fee_limit` of the transaction can be set to `energy_used x energy unit price`.
+* Parameter encoding and decoding example: [Parameter and return value encoding and decoding](https://developers.tron.network/docs/parameter-and-return-value-encoding-and-decoding)
+
+## **Parameters**
+
+* `owner_address` - String - Owner address that triggers the contract. If visible=true, use base58check format, otherwise use hex format. For constant call you can use the all-zero address.
+* `contract_address` - String - Smart contract address. If visible=true, use base58check format, otherwise use hex format
+* `function_selector` - String - Function call, must not be left blank
+* `parameter` - String - Parameter encoding needs to be in accordance with the ABI rules, the rules are more complicated, users can use the ethers library to encode,For details, please refer to the document-Guide-Smart Contract-Best Practice-Parameter Encoding and Decoding.
+* `data` - String - The data for interacting with smart contracts, including the contract function and parameters. You can choose to use this field, or you can choose to use function\_selector and parameter for contract interaction. When both of data and function\_selector exist, function\_selector is preferred
+* `call_value` - int64 - Amount of TRX transferred to the contract with this transaction, the unit is sun. This field may be used when estimating energy consumption
+* `call_token_value` - int64 - Amount of TRC10 token transferred with this transaction
+* `token_id` - int64 - TRC10 token id
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+| Field            | Type        | Description                                                                                                                        |
+| ---------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| result           | Return      | Run result, for detailed parameter definition, refer to [EstimateEnergy](https://developers.tron.network/reference/estimateenergy) |
+| energy\_used     | int64       | Estimated energy consumption, including the basic energy consumption and penalty energy consumption                                |
+| energy\_penalty  | int64       | The penalty energy consumption                                                                                                     |
+| constant\_result | string\[]   | Result list                                                                                                                        |
+| transaction      | Transaction | Transaction information, refer to [GetTransactionByID](https://developers.tron.network/reference/wallet-gettransactionbyid)        |
+
+```json
+// Result
+{
+  "result": {
+    "result": true
+  },
+  "energy_used": 541,
+  "constant_result": [
+    "00000000000000000000000000000000000000000000000000000001a2127a5b"
+  ],
+  "transaction": {
+    "ret": [
+      {}
+    ],
+    "visible": true,
+    "txID": "34c6bae6cc31b8e8d1ee72a73a35125e157907bf2a294f4159b0fd087e68a21d",
+    "raw_data": {
+      "contract": [
+        {
+          "parameter": {
+            "value": {
+              "data": "70a08231000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c",
+              "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+              "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs"
+            },
+            "type_url": "type.googleapis.com/protocol.TriggerSmartContract"
+          },
+          "type": "TriggerSmartContract"
+        }
+      ],
+      "ref_block_bytes": "538e",
+      "ref_block_hash": "9351f61b61513758",
+      "expiration": 1757411406000,
+      "timestamp": 1757411347066
+    },
+    "raw_data_hex": "0a02538e22089351f61b6151375840b0e187ef92335a8e01081f1289010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412540a1541fd49eda0f23ff7ec1d03b52c3a45991c24cd440e12154142a1e39aefa49290f2b3f9ed688d7cecf86cd6e0222470a08231000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c70fa9484ef9233"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/triggerconstantcontract \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+  "function_selector": "balanceOf(address)",
+  "parameter": "000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

@@ -1,0 +1,41 @@
+---
+title: "net_version"
+---
+
+Returns the current network id.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#net_version)
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`String` - The current network id.
+
+Hyperliquid Mainnet returns `999`. The full list of network IDs is available at [chainlist.org](https://chainlist.org/).
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"id": 0,
+	"result": "999"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":0}'
+```
+
+</CodeGroup>

@@ -1,0 +1,100 @@
+---
+title: "ListNodes"
+---
+
+Query the list of nodes connected to the API node.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## **Returns**
+
+nodes - Node list, each node information includes the following fields:
+
+| Field        | Type   | Description       |
+| ------------ | ------ | ----------------- |
+| address.host | string | node host address |
+| address.port | int    | node port         |
+
+```bash
+// Result
+{
+  "nodes": [
+    {
+      "address": {
+        "host": "31382e3134312e37342e313338",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "332e3132332e3136322e3531",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "31332e3231332e3130312e3437",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "35322e31312e34322e3439",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "35342e36392e3130352e323435",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "35342e3137392e3233332e3537",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "31382e3135362e3130342e3637",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "35342e3137392e3139392e313736",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "31382e3133392e3131362e313938",
+        "port": 16666
+      }
+    },
+    {
+      "address": {
+        "host": "35342e3235352e3132382e3831",
+        "port": 16666
+      }
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/listnodes \
+    -X GET \
+    -H "Content-Type: application/json"
+```
+
+</CodeGroup>

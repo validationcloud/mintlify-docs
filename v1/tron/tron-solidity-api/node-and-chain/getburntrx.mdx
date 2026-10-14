@@ -1,0 +1,39 @@
+---
+title: "GetBurnTRX"
+---
+
+Query the amount of TRX burned due to on-chain transaction fees since [No. 54 Committee Proposal ](https://tronscan.org/#/proposal/54)took effect (Confirmed state).
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+Before the [No. 54 Committee Proposal](https://tronscan.org/#/proposal/54) takes effect, the destruction of transaction fees is completed by transferring to the black hole address `TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy`, After the No. 54 committee proposal takes effect, it will no longer be transferred to the black hole address, but will be directly recorded in the node database.&#x20;
+
+Users can query the amount of TRX burned due to on-chain transaction fees after the proposal takes effect through this interface. The approximate amount of TRX that was destroyed before the proposal takes effect can be obtained through `Balance of Black Hole Address - Initial Value of Black Hole Address Balance`.
+
+Note: The initial value of the blackhole address balance can be obtained in the [node configuration file](https://github.com/tronprotocol/tron-deployment/blob/master/main_net_config.conf).
+
+## **Parameters**
+
+* `None`
+
+## **Returns**
+
+`burnTrxAmount` - int64 : Amount of TRX burned, in sun.
+
+```json
+// Result
+{
+  "burnTrxAmount": 117891750260680
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getburntrx \
+    -X GET
+```
+
+</CodeGroup>

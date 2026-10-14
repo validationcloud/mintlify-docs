@@ -1,0 +1,79 @@
+---
+title: "getSupply"
+---
+
+Returns information about the current supply.
+
+This method will use `160` [Compute Units](/v1/about/billing).
+
+***
+
+<Warning>
+
+`getSupply` for Solana is limited to 1 request per second. If you have higher rate limit needs, [contact us](https://www.validationcloud.io/contact).
+
+</Warning>
+
+## **Parameters**
+
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string. The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string. The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string. The node will query its most recent block. Note that the block may not be complete.
+
+## Returns
+
+`result` An object with the following fields:
+
+* `context` The information about the current state of the program.
+  * `apiVersion` The version of the Solana RPC API to use.
+  * `slot` An integer representing the slot for which to retrieve the fee calculator.
+* `value` A JSON object with the following fields:
+  * `circulating` The total circulating supply of SOL tokens, encoded as u64 integer.
+  * `nonCirculating` The total non-circulating supply of SOL tokens, encoded as u64 integer.
+  * `nonCirculatingAccounts` An array containing the public keys (addresses) of accounts holding non-circulating tokens.
+  * `total` The total amount of SOL tokens.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "context": {
+      "slot": 1114
+    },
+    "value": {
+      "circulating": 16000,
+      "nonCirculating": 1000000,
+      "nonCirculatingAccounts": [
+        "FEy8pTbP5fEoqMV1GdTz83byuA8EKByqYat1PKDgVAq5",
+        "9huDUZfxoJ7wGMTffUE7vh1xePqef7gyrLJu9NApncqA",
+        "3mi1GmwEE3zo2jmfDuzvjSX9ovRXsDUKHvsntpkhuLJ9",
+        "BYxEJTDerkaRWBem3XgnVcdhppktBXa2HbkHPKj2Ui4Z"
+      ],
+      "total": 1016000
+    }
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getSupply"}'
+    
+```
+
+```bash title="devnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getSupply"}'
+```
+
+</CodeGroup>

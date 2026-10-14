@@ -1,0 +1,39 @@
+---
+title: "eth_blockNumber"
+---
+
+Returns the number of most recent block.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_blocknumber)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`QUANTITY` - hexadecimal value of the current block number the client is on
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "result": "0x3a6434d"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>

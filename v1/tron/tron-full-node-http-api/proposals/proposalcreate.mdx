@@ -1,0 +1,87 @@
+---
+title: "ProposalCreate"
+---
+
+Creates a proposal transaction.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Address of the transaction creator
+* `parameters` - json - Proposal parameters
+* `permission_id` - int32 - Optional, for multi-signature use
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `ProposalCreateContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field          | Type               | Description                                         |
+| -------------- | ------------------ | --------------------------------------------------- |
+| owner\_address | string             | Account address                                     |
+| parameters     | map&lt;int64, int64> | Parameters proposed to be modified and their values |
+
+```json
+// Result
+{
+  "visible": true,
+  "txID": "fcf7ee9bde5cc3737bb0859a750156489e414d0c29e8a6c50c69e665a74f6485",
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "owner_address": "TCuM8e98jmPwT1RU2jW7dekUC5HpXbGzFG",
+            "parameters": [
+              {
+                "value": 100000,
+                "key": 0
+              },
+              {
+                "value": 2,
+                "key": 1
+              }
+            ]
+          },
+          "type_url": "type.googleapis.com/protocol.ProposalCreateContract"
+        },
+        "type": "ProposalCreateContract"
+      }
+    ],
+    "ref_block_bytes": "5977",
+    "ref_block_hash": "e3fe64fbe83f91da",
+    "expiration": 1757415987000,
+    "timestamp": 1757415929495
+  },
+  "raw_data_hex": "0a0259772208e3fe64fbe83f91da40b8ae9ff192335a600810125c0a33747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e50726f706f73616c437265617465436f6e747261637412250a1541202d802d6f3db2ce59c632c13abe1b78a91528b71206080010a08d061204080110027097ed9bf19233"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/proposalcreate \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TCuM8e98jmPwT1RU2jW7dekUC5HpXbGzFG",
+  "parameters": [
+    {
+      "key": 0,
+      "value": 100000
+    },
+    {
+      "key": 1,
+      "value": 2
+    }
+  ],
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

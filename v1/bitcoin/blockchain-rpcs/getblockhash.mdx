@@ -1,0 +1,51 @@
+---
+title: "getblockhash"
+---
+
+Returns hash of block in best-block-chain at height provided.
+
+This method will use `10` [Compute Units](/v1/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://developer.bitcoin.org/reference/rpc/getblockhash.html)
+
+## **Parameters**
+
+**`height`** - numeric, required
+
+The height index
+
+## Returns
+
+| Name | Type   | Description    |
+| ---- | ------ | -------------- |
+| hex  | string | The block hash |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getblockhash",
+	"params": [1000]
+}'
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getblockhash",
+	"params": [1000]
+}'
+```
+
+</CodeGroup>

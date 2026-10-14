@@ -1,0 +1,42 @@
+---
+title: "programUnsubscribe"
+---
+
+(Subscription Websocket) Unsubscribe from program-owned account change notifications.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+`number` The account id for subscription to cancel.
+
+## Returns
+
+`result` boolean. The result will be an RpcResponse JSON object with unsubscribed success message.
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": true, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method": "programUnsubscribe", "params": [0]}
+
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method": "programUnsubscribe", "params": [0]}
+
+    
+```
+
+</CodeGroup>

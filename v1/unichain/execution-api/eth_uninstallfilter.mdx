@@ -1,0 +1,45 @@
+---
+title: "eth_uninstallFilter"
+---
+
+Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally Filters timeout when they aren't requested with [eth\_getFilterChanges](/v1/unichain/execution-api/eth_getfilterchanges) for a period of time.
+
+This method will use `20` [Compute Units](/v1/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_uninstallfilter)
+
+## **Parameters**
+
+1. `QUANTITY` - The filter id.
+
+```bash
+params: [
+  "0x8f6007f781b8d8e9d7789abe18967790"
+]
+```
+
+## Returns
+
+`Boolean` - `true` if the filter was successfully uninstalled, otherwise `false`.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 73,
+  "result": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_uninstallFilter","params":["0x8f6007f781b8d8e9d7789abe18967790"],"id":73}'
+```
+
+</CodeGroup>

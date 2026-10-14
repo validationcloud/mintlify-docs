@@ -1,0 +1,46 @@
+---
+title: "getGenesisHash"
+---
+
+Returns the genesis hash.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` The hash encoded as base-58 string.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getGenesisHash"}'
+    
+```
+
+```bash title="devnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getGenesisHash"}'
+    
+```
+
+</CodeGroup>

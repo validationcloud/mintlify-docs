@@ -1,0 +1,87 @@
+---
+title: "getFeeForMessage"
+---
+
+Returns epoch schedule information from this cluster's genesis config.
+
+This method will use `30` [Compute Units](/v1/about/billing).
+
+***
+
+## **Parameters**
+
+* `message` string _<span style={{color: "red"}}>Required</span>._ The transaction message encoded as base64.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string.&#x20;
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string.
+      * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string.
+      * The node will query its most recent block. Note that the block may not be complete.
+  * `maxSupportedTransactionVersion` number
+    * The maximum supported transaction version to return in responses. If the requested block contains a transaction with a higher version, an error will be returned. If this parameter is omitted, only legacy transactions will be returned, and a block containing any versioned transaction will prompt an error.
+
+## Returns
+
+`result` Null if the transaction message is not found otherwise RpcResponse JSON object with the following fields:
+
+* `context` The information about the current state of the program.
+  * `apiVersion` The version of the Solana RPC API to use.
+  * `slot` An integer representing the slot for which to retrieve the fee calculator.
+* `value` (u64 | null). The fee corresponding to the message at the specified blockhash.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"context": {
+			"apiVersion": "2.1.11",
+			"slot": 320142245
+		},
+		"value": null
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "id":1,
+      "jsonrpc":"2.0",
+      "method":"getFeeForMessage",
+      "params":[
+        "AQABAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQAA",
+        {
+          "commitment":"processed"
+        }
+      ]
+    }'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "id":1,
+      "jsonrpc":"2.0",
+      "method":"getFeeForMessage",
+      "params":[
+        "AQABAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQAA",
+        {
+          "commitment":"processed"
+        }
+      ]
+    }'
+    
+```
+
+</CodeGroup>
