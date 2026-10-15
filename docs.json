@@ -479,6 +479,7 @@
         "groups": [
           {
             "group": "About",
+            "icon": "circle-info",
             "pages": [
               "nodeapi/index",
               "nodeapi/about/billing",
@@ -516,6 +517,7 @@
           },
           {
             "group": "Aptos",
+            "icon": "/nodeapi/assets/chains/aptos.svg",
             "pages": [
               "nodeapi/aptos/overview",
               {
@@ -592,6 +594,7 @@
           },
           {
             "group": "Arbitrum",
+            "icon": "/nodeapi/assets/chains/arbitrum.svg",
             "pages": [
               "nodeapi/arbitrum/overview",
               {
@@ -653,6 +656,7 @@
           },
           {
             "group": "Arc",
+            "icon": "/nodeapi/assets/chains/arc.svg",
             "pages": [
               "nodeapi/arc/overview",
               {
@@ -731,6 +735,7 @@
           },
           {
             "group": "Avalanche",
+            "icon": "/nodeapi/assets/chains/avalanche.svg",
             "pages": [
               "nodeapi/avalanche/overview",
               {
@@ -815,6 +820,7 @@
           },
           {
             "group": "Base",
+            "icon": "/nodeapi/assets/chains/base.svg",
             "pages": [
               "nodeapi/base/overview",
               {
@@ -893,6 +899,7 @@
           },
           {
             "group": "Berachain",
+            "icon": "/nodeapi/assets/chains/berachain.svg",
             "pages": [
               "nodeapi/berachain/overview",
               {
@@ -957,6 +964,7 @@
           },
           {
             "group": "BNB Smart Chain",
+            "icon": "/nodeapi/assets/chains/bsc.svg",
             "pages": [
               "nodeapi/bsc/overview",
               {
@@ -1018,6 +1026,7 @@
           },
           {
             "group": "Bitcoin",
+            "icon": "/nodeapi/assets/chains/bitcoin.svg",
             "pages": [
               "nodeapi/bitcoin/overview",
               {
@@ -1163,6 +1172,7 @@
           },
           {
             "group": "Conflux",
+            "icon": "/nodeapi/assets/chains/conflux.svg",
             "pages": [
               "nodeapi/conflux/overview",
               {
@@ -1218,6 +1228,7 @@
           },
           {
             "group": "Ethereum",
+            "icon": "/nodeapi/assets/chains/ethereum.svg",
             "pages": [
               "nodeapi/ethereum/overview",
               {
@@ -1320,6 +1331,7 @@
           },
           {
             "group": "Hedera",
+            "icon": "/nodeapi/assets/chains/hedera.svg",
             "pages": [
               "nodeapi/hedera/overview",
               {
@@ -1473,6 +1485,7 @@
           },
           {
             "group": "Hyperliquid",
+            "icon": "/nodeapi/assets/chains/hyperliquid.svg",
             "pages": [
               "nodeapi/hyperliquid/overview",
               {
@@ -1562,6 +1575,7 @@
           },
           {
             "group": "ICP",
+            "icon": "/nodeapi/assets/chains/icp.svg",
             "pages": [
               "nodeapi/icp/overview",
               {
@@ -1678,6 +1692,7 @@
           },
           {
             "group": "Mezo",
+            "icon": "/nodeapi/assets/chains/mezo.svg",
             "pages": [
               "nodeapi/mezo/overview",
               {
@@ -1743,6 +1758,7 @@
           },
           {
             "group": "Monad",
+            "icon": "/nodeapi/assets/chains/monad.svg",
             "pages": [
               "nodeapi/monad/overview",
               {
@@ -1797,6 +1813,7 @@
           },
           {
             "group": "opBNB",
+            "icon": "/nodeapi/assets/chains/opbnb.svg",
             "pages": [
               "nodeapi/opbnb/overview",
               {
@@ -1858,6 +1875,7 @@
           },
           {
             "group": "OPTIMISM",
+            "icon": "/nodeapi/assets/chains/optimism.svg",
             "pages": [
               "nodeapi/optimism/overview",
               {
@@ -1909,6 +1927,7 @@
           },
           {
             "group": "Polygon",
+            "icon": "/nodeapi/assets/chains/polygon.svg",
             "pages": [
               "nodeapi/polygon/overview",
               {
@@ -1971,6 +1990,7 @@
           },
           {
             "group": "Robinhood Chain",
+            "icon": "/nodeapi/assets/chains/robinhood-chain.svg",
             "pages": [
               "nodeapi/robinhood-chain/overview",
               {
@@ -2020,6 +2040,7 @@
           },
           {
             "group": "Rayls",
+            "icon": "/nodeapi/assets/chains/rayls.svg",
             "pages": [
               "nodeapi/rayls/overview",
               {
@@ -2093,6 +2114,7 @@
           },
           {
             "group": "Solana",
+            "icon": "/nodeapi/assets/chains/solana.svg",
             "pages": [
               "nodeapi/solana/overview",
               {
@@ -2187,6 +2209,7 @@
           },
           {
             "group": "Somnia",
+            "icon": "/nodeapi/assets/chains/somnia.svg",
             "pages": [
               "nodeapi/somnia/overview",
               {
@@ -2235,6 +2258,7 @@
           },
           {
             "group": "Stellar",
+            "icon": "/nodeapi/assets/chains/stellar.svg",
             "pages": [
               "nodeapi/stellar/overview",
               {
@@ -2399,6 +2423,7 @@
           },
           {
             "group": "Tempo",
+            "icon": "/nodeapi/assets/chains/tempo.svg",
             "pages": [
               "nodeapi/tempo/overview",
               {
@@ -2474,6 +2499,7 @@
           },
           {
             "group": "Tron",
+            "icon": "/nodeapi/assets/chains/tron.svg",
             "pages": [
               "nodeapi/tron/overview",
               {
@@ -2759,6 +2785,7 @@
           },
           {
             "group": "Unichain",
+            "icon": "/nodeapi/assets/chains/unichain.svg",
             "pages": [
               "nodeapi/unichain/overview",
               {
@@ -2830,6 +2857,7 @@
           },
           {
             "group": "Wemix",
+            "icon": "/nodeapi/assets/chains/wemix.svg",
             "pages": [
               "nodeapi/wemix/overview",
               {
@@ -2891,6 +2919,7 @@
           },
           {
             "group": "XRP Ledger (XRPL)",
+            "icon": "/nodeapi/assets/chains/xrp-ledger-xrpl.svg",
             "pages": [
               "nodeapi/xrp-ledger-xrpl/overview",
               {

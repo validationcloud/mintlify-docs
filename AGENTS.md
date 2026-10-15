@@ -26,6 +26,22 @@ Keep existing page paths stable. If you move a page, add a redirect in `docs.jso
 
 The content was migrated from GitBook. See `migration/README.md`.
 
+## Chain logos
+
+Chain logos come from the `fractal-ui` sprite (`~/git/frontend/packages/fractal-ui/src/assets/sprite.svg`). They appear in 3 places:
+
+- **Sidebar:** the `icon` on each chain group in `docs.json`.
+- **Node API home:** the "Supported chains" card grid in `nodeapi/index.mdx`.
+- **Each chain's overview:** a `<span className="chain-logo-<folder>" />` marker at the top of the page. It puts the logo before the page title through the generated `chain-logos.css`.
+
+To add a chain:
+
+1. Add its folder and sprite ID to `LOGOS` in `scripts/export-chain-logos.py`.
+2. Run `python3 scripts/export-chain-logos.py`.
+3. Add the icon, card and marker in the 3 places above.
+
+Do not edit `chain-logos.css` by hand.
+
 ## Terminology
 
 {/* Add product-specific terms and preferred usage */}

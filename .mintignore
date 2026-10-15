@@ -8,3 +8,6 @@ drafts/
 
 # GitBook migration tooling
 migration/
+
+# Repo tooling
+scripts/
