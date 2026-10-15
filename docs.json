@@ -3,9 +3,22 @@
   "theme": "sequoia",
   "name": "Validation Cloud",
   "colors": {
-    "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "primary": "#D63D57",
+    "light": "#DF687D",
+    "dark": "#D63D57"
+  },
+  "background": {
+    "color": {
+      "dark": "#1A1D1F"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter"
+    },
+    "body": {
+      "family": "Poppins"
+    }
   },
   "favicon": "/favicon.ico",
   "logo": {
