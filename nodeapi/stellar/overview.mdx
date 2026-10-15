@@ -36,7 +36,7 @@ Stellar RPC v2 is compatible with existing Stellar RPC clients. No method, param
 
 Stellar RPC v2 is in beta. The Stellar Development Foundation's full list of changes is [here](https://github.com/stellar/stellar-rpc/blob/archive-node-beta/docs/API-CHANGES-BETA.md).
 
-#### Stellar SSE Streaming
+### Stellar SSE Streaming
 
 We recently introduced an updated Compute Unit (CU) model for **Server-Sent Events (SSE)** streaming on Stellar Horizon API endpoints. SSE allows developers to receive real-time updates without the need for continuous polling.
 
@@ -65,7 +65,7 @@ Total CUs = (cu_amount × requests) + ((response_size_bytes / 1024) × cu_per_kb
 * **SSE endpoints:** Base request cost plus variable cost based on streamed data volume
 
 ## Compute Units
-#### SSE Streaming Endpoints
+### SSE Streaming Endpoints
 
 Certain Stellar Horizon endpoints support **Server-Sent Events (SSE)**, allowing clients to receive real-time updates instead of polling.
 
