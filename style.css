@@ -1,0 +1,8 @@
+/* GitBook page covers: full-width banner, same 1990x480 frame GitBook used */
+.page-cover {
+  width: 100%;
+  aspect-ratio: 1990 / 480;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin: 0 0 1.5rem;
+}
