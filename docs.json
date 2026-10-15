@@ -1908,7 +1908,7 @@
             ]
           },
           {
-            "group": "OPTIMISM",
+            "group": "Optimism",
             "icon": "/nodeapi/assets/chains/optimism.svg",
             "pages": [
               "nodeapi/optimism/overview",
