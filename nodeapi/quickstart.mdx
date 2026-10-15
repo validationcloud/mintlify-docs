@@ -1,0 +1,56 @@
+---
+title: "Quickstart"
+description: "Create a Node API endpoint and send your first request in a few minutes."
+---
+
+<Steps>
+  <Step title="Create an account">
+    Sign up at [app.validationcloud.io](https://app.validationcloud.io). The Free plan includes 50 million compute units (CU) per month, and no credit card is required. See [Plans and billing](/nodeapi/about/billing) for what happens after that.
+  </Step>
+
+  <Step title="Create an endpoint">
+    In the [Node API dashboard](https://app.validationcloud.io/node), create a new endpoint:
+
+    1. Select a blockchain.
+    2. Select a network.
+    3. Optionally, name your endpoint.
+
+    Your endpoint gets an HTTPS URL and a WSS URL. Both contain your API key, so treat them as secrets.
+  </Step>
+
+  <Step title="Send your first request">
+    Replace `<YOUR_API_KEY_HERE>` with your API key and run this request against Ethereum Mainnet:
+
+    ```bash
+    curl https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+    ```
+
+    The response contains the latest block number in hexadecimal:
+
+    ```json
+    {"jsonrpc":"2.0","id":1,"result":"0x16b5a3e"}
+    ```
+
+    For other chains, use the URL from your endpoint and the methods listed in that chain's section.
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Supported chains and networks" icon="network-wired" href="/nodeapi/about/supported-chains">
+    Every chain and network, with archive and history coverage.
+  </Card>
+  <Card title="Compute units" icon="gauge" href="/nodeapi/about/billing">
+    How usage is billed. Each chain's overview lists the CU cost of every method.
+  </Card>
+  <Card title="Allow lists" icon="shield-halved" href="/nodeapi/about/security/allow-lists-for-node-api-endpoints">
+    Restrict an endpoint to specific IP addresses or web origins.
+  </Card>
+  <Card title="Admin API" icon="code" href="/nodeapi/about/admin-api-keys">
+    Create endpoints and read usage from your own code.
+  </Card>
+</CardGroup>

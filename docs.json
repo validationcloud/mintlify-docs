@@ -464,6 +464,10 @@
       "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/vault_info"
     },
     {
+      "source": "/nodeapi/about/security",
+      "destination": "/nodeapi/about/security/allow-lists-for-node-api-endpoints"
+    },
+    {
       "source": "/v1",
       "destination": "/nodeapi"
     },
@@ -481,36 +485,46 @@
             "group": "Node API",
             "pages": [
               "nodeapi/index",
+              "nodeapi/quickstart",
+              "nodeapi/about/supported-chains"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
               "nodeapi/about/billing",
-              "nodeapi/about/supported-chains",
               "nodeapi/about/team-accounts",
-              "nodeapi/about/logs",
-              {
-                "group": "Security",
-                "root": "nodeapi/about/security/index",
-                "pages": [
-                  "nodeapi/about/security/allow-lists-for-node-api-endpoints",
-                  "nodeapi/about/security/two-factor-authentication-2fa-for-sign-in"
-                ]
-              },
+              "nodeapi/about/security/two-factor-authentication-2fa-for-sign-in"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "nodeapi/about/security/allow-lists-for-node-api-endpoints",
+              "nodeapi/about/logs"
+            ]
+          },
+          {
+            "group": "Admin API",
+            "pages": [
+              "nodeapi/about/admin-api-keys/index",
+              "nodeapi/about/admin-api-keys/account",
+              "nodeapi/about/admin-api-keys/chains",
+              "nodeapi/about/admin-api-keys/compute-unit-costs",
+              "nodeapi/about/admin-api-keys/endpoints",
+              "nodeapi/about/admin-api-keys/create-endpoint",
+              "nodeapi/about/admin-api-keys/get-endpoint",
+              "nodeapi/about/admin-api-keys/delete-endpoint",
+              "nodeapi/about/admin-api-keys/usage",
+              "nodeapi/about/admin-api-keys/endpoint-usage",
+              "nodeapi/about/admin-api-keys/health"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
               "nodeapi/about/development-centre-or-support-faqs",
               "nodeapi/about/faucets",
-              {
-                "group": "Admin API Keys",
-                "root": "nodeapi/about/admin-api-keys/index",
-                "pages": [
-                  "nodeapi/about/admin-api-keys/account",
-                  "nodeapi/about/admin-api-keys/chains",
-                  "nodeapi/about/admin-api-keys/compute-unit-costs",
-                  "nodeapi/about/admin-api-keys/endpoints",
-                  "nodeapi/about/admin-api-keys/create-endpoint",
-                  "nodeapi/about/admin-api-keys/get-endpoint",
-                  "nodeapi/about/admin-api-keys/delete-endpoint",
-                  "nodeapi/about/admin-api-keys/usage",
-                  "nodeapi/about/admin-api-keys/endpoint-usage",
-                  "nodeapi/about/admin-api-keys/health"
-                ]
-              },
               "nodeapi/about/changelog"
             ]
           },
