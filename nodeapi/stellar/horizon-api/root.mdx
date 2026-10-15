@@ -1,0 +1,73 @@
+---
+title: "Root"
+---
+
+Returns the Horizon root document: the Horizon and stellar-core versions, the ledger range the node currently serves, the network passphrase, and `_links` to every Horizon resource. HAL clients and indexers read this first and follow the links.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://developers.stellar.org/docs/data/apis/horizon/api-reference/structure/response-format)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+The response lists 23 links under `_links`, one for each Horizon resource. Every `href` already contains your API key, so nothing needs to be appended to it.
+
+Links marked `templated: true` hold variables in braces, such as `{account_id}` or `{sequence}`. Substitute those before requesting the link. Links without that marker can be requested exactly as returned.
+
+The example below is abbreviated to 4 of the 23 links, and `<YOUR_API_KEY_HERE>` stands in for your own key.
+
+```json
+{
+  "_links": {
+    "account": {
+      "href": "https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/accounts/{account_id}",
+      "templated": true
+    },
+    "fee_stats": {
+      "href": "https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/fee_stats"
+    },
+    "ledgers": {
+      "href": "https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ledgers{?cursor,limit,order}",
+      "templated": true
+    },
+    "self": {
+      "href": "https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/"
+    }
+  },
+  "horizon_version": "28.0.1-a70eb47f76985d372de3e59f4d75c7f8542752f7",
+  "core_version": "stellar-core 28.0.1 (947aad8413c189d85504acf72207e85eeda9b021)",
+  "ingest_latest_ledger": 64377921,
+  "history_latest_ledger": 64377921,
+  "history_latest_ledger_closed_at": "2026-09-11T12:04:41Z",
+  "history_elder_ledger": 62822161,
+  "core_latest_ledger": 64377921,
+  "network_passphrase": "Public Global Stellar Network ; September 2015",
+  "current_protocol_version": 27,
+  "supported_protocol_version": 28,
+  "core_supported_protocol_version": 28
+}
+```
+
+`history_elder_ledger` is the oldest ledger the endpoint can serve. Use it to check the history depth available on Pubnet, Testnet and Pubnet Archive.
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/
+```
+
+```bash title="testnet"
+curl https://testnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/
+```
+
+```bash title="archive"
+curl https://archive.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/
+```
+
+</CodeGroup>

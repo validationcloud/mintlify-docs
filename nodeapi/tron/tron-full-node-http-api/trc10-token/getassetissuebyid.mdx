@@ -1,0 +1,54 @@
+---
+title: "GetAssetIssueById"
+---
+
+Query a token by token id. Returns the token object, which contains the token name.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+#### Duplicated TRC10 Token Names
+
+TRC10 allows for duplicate token names. Thus TRC10 tokens are identifiable by a unique Token ID. Input the Token ID into this API to return the Token object containing the Token Name.
+
+</Info>
+
+## **Parameters**
+
+* `value` - int32 - The ID of the TRC10 token.
+
+## **Returns**
+
+`AssetIssueCapsule` : Token found with the provided ID, please refer to [GetAssetIssueByAccount](/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyaccount) for detailed fields.
+
+```bash
+// Result
+{
+  "owner_address": "412e1934759faf93497d6742208e2e521f7043e2ff",
+  "name": "62747474657374",
+  "abbr": "62747474657374",
+  "total_supply": 1000000000000000,
+  "trx_num": 1000000,
+  "precision": 6,
+  "num": 1000000,
+  "start_time": 1575648000000,
+  "end_time": 1575734400000,
+  "description": "62747474657374",
+  "url": "68747470733a2f2f62746673736f7465722e726561646d652e696f2f646f63732f686f772d746f2d6765742d737461727465642d776974682d736f746572",
+  "id": "1000001"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getassetissuebyid \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"value":1000001}'
+```
+
+</CodeGroup>

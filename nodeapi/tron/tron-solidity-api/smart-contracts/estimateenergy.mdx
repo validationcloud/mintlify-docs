@@ -1,0 +1,63 @@
+---
+title: "EstimateEnergy"
+---
+
+Estimate the energy required for the successful execution of smart contract transactions (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+**Note:**
+
+* The `wallet/triggerconstantcontract` API can be used to estimate the energy consumption value of calling most smart contracts on the chain, such as USDD, USDT, USDC, TUSD, etc.&#x20;
+* `estimateenergy` will not generate an on-chain transaction, nor will it change the status of the current node.
+* The `energy_required` field in the returned value is the energy estimated amount. Therefore, the `fee_limit` of the transaction can be set to `energy_required x energy unit price`.
+* Parameter encoding and decoding example: [Parameter and return value encoding and decoding](https://developers.tron.network/docs/parameter-and-return-value-encoding-and-decoding)
+
+## **Parameters**
+
+* `owner_address` - String - Owner address that triggers the contract. If visible=true, use base58check format, otherwise use hex format. For constant call you can use the all-zero address
+* `contract_address` - String - Smart contract address. If visible=true, use base58check format, otherwise use hex format
+* `function_selector` - String - Function call, must not be left blank
+* `parameter` - String - Parameter encoding needs to be in accordance with the ABI rules, the rules are more complicated, users can use the ethers library to encode. For details, please refer to the document-Guide-Smart Contract-Best Practice-Parameter Encoding and Decoding.
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+| Field            | Type                 | Description                          |
+| ---------------- | -------------------- | ------------------------------------ |
+| result           | Return               | Run result                           |
+| result.result    | bool                 | Is the estimate successful           |
+| result.code      | response\_code(enum) | response code, an enum type          |
+| result.message   | string               | Result message                       |
+| energy\_required | int64                | Estimated energy to run the contract |
+
+```json
+// Result
+{
+  "result": {
+    "result": true
+  },
+  "energy_required": 1082
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/estimateenergy \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+  "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+  "function_selector": "balanceOf(address)",
+  "parameter": "000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

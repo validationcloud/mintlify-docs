@@ -1,0 +1,32 @@
+---
+title: "verifymessage"
+---
+
+Verify a signed message
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://developer.bitcoin.org/reference/rpc/verifymessage.html)
+
+## **Parameters**
+
+`address` - string, required
+
+The bitcoin address to use for the signature.
+
+\
+&#xNAN;**`signature`** - string, required
+
+The signature provided by the signer in base 64 encoding (see signmessage).
+
+**`message`** - string, required
+
+The message that was signed.
+
+## Returns
+
+| Name          | Type    | Description                          |
+| ------------- | ------- | ------------------------------------ |
+| true \| false | boolean | If the signature is verified or not. |

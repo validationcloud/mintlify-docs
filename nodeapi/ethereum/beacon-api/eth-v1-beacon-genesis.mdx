@@ -1,0 +1,21 @@
+---
+title: "/eth/v1/beacon/genesis"
+description: "Retrieve details of the chain's genesis."
+openapi: "/nodeapi/openapi/beacon-node-oapi-v2.json GET /eth/v1/beacon/genesis"
+---
+
+<CodeGroup>
+
+```bash title="Mainnet"
+curl -X GET \
+    "https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/genesis" \
+    -H "Content-Type: application/json" 
+```
+
+```bash title="Testnet"
+curl -X GET \
+    "https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/genesis" \
+    -H "Content-Type: application/json" 
+```
+
+</CodeGroup>

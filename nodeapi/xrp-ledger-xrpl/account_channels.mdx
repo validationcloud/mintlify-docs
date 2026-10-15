@@ -1,0 +1,59 @@
+---
+title: "account_channels"
+---
+
+Returns information about an account's Payment Channels. This includes only channels where the specified account is the channel's source (owner), not the destination. All information retrieved is relative to a particular version of the ledger.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/account-methods/account_channels)
+
+## **Parameters**
+
+* `account` (string, required) Look up channels where this account is the channel's owner/source.
+* `destination_account` (string, optional) A second account; if provided, filter results to payment channels whose destination is this account.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `limit` (number, optional) Limit the number of channels to retrieve. Cannot be less than 10 or more than 400. The default is 200.
+* `marker` (marker, optional) Value from a previous paginated response. Resume retrieving data where that response left off.
+
+## Returns
+
+* `account` (string) The address of the source/owner of the payment channels.
+* `channels` (array) Payment channels owned by this account. Each channel object has `account`, `channel_id`, `destination_account`, `amount`, `balance`, `settle_delay`, and may include `public_key`, `public_key_hex`, `expiration`, `cancel_after`, `source_tag` and `destination_tag`.
+* `ledger_hash` (string) The identifying hash of the ledger version used to generate this response.
+* `ledger_index` (number) The ledger index of the ledger version used to generate this response.
+* `validated` (boolean) If `true`, the information comes from a validated ledger version.
+* `limit` (number, may be omitted) The page size the server applied to this response, echoed from the request. It is not the number of channels returned: the example below reports `limit: 10` with an empty `channels` array.
+* `marker` (marker) Server-defined value for pagination. Omitted when there are no additional pages.
+
+```bash
+// Result
+{
+  "result": {
+    "account": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+    "ledger_hash": "F1FBD0C12744C3986CEAC983DB7E42847DE6EE8574EC687B12FF14F317669886",
+    "ledger_index": 107292899,
+    "validated": true,
+    "limit": 10,
+    "channels": [],
+    "marker": "0C9844B21E960CFBB1F4A96F2ECA185C57F4C53681ECCD56DCE9E4C45E065058,1",
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_channels","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated","limit":10}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"account_channels","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated","limit":10}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

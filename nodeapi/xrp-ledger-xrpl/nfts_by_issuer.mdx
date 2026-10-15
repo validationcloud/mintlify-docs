@@ -1,0 +1,73 @@
+---
+title: "nfts_by_issuer"
+---
+
+Returns a list of NFTokens that are issued by the specified account, optionally filtered by taxon.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/clio-methods/nfts_by_issuer)
+
+## **Parameters**
+
+* `issuer` (string, required) The address of the issuing account.
+* `marker` (marker, optional) Value from a previous paginated response. Not stable if the server's range of available ledgers changes.
+* `nft_taxon` (integer, optional) Filter NFTs issued by this issuer to those with this taxon.
+* `ledger_hash` (string, optional) Look for NFTs issued up to the provided ledger. If not provided, the latest validated ledger is used.
+* `ledger_index` (string or integer, optional) Look for NFTs issued up to the provided ledger. If not provided, the latest validated ledger is used.
+* `limit` (integer, optional) Limit the number of NFTs to retrieve. The server is not required to honor this value.
+
+## Returns
+
+* `issuer` (string) The issuer's account address.
+* `nfts` (array) A list of NFTs issued by the account. Each has `nft_id`, `ledger_index`, `owner`, `is_burned`, `uri`, `flags`, `transfer_fee`, `issuer`, `nft_taxon` and `nft_serial`. The order is not associated with the mint date.
+* `marker` (marker) Server-defined value indicating the response is paginated. Omitted when there are no more pages.
+* `limit` (integer) The `limit`, as specified in the request.
+* `nft_taxon` (integer) The `nft_taxon` as specified in the request, if any.
+* `ledger_index`, `validated` The ledger version used.
+
+```bash
+// Result
+{
+  "result": {
+    "issuer": "rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ",
+    "limit": 2,
+    "ledger_index": 107293004,
+    "nfts": [
+      {
+        "nft_id": "0008170207397A8AA414511E6E0649C9980E185E1C19D740000379D605E4770D",
+        "ledger_index": 105777644,
+        "owner": "r3UkDZ2EFtULChBNc2hxskcTssHwjtdQ1j",
+        "is_burned": false,
+        "uri": "697066733A2F2F6261666B7265696634347A6875...",
+        "flags": 8,
+        "transfer_fee": 5890,
+        "issuer": "rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ",
+        "nft_taxon": 666133630,
+        "nft_serial": 98858765
+      },
+      // ...
+    ],
+    "validated": true,
+    "marker": "0008170207397A8AA414511E6E0649C9980E185E1C19D74000108BB105E47234",
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"nfts_by_issuer","params":[{"issuer":"rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ","limit":2}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"nfts_by_issuer","issuer":"rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ","limit":2}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> This method is served by Clio, our full-history XRPL server, and is not available from rippled.

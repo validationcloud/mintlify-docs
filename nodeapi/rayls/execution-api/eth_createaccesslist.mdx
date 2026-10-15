@@ -1,0 +1,65 @@
+---
+title: "eth_createAccessList"
+---
+
+Returns an [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list that you can include in a transaction. You can use this method to optimize your smart contract interactions.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+1. `Object` - The transaction call object
+
+`from` - \[optional] String of the address the transaction is sent from.
+
+`to` - String of the address the transaction is directed to.
+
+`gas` - \[optional] Integer of the gas provided for the transaction execution encoded as a hexadecimal.
+
+`gasprice` - \[optional] Integer of the gasPrice used for each paid gas encoded as a hexadecimal.
+
+`value` - \[optional] Integer of the value sent with this transaction encoded as a hexadecimal.
+
+`data` - \[optional] String of the hash of the method signature and encoded parameters. For more information, see the [Contract ABI description in the Solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html).
+
+2. `QUANTITY | TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`accessList`: A list of objects with the following fields:
+
+* `address`: Addresses to be accessed by the transaction.
+* `storageKeys`: Storage keys to be accessed by the transaction.
+* `gasUsed`: A hexadecimal string representing the approximate gas cost for the transaction if the access list is included.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"accessList": [
+			{
+				"address": "0xa66e8368c0e8033a4bb27536a79730c5242377c1",
+				"storageKeys": [
+					"0x0000000000000000000000000000000000000000000000000000000000000081"
+				]
+			}
+		],
+		"gasUsed": "0x12e92"
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.rayls.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"eth_createAccessList","params":[{"from":"0xbeb6CC93B5822482eB077173ec3de783900c94D5","data":"0x608060806080608155"}, "pending"],"id":1,"jsonrpc":"2.0"}'
+```
+
+</CodeGroup>

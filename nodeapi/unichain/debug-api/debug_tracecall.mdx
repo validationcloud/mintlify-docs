@@ -1,0 +1,81 @@
+---
+title: "debug_traceCall"
+---
+
+Executes a call within the context of the given block and returns the trace of its execution.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Traces need the state of the traced block, so Unichain Mainnet can trace roughly the last 10,000 blocks, about 2.8 hours at Unichain's 1-second block time. Older blocks return JSON-RPC error `-32603` with a message that contains `state at block #<number> is pruned`.
+
+</Info>
+
+## **Parameters**
+
+`object` - Object - The transaction call object with the following fields:
+
+* `from` - String - The address the transaction is sent from
+* `to` - String - (optional) The address the transaction is directed to. Omit it to trace a contract creation
+* `gas` - Integer - The integer of the gas provided for the transaction execution
+* `gasPrice` - Integer - The integer of the gasPrice used for paid gas
+* `value` - Integer - The integer of the value sent with this transaction
+* `data` - String - The call data: the 4-byte function selector followed by the ABI-encoded parameters
+
+`blockReference` - String - <span style={{color: "red"}}>Required</span> - The block number in hexadecimal format, the block hash, or tags: `"earliest"`, `"latest"` or `"pending"`.
+
+`object` - Object (Optional) - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - With `callTracer`, an object with the result of the trace, containing:
+
+* `from` - The address the call is sent from.
+* `gas` - The integer of the gas provided for the call execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the call is directed to.
+* `input` - The data given at the time of input.
+* `output` - The data returned by the call.
+* `value` - The integer of the value sent with this call.
+* `type` - The type of call.
+* `calls` - A list of sub-calls, present when the call made further calls.
+
+With `prestateTracer`, the result is instead a map keyed by account address, holding the state the transaction touched (such as `balance`, `nonce`, `code` and `storage`).
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from": "0x0000000000000000000000000000000000000000",
+    "gas": "0x2faf080",
+    "gasUsed": "0x5343",
+    "to": "0x4200000000000000000000000000000000000006",
+    "input": "0x18160ddd",
+    "output": "0x00000000000000000000000000000000000000000000008b4155cef5d3791f3f",
+    "value": "0x0",
+    "type": "CALL"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceCall","params":[{"to":"0x4200000000000000000000000000000000000006","data":"0x18160ddd"},"latest",{"tracer":"callTracer"}],"id":1}'
+```
+
+</CodeGroup>

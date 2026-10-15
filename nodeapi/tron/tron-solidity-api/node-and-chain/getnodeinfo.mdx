@@ -1,0 +1,323 @@
+---
+title: "GetNodeInfo"
+---
+
+Query Node Information. Returns information about current state of node (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `None`
+
+## **Returns**
+
+| Field               | Type                 | Description                                                                                                                                                                                       |
+| ------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| beginSyncNum        | int64                | Begin sync block number                                                                                                                                                                           |
+| block               | string               | Latest block information, including block height and block id                                                                                                                                     |
+| solidityBlock       | string               | The latest solidified block information, including block height and block id                                                                                                                      |
+| currentConnectCount | int32                | The current connect count                                                                                                                                                                         |
+| activeConnectCount  | int32                | active node connection count                                                                                                                                                                      |
+| passiveConnectCount | int32                | passive node connection count                                                                                                                                                                     |
+| totalFlow           | int64                | Total TCP flow                                                                                                                                                                                    |
+| peerInfoList        | PeerInfo\[]          | Peer node information, please refer to [protobuf](https://github.com/tronprotocol/java-tron/blob/develop/protocol/src/main/protos/core/Tron.proto) for details                                    |
+| configNodeInfo      | ConfigNodeInfo       | Node configuration information, please refer to [protobuf](https://github.com/tronprotocol/java-tron/blob/develop/protocol/src/main/protos/core/Tron.proto) for details                           |
+| machineInfo         | MachineInfo          | The information of the machine where the node is located, please refer to [protobuf](https://github.com/tronprotocol/java-tron/blob/develop/protocol/src/main/protos/core/Tron.proto) for details |
+| cheatWitnessInfoMap | map&lt;string, string> | SR information that may be suspected of cheating                                                                                                                                                  |
+
+```json
+// Result
+{
+  "activeConnectCount": 4,
+  "beginSyncNum": 58515669,
+  "block": "Num:58515689,ID:00000000037ce0e979564a2307eafbf8fc9f67f60f3a9861b2379d1f06068a06",
+  "cheatWitnessInfoMap": {},
+  "configNodeInfo": {
+    "activeNodeSize": 3,
+    "allowAdaptiveEnergy": 1,
+    "allowCreationOfContracts": 1,
+    "backupListenPort": 10001,
+    "backupMemberSize": 0,
+    "backupPriority": 6,
+    "codeVersion": "4.8.0",
+    "dbVersion": 2,
+    "discoverEnable": true,
+    "listenPort": 16666,
+    "maxConnectCount": 30,
+    "maxTimeRatio": 5,
+    "minParticipationRate": 0,
+    "minTimeRatio": 0,
+    "p2pVersion": "1",
+    "passiveNodeSize": 0,
+    "sameIpMaxConnectCount": 2,
+    "sendNodeSize": 14,
+    "supportConstant": true,
+    "versionNum": "18631"
+  },
+  "currentConnectCount": 7,
+  "machineInfo": {
+    "cpuCount": 4,
+    "cpuRate": 0.04827586206896552,
+    "deadLockThreadCount": 0,
+    "deadLockThreadInfoList": [],
+    "freeMemory": 179474432,
+    "javaVersion": "1.8.0_291",
+    "jvmFreeMemory": 7237646616,
+    "jvmTotalMemory": 9341566976,
+    "memoryDescInfoList": [
+      {
+        "initSize": 2555904,
+        "maxSize": 268435456,
+        "name": "Code Cache",
+        "useRate": 0.3083937168121338,
+        "useSize": 82783808
+      },
+      {
+        "initSize": 0,
+        "maxSize": 536870912,
+        "name": "Metaspace",
+        "useRate": 0.16165834665298462,
+        "useSize": 86789664
+      },
+      {
+        "initSize": 0,
+        "maxSize": 528482304,
+        "name": "Compressed Class Space",
+        "useRate": 0.01779958936903212,
+        "useSize": 9406768
+      },
+      {
+        "initSize": 2577006592,
+        "maxSize": 2577006592,
+        "name": "Par Eden Space",
+        "useRate": 0.1301759029415785,
+        "useSize": 335464160
+      },
+      {
+        "initSize": 322109440,
+        "maxSize": 322109440,
+        "name": "Par Survivor Space",
+        "useRate": 0.046999255905073756,
+        "useSize": 15138904
+      },
+      {
+        "initSize": 6442450944,
+        "maxSize": 6442450944,
+        "name": "CMS Old Gen",
+        "useRate": 0.2721506630380948,
+        "useSize": 1753317296
+      }
+    ],
+    "osName": "Linux 3.10.0-1160.49.1.el7.x86_64",
+    "processCpuRate": 0.04827586206896552,
+    "threadCount": 193,
+    "totalMemory": 16260251648
+  },
+  "passiveConnectCount": 3,
+  "peerList": [
+    {
+      "active": false,
+      "avgLatency": 0,
+      "blockInPorcSize": 0,
+      "connectTime": 1754987610502,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515709,ID:00000000037ce0fd35528fee9c06b880f65bbd3576a9a3758b619296aa124f7f",
+      "host": "/54.255.128.81",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506945346,
+      "lastSyncBlock": "Num:57024332,ID:0000000003661f4ce32523f153650062d2719afa77cf3a9781e6ff86d476846d",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    },
+    {
+      "active": false,
+      "avgLatency": 150,
+      "blockInPorcSize": 0,
+      "connectTime": 1754987603437,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515709,ID:00000000037ce0fd35528fee9c06b880f65bbd3576a9a3758b619296aa124f7f",
+      "host": "/54.69.105.245",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506945346,
+      "lastSyncBlock": "Num:57438010,ID:00000000036c6f3a804937037c98cad3719a4c14a139075e8fb823498ee384a3",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    },
+    {
+      "active": false,
+      "avgLatency": 152,
+      "blockInPorcSize": 0,
+      "connectTime": 1757832517601,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515698,ID:00000000037ce0f2eb1884835b9cd9fb6443b69ff4c7c4c152137a6bf634b3e6",
+      "host": "/18.156.104.67",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506912349,
+      "lastSyncBlock": "",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    },
+    {
+      "active": true,
+      "avgLatency": 157,
+      "blockInPorcSize": 0,
+      "connectTime": 1754987567888,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515709,ID:00000000037ce0fd35528fee9c06b880f65bbd3576a9a3758b619296aa124f7f",
+      "host": "/54.186.12.211",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506945346,
+      "lastSyncBlock": "",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    },
+    {
+      "active": true,
+      "avgLatency": 158,
+      "blockInPorcSize": 0,
+      "connectTime": 1754987567888,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515709,ID:00000000037ce0fd35528fee9c06b880f65bbd3576a9a3758b619296aa124f7f",
+      "host": "/54.69.254.172",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506945346,
+      "lastSyncBlock": "",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    },
+    {
+      "active": true,
+      "avgLatency": 185,
+      "blockInPorcSize": 0,
+      "connectTime": 1754987654304,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515705,ID:00000000037ce0f9e825ca25ed0f44314c28fe55e8e383ac418c260dafc7e529",
+      "host": "/3.123.162.51",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506933351,
+      "lastSyncBlock": "",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    },
+    {
+      "active": true,
+      "avgLatency": 158,
+      "blockInPorcSize": 0,
+      "connectTime": 1759421599180,
+      "disconnectTimes": 0,
+      "headBlockTimeWeBothHave": 0,
+      "headBlockWeBothHave": "Num:58515709,ID:00000000037ce0fd35528fee9c06b880f65bbd3576a9a3758b619296aa124f7f",
+      "host": "/52.11.42.49",
+      "inFlow": 0,
+      "lastBlockUpdateTime": 1759506945346,
+      "lastSyncBlock": "Num:58487553,ID:00000000037c73017a3e2287b3d1a5fc53bc1f621f2cbecea082dfffaf0c9b9f",
+      "localDisconnectReason": "",
+      "needSyncFromPeer": false,
+      "needSyncFromUs": false,
+      "nodeCount": 9,
+      "nodeId": "aa5f5b0ab298edb9bd5a3bf64bd8ff9ccacf1d60c05187776ddbf1a0ec7813ea7cb79c9463f97455ad6fc7d0763b49ad8552c83dacdd31d48bc9a794815700ba",
+      "port": 16666,
+      "remainNum": 0,
+      "remoteDisconnectReason": "",
+      "score": 0,
+      "syncBlockRequestedSize": 0,
+      "syncFlag": false,
+      "syncToFetchSize": 0,
+      "syncToFetchSizePeekNum": -1,
+      "unFetchSynNum": 0
+    }
+  ],
+  "solidityBlock": "Num:58515671,ID:00000000037ce0d7230b88d257dc99ff1f91109e8f0928f01c66250648757136",
+  "totalFlow": 0
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getnodeinfo \
+    -X GET
+```
+
+</CodeGroup>

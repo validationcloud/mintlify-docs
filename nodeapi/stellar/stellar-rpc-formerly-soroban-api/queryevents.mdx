@@ -1,0 +1,136 @@
+---
+title: "queryEvents"
+---
+
+Returns contract and system events across any ledger range, oldest first or newest first, with positional topic filters and a stateless cursor for paging.
+
+> **Pubnet RPC v2 (Beta) only:** `queryEvents` is not served on the Pubnet or Testnet Stellar RPC endpoints. See the [Stellar overview](/nodeapi/stellar/overview) for how to create a Pubnet RPC v2 (Beta) endpoint.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://github.com/stellar/stellar-rpc/blob/archive-node-beta/docs/API-CHANGES-BETA.md#2-new-method-queryevents)
+
+## **Parameters**
+
+A request is either a new query or a continuation. A new query uses `minLedger`, `maxLedger`, `order` and `filters`, each optional except as noted below. A continuation sends `cursor` in place of those fields. The cursor does not store `limit` or `xdrFormat`, so if you set either one, send it again with every continuation. Otherwise the defaults apply.
+
+* `minLedger` (number) - First ledger to scan, inclusive. Required when `order` is `asc`. Optional when `order` is `desc`, where it defaults to `2`.
+* `maxLedger` (number) - Last ledger to scan, inclusive. If omitted, an `asc` scan follows new ledgers as they close and a `desc` scan starts at the latest ledger.
+* `order` (string) - `asc` (default) or `desc`. A `desc` scan returns the newest events first, including within a single ledger.
+* `filters` (array) - Optional. Fields inside one filter must all match. An event is returned if it matches any filter. Omit to match all events. Each filter sets at least one of:
+  * `type` (string) - `contract` or `system`.
+  * `contractId` (string) - One contract ID in strkey form (`C...`).
+  * `topic0` to `topic3` (string) - A base64-encoded XDR `ScVal` that must equal the topic at that position. An omitted position matches any value.
+* `cursor` (string) - The `cursor` from a previous response. Not allowed together with the new-query fields.
+* `limit` (number) - Events per page, from 1 to 1000. Defaults to 100.
+* `xdrFormat` (string) - `base64` (default) or `json`, for the `topic` and `value` of each event.
+
+A query can use at most 15 distinct filter terms. Each `contractId`, `type` and set topic position counts as one term.
+
+## Returns
+
+* `events` array\[object]
+  * `type` string - `contract` or `system`.
+  * `ledger` number - Sequence number of the ledger that holds the event.
+  * `ledgerClosedAt` string - Close time of that ledger, ISO 8601.
+  * `contractId` string - Contract that emitted the event. Empty for events without a contract.
+  * `id` string - Unique event ID, in the same format and sort order as [getEvents](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getevents).
+  * `transactionIndex` number - Position of the transaction in the ledger, starting at 1.
+  * `operationIndex` number - Position of the operation in the transaction, starting at 0.
+  * `txHash` string - Hash of the transaction.
+  * `topic` array\[string] - Topics as base64-encoded XDR, when `xdrFormat` is `base64`.
+  * `value` string - Event value as base64-encoded XDR, when `xdrFormat` is `base64`.
+  * `topicJson` / `valueJson` - Topics and value as JSON, when `xdrFormat` is `json`.
+* `cursor` string - Send this to get the next page. Absent only when `scanStatus` is `COMPLETE`.
+* `scanStatus` string - How far the scan got:
+  * `HAS_MORE` - More of the range remains. Send the cursor.
+  * `WAITING_FOR_LEDGERS` - The scan reached ledgers that have not closed yet. Poll with the cursor about once per ledger close.
+  * `OLDEST_REACHED` - The range extends below the oldest ledger served.
+  * `COMPLETE` - The range is fully scanned.
+* `scannedLedger` number - Last ledger the scan fully covered. A page can end partway through a ledger, so before any ledger is fully covered the value is `minLedger - 1` for an `asc` scan, or the top of the range plus 1 for a `desc` scan (`maxLedger`, or the latest ledger when `maxLedger` is omitted). That is why the example below shows a `scannedLedger` one above `latestLedger`.
+* `oldestLedger` number - Oldest ledger the node serves.
+* `latestLedger` number - Latest ledger the node has committed.
+
+One page scans at most 10,000 ledgers, so a page can hold fewer events than `limit`, or none, and still return `HAS_MORE`. Use `scanStatus` to decide whether to keep paging. When scanning a sparse filter over full history, cap the number of requests in your client loop.
+
+Invalid parameters return error code `-32602` with `error.data.reason` set to `invalid_params`, `ledger_out_of_range` or `cursor_malformed`.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 8675309,
+  "result": {
+    "events": [
+      {
+        "type": "contract",
+        "ledger": 64905728,
+        "ledgerClosedAt": "2026-10-12T14:13:42Z",
+        "contractId": "CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75",
+        "id": "0278767979084091392-0000000001",
+        "operationIndex": 0,
+        "transactionIndex": 249,
+        "txHash": "64df181c21c18255352d53b1c18999233ce2f373eb2d5a3346966858866a6d0c",
+        "topic": [
+          "AAAADwAAAAh0cmFuc2Zlcg==",
+          "AAAAEgAAAAFCyAWnDouK5xX9Wnck9GTKlcePoyNYYbb0ToVl2mwYgA==",
+          "AAAAEgAAAAAAAAAAlA7DhuXgIzSZvIpJ69xIN7E3DePlnl/v6Cu3LJ0aQXQ=",
+          "AAAADgAAAD1VU0RDOkdBNVpTRUpZQjM3SlJDNUFWQ0lBNU1PUDRSSFRNMzM1WDJLR1gzSUhPSkFQUDVSRTM0SzRLWlZOAAAA"
+        ],
+        "value": "AAAACgAAAAAAAAAAAAAAAHZQyyk="
+      }
+    ],
+    "cursor": "gec1_BwAAAAID3mIAA95iAAAAAPkAAAAAAAAAAQAAAksAAAAAAAEDre_OWa7lKWj3YGHUlMJSW3Vln6QpamX0me8p5WR35JYAAAAQAAAADwAAAAh0cmFuc2Zlcg",
+    "scanStatus": "HAS_MORE",
+    "scannedLedger": 64905729,
+    "oldestLedger": 2,
+    "latestLedger": 64905728
+  }
+}
+```
+
+The request below returns the most recent USDC `transfer` event. `topic0` is the symbol `transfer` encoded as base64 XDR.
+
+<CodeGroup>
+
+```bash title="pubnet rpc v2 (beta)"
+curl https://pubnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "jsonrpc": "2.0",
+  "id": 8675309,
+  "method": "queryEvents",
+  "params": {
+    "order": "desc",
+    "filters": [
+      {
+        "contractId": "CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75",
+        "topic0": "AAAADwAAAAh0cmFuc2Zlcg=="
+      }
+    ],
+    "limit": 1
+  }
+}'
+```
+
+</CodeGroup>
+
+To fetch the next page, send the `cursor` from the response:
+
+```bash
+curl https://pubnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "jsonrpc": "2.0",
+  "id": 8675309,
+  "method": "queryEvents",
+  "params": {
+    "cursor": "<CURSOR_FROM_PREVIOUS_RESPONSE>",
+    "limit": 1
+  }
+}'
+```

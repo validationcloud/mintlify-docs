@@ -1,0 +1,81 @@
+---
+title: "UpdateEnergyLimit"
+---
+
+Update the origin\_energy\_limit parameter of a smart contract.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Danger>
+
+#### Origin Energy Limit
+
+Starting with Java-Tron Odyssey 3.2 release, this parameter is required for deploying new contracts, and the value **should be larger than 0**. For contracts already deployed on the Mainnet prior to Odyssey 3.2, the value is stored as 0, but treated as maximum = 10,000,000.
+
+</Danger>
+
+## **Parameters**
+
+* `owner_address` - String - The contract owner address, converted to a hex string
+* `contract_address` - String - The address of the contract to be modified, in hex string format
+* `origin_energy_limit` - int32 - Adjusted upper limit of energy provided by smart contract developers in one transaction
+* `permission_id` - int32 - The ID of the permission that is required to execute the transaction, for multi-signature use
+* `visible` - boolean - Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `UpdateEnergyLimitContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field                 | Type   | Description                                                                             |
+| --------------------- | ------ | --------------------------------------------------------------------------------------- |
+| owner\_address        | string | Account address                                                                         |
+| contract\_address     | int    | Contract address                                                                        |
+| origin\_energy\_limit | string | Adjusted upper limit of energy provided by smart contract deplovers in one transaction. |
+
+```json
+// Result
+{
+  "visible": true,
+  "txID": "dd44ff15ff33aef147ad704b9aef6b2b1e62c13e94cd4bb2f6dcc77644c7715a",
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+            "origin_energy_limit": 100000000,
+            "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs"
+          },
+          "type_url": "type.googleapis.com/protocol.UpdateEnergyLimitContract"
+        },
+        "type": "UpdateEnergyLimitContract"
+      }
+    ],
+    "ref_block_bytes": "55b5",
+    "ref_block_hash": "3e68c922f86047e7",
+    "expiration": 1757413071000,
+    "timestamp": 1757413014145
+  },
+  "raw_data_hex": "0a0255b522083e68c922f86047e74098b1edef92335a71082d126d0a36747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e557064617465456e657267794c696d6974436f6e747261637412330a1541b3dcf27c251da9363f1a4888257c16676cf54edf12154142a1e39aefa49290f2b3f9ed688d7cecf86cd6e01880c2d72f7081f5e9ef9233"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/updateenergylimit \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+  "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+  "origin_energy_limit": 100000000,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

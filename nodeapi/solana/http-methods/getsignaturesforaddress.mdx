@@ -1,0 +1,94 @@
+---
+title: "getSignaturesForAddress"
+---
+
+Returns confirmed signatures for transactions involving an address backwards in time from the provided signature or most recent confirmed block.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `account_address` string _<span style={{color: "red"}}>Required</span>._ The account address encoded as base-58 string.
+* `object` _optional._ Configuration object containing the following fields:
+  * `limit` integer. The maximum number of transaction signatures to return (between 1 and 1000). The default value is 1000.
+  * `before` string. Start searching backward from this transaction signature. If not provided, the search starts from the top of the highest max confirmed block.
+  * `until` string. Searches until this transaction signature, if found before limit reached.
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string.&#x20;
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string.
+      * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string.
+      * The node will query its most recent block. Note that the block may not be complete.
+  * `minContextSlot` integer. The minimum slot at which the request can be evaluated.
+
+## Returns
+
+`result` A JSON object with the following fields:
+
+* `blockTime` The estimated production time, as Unix timestamp (seconds since the Unix epoch). Null if not available.
+* `confirmationStatus` The transaction's cluster confirmation status. The status can either be processed, confirmed, or finalized.
+* `err` Error code if the transaction failed or null if the transaction succeeds.
+* `memo` The memo associated with the transaction and null if no memo is present.
+* `signature` The base58-encoded signature of the transaction.
+* `slot` The slot number in which the transaction was confirmed.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		{
+			"blockTime": 1739363435,
+			"confirmationStatus": "finalized",
+			"err": null,
+			"memo": null,
+			"signature": "4pKs9CG8nJu3eSxFChC3LqrB82cuYjUvcqEdzFUoth7hM8wKSnrGZvGokk1zVXSbviJny2vCivGi7C7JB9DSFiP3",
+			"slot": 320162126
+		}
+	],
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getSignaturesForAddress",
+    "params": [
+      "Vote111111111111111111111111111111111111111",
+      {
+        "limit": 1
+      }
+    ]
+  }
+'
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getSignaturesForAddress",
+    "params": [
+      "Vote111111111111111111111111111111111111111",
+      {
+        "limit": 1
+      }
+    ]
+  }
+'
+```
+
+</CodeGroup>

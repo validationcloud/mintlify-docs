@@ -1,0 +1,37 @@
+---
+title: "eth_newBlockFilter"
+---
+
+Creates a filter in the node, to notify when a new block arrives. To check if the state has changed, call [eth\_getFilterChanges](/nodeapi/tron/tron-json-rpc-api/eth_getfilterchanges).
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`QUANTITY` - A filter id.
+
+```bash
+// Result
+{
+  "id":1,
+  "jsonrpc": "2.0",
+  "result": "0x1" // 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":73}'
+```
+
+</CodeGroup>

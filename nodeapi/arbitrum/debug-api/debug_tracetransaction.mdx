@@ -1,0 +1,107 @@
+---
+title: "debug_traceTransaction"
+---
+
+Returns all traces of a given transaction.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`transactionHash` - String - <span style={{color: "red"}}>Required</span> - The transaction hash to be traced.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+* `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
+
+## **Returns**
+
+`result` - An array of transaction objects for that block, each containing:
+
+* `txHash` - The transaction hash of the transaction
+* `result` - An object containing detailed information about the traced transaction
+  * `beforeEVMTransfers` - An array representing EVM transfers that occurred before the execution of the transaction
+    * `purpose` - (Optional) The purpose of the EVM transfer
+    * `from` - (Optional) The Ethereum address initiating the transfer
+    * `to` - (Optional) The Ethereum address receiving the transfer
+    * `value` - (Optional) The value of the transfer, specified in hexadecimal format (Wei)
+  * `afterEVMTransfers` - An array representing EVM transfers that occurred after the execution of the transaction
+    * Optional fields are the same as `beforeEVMTransfers` above
+  * `from` - The address the transaction is sent from.
+  * `gas` - The integer of the gas provided for the transaction execution.
+  * `gasUsed` - The integer of the gas used.
+  * `to` - The address the transaction is directed to.
+  * `input` - The data given at the time of input.
+  * `value` - The integer of the value sent with this transaction.
+  * `type` - The type of call.
+* `calls` - A list of sub-calls.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"beforeEVMTransfers": [
+			{
+				"purpose": "feePayment",
+				"from": "0xa95B83af96d0B8A90BD507f2Bd82aD8F3dbb86BC",
+				"to": null,
+				"value": "0xb5e620f48000"
+			}
+		],
+		"afterEVMTransfers": [
+			{
+				"purpose": "gasRefund",
+				"from": null,
+				"to": "0xa95B83af96d0B8A90BD507f2Bd82aD8F3dbb86BC",
+				"value": "0xb4e7359e1e80"
+			},
+			{
+				"purpose": "feeCollection",
+				"from": null,
+				"to": "0xbF5041Fc07E1c866D15c749156657B8eEd0fb649",
+				"value": "0x30e4f9b400"
+			},
+			{
+				"purpose": "feeCollection",
+				"from": null,
+				"to": "0xa4B00000000000000000000000000000000000F6",
+				"value": "0xce065cad80"
+			}
+		],
+		"from": "0xa95b83af96d0b8a90bd507f2bd82ad8f3dbb86bc",
+		"gas": "0x1312d00",
+		"gasUsed": "0x1abaf",
+		"to": "0x28d4d5ecdfde97ffc3d70ea9cf985cd7b833a1b1",
+		"input": "0x",
+		"value": "0x4e28e2290f0000",
+		"type": "CALL"
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x8c09e1f80fecf242ac01e93200217f8a199a01e2258db49ab380d045eeab27a5", {"tracer": "callTracer"}],"id":1}'
+```
+
+```bash title="testnet"
+curl https://sepolia.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0xcd14a4f427bedcd4beb2eb091422851925170f1790a26bdf6689d2a618d2d843", {"tracer": "callTracer"}],"id":1}'
+```
+
+</CodeGroup>

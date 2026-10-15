@@ -1,0 +1,66 @@
+---
+title: "platform.getTxStatus"
+---
+
+Gets a transaction’s status by its ID. If the transaction was dropped, response will include a reason field with more information why the transaction was dropped.
+
+This method will use `100` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformgettxstatus)
+
+## **Parameters**
+
+* `txID` - string - The transaction id.
+
+## Returns
+
+* `status` - string - status is one of:
+  * _Unknown_ - string - The transaction hasn’t been seen by this node
+  * _Dropped_ - string - The transaction will never be accepted by any node in the network, check reason field for more information
+  * _Processing_ - string - The transaction is being voted on by this node
+  * _Committed_ - string - The transaction is (or will be) accepted by every node
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "status": "Committed"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getTxStatus",
+    "params": {
+        "txID":"TAG9Ns1sa723mZy1GSoGqWipK6Mvpaj7CAswVJGM6MkVJDF9Q"
+   },
+    "id": 1
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getTxStatus",
+    "params": {
+        "txID":"TAG9Ns1sa723mZy1GSoGqWipK6Mvpaj7CAswVJGM6MkVJDF9Q"
+   },
+    "id": 1
+}'
+```
+
+</CodeGroup>

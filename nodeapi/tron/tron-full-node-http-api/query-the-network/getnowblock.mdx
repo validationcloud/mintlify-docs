@@ -1,0 +1,78 @@
+---
+title: "GetNowBlock"
+---
+
+Query the latest block information.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## **Returns**
+
+Block data, please refer to [/wallet/getblock](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblock) for the content contained in block.
+
+```bash
+// Result
+{
+  "blockID": "00000000036fb5eb7a525897222fd410650ccc70059e9ecdad6be8a6b6404119",
+  "block_header": {
+    "raw_data": {
+      "number": 57652715,
+      "txTrieRoot": "08fdebd6991e063e780b0d2a50f9f261c140e5267e630789cd2425236aaa8432",
+      "witness_address": "41e817b29047a50558cc8f5e97c5bb99d4723cbaa2",
+      "parentHash": "00000000036fb5ea962bb3daaf7834d58585901e41a5992015daadcb4286ed2b",
+      "version": 32,
+      "timestamp": 1756891815000
+    },
+    "witness_signature": "f3444daffaa251071974c4e6d82d8dc1525702dc4818bdd869ad32e65c7e67c01f1b17d9b357ac89762f7a04a9d2c13fd9d8ef04ec98af4764bc11b090ebb05501"
+  },
+  "transactions": [
+    {
+      "ret": [
+        {
+          "contractRet": "SUCCESS"
+        }
+      ],
+      "signature": [
+        "bbdd3751e28e3995e831303227f878f6a1795d39ef990dc022ffe722f004c5161aaaac016881b99332969cc0ec2423ee33c0e1ac62944f737dce4923d4b24abf01"
+      ],
+      "txID": "b6ac2c7d83ac56c795ac8271be470a37a4537310e5ddf1af99571404d565fff1",
+      "raw_data": {
+        "contract": [
+          {
+            "parameter": {
+              "value": {
+                "amount": 100000,
+                "owner_address": "41bf4db211333cecb61800feea2d028464632dcb4a",
+                "to_address": "413de20bd95b7ec072db946b7817a2028c8932c172"
+              },
+              "type_url": "type.googleapis.com/protocol.TransferContract"
+            },
+            "type": "TransferContract"
+          }
+        ],
+        "ref_block_bytes": "b5e6",
+        "ref_block_hash": "74a9d6f0b29f6a07",
+        "expiration": 1756906156460,
+        "timestamp": 1756891800000
+      },
+      "raw_data_hex": "0a02b5e6220874a9d6f0b29f6a0740ace391fe90335a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a1541bf4db211333cecb61800feea2d028464632dcb4a1215413de20bd95b7ec072db946b7817a2028c8932c17218a08d0670c0c3a5f79033"
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getnowblock \
+    -X POST \
+    -H "Content-Type: application/json"
+```
+
+</CodeGroup>

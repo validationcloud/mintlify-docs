@@ -1,0 +1,54 @@
+---
+title: "getHighestSnapshotSlot"
+---
+
+Returns the highest slot that the node has a snapshot for.&#x20;
+
+This will find the highest full snapshot slot, and the highest incremental snapshot slot based on the full snapshot slot, if there is one.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` The result will be an object with the following fields:
+
+* `full` The highest fullsnapshot slot encoded as 64-bit unsigned integer.
+* `incremental` The greatest incremental snapshot slot derived from the full snapshot.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"full": 320125092,
+		"incremental": 320143327
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getHighestSnapshotSlot"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getHighestSnapshotSlot"}'
+    
+```
+
+</CodeGroup>

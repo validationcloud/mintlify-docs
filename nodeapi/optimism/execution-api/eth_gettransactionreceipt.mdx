@@ -1,0 +1,77 @@
+---
+title: "eth_getTransactionReceipt"
+---
+
+Returns the receipt of a transaction by transaction hash. Note that the receipt is not available for pending transactions.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth\_gettransactionreceipt)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - hash of a transaction
+
+```bash
+params: ["0x85d995eba9763907fdf35cd2034144dd9d53ce32cbec21349d4b12823c6860c5"]
+```
+
+## Returns
+
+`Object` - A transaction receipt object, or `null` when no receipt was found:
+
+* `transactionHash` : `DATA`, 32 Bytes - hash of the transaction.
+* `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block.
+* `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in.
+* `blockNumber`: `QUANTITY` - block number where this transaction was in.
+* `from`: `DATA`, 20 Bytes - address of the sender.
+* `to`: `DATA`, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+* `cumulativeGasUsed` : `QUANTITY` - The total amount of gas used when this transaction was executed in the block.
+* `effectiveGasPrice` : `QUANTITY` - The sum of the base fee and tip paid per unit of gas.
+* `gasUsed` : `QUANTITY` - The amount of gas used by this specific transaction alone.
+* `contractAddress` : `DATA`, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise `null`.
+* `logs`: `Array` - Array of log objects, which this transaction generated.
+* `logsBloom`: `DATA`, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
+* `type`: `DATA` - integer of the transaction type, `0x00` for legacy transactions, `0x01` for access list types, `0x02` for dynamic fees. It also returns _either_ :
+* `root` : `DATA` 32 bytes of post-transaction stateroot (pre Byzantium)
+* `status`: `QUANTITY` either `1` (success) or `0` (failure)
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "blockHash":
+      "0xa957d47df264a31badc3ae823e10ac1d444b098d9b73d204c40426e57f47e8c3",
+    "blockNumber": "0xeff35f",
+    "contractAddress": null, // string of the address if it was created
+    "cumulativeGasUsed": "0xa12515",
+    "effectiveGasPrice": "0x5a9c688d4",
+    "from": "0x6221a9c005f6e47eb398fd867784cacfdcfff4e7",
+    "gasUsed": "0xb4c8",
+    "logs": [{
+      // logs as returned by getFilterLogs, etc.
+    }],
+    "logsBloom": "0x00...0", // 256 byte bloom filter
+    "status": "0x1",
+    "to": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "transactionHash":
+      "0x85d995eba9763907fdf35cd2034144dd9d53ce32cbec21349d4b12823c6860c5",
+    "transactionIndex": "0x66",
+    "type": "0x2"
+  }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.optimism.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x85d995eba9763907fdf35cd2034144dd9d53ce32cbec21349d4b12823c6860c5"],"id":1}'
+```
+
+</CodeGroup>

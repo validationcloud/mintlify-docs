@@ -1,0 +1,103 @@
+---
+title: "getLedgers"
+---
+
+Returns a detailed list of ledgers starting from the user specified starting point that you can paginate as long as the pages fall within the set history retention. On Pubnet RPC v2 (Beta), history starts at ledger 2.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://developers.stellar.org/docs/data/apis/rpc/api-reference/methods/getLedgers)
+
+## **Parameters**
+
+* `startLedger` (number) - Ledger sequence number to start fetching responses from (inclusive).&#x20;
+  * This method will return an error if `startLedger` is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node.&#x20;
+  * If a `cursor` is included in the request, `startLedger` must be omitted.
+* `pagination` - Pagination in stellar-rpc is similar to pagination in Horizon. See [Pagination](https://developers.stellar.org/docs/data/rpc/api-reference/structure/pagination).
+  *   `cursor` (string)
+
+      An opaque string which acts as a paging token. To obtain the next page of results occurring after a given response set this value to the `cursor` field of the response.
+  *   `limit` (number)
+
+      The maximum number of ledgers returned. On Pubnet and Testnet the limit can range from 1 to 200. On Pubnet RPC v2 (Beta) it can range from 1 to 20, and a higher value returns an error.
+  * If this argument isn't designated, it defaults to 50 on Pubnet and Testnet, and 5 on Pubnet RPC v2 (Beta).
+* `xdrFormat` (string) - Lets the user choose the format in which the response should be returned - either as unpacked JSON or as base64-encoded XDR strings. Note that you should not rely on any schema for the JSON, as it will change when the underlying XDR changes.
+  * Specifies whether XDR should be encoded as Base64 (default or 'base64') or JSON ('json').
+
+## Returns
+
+* `ledgers` array\[object]
+  * `hash` string - The hash of the ledger header which was included in the chain
+  * `sequence` number - The sequence number of the ledger (sometimes called the 'block height').
+  * `ledgerCloseTime` string - The timestamp at which the ledger was closed.
+  * `headerXdr` string - The LedgerHeader structure for this ledger (base64-encoded string).
+  * `metadataXdr` string - The LedgerCloseMeta union for this ledger (base64-encoded string).
+* `latestLedger` number - The sequence number of the latest ledger known to Stellar RPC at the time it handled the request.
+* `latestLedgerCloseTime` number - The unix timestamp of the close time of the latest ledger known to Stellar RPC at the time it handled the request.
+* `oldestLedger` number - The sequence number of the oldest ledger ingested by Stellar RPC at the time it handled the request.
+* `oldestLedgerCloseTime` number - The unix timestamp of the close time of the oldest ledger ingested by Stellar RPC at the time it handled the request.
+* `cursor` string - A token which can be included in a subsequent request to obtain the next page of results.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"ledgers": [
+			{
+				"hash": "4d88ad427af6c30b52753332ebac5f1903425e66db3ddcde345247b08b71edb9",
+				"sequence": 57425798,
+				"ledgerCloseTime": "1749245516",
+				"headerXdr": "TYitQnr2wwtSdTMy66xfGQNCXmbbPdzeNFJHsItx7bkAAAAWo0dbluPvEArHfAHvLmW+Mb9HI5u1nPlLd5F9hJzXBq9+bL5rbnR66uiNQ/YIAy4NY4Zqb3upcjS59I4x+tj/wAAAAABoQ15MAAAAAAAAAAEAAAAAxgbLDsSx0j5FOGLxLv67DvetDD1QO5vIfBdarijQW8MAAABAqUMg0RANm9p+EMQK4x8hfeN6i2kXtSdv5v5d1p01avm2aZLoc1hB5AuUCCYv/B1rB5+VUReIkv5aLvwcO3vzA6io0jXY6kQmM3VYahuabC8oWUXqyTDE7EJ+8D8QtFUFIBfhVnfSYNZokK8sQjA3u+3GqWcwx9m1zRdgE7jepigDbD+GDqIes+x5W2EAADla47FOpAAAARYAAAAAaGC2pQAAAGQATEtAAAAD6Aibh2y3ggESH5Qrh4ly0l+qv9925SgDRR2feOHUc7VO0msO6sihKdLau16WBNa/Hcyhr+xF2+Lf0tY8nJIsM6PhG1hQbU9JJJRoPwvQmpd1EPq7pwEDdU1HqzXFgbMkiRAsrO5ACc2+66bVFpE032LRLHm19aWBdkVJlmxZv3bKAAAAAAAAAAA=",
+				"metadataXdr": "AAAAAQAAAABNiK1CevbDC1J1..."
+			}
+		],
+		"latestLedger": 57465290,
+		"latestLedgerCloseTime": 1749467883,
+		"oldestLedger": 57344331,
+		"oldestLedgerCloseTime": 1748787427,
+		"cursor": "57425799"
+	},
+	"id": 8675309
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "jsonrpc": "2.0",
+  "id": 8675309,
+  "method": "getLedgers",
+  "params": {
+    "startLedger": 57425798,
+    "pagination": {
+      "limit": 2
+    }
+  }
+}
+```
+
+```bash title="testnet"
+curl https://testnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "jsonrpc": "2.0",
+  "id": 8675309,
+  "method": "getLedgers",
+  "params": {
+    "startLedger": 57425798,
+    "pagination": {
+      "limit": 2
+    }
+  }
+}
+```
+
+</CodeGroup>

@@ -1,0 +1,71 @@
+---
+title: "getTokenAccountBalance"
+---
+
+Returns the token balance of an SPL Token account.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `pubkey` string. The Pubkey of token Mint to query encoded as base-58 string.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string. The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string. The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string. The node will query its most recent block. Note that the block may not be complete.
+
+## Returns
+
+`result` An object with the following fields:
+
+* `context` The information about the current state of the program.
+  * `apiVersion` The version of the Solana RPC API to use.
+  * `slot` An integer representing the slot for which to retrieve the fee calculator.
+* `value` A JSON object with the following fields:
+  * `amount` The raw total token supply without decimals, a string representation of a u64 integer.
+  * `decimals` An integer value representing the number of decimal places used by the token.
+  * `uiAmount` The total token supply using mint-prescribed decimals (DEPRECATED).
+  * `uiAmountString` The total token supply as a string using mint-prescribed decimals.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"context": {
+			"apiVersion": "2.1.11",
+			"slot": 320169464
+		},
+		"value": {
+			"amount": "12",
+			"decimals": 0,
+			"uiAmount": 12.0,
+			"uiAmountString": "12"
+		}
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getTokenAccountBalance", "params": ["DhzDoryP2a4rMK2bcWwJxrE2uW6ir81ES8ZwJJPPpxDN"]}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getTokenAccountBalance", "params": ["DhzDoryP2a4rMK2bcWwJxrE2uW6ir81ES8ZwJJPPpxDN"]}'
+    
+```
+
+</CodeGroup>

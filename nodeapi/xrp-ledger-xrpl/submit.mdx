@@ -1,0 +1,87 @@
+---
+title: "submit"
+---
+
+Submits a signed, serialized transaction to the network to be confirmed and included in future ledgers. Only submit-only mode (a signed `tx_blob`) is available through this endpoint; sign-and-submit mode, which requires the server to hold your secret, is not.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/transaction-methods/submit)
+
+## **Parameters**
+
+* `tx_blob` (string, required) Hex representation of the signed transaction to submit. This can be a multi-signed transaction.
+* `fail_hard` (boolean, optional) If `true`, and the transaction fails locally, do not retry or relay the transaction to other servers. The default is `false`.
+
+## Returns
+
+* `engine_result` (string) Text result code indicating the preliminary result of the transaction, for example `tesSUCCESS`.
+* `engine_result_code` (integer) Numeric version of the result code.
+* `engine_result_message` (string) Human-readable explanation of the transaction's preliminary result.
+* `tx_blob` (string) The complete transaction in hex string format.
+* `tx_json` (object) The complete transaction in JSON format.
+* `accepted` (boolean) `true` if the transaction was applied, queued, broadcast, or kept for later.
+* `account_sequence_available` (number) The next Sequence Number available for the sending account after all pending and queued transactions.
+* `account_sequence_next` (number) The next Sequence Number for the sending account after all provisionally applied transactions.
+* `applied` (boolean) `true` if this transaction was applied to the open ledger.
+* `broadcast` (boolean) `true` if this transaction was broadcast to peer servers.
+* `kept` (boolean) `true` if the transaction was kept to be retried later.
+* `queued` (boolean) `true` if the transaction was put in the transaction queue.
+* `open_ledger_cost` (string) The current open ledger cost before processing this transaction.
+* `validated_ledger_index` (integer) The ledger index of the newest validated ledger at the time of submission.
+
+```bash
+// Result
+// Illustrative example from xrpl.org; the request blob and response are not from a live submission
+{
+  "result": {
+    "accepted": true,
+    "account_sequence_available": 362,
+    "account_sequence_next": 362,
+    "applied": true,
+    "broadcast": true,
+    "engine_result": "tesSUCCESS",
+    "engine_result_code": 0,
+    "engine_result_message": "The transaction was applied. Only final in a validated ledger.",
+    "status": "success",
+    "kept": true,
+    "open_ledger_cost": "10",
+    "queued": false,
+    "tx_blob": "1200002280000000240000016961D4838D7EA4C68000000000000000000000000000555344...",
+    "tx_json": {
+      "Account": "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn",
+      "DeliverMax": {
+        "currency": "USD",
+        "issuer": "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn",
+        "value": "1"
+      },
+      "Destination": "ra5nK24KXen9AHvsdFTKHSANinZseWnPcX",
+      "Fee": "10000",
+      "Flags": 2147483648,
+      "Sequence": 360,
+      "SigningPubKey": "03AB40A0490F9B7ED8DF29D246BF2D6269820A0EE7742ACDD457BEA7C7D0931EDB",
+      "TransactionType": "Payment",
+      "TxnSignature": "304402200E5C2DD81FDF0BE9AB2A8D797885ED49E804DBF28E806604D878756410CA98B1...",
+      "hash": "4D5D90890F8D49519E4151938601EF3D0B30B16CD6A519D9C99102C9FA77F7E0"
+    },
+    "validated_ledger_index": 21184416
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"submit","params":[{"tx_blob":"1200002280000000240000000361D4838D7EA4C6800000000000000000000000000055534400000000004B4E9C06F24296074F7BC48F92A97916C6DC5EA968400000000000000A732103AB40A0490F9B7ED8DF29D246BF2D6269820A0EE7742ACDD457BEA7C7D0931EDB74473045022100D184EB4AE5956FF600E7536EE459345C7BBCF097A84CC61A93B9AF7197EDB98702201CEA8009B7BEEBAA2AACC0359B41C427C1C5B550A4CA4B80CF2174AF2D6D5DCE81144B4E9C06F24296074F7BC48F92A97916C6DC5EA983143E9D4A2B8AA0780F682D136F7A56D6724EF53754"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"submit","tx_blob":"1200002280000000240000000361D4838D7EA4C6800000000000000000000000000055534400000000004B4E9C06F24296074F7BC48F92A97916C6DC5EA968400000000000000A732103AB40A0490F9B7ED8DF29D246BF2D6269820A0EE7742ACDD457BEA7C7D0931EDB74473045022100D184EB4AE5956FF600E7536EE459345C7BBCF097A84CC61A93B9AF7197EDB98702201CEA8009B7BEEBAA2AACC0359B41C427C1C5B550A4CA4B80CF2174AF2D6D5DCE81144B4E9C06F24296074F7BC48F92A97916C6DC5EA983143E9D4A2B8AA0780F682D136F7A56D6724EF53754"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> A `tesSUCCESS` engine result is preliminary. Monitor the transaction with `tx` until it appears in a validated ledger before treating it as final.

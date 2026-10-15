@@ -1,0 +1,78 @@
+---
+title: "trace_transaction"
+---
+
+Returns all traces of given transaction.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`hash` - String - <span style={{color: "red"}}>Required</span> - The hash of a transaction
+
+## **Returns**
+
+`array` - The block traces, which have the following fields (all return types are hexadecimal unless otherwise noted):
+
+* `action` - object The ParityTrace action object containing call details
+  * `from` - string - The address of the sender
+  * `callType` - string - The type of method such as call, staticcall, delegatecall
+  * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+  * `input` - string - The input data sent along with the transaction
+  * `to` - string - The address of the receiver
+  * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+* `blockHash` - string - The hash of the block where this transaction was included
+* `blockNumber` - integer - The block number where this transaction was in
+* `result` - object - The result of the trace execution
+  * `gasUsed` - string -The amount of gas used by this specific transaction
+  * `output` - string - The return value of the contract call, empty if no RETURN executed
+* `subtraces` - integer - The number of subtraces (internal calls) made by the transaction
+* `traceAddress` - array - The list of addresses where the call executed, including parent addresses and call order
+* `transactionHash` - string - The hash of the transaction
+* `transactionPosition` - integer - The transaction index position within the block
+* `type` - string - The type of the trace, such as call or create
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+      {
+        "action": {
+          "from": "0x956f9835ed55f501d7583a9c27bf2645526ca155",
+          "callType": "call",
+          "gas": "0xc215a",
+          "input": "0x39ecce49...",
+          "to": "0x83d55acdc72027ed339d267eebaf9a41e47490d5",
+          "value": "0x0"
+        },
+        "blockHash": "0x424f5abdae57746fea49e505488f009ef4507e3f2384e5a3301b7a93aac06da6",
+        "blockNumber": 47122496,
+        "result": {
+          "gasUsed": "0x2b76d",
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "subtraces": 3,
+        "traceAddress": [],
+        "transactionHash": "0x0c0473d2b7e4160c866367e9cc872edf78301d574a0dfe441085547f6117b985",
+        "transactionPosition": 1,
+        "type": "call"
+      }
+    ]
+  }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.base.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_transaction","params":["0x0c0473d2b7e4160c866367e9cc872edf78301d574a0dfe441085547f6117b985"],"id":1}'
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,35 @@
+---
+title: "GET /blocks/tip/height"
+---
+
+Returns the height of the last block.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+Returns the height of the last block.
+
+```json wrap
+910886
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/blocks/tip/height \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/blocks/tip/height \
+ -X GET
+```
+
+</CodeGroup>

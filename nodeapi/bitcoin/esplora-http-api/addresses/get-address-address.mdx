@@ -1,0 +1,57 @@
+---
+title: "GET /address/:address"
+---
+
+Get information about an address.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`address`** - required.&#x20;
+
+Example: `bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2`
+
+## Returns
+
+Returns information about an address.
+
+Available fields: `address`, `chain_stats` and `mempool_stats`.
+
+`{chain,mempool}_stats` each contain an object with `tx_count`, `funded_txo_count`, `funded_txo_sum`, `spent_txo_count` and `spent_txo_sum`.
+
+```json
+{
+	"address": "bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2",
+	"chain_stats": {
+		"funded_txo_count": 1,
+		"funded_txo_sum": 30453118,
+		"spent_txo_count": 1,
+		"spent_txo_sum": 30453118,
+		"tx_count": 2
+	},
+	"mempool_stats": {
+		"funded_txo_count": 0,
+		"funded_txo_sum": 0,
+		"spent_txo_count": 0,
+		"spent_txo_sum": 0,
+		"tx_count": 0
+	}
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/address/bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2 \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/address/bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2 \
+ -X GET
+```
+
+</CodeGroup>

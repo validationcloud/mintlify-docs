@@ -1,0 +1,76 @@
+---
+title: "simulate"
+---
+
+Executes a dry run of any transaction type, returning the result and metadata the transaction would produce without committing it to the ledger. The transaction does not need to be signed and no fee is charged on-ledger. Results are not guaranteed to match a later real submission because ledger state can change in between.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/transaction-methods/simulate)
+
+## **Parameters**
+
+* `tx_json` (object, required unless `tx_blob` is given) The transaction to simulate, in JSON format. `Fee`, `Sequence` and `SigningPubKey` are auto-filled if omitted.
+* `tx_blob` (string, required unless `tx_json` is given) The transaction to simulate, in binary format. Do not include both fields.
+* `binary` (boolean, optional) If `true`, return data and metadata in binary format serialized to a hexadecimal string. The default is `false`.
+
+## Returns
+
+* `applied` (boolean) Always `false`; the transaction is never applied.
+* `engine_result` (string) The result code the transaction would have produced, for example `tesSUCCESS`.
+* `engine_result_code` (integer) Numeric version of the result code.
+* `engine_result_message` (string) Human-readable explanation of the result.
+* `ledger_index` (number) The ledger index of the ledger that would have included this transaction.
+* `meta` (object) Transaction metadata describing the results of the transaction. Not included if the transaction fails with a code that means it would not be included in the ledger. `meta_blob` (string) in binary mode.
+* `tx_json` (object) The transaction that was simulated, including auto-filled values. `tx_blob` (string) in binary mode.
+
+```bash
+// Result
+{
+  "result": {
+    "applied": false,
+    "engine_result": "tesSUCCESS",
+    "engine_result_code": 0,
+    "engine_result_message": "The simulated transaction would have been applied.",
+    "ledger_index": 107292937,
+    "meta": {
+      "AffectedNodes": [
+        // ...
+      ],
+      "TransactionIndex": 126,
+      "TransactionResult": "tesSUCCESS",
+      "delivered_amount": "1000000"
+    },
+    "tx_json": {
+      "Account": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+      "Amount": "1000000",
+      "Destination": "rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH",
+      "Fee": "10",
+      "Sequence": 89926395,
+      "SigningPubKey": "",
+      "TransactionType": "Payment",
+      "TxnSignature": "",
+      "hash": "CD085996278F2EDDE6C069015E799C189DBCEF3F51E36B527640BA6ACC230D42"
+    },
+    "status": "success"
+  },
+  "status": "success",
+  "type": "response",
+  "forwarded": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"simulate","params":[{"tx_json":{"TransactionType":"Payment","Account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","Destination":"rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH","Amount":"1000000"},"binary":false}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"simulate","tx_json":{"TransactionType":"Payment","Account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","Destination":"rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH","Amount":"1000000"},"binary":false}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

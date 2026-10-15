@@ -1,0 +1,75 @@
+---
+title: "book_offers"
+---
+
+Retrieves a list of offers between two currencies, also known as an order book. The response omits unfunded offers and reports how much of each remaining offer is funded.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/path-and-order-book-methods/book_offers)
+
+## **Parameters**
+
+* `taker_gets` (object, required) The asset the account taking the offer would receive, as a currency object without an amount (`currency`, plus `issuer` for tokens).
+* `taker_pays` (object, required) The asset the account taking the offer would pay, in the same format.
+* `domain` (string, optional) The ledger entry ID of a permissioned domain. If provided, return offers from the corresponding permissioned DEX instead of the open DEX.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `limit` (number, optional) The maximum number of offers to return. The response may include fewer results.
+* `taker` (string, optional) The address of an account to use as a perspective. The response includes this account's offers even if they are unfunded.
+
+## Returns
+
+* `ledger_current_index` (number) Omitted if `ledger_index` is provided.
+* `ledger_index` (number) The ledger index of the ledger version used.
+* `ledger_hash` (string) The identifying hash of the ledger version used.
+* `offers` (array) Array of Offer ledger entries, each with the additional fields `owner_funds` (how much of `TakerGets` the owner can trade), `quality` (`taker_pays` divided by `taker_gets`) and, for partially funded offers, `taker_gets_funded` and `taker_pays_funded`.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "3FF4EFB0A896061499DCE559C21A44563F74C040226019033B06BA6FC383B450",
+    "ledger_index": 107292935,
+    "offers": [
+      {
+        "Account": "rLtCVnojydtQy7GYGTmDegkM15hLX8VuZk",
+        "BookDirectory": "54123B870896F4964184D7042DB75D78913D3E377BFC4ECA4F0564CB7BB2B000",
+        "BookNode": "0",
+        "Flags": 131072,
+        "LedgerEntryType": "Offer",
+        "OwnerNode": "503",
+        "PreviousTxnID": "9890CC65810FDB255DD5519D85264FCDA3910402EC1944AEA3FB21C88667AFF5",
+        "PreviousTxnLgrSeq": 107292934,
+        "Sequence": 108571606,
+        "TakerGets": "129154753",
+        "TakerPays": {
+          "currency": "524C555344000000000000000000000000000000",
+          "issuer": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+          "value": "196.082745282"
+        },
+        "index": "47F8BDC3D7E122EF7EBA682128A5E313226E8875696847A36793F154DCA653B4",
+        "owner_funds": "207263990664",
+        "quality": "0.0000015182"
+      },
+      // ...
+    ],
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"book_offers","params":[{"taker_gets":{"currency":"XRP"},"taker_pays":{"currency":"524C555344000000000000000000000000000000","issuer":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De"},"ledger_index":"validated","limit":2}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"book_offers","taker_gets":{"currency":"XRP"},"taker_pays":{"currency":"524C555344000000000000000000000000000000","issuer":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De"},"ledger_index":"validated","limit":2}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

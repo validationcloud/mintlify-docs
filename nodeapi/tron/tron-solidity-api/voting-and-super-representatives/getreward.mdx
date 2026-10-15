@@ -1,0 +1,41 @@
+---
+title: "GetReward"
+---
+
+Get the rewards that a Super Representative or a user has not yet withdrawn (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `address` - String - User's address
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+`reward` - long : Voting rewards
+
+```json
+// Result
+{
+  "reward": 7101725221997
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getReward \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "address": "TCuM8e98jmPwT1RU2jW7dekUC5HpXbGzFG",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

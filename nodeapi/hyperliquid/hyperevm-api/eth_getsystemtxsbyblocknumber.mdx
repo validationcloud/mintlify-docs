@@ -1,0 +1,64 @@
+---
+title: "eth_getSystemTxsByBlockNumber"
+---
+
+Returns the system transactions in a block: transfers from HyperCore into HyperEVM, which the standard block and receipt methods do not list. Indexers that need deposit history call this method per block.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Available over HTTPS only. This method is served by the Hyperliquid node, and WebSocket connections are served by nanoreth, which does not implement it.
+
+</Info>
+
+## Reference: [Here](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/json-rpc)
+
+## **Parameters**
+
+1. `QUANTITY|TAG` - Integer block number, or the string `"latest"`.
+
+## **Returns**
+
+`array` - The system transactions, in the shape of [eth\_getTransactionByHash](/nodeapi/hyperliquid/execution-api/eth_gettransactionbyhash) results. `from` is the HyperCore system address, `gasPrice` is `0x0` and the signature fields are zero.
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "type": "0x0",
+            "chainId": "0x3e7",
+            "nonce": "0x12bfe1",
+            "gasPrice": "0x0",
+            "gas": "0x30d40",
+            "to": "0xb88339cb7199b77e23db6e890353e22632ba630f",
+            "value": "0x0",
+            "input": "0xa9059cbb000000000000000000000000c20699185c15d0a2fd65779bb5d69f5b0b113c000000000000000000000000000000000000000000000000000000000000f723a3",
+            "r": "0x0",
+            "s": "0x0",
+            "v": "0x7f1",
+            "hash": "0xe5024b494ee8b9fa9d5609bde8098fd4b55aa942665de492ba31c12c7d0b060c",
+            "blockHash": "0x68313b874b682650253aa550bf8728c7d16b328a420f3755fc457a0122ae5439",
+            "blockNumber": "0x2cad774",
+            "transactionIndex": "0x0",
+            "from": "0x6b9e773128f453f5c2c60935ee2de2cbc5390a24"
+        }
+    ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getSystemTxsByBlockNumber","params":["0x2cad774"],"id":1}'
+```
+
+</CodeGroup>

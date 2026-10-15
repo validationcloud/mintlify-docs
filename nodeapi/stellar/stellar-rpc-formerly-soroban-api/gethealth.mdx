@@ -1,0 +1,48 @@
+---
+title: "getHealth"
+---
+
+General node health check.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://soroban.stellar.org/api/methods/getEvents)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`status` (string): Stringified-number of the current latest ledger observed by the node when this response was generated.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 8675309,
+  "result": {
+    "status": "healthy"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0", "id": 8675309, "method": "getHealth"}'
+```
+
+```bash title="testnet"
+curl https://testnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0", "id": 8675309, "method": "getHealth"}'
+```
+
+</CodeGroup>

@@ -1,0 +1,84 @@
+---
+title: "eth_getProof"
+---
+
+Returns the account and storage values of the specified account including the Merkle-proof.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Unichain Mainnet keeps historical state for roughly the last 10,000 blocks, about 2.8 hours at Unichain's 1-second block time. Requests for an older block return JSON-RPC error `-32603` with a message that contains `state at block #<number> is pruned`.
+
+</Info>
+
+## **Parameters**
+
+1. `address`- String - The address of the account for which the balance is to be checked.
+2. `storageKeys` - Array\[Strings] - An array of storage-keys that should be proofed and included.
+3. `blockNumber` - String -  The block number as a string in hexadecimal format or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+
+## Returns
+
+* `address` - The address associated with the account.
+* `accountProof` - An array of rlp-serialized MerkleTree-Nodes which starts with the stateRoot-Node and follows the path of the Keccak-256 hash of the address as key.
+* `balance` - The current balance of the account in wei.
+* `codeHash` - A 32 byte hash of the code of the account.
+* `nonce` - The account's transaction count (nonce), as a hexadecimal value.
+* `storageHash` - The 32-byte storage root of the account. Every storage proof starts from this root hash.
+* `storageProof` - An array of storage-entries as requested. Each entry is an object with the following fields:
+  * `key` - The requested storage key.
+  * `value` - The storage value.
+  * `proof` - An array of rlp-serialized MerkleTree-Nodes which starts with the account's `storageHash` node and follows the path of the Keccak-256 hash of the storage key.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "address": "0x4200000000000000000000000000000000000006",
+    "balance": "0x8b4155cef5d3791f3f",
+    "codeHash": "0xd0f1614c5dacfbd34f1c6f500f397009e4c9a8bfd4e02db353edb2253d9a8012",
+    "nonce": "0x0",
+    "storageHash": "0xee9a224414781e3f706133e5af5fda84184b01fc4d9b2acf02c7e79819a20ba5",
+    "accountProof": [
+      "0xf90211a048537e75523e360e6d90fb53c9da5b7c9622d282679abf901c2e1f92aa95f36aa057153466fb2432b78e751be15a5afbe21937234f4f36bdd32c1b74...",
+      "0xf90211a094306df4e1c4c7d07bc4522627f03c194279b0120382cd76af1c350172fe7dbda0e6bc768563afa57b37d3b8bcdaacbc43b4593b6b46bc2ec24b85cf...",
+      "0xf90211a0380402772216b9157b9d6bed71d476ac8685786991a280142a7eae92a6fa03f7a01d0dcaa8a3692f520cd869bcaf66b80ebc570ca3eb40ecdf31439b...",
+      "0xf90211a081a91c64ad9d07d31fb5d2af7bfab579f05fbdba05967b3ee91fb8ef7076ffeca08add7d76f9f22ba225097a3467c63598d0eb168bf68016218e5080...",
+      "0xf90211a043398001956d62d18121a3fb9b6be14f9ce4b57520eba134996aa3522d134831a0ceafaeb39f880dc77ca94954374ef0fa7a38761d331ce78a7fabac...",
+      "0xf8f1a081ca946eb9f11948078ba0fcd3418b425509472b12b5141f486738ef0ead191a80a059c9f6065e39e40cda024ce0b7822c99f8d3951b60b5df4cc9c9f6...",
+      "0xf8518080808080a08c37a1905cfe611a1bfc64d5d096bbf1338cb3a727eb942c81e4b1714d96e664808080808080a01b4248974f384a5bb89c956a819279c97d9e791b57aa3d87bd6c7eb782856af780808080",
+      "0xf86f9d35aea4ca43e93c944cff214e5c7630e300dfae0b9ad278336921aa4a20b84ff84d80898b4155cef5d3791f3fa0ee9a224414781e3f706133e5af5fda84..."
+    ],
+    "storageProof": [
+      {
+        "key": "0x0",
+        "value": "0x0",
+        "proof": [
+          "0xf90211a006f875bc71a00f31175abfdc8cc2d6882d5391de6f931593447de78b17fdcbeba067c3e5ab06c03b6d9184c4e74b8c3ef6a9d68328529c697c8bf212...",
+          "0xf90211a0ae3bec6c7de23b96e7d25d438d2770703519b8c4f156dea993b0d47dbb892e46a0721d4873056d2b100b74e2fa6d2c709221876e6d47e63d5d818767...",
+          "0xf90211a0553661c3e7e4d317887ab6c861af115531193b76df2f7ce2bfa474de06bd7fd5a01e27381b2f28bd49be416ad499bb0becf819fdd7bf5aabfa295df6...",
+          "0xf90211a0fb339f55815bca741548bc2452ceada06f70140371546c1daf516aeb6b6a4fb0a023f3f92792cc1dac0b7c53005b006e7a23891bfcd10c024266ef2d...",
+          "0xf901118080a012d4816da34a5dec242fa41e8c880b6d67d96f5b1944e5e6616d1b6ed7c3769da08cd68a58362621770fb360c55968a4dc786b1bed465938583d...",
+          "0xf851a076af6d79c7e2728a0a001cb84bea8e394c26e77b9463f83925c4ffa860c1562680808080808080808080808080a03357c19a3e2fe857874a1cd38460bd94d81d510a71b34a6084e28bc3b9c05d248080"
+        ]
+      }
+    ]
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getProof","params":["0x4200000000000000000000000000000000000006",["0x0"],"latest"],"id":1}'
+```
+
+</CodeGroup>

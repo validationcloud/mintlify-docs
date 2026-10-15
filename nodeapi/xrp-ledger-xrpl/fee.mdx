@@ -1,0 +1,67 @@
+---
+title: "fee"
+---
+
+Reports the current state of the open-ledger requirements for the transaction cost, as seen by the live rippled server.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/server-info-methods/fee)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+* `current_ledger_size` (string) Number of transactions provisionally included in the in-progress ledger.
+* `current_queue_size` (string) Number of transactions currently queued for the next ledger.
+* `drops` (object) Transaction cost information in drops of XRP: `base_fee`, `median_fee`, `minimum_fee` and `open_ledger_fee`.
+* `expected_ledger_size` (string) The approximate number of transactions expected to be included in the current ledger.
+* `ledger_current_index` (number) The ledger index of the current open ledger these stats describe.
+* `levels` (object) Transaction cost information in fee levels: `median_level`, `minimum_level`, `open_ledger_level` and `reference_level`.
+* `max_queue_size` (string) The maximum number of transactions that the transaction queue can currently hold.
+
+```bash
+// Result
+{
+  "result": {
+    "current_ledger_size": "74",
+    "current_queue_size": "0",
+    "drops": {
+      "base_fee": "10",
+      "median_fee": "5000",
+      "minimum_fee": "10",
+      "open_ledger_fee": "10"
+    },
+    "expected_ledger_size": "2055",
+    "ledger_current_index": 107292937,
+    "levels": {
+      "median_level": "128000",
+      "minimum_level": "256",
+      "open_ledger_level": "256",
+      "reference_level": "256"
+    },
+    "max_queue_size": "41100",
+    "status": "success"
+  },
+  "status": "success",
+  "type": "response",
+  "forwarded": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"fee","params":[{}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"fee"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

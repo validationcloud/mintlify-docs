@@ -1,0 +1,37 @@
+---
+title: "GET /tx/:txid/hex"
+---
+
+Returns the raw transaction in hex.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`txid`**- transaction hash, required.&#x20;
+
+Example: `92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655`
+
+## Returns
+
+Returns the raw transaction in hex.
+
+```text wrap
+01000000000101dcc2280d17799e9db3602f1754748002cdb8e8aec785ca078d1e4f0f750378de0000000000fdffffff0210a20b00000000002200207bb8f5802ae446be4e5f7dde387ca1624faee09a8643a8c16ff87df4235e25841295c40100000000220020c5472bd6dd2b9d70aa2662171ea01fd8480ef9b013da32d42f53f9ede7ed3c110400483045022100bcd839bd08914cf3e30b75ea707012ec27712da3c329ed2eefc76d21c4a78fa7022063a0cce2fa4d3b558f6cb3e62153b62c89e22ab097c43bedcde834f28dd7a0760147304402201b9de294e81d22613e2ae10650ce3dc098912e2c6e32c3574799311ad07ed77b02201664f76f49dce39ffc995bc07b34c259c2160f0535516fbc12c01f02e00d47aa01695221025e1b693ca2df4b0f6c8d3411ec9a20c912361fdc5b3b08b520897db5cd26738521034413f69b80e3606f92bfe09e3e53dfc5c43f09a6c95ffdf74bd5a0705bc49e3021029ac3c43c6123b911312d35086363c2ddbef4924da828f3c886b7bffab36978e953ae00000000
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/hex \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/hex \
+ -X GET
+```
+
+</CodeGroup>

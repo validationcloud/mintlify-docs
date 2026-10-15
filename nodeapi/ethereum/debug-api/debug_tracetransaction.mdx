@@ -1,0 +1,80 @@
+---
+title: "debug_traceTransaction"
+---
+
+Returns all traces of a given transaction.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`transactionHash` - String - <span style={{color: "red"}}>Required</span> - The transaction hash to be traced.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+* `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
+
+## **Returns**
+
+`result` - An object with the result of the trace, containing:
+
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "from": "0xe1d9b2b918e7bf4c27b108c7d78c839356b7c69f",
+        "gas": "0x2dc6c0",
+        "gasUsed": "0x440f5",
+        "to": "0xf0542ed44d268c85875b3b84b0e7ce0773e9aeef",
+        "input": "0x322f62ba00000000000000000000000035e4876102389f13d78381d317ff4612412a56c9",
+        "calls": [
+            {
+                "from": "0xf0542ed44d268c85875b3b84b0e7ce0773e9aeef",
+                "gas": "0x8fc",
+                "gasUsed": "0x0",
+                "to": "0x35e4876102389f13d78381d317ff4612412a56c9",
+                "input": "0x",
+                "value": "0xb1a2bc2ec50000",
+                "type": "CALL"
+            }
+        ],
+        "value": "0x16345785d8a0000",
+        "type": "CALL"
+    }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0xc2f74145a896b6a5b938216d130f5c382d3d77d5d501ab41e43681cbebcf3b97", {"tracer": "callTracer"}],"id":1}'
+```
+
+```bash title="testnet"
+curl https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0xe5a58e3d4460acf272945bc15bd91bad5b626b3f8ef33a36630cbce97d86b172", {"tracer": "callTracer"}],"id":1}'
+```
+
+</CodeGroup>

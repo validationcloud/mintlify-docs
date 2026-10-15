@@ -1,0 +1,33 @@
+---
+title: "GetPendingSize"
+---
+
+Get the size of the pending pool queue
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## **Returns**
+
+pendingSize - long : Pool queue size
+
+```json
+// Result
+{
+  "pendingSize": 0
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getpendingsize \
+    -X GET
+```
+
+</CodeGroup>

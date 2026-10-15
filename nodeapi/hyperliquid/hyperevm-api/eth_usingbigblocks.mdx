@@ -1,0 +1,45 @@
+---
+title: "eth_usingBigBlocks"
+---
+
+Returns whether an address currently has big blocks enabled, so its transactions are placed in big blocks rather than small ones.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Available over HTTPS only. This method is served by the Hyperliquid node, and WebSocket connections are served by nanoreth, which does not implement it.
+
+</Info>
+
+## Reference: [Here](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/json-rpc)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - The address to check.
+
+## **Returns**
+
+`Boolean` - `true` if the address sends transactions to big blocks.
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": false
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_usingBigBlocks","params":["0x6b9e773128f453f5c2c60935ee2de2cbc5390a24"],"id":1}'
+```
+
+</CodeGroup>

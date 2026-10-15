@@ -1,0 +1,39 @@
+---
+title: "GET /block/:hash/header"
+---
+
+Returns the hex-encoded block header.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`block`**- block hash, required.&#x20;
+
+Example: `0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a`
+
+## Returns
+
+Returns the hex-encoded block header.
+
+The response from this endpoint can be cached indefinitely.
+
+```text wrap
+0000ac2511730758cca9d49bb6cfb80f2e71a78208370d939a91010000000000000000008f4315a66896bb5e2ef5d3778d09e3f34ab568c16614832ddefafdc015eb4c96ab0d9f68b32c02174576cd9d
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a/header \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a/header \
+ -X GET
+```
+
+</CodeGroup>

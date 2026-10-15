@@ -1,0 +1,59 @@
+---
+title: "GetBlock"
+---
+
+Query block header information or entire block information according to block height or block hash. (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `id_or_num` - String - Can be the block height or the block hash. No value entered means to query the latest block
+* `detail` - Boolean - true means query the entire block information including the header and body. false means only query the block header information.
+
+## **Returns**
+
+| Field                                    | Type           | Description                                                                                                                                                     |
+| ---------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| blockID                                  | string         | block hash                                                                                                                                                      |
+| block\_header.raw\_data.timestamp        | int64          | block timestamp                                                                                                                                                 |
+| block\_header.raw\_data.txTrieRoot       | string         | the root of transaction merkle tree                                                                                                                             |
+| block\_header.raw\_data.parentHash       | string         | parent block hash                                                                                                                                               |
+| block\_header.raw\_data.number           | int64          | block number                                                                                                                                                    |
+| block\_header.raw\_data.witness\_id      | int64          | super representative id                                                                                                                                         |
+| block\_header.raw\_data.witness\_address | string         | super representative address                                                                                                                                    |
+| block\_header.raw\_data.version          | int32          | version                                                                                                                                                         |
+| block\_header.raw\_data.accountStateRoot | string         | the root of account state tree                                                                                                                                  |
+| block\_header.witness\_signature         | string         | the signature of SR                                                                                                                                             |
+| transactions                             | Transaction\[] | Transaction information in the block, please refer to [gettransactionbyid](/nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid) for the content contained in each transaction |
+
+```json
+// Result
+{
+	"blockID": "00000000048706778e73e1c6697e6cbe04efd0216758f7880f59e99fb5203898",
+	"block_header": {
+		"raw_data": {
+			"number": 75957879,
+			"txTrieRoot": "b5f9d8ac91acdf50a8ef6c653ea3938d1be22220148cc93f8642d0ad724d1083",
+			"witness_address": "41a1a508ce5762ffd3f16bd6af93808d26d57f01eb",
+			"parentHash": "00000000048706763ce15ad93be71d737e2ef08d6903de909aa18cadcc7f0c3d",
+			"version": 32,
+			"timestamp": 1758533718000
+		},
+		"witness_signature": "bdb19108257bcca8e633d890023e3a6ca845f5c5e433df6ce37aa07cea71778b6b359b8dd2df7e51774023dfb2b4bf425d6a3a11750ba50cbaf40c702c52b19100"
+	}
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getblock \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"detail":false}'
+```
+
+</CodeGroup>

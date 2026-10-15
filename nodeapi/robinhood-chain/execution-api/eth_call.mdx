@@ -1,0 +1,60 @@
+---
+title: "eth_call"
+---
+
+Executes a new message call immediately without creating a transaction on the block chain.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call)
+
+## **Parameters**
+
+1. `Object` - The transaction call object
+
+`from` - \[optional] String of the address the transaction is sent from.
+
+`to` - String of the address the transaction is directed to.
+
+`gas` - \[optional] Integer of the gas provided for the transaction execution.
+
+`gasprice` - \[optional] Integer of the gasPrice used for each paid gas encoded as a hexadecimal.
+
+`value` - \[optional] Integer of the value sent with this transaction encoded as a hexadecimal.
+
+`data` - \[optional] String of the hash of the method signature and encoded parameters. For more information, see the [Contract ABI description in the Solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html).
+
+2. `QUANTITY | TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`data` - hex value of the executed call or contract
+
+```bash
+// Result
+{
+  "id":1,
+  "jsonrpc": "2.0",
+  "result": "0x"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"eth_call","params":[{"from":null,"to":"0x6b175474e89094c44da98b954eedeac495271d0f","data":"0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE"}, "latest"],"id":1,"jsonrpc":"2.0"}'
+```
+
+```bash title="testnet"
+curl https://testnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"eth_call","params":[{"from":null,"to":"0x6b175474e89094c44da98b954eedeac495271d0f","data":"0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE"}, "latest"],"id":1,"jsonrpc":"2.0"}'
+```
+
+</CodeGroup>

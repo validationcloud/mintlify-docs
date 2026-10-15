@@ -1,0 +1,12 @@
+---
+title: "List All Trades"
+openapi: "/nodeapi/openapi/horizon-openapi-vc.json GET /trades"
+---
+
+This endpoint lists all trades and can be used in streaming mode. Streaming mode allows you to listen for new trades as they are added to the Stellar ledger. If called in streaming mode, Horizon will start at the earliest known trade unless a cursor is set, in which case it will start from that cursor. By setting the cursor value to now, you can stream trades created since your request time. When filtering for a specific orderbook, you must use use all six of these arguments: base\_asset\_type, base\_asset\_issuer, base\_asset\_code, counter\_asset\_type, counter\_asset\_issuer, and counter\_asset\_code. If the base or counter asset is XLM, you only need to indicate the asset type as native and do not need to designate the code or the issuer.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://developers.stellar.org/network/horizon/api-reference/resources/get-all-trades)

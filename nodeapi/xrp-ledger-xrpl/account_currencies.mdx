@@ -1,0 +1,59 @@
+---
+title: "account_currencies"
+---
+
+Retrieves a list of currencies that an account can send or receive, based on its trust lines. This is not a thoroughly confirmed list, but it can be used to populate user interfaces.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/account-methods/account_currencies)
+
+## **Parameters**
+
+* `account` (string, required) Look up currencies this account can send or receive.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+
+## Returns
+
+* `ledger_hash` (string) The identifying hash of the ledger version used to retrieve this data.
+* `ledger_index` (number) The ledger index of the ledger version used to retrieve this data.
+* `receive_currencies` (array of strings) Currency codes for currencies that this account can receive.
+* `send_currencies` (array of strings) Currency codes for currencies that this account can send.
+* `validated` (boolean) If `true`, this data comes from a validated ledger.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "4CCEB7D9BC5FDDB3F3661FAC3A10347D265AB892B5FDC4D91EB6D647630A442B",
+    "ledger_index": 107293035,
+    "validated": true,
+    "receive_currencies": [
+      "CUB",
+      // ...
+    ],
+    "send_currencies": [
+      "Cub"
+    ],
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_currencies","params":[{"account":"rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ","ledger_index":"validated"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"account_currencies","account":"rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ","ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> Accounts with a very large number of trust lines (for example major stablecoin issuers) can take a long time to evaluate. Use a smaller account or paginate with `account_lines` instead.

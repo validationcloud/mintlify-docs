@@ -1,0 +1,103 @@
+---
+title: "eth_getBlockByHash"
+---
+
+Returns information about a block by hash.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblockbyhash)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - Hash of a block.
+2. `Boolean` - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions are returned.
+
+```bash
+params: [
+  "0x801f9b08c43e9363292af641cd5a950bfa74e248314f2967a1bbc9693ed8089e",
+  false
+]
+```
+
+## **Returns**
+
+`Object` - A block object, or `null` when no block was found:
+
+* `number`: `QUANTITY` - the block number. `null` when its pending block.
+* `hash`: `DATA`, 32 Bytes - hash of the block. `null` when its pending block.
+* `parentHash`: `DATA`, 32 Bytes - hash of the parent block.
+* `nonce`: `DATA`, 8 Bytes - hash of the generated proof-of-work. `null` when its pending block.
+* `sha3Uncles`: `DATA`, 32 Bytes - SHA3 of the uncles data in the block.
+* `logsBloom`: `DATA`, 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block.
+* `transactionsRoot`: `DATA`, 32 Bytes - the root of the transaction trie of the block.
+* `stateRoot`: `DATA`, 32 Bytes - the root of the final state trie of the block.
+* `receiptsRoot`: `DATA`, 32 Bytes - the root of the receipts trie of the block.
+* `miner`: `DATA`, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+* `difficulty`: `QUANTITY` - integer of the difficulty for this block.
+* `totalDifficulty`: `QUANTITY` - integer of the total difficulty of the chain until this block.
+* `extraData`: `DATA` - the "extra data" field of this block.
+* `size`: `QUANTITY` - integer the size of this block in bytes.
+* `gasLimit`: `QUANTITY` - the maximum gas allowed in this block.
+* `gasUsed`: `QUANTITY` - the total used gas by all transactions in this block.
+* `timestamp`: `QUANTITY` - the unix timestamp for when the block was collated.
+* `transactions`: `Array` - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
+* `uncles`: `Array` - Array of uncle hashes.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "hash": "0x801f9b08c43e9363292af641cd5a950bfa74e248314f2967a1bbc9693ed8089e",
+    "parentHash": "0xeca6dda1c15cbacfd0feb378229e5fd968e08492249460abc91d7161026ab785",
+    "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+    "miner": "0x4200000000000000000000000000000000000011",
+    "stateRoot": "0x4b02a0160147af89ade5f64ae8e7460dd69d29f79e8f67e75dde50945ff174a5",
+    "transactionsRoot": "0x2185b54d7a1b34d1684af0021bca144506d8852547c081c761f817b8136f9819",
+    "receiptsRoot": "0x3f4960f2171711d80a16cfe093117b6cca5b739a6faf78e4e23b6467d033dae0",
+    "logsBloom": "0x00000000000000000000008000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000...",
+    "difficulty": "0x0",
+    "number": "0x3a64324",
+    "gasLimit": "0x3938700",
+    "gasUsed": "0x9589c",
+    "timestamp": "0x6acf62eb",
+    "extraData": "0x01000000fa0000000c000000000007a120",
+    "mixHash": "0x979f6a9cdcf734e9e21535171b78fc34c5db7de1d8121e131421174bf618197c",
+    "nonce": "0x0000000000000000",
+    "baseFeePerGas": "0x7a120",
+    "withdrawalsRoot": "0xf0da6a972a5e0347524e8e57ee0eb81e7a5fb6a3a92c205ac3ac75721283b5ed",
+    "blobGasUsed": "0x5da70",
+    "excessBlobGas": "0x0",
+    "parentBeaconBlockRoot": "0xbd77e25a7c733e71eb875360fad681f6e7e8fabd3581c2a6436abed62a66a944",
+    "requestsHash": "0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": "0xba1",
+    "uncles": [],
+    "transactions": [
+      "0xed980fce57eb4e5d9aa7c6d65d5ba8eb50a3a6d66b5ca14d79d50e5aa3993f3e",
+      "0xbefd965068aaabb9b8ebdc9d3ed81f5b3b2bc7d2c7c28d34da6bcbab2b4748f5",
+      "0x6e5622e0ac8197fe0b6e3f6f18d015fcf007c8f7bc697b0dc2b047ed1158221e",
+      "0x670a424d884fecb95b495dd19948025552a538c0563142d4c9cb7371d6899c1f",
+      "0xc63fe14bc9d7027b5a10444c5c161d8d91be856dced598673d993eb0ad72558c",
+      "0x9c32848d7d789b588ec7cc046afcc4082d90e43e5201ebf76172e85e71e9ff7b",
+      "0xd67cbf7e2578c7395d5a3fee940aea1d202cfd6dfeb836d924354dccdc3591ae",
+      "0x0ea94db805ef07ef99df62cbccfe86519adfac010bbd3e6c6fd4f284b662f0d8"
+    ],
+    "withdrawals": []
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["0x801f9b08c43e9363292af641cd5a950bfa74e248314f2967a1bbc9693ed8089e",false],"id":1}'
+```
+
+</CodeGroup>

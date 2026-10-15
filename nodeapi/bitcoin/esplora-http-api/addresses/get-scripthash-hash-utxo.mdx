@@ -1,0 +1,33 @@
+---
+title: "GET /scripthash/:hash/utxo"
+---
+
+Get the list of unspent transaction outputs associated with the scripthash.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`scripthash`** - required.&#x20;
+
+## Returns
+
+Get the list of unspent transaction outputs associated with the scripthash.
+
+Available fields: `txid`, `vout`, `value` and `status` (with the status of the funding tx).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/scripthash/<scripthash>/utxo \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/scripthash/<scripthash>/utxo \
+ -X GET
+```
+
+</CodeGroup>

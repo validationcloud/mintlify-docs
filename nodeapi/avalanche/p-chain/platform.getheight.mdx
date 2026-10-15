@@ -1,0 +1,58 @@
+---
+title: "platform.getHeight"
+---
+
+Returns the height of the last accepted block.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformgetheight)
+
+## **Parameters**
+
+`None`&#x20;
+
+## Returns
+
+`height` - int
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "height": "56"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getHeight",
+    "params": {},
+    "id": 1
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.getHeight",
+    "params": {},
+    "id": 1
+}'
+```
+
+</CodeGroup>

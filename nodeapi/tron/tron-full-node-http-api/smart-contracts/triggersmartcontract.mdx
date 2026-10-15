@@ -1,0 +1,95 @@
+---
+title: "TriggerSmartContract"
+---
+
+Returns TransactionExtention, which contains the unsigned Transaction.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+**Note:**\
+[ABI rules](https://solidity.readthedocs.io/en/latest/abi-spec.html#examples)\
+Example: [Parameter and return value encoding and decoding](https://developers.tron.network/docs/parameter-and-return-value-encoding-and-decoding)
+
+## **Parameters**
+
+* `owner_address` - String - Required - Address that triggers the contract, converted to a hex string
+* `contract_address` - String - Required - Contract address, converted to a hex string
+* `function_selector` - String - Function call, must not be left blank
+* `parameter` - String - Parameter encoding needs to be in accordance with the ABI rules, the rules are more complicated, users can use the ethers library to encode,For details, please refer to the document-Guide-Smart Contract-Best Practice-Parameter Encoding and Decoding.
+* `data` - String - The data for interacting with smart contracts, including the contract function and parameters. You can choose to use this field, or you can choose to use function\_selector and parameter for contract interaction. When both of data and function\_selector exist, function\_selector is preferred
+* `fee_limit` - int32 - Required - Maximum TRX consumption, measured in SUN (1 TRX = 1,000,000 SUN).
+* `call_value` - int64 - Amount of TRX transferred with this transaction, measured in SUN (1 TRX = 1,000,000 SUN).
+* `call_token_value` - int64 - Amount of TRC10 token transferred with this transaction
+* `token_id` - int64 - TRC10 token id
+* `permission_id` - int32 - Optional, for multi-signature
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `TriggerSmartContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field              | Type   | Description                                        |
+| ------------------ | ------ | -------------------------------------------------- |
+| owner\_address     | string | Account address                                    |
+| contract\_address  | string | Contract address                                   |
+| call\_value        | int64  | The amount of TRX passed into the contract         |
+| data               | string | Operating parameters                               |
+| call\_token\_value | int64  | The amount of TRC-10 transferred into the contract |
+| token\_id          | int64  | TRC-10 token id                                    |
+
+```json
+// Result
+{
+  "result": {
+    "result": true
+  },
+  "transaction": {
+    "visible": true,
+    "txID": "22dccb42d0e17491de92d1bebc994b5f8dbce17c5214bd805d903f04fa0db55f",
+    "raw_data": {
+      "contract": [
+        {
+          "parameter": {
+            "value": {
+              "data": "a9059cbb00000000000000000000004115208ef33a926919ed270e2fa61367b2da3753da0000000000000000000000000000000000000000000000000000000000000032",
+              "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+              "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs"
+            },
+            "type_url": "type.googleapis.com/protocol.TriggerSmartContract"
+          },
+          "type": "TriggerSmartContract"
+        }
+      ],
+      "ref_block_bytes": "5304",
+      "ref_block_hash": "9f7028275bd30605",
+      "expiration": 1757410986000,
+      "fee_limit": 1000000000,
+      "timestamp": 1757410926876
+    },
+    "raw_data_hex": "0a02530422089f7028275bd30605409090eeee92335aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541fd49eda0f23ff7ec1d03b52c3a45991c24cd440e12154142a1e39aefa49290f2b3f9ed688d7cecf86cd6e02244a9059cbb00000000000000000000004115208ef33a926919ed270e2fa61367b2da3753da0000000000000000000000000000000000000000000000000000000000000032709cc2eaee923390018094ebdc03"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/triggersmartcontract \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+  "function_selector": "transfer(address,uint256)",
+  "parameter": "00000000000000000000004115208EF33A926919ED270E2FA61367B2DA3753DA0000000000000000000000000000000000000000000000000000000000000032",
+  "fee_limit": 1000000000,
+  "call_value": 0,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

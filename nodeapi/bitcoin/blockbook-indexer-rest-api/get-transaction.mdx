@@ -1,0 +1,147 @@
+---
+title: "Get transaction"
+---
+
+Get transaction returns "normalized" data about a transaction.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#get-transaction)
+
+```bash
+GET /api/v2/tx/<txid>
+```
+
+## **Parameters**
+
+**`transaction id (hash)`**- string, required.&#x20;
+
+Example: `0694bfc6ff68e55975718e9547c5343db4afcdfa783cc8421ddd50642677892b`
+
+## Returns
+
+Response for a Bitcoin confirmed transaction:
+
+```json
+{
+	"txid": "0694bfc6ff68e55975718e9547c5343db4afcdfa783cc8421ddd50642677892b",
+	"version": 1,
+	"vin": [
+		{
+			"sequence": 4294967295,
+			"n": 0,
+			"isAddress": false,
+			"coinbase": "03d5fb0b194d696e656420627920416e74506f6f6c200d008200efc52e9ffabe6d6d2641a8cd8c6ed0af79b99e118b624171da63e3ba7c481c566216b18edb6aec0c0200000000000000000089f51ffd000000000000"
+		}
+	],
+	"vout": [
+		{
+			"value": "649189104",
+			"n": 0,
+			"spent": true,
+			"spentTxId": "bd2bdfc21730fca3a6445dd1dad4ccbad65ccc2bf30f2f8b1df838221db36a91",
+			"spentIndex": 8,
+			"spentHeight": 785498,
+			"hex": "a9144b09d828dfc8baaba5d04ee77397e04b1050cc7387",
+			"addresses": [
+				"38XnPvu9PmonFU9WouPXUjYbW91wa5MerL"
+			],
+			"isAddress": true
+		},
+		{
+			"value": "0",
+			"n": 1,
+			"hex": "6a24aa21a9edeb153a4d97ba14b1f5c282fde27944a760fe269f563458fac157681e5d56da07",
+			"addresses": [
+				"OP_RETURN aa21a9edeb153a4d97ba14b1f5c282fde27944a760fe269f563458fac157681e5d56da07"
+			],
+			"isAddress": false
+		},
+		{
+			"value": "0",
+			"n": 2,
+			"hex": "6a2952534b424c4f434b3a179ffccca770b4c6e2d50acb332f01759de1a5888aef56cf1a2e3d20004f92ae",
+			"addresses": [
+				"OP_RETURN 52534b424c4f434b3a179ffccca770b4c6e2d50acb332f01759de1a5888aef56cf1a2e3d20004f92ae"
+			],
+			"isAddress": false
+		}
+	],
+	"blockHash": "00000000000000000004a49543c0b6e2043e67b513c0d9100fbdf91f662c3ad1",
+	"blockHeight": 785365,
+	"confirmations": 57195,
+	"blockTime": 1681476973,
+	"size": 304,
+	"vsize": 277,
+	"value": "649189104",
+	"valueIn": "0",
+	"fees": "0",
+	"hex": "010000000001010000000000000000000000000000000000000000000000000000000000000000ffffffff5603d5fb0b194d696e656420627920416e74506f6f6c200d008200efc52e9ffabe6d6d2641a8cd8c6ed0af79b99e118b624171da63e3ba7c481c566216b18edb6aec0c0200000000000000000089f51ffd000000000000ffffffff03f0d6b1260000000017a9144b09d828dfc8baaba5d04ee77397e04b1050cc73870000000000000000266a24aa21a9edeb153a4d97ba14b1f5c282fde27944a760fe269f563458fac157681e5d56da0700000000000000002b6a2952534b424c4f434b3a179ffccca770b4c6e2d50acb332f01759de1a5888aef56cf1a2e3d20004f92ae0120000000000000000000000000000000000000000000000000000000000000000000000000"
+}
+```
+
+Response for Bitcoin unconfirmed transaction (_blockHeight_: -1, _confirmations_: 0, mining estimates _confirmationETABlocks_ and _confirmationETASeconds_):
+
+```json
+{
+  "txid": "cd8ec77174e426070d0a50779232bba7312b712e2c6843d82d963d7076c61366",
+  "version": 2,
+  "vin": [
+    {
+      "txid": "47687cc4abb58d815168686465a38113a0608b2568a6d6480129d197e653f6dc",
+      "sequence": 4294967295,
+      "n": 0,
+      "addresses": ["bc1qka0gpenex558g8gpxmpx247mwhw695k6a7yhs4"],
+      "isAddress": true,
+      "value": "1983687"
+    }
+  ],
+  "vout": [
+    {
+      "value": "3106",
+      "n": 0,
+      "hex": "0020d7da4868055fde790a8581637ab81c216e17a3f8a099283da6c4a27419ffa539",
+      "addresses": [
+        "bc1q6ldys6q9tl08jz59s93h4wquy9hp0glc5zvjs0dxcj38gx0l55uspu8x86"
+      ],
+      "isAddress": true
+    },
+    {
+      "value": "1979101",
+      "n": 1,
+      "hex": "0014381be30ca46ddf378ef69ebc4a601bd6ff30b754",
+      "addresses": ["bc1q8qd7xr9ydh0n0rhkn67y5cqm6mlnpd65dcyeeg"],
+      "isAddress": true
+    }
+  ],
+  "blockHeight": -1,
+  "confirmations": 0,
+  "confirmationETABlocks": 3,
+  "confirmationETASeconds": 2055,
+  "blockTime": 1675270935,
+  "size": 234,
+  "vsize": 153,
+  "value": "1982207",
+  "valueIn": "1983687",
+  "fees": "1480",
+  "hex": "020000000001...b18f00000000"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/tx/0694bfc6ff68e55975718e9547c5343db4afcdfa783cc8421ddd50642677892b \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/tx/0694bfc6ff68e55975718e9547c5343db4afcdfa783cc8421ddd50642677892b \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

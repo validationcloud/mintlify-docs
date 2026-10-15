@@ -1,0 +1,90 @@
+---
+title: "GET /block/:hash/txid/:index"
+---
+
+Returns the transaction at index `:index` within the specified block.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`block`**- block hash, required.&#x20;
+
+Example: `0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a`
+
+## Returns
+
+Returns the transaction at index `:index` within the specified block.
+
+The response from this endpoint can be cached indefinitely.
+
+```json wrap
+[
+	{
+		"txid": "daa2980a327a310bd21ad88a8843356a68cf9c2938442577e46057d4b61e1bc4",
+		"version": 2,
+		"locktime": 0,
+		"vin": [
+			{
+				"txid": "5a4719d865cab427e5c53a0953d13ba2882f9942e4084435a779ef8d4547e5c3",
+				"vout": 0,
+				"prevout": {
+					"scriptpubkey": "5120ade9486138a186c30d1fae18a17f9cc29257f98ad297d67863f2de5a5787cb39",
+					"scriptpubkey_asm": "OP_PUSHNUM_1 OP_PUSHBYTES_32 ade9486138a186c30d1fae18a17f9cc29257f98ad297d67863f2de5a5787cb39",
+					"scriptpubkey_type": "v1_p2tr",
+					"scriptpubkey_address": "bc1p4h55scfc5xrvxrgl4cv2zluuc2f907v262tav7rr7t0954u8evushg4a99",
+					"value": 89066
+				},
+				"scriptsig": "",
+				"scriptsig_asm": "",
+				"witness": [
+					"c3a7cf87345dac6768a26bf74d8d04fd0a170a2afb3394cf472b3f4fbef33ef888d7a8f65c26a6062ebbc34826115c170032c1368bdafb7fb4479e7b39e8b806"
+				],
+				"is_coinbase": false,
+				"sequence": 4294967293
+			}
+		],
+		"vout": [
+			{
+				"scriptpubkey": "5120ade9486138a186c30d1fae18a17f9cc29257f98ad297d67863f2de5a5787cb39",
+				"scriptpubkey_asm": "OP_PUSHNUM_1 OP_PUSHBYTES_32 ade9486138a186c30d1fae18a17f9cc29257f98ad297d67863f2de5a5787cb39",
+				"scriptpubkey_type": "v1_p2tr",
+				"scriptpubkey_address": "bc1p4h55scfc5xrvxrgl4cv2zluuc2f907v262tav7rr7t0954u8evushg4a99",
+				"value": 88997
+			},
+			{
+				"scriptpubkey": "6a5d0eff7f818cec82d08bc0a88281d215",
+				"scriptpubkey_asm": "OP_RETURN OP_PUSHNUM_13 OP_PUSHBYTES_14 ff7f818cec82d08bc0a88281d215",
+				"scriptpubkey_type": "op_return",
+				"value": 0
+			}
+		],
+		"size": 188,
+		"weight": 548,
+		"fee": 69,
+		"status": {
+			"confirmed": true,
+			"block_height": 910150,
+			"block_hash": "0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a",
+			"block_time": 1755254187
+		}
+	},
+	...
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a/txids/:index \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a/txids/:index \
+ -X GET
+```
+
+</CodeGroup>

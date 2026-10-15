@@ -1,0 +1,37 @@
+---
+title: "eth_maxPriorityFeePerGas"
+---
+
+Get the priority fee needed to be included in a block.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`QUANTITY` - A filter id.
+
+```bash
+// Result
+{
+  "id":1,
+  "jsonrpc": "2.0",
+  "result": "0x1" // 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.optimism.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_maxPriorityFeePerGas","params":[],"id":73}'
+```
+
+</CodeGroup>

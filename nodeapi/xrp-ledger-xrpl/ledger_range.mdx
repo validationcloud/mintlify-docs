@@ -1,0 +1,46 @@
+---
+title: "ledger_range"
+---
+
+Returns the index numbers of the earliest and latest ledgers that the server has. On our endpoint this is the full-history range held by Clio, starting at ledger 32,570, the earliest ledger available anywhere on XRPL mainnet (ledgers 1 to 32,569 were lost early in the network's life).
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://github.com/XRPLF/clio/blob/develop/src/rpc/handlers/LedgerRange.hpp)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+* `ledger_index_min` (number) The earliest ledger index the server has.
+* `ledger_index_max` (number) The most recent ledger index the server has.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_index_min": 32570,
+    "ledger_index_max": 107292937,
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ledger_range","params":[{}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"ledger_range"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> This method is served by Clio, our full-history XRPL server, and is not available from rippled. It is not documented on xrpl.org; the reference above points at the Clio source.

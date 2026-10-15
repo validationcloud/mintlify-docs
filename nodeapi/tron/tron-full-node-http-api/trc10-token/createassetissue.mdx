@@ -1,0 +1,74 @@
+---
+title: "CreateAssetIssue"
+---
+
+Issue a TRC10 token.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Owner address, default hexString
+* `name` - String - Token name, default hexString
+* `abbr` - string - Abbrieviation, default hexString
+* `total_supply` - int64 - Token total supply
+* `trx_num` - int64 - Define the price by the ratio of trx\_num/num(The unit of 'trx\_num' is SUN)
+* `num` - int64 - Define the price by the ratio of trx\_num/num
+* `start_time` - int64 - ICO start time
+* `end_time` - int64 - ICO end time
+* `description` - String - Token description, default hexString
+* `url` - String - Token official website url, default hexString
+* `free_asset_net_limit` - int64 - Token free asset net limit
+* `public_free_asset_net_limit` - int64 - Token public free asset net limit
+* `frozen_supply` - json - Token frozen supply
+* `precision` - int32
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `AssetIssueContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field                           | Type            | Description                                                                                 |
+| ------------------------------- | --------------- | ------------------------------------------------------------------------------------------- |
+| owner\_address                  | string          | issuer address                                                                              |
+| name                            | string          | token name                                                                                  |
+| abbr                            | string          | token abbr                                                                                  |
+| total\_supply                   | int64           | total supply                                                                                |
+| frozen\_supply                  | FrozenSupply\[] | The number of tokens to be frozen is specified by the issuer of the token when it is issued |
+| trx\_num                        | int32           | Define the price by the ratio of trx\_num/num(The unit of 'trx\_num' is SUN)                |
+| precision                       | int32           | precision                                                                                   |
+| num                             | int32           | Define the price by the ratio of trx\_num/num(The unit of 'trx\_num' is SUN)                |
+| start\_time                     | int64           | ICO start time                                                                              |
+| end\_time                       | int64           | ICO end time                                                                                |
+| description                     | string          | token description                                                                           |
+| url                             | string          | Token official website url, default hexString                                               |
+| free\_asset\_net\_limit         | int64           | Token free asset net limit                                                                  |
+| public\_free\_asset\_net\_limit | int64           | Token public free asset net limit for a account                                             |
+| public\_free\_asset\_net\_usage | int64           | The total number of token free bandwidth used by all token owner                            |
+| public\_latest\_free\_net\_time | int64           | The timestamp of the last consumption of this token's free bandwidth                        |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/createassetissue \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "name": "0x6173736574497373756531353330383934333132313538",
+  "abbr": "0x6162627231353330383934333132313538",
+  "description": "0x4578616d706c654465736372697074696f6e",
+  "url": "0x7777772e6578616d706c652e636f6d",
+  "frozen_supply": {
+    "frozen_amount": 1,
+    "frozen_days": 2
+  },
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

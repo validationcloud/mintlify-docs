@@ -1,0 +1,69 @@
+---
+title: "getmemoryinfo"
+---
+
+Returns an object containing information about memory usage.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://developer.bitcoin.org/reference/rpc/getmemoryinfo.html)
+
+## **Parameters**
+
+**`mode`** - string, optional, default=”stats”
+
+**determines what kind of information is returned.**
+
+* “stats” returns general statistics about memory usage in the daemon.
+* “mallocinfo” returns an XML string describing low-level heap state (only available if compiled with glibc 2.10+).
+
+## Returns (mode "stats")
+
+```json
+{                         (json object)
+  "locked" : {            (json object) Information about locked memory manager
+    "used" : n,           (numeric) Number of bytes used
+    "free" : n,           (numeric) Number of bytes available in current arenas
+    "total" : n,          (numeric) Total number of bytes managed
+    "locked" : n,         (numeric) Amount of bytes that succeeded locking. If this number is smaller than total, locking pages failed at some point and key data could be swapped to disk.
+    "chunks_used" : n,    (numeric) Number allocated chunks
+    "chunks_free" : n     (numeric) Number unused chunks
+  }
+}
+```
+
+## Returns (mode "mallocinfo")
+
+| Name | Type   | Description               |
+| ---- | ------ | ------------------------- |
+| str  | string | "`<malloc version=”1”>…"` |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getmemoryinfo",
+	"params": []
+}'
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getmemoryinfo",
+	"params": []
+}'
+```
+
+</CodeGroup>

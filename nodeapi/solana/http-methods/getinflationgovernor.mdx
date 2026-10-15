@@ -1,0 +1,66 @@
+---
+title: "getInflationGovernor"
+---
+
+Returns the current inflation governor.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`object` _optional._ Configuration object containing the following fields:
+
+* `commitment` string. The level of commitment required for the query. The options include:
+  * `finalized` string.&#x20;
+    * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+  * `confirmed` string.
+    * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+  * `processed` string.
+    * The node will query its most recent block. Note that the block may not be complete.
+
+## Returns
+
+`result` The result will be an object with the following fields:
+
+* `foundation` The proportion of total inflation allocated to the foundation.
+* `foundationTerm` The time period in years during which the foundation allocation will be paid out.
+* `initial` The initial inflation percentage from time 0.
+* `taper` The time period in years during which the inflation rate will gradually decrease from the initial rate to the final rate.
+* `terminal` The terminal inflation percentage.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"foundation": 0.0,
+		"foundationTerm": 0.0,
+		"initial": 0.08,
+		"taper": 0.15,
+		"terminal": 0.015
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getInflationGovernor"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getInflationGovernor"}'
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,51 @@
+---
+title: "eth_getBlockTransactionCountByNumber"
+---
+
+Returns the number of transactions in a block matching the given block number.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Over HTTPS, Hyperliquid Mainnet keeps roughly 165 days of blocks, receipts and logs; requests for older blocks return JSON-RPC error `-32603` with `invalid block height`. Over WebSocket the request is served by nanoreth, the HyperEVM archive client, and any block back to genesis is available.
+
+</Info>
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getblocktransactioncountbynumber)
+
+## **Parameters**
+
+`QUANTITY|TAG` - integer of a block number, or the string `"earliest"`, `"latest"` or `"pending"`, as in the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+
+```bash
+params: [
+  "0xe8", // 232
+]
+```
+
+## **Returns**
+
+`QUANTITY` - integer of the number of transactions in this block.
+
+```bash
+// Result
+{
+  "id":1,
+  "jsonrpc": "2.0",
+  "result": "0xa" // 10
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByNumber","params":["0xe8"],"id":1}'
+```
+
+</CodeGroup>

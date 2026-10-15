@@ -1,0 +1,64 @@
+---
+title: "GetProposalById"
+---
+
+Queries proposal based on ID and returns proposal details.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `id` - int32 - Proposal ID
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+| Field             | Type               | Description                                                                              |
+| ----------------- | ------------------ | ---------------------------------------------------------------------------------------- |
+| proposal\_id      | int64              | Proposal ID                                                                              |
+| proposer\_address | string             | Proposer address                                                                         |
+| parameters        | map&lt;int64, int64> | Chain params                                                                             |
+| parameters.key    | string             | Param ID                                                                                 |
+| parameters.value  | int64              | Param value                                                                              |
+| expiration\_time  | int64              | Proposal expiration time                                                                 |
+| create\_time      | int64              | Proposal creation time                                                                   |
+| approvals         | string array       | Approvers address                                                                        |
+| state             | enum               | State of the proposal, has four enum values: PENDING, DISAPPROVED, APPROVED and CANCELED |
+
+```json
+// Result
+{
+  "proposal_id": 1,
+  "proposer_address": "TXyZjVcYurrbE43b2MfMtN34uA3tJL85zy",
+  "parameters": [
+    {
+      "key": 11,
+      "value": 10
+    }
+  ],
+  "expiration_time": 1575871200000,
+  "create_time": 1575606708000,
+  "approvals": [
+    "TXyZjVcYurrbE43b2MfMtN34uA3tJL85zy"
+  ],
+  "state": "APPROVED"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getproposalbyid \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "id": 1,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

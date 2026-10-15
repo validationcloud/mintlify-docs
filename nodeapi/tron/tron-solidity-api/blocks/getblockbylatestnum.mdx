@@ -1,0 +1,58 @@
+---
+title: "GetBlockByLatestNum"
+---
+
+Queries a block by number (does not need to be in Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `num` - int32 - The block number
+
+## **Returns**
+
+| Field                                    | Type           | Description                                                                                                                                                     |
+| ---------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| blockID                                  | string         | block hash                                                                                                                                                      |
+| block\_header.raw\_data.timestamp        | int64          | block timestamp                                                                                                                                                 |
+| block\_header.raw\_data.txTrieRoot       | string         | the root of transaction merkle tree                                                                                                                             |
+| block\_header.raw\_data.parentHash       | string         | parent block hash                                                                                                                                               |
+| block\_header.raw\_data.number           | int64          | block number                                                                                                                                                    |
+| block\_header.raw\_data.witness\_id      | int64          | super representative id                                                                                                                                         |
+| block\_header.raw\_data.witness\_address | string         | super representative address                                                                                                                                    |
+| block\_header.raw\_data.version          | int32          | version                                                                                                                                                         |
+| block\_header.raw\_data.accountStateRoot | string         | the root of account state tree                                                                                                                                  |
+| block\_header.witness\_signature         | string         | the signature of SR                                                                                                                                             |
+| transactions                             | Transaction\[] | Transaction information in the block, please refer to [gettransactionbyid](/nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid) for the content contained in each transaction |
+
+```json
+// Result
+{
+	"blockID": "000000000487076ff9e45d23bd0da71ad8c4b6472d77ed86a4137dd011356fbb",
+	"block_header": {
+		"raw_data": {
+			"number": 75958127,
+			"txTrieRoot": "7eb32349fefb0abff35f11ac9fc1313da0b4f6926bdf86c7f52eb52248990433",
+			"witness_address": "4162398d516b555ac64af24416e05c199c01823048",
+			"parentHash": "000000000487076e29f762fc463180e91bfe221c49dbebf2d941e6bae508c87e",
+			"version": 32,
+			"timestamp": 1758534462000
+		},
+		"witness_signature": "a48e2c9b43c1b0ef3595be2c3d4b0db4f30a72e60b067c6c70d37018ffa88c487af786cf9c10857cf23a98083277b2dbdd6292723c538ecf02cd060ec847bf1f01"
+	}
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getblockbylatestnum \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"num":75958142}'
+```
+
+</CodeGroup>

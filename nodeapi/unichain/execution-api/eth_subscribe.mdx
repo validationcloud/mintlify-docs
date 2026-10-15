@@ -1,0 +1,68 @@
+---
+title: "eth_subscribe"
+---
+
+Subscribes to real-time events over WebSocket and returns a subscription ID that is attached to every notification.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing) and each notification delivered on the subscription will use `10` Compute Units regardless of size.
+
+***
+
+## **Reference:** [**Here**](https://ethereum.org/en/developers/tutorials/using-websockets/#eth-subscribe)
+
+## **Parameters**
+
+`subscription name` - **string** - The type of event you want to subscribe to (newHeads, logs). This method supports the following subscription types:
+
+* **newHeads** - Fires a notification each time a new header is appended to the chain, including chain reorganizations.
+* **logs** - Returns logs that are included in new imported blocks and match the given filter criteria.
+
+`data - object -` (Optional) - Arguments such as an address, multiple addresses, and topics. Note, only logs that are created from these addresses or match the specified topics will return logs.
+
+```json
+// newHeads
+params: ["newHeads"]
+
+// logs from one contract
+params: ["logs", {"address": "0x4200000000000000000000000000000000000006"}]
+```
+
+## Returns
+
+`result - string` - Hex encoded subscription ID. This ID will be attached to all received events and can also be used to cancel the subscription using [eth\_unsubscribe](/nodeapi/unichain/execution-api/eth_unsubscribe).
+
+```json
+// Result
+{"id":1,"result":"0xf53582565590e1d342cef370a3dfa441","jsonrpc":"2.0"}
+
+//Example (newHeads)
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0xf53582565590e1d342cef370a3dfa441",
+    "result": {
+      "number": "0x3a636de",
+      "hash": "0x34553f4550b276a013be7438199bd58a72327b36ed579a67c8ae08a4d4773aa6",
+      "parentHash": "0x5798ec675b734c3c7cd822142d760a8df241988302a2e5e071c784c0e3f89295",
+      "timestamp": "0x6acf56a5",
+      "gasLimit": "0x3938700",
+      "gasUsed": "0x95890",
+      "baseFeePerGas": "0x7a120",
+      "miner": "0x4200000000000000000000000000000000000011",
+      "transactionsRoot": "0x6c6c4a6499b9c923847824781ed4a5948e4cab4f3c53cc83e11ef22b0dd1b768",
+      "receiptsRoot": "0x91bf4d768408d8540fde36a19932316fed86b5db311c9aa4f49b10d31d390f60"
+    }
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.unichain.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+{"jsonrpc":  "2.0",  "id":  1,  "method":"eth_subscribe","params":["newHeads"]}
+{"jsonrpc":"2.0","result":"0xf53582565590e1d342cef370a3dfa441","id":1}
+```
+
+</CodeGroup>

@@ -1,0 +1,134 @@
+---
+title: "GetAccount"
+---
+
+Query information about an account, including TRX balance, TRC-10 balances, stake information and vote information and permissions etc.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `address` - String - Address should be converted to a hex string
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+This API returns the account object, which contains the following fields:
+
+| Field                                                                 |                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| account\_name                                                         | string              | The name of the account. The account name can be modified through the [wallet/updateaccount](https://developers.tron.network/reference/updateaccount) interface. The account name can only be changed once.                                                                                                                                                                                                                                           |
+| address                                                               | string              | Account address                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| create\_time                                                          | int64               | Account creation time, i.e. account activation time on the TRON network                                                                                                                                                                                                                                                                                                                                                                               |
+| balance                                                               | int64               | TRX balance                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| frozen.frozen\_balance                                                | int64               | In Stake 1.0, the total amount of TRX staked by the account to obtain bandwidth                                                                                                                                                                                                                                                                                                                                                                       |
+| frozen.expire\_time                                                   | int64               | In Stake 1.0, the expiration time of the stake operation performed by the account to obtain bandwidth. The account can perform the unstake operation after that time.                                                                                                                                                                                                                                                                                 |
+| delegated\_frozen\_balance\_for\_bandwidth                            | int64               | In Stake 1.0, the total amount of TRX staked by the account for others to get bandwidth                                                                                                                                                                                                                                                                                                                                                               |
+| acquired\_delegated\_frozen\_balance\_for\_bandwidth                  | int64               | In Stake 1.0, the total amount of TRX staked by other accounts for this account to get bandwidth                                                                                                                                                                                                                                                                                                                                                      |
+| account\_resource.frozen\_balance\_for\_energy.frozen\_balance        | int64               | In Stake 1.0, the total amount of TRX staked by the account to obtain energy                                                                                                                                                                                                                                                                                                                                                                          |
+| account\_resource.frozen\_balance\_for\_energy.expire\_time           | int64               | In Stake 1.0, the expiration time of the stake operation performed by the account to obtain energy. The account can perform the unstake operation after that time.                                                                                                                                                                                                                                                                                    |
+| account\_resource.delegated\_frozen\_balance\_for\_energy             | int64               | In Stake 1.0, the total amount of TRX staked by the account for others to get energy                                                                                                                                                                                                                                                                                                                                                                  |
+| account\_resource.acquired\_delegated\_frozen\_balance\_for\_energy   | int64               | In Stake 1.0, the total amount of TRX staked by other accounts for this account to get energy                                                                                                                                                                                                                                                                                                                                                         |
+| account\_resource.delegated\_frozenV2\_balance\_for\_energy           | int64               | In Stake 2.0, the total amount of TRX staked by the account for others to get energy                                                                                                                                                                                                                                                                                                                                                                  |
+| account\_resource.acquired\_delegated\_frozenV2\_balance\_for\_energy | int64               | In Stake 2.0, the total amount of TRX staked by other accounts for this account to get energy                                                                                                                                                                                                                                                                                                                                                         |
+| account\_resource.energy\_window\_size                                | int64               | The number of block times required for to fully recover. If energy\_window\_optimized is true, energy\_window\_size's decimal is 3, else is 0. For example, when energy\_window\_optimized=true, then energy\_window\_size=1000 means that it takes one block time for energy to fully recovery; if energy\_window\_optimized=false, then energy\_window\_size=1000 means that it takes 1000 blocks time for energy to fully recovery                 |
+| account\_resource.energy\_window\_optimized                           | bool                | Whether to optimize energy recover window                                                                                                                                                                                                                                                                                                                                                                                                             |
+| delegated\_frozenV2\_balance\_for\_bandwidth                          | int64               | In Stake 2.0, the total amount of TRX staked by the account for others to get bandwidth                                                                                                                                                                                                                                                                                                                                                               |
+| acquired\_delegated\_frozenV2\_balance\_for\_bandwidth                | int64               | In Stake 2.0, the total amount of TRX staked by other accounts for this account to get bandwidth                                                                                                                                                                                                                                                                                                                                                      |
+| frozenV2                                                              | FreezeV2\[]         | In Stake 2.0, the total amount of TRX staked to obtain various types of resources does not include the delegated TRX                                                                                                                                                                                                                                                                                                                                  |
+| unfrozenV2                                                            | UnFreezeV2\[]       | In Stake 2.0, each unstaking information. One of the unstaking information contains three fields: `type`: resource type; `unfreeze_amount`: the amount of unstaked TRX; `unfreeze_expire_time`: the start time stamp when the unstaked TRX can be withdrawn, in ms.                                                                                                                                                                                   |
+| account\_resource.energy\_usage                                       | int64               | The amount of energy used by the account                                                                                                                                                                                                                                                                                                                                                                                                              |
+| account\_resource.latest\_consume\_time\_for\_energy                  | int64               | The last time the account consumed energy                                                                                                                                                                                                                                                                                                                                                                                                             |
+| net\_usage                                                            | int64               | The amount of bandwidth used by the account                                                                                                                                                                                                                                                                                                                                                                                                           |
+| free\_net\_usage                                                      | int64               | The amount of free bandwidth used by the account                                                                                                                                                                                                                                                                                                                                                                                                      |
+| net\_window\_size                                                     | int64               | The number of block times required for bandwidth obtained by stake to fully recover. If net\_window\_optimized is true, net\_window\_size's decimal is 3, else is 0. For example, when net\_window\_optimized=true, then net\_window\_size=1000 means that it takes one block time for bandwidth to fully recovery; if net\_window\_optimized=false, then net\_window\_size=1000 means that it takes 1000 blocks time for bandwidth to fully recovery |
+| net\_window\_optimized                                                | bool                | Whether to optimize net recover window                                                                                                                                                                                                                                                                                                                                                                                                                |
+| free\_asset\_net\_usageV2                                             | map&lt;string, int64> | The amount of trc10's free bandwidth used by this account                                                                                                                                                                                                                                                                                                                                                                                             |
+| votes                                                                 | Vote                | The number of votes for each Super Representative                                                                                                                                                                                                                                                                                                                                                                                                     |
+| latest\_opration\_time                                                | int64               | The last operation time                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| latest\_consume\_time                                                 | int64               | The last time the account consumed bandwidth                                                                                                                                                                                                                                                                                                                                                                                                          |
+| latest\_consume\_free\_time                                           | int64               | The last time the account consumed free bandwidth                                                                                                                                                                                                                                                                                                                                                                                                     |
+| is\_witness                                                           | bool                | Is Super Representative                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| allowance                                                             | int64               | The amount of rewards that can be withdrawn for the account                                                                                                                                                                                                                                                                                                                                                                                           |
+| latest\_withdraw\_time                                                | int64               | The last time the account has withdrawn the reward, the super representative or user can only withdraw the reward once within 24 hours                                                                                                                                                                                                                                                                                                                |
+| owner\_permission                                                     | Permission          | owner permissions                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| witness\_permission                                                   | Permission          | witness permissions                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| active\_permission                                                    | Permission          | active permission                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| asset                                                                 | map&lt;string, int64> | The token id and balance of the TRC10 token in the account                                                                                                                                                                                                                                                                                                                                                                                            |
+| assetV2                                                               | map&lt;string, int64> | The token id and balance of the TRC10 token in the account. Note, the V2 version is used after allowing token with same name and the proposal has been activated at present.                                                                                                                                                                                                                                                                          |
+| asset\_issued\_name                                                   | string              | The name of the TRC10 token created by the account                                                                                                                                                                                                                                                                                                                                                                                                    |
+| asset\_issued\_ID                                                     | string              | TRC10 token ID created by the account                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| free\_asset\_net\_usage                                               | map&lt;string, int64> | The amount of free bandwidth consumed by account transferring TRC10 tokens                                                                                                                                                                                                                                                                                                                                                                            |
+| free\_asset\_net\_usageV2                                             | map&lt;string, int64> | The amount of free bandwidth consumed by account transferring TRC10 tokens                                                                                                                                                                                                                                                                                                                                                                            |
+
+```json
+// Result
+{
+  "address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "balance": 13118721520,
+  "create_time": 1637411046000,
+  "latest_opration_time": 1715145693000,
+  "latest_consume_time": 1728490236000,
+  "latest_consume_free_time": 1715145693000,
+  "net_window_size": 28800000,
+  "net_window_optimized": true,
+  "account_resource": {
+    "latest_consume_time_for_energy": 1727095980000,
+    "energy_window_size": 28800000,
+    "energy_window_optimized": true
+  },
+  "owner_permission": {
+    "permission_name": "owner",
+    "threshold": 1,
+    "keys": [
+      {
+        "address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+        "weight": 1
+      }
+    ]
+  },
+  "active_permission": [
+    {
+      "type": "Active",
+      "id": 2,
+      "permission_name": "active",
+      "threshold": 1,
+      "operations": "7fff1fc0033e0300000000000000000000000000000000000000000000000000",
+      "keys": [
+        {
+          "address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+          "weight": 1
+        }
+      ]
+    }
+  ],
+  "frozenV2": [
+    {},
+    {
+      "type": "ENERGY"
+    },
+    {
+      "type": "TRON_POWER"
+    }
+  ],
+  "asset_optimized": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getaccount \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

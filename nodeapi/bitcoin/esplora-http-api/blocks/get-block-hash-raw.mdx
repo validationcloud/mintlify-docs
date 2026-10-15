@@ -1,0 +1,35 @@
+---
+title: "GET /block/:hash/raw"
+---
+
+Returns the raw block representation in binary.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`block`**- block hash, required.&#x20;
+
+Example: `0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a`
+
+## Returns
+
+Returns the raw block representation in binary.
+
+The response from this endpoint can be cached indefinitely.
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a/raw \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/block/0000000000000000000226ab487ff1a8456a30feb1bde3d65b6a67128074e19a/raw \
+ -X GET
+```
+
+</CodeGroup>

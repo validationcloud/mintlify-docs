@@ -1,0 +1,104 @@
+---
+title: "Tickers"
+---
+
+Returns currency rate for the specified currency and date.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#tickers)
+
+```bash
+GET /api/v2/tickers/[?currency=<currency>&timestamp=<timestamp>]
+```
+
+## **Parameters**
+
+The optional query parameters:
+
+**`currency`**- string, optional.
+
+specifies a currency of returned rate ("usd", "eur", "eth"...). If not specified, all available currencies will be returned.
+
+**`timestamp`**- string, optional.
+
+a Unix timestamp, e.g. `1704070861` , that specifies a date to return currency rates for. If not specified, the last available rate will be returned.
+
+&#x20;
+
+## Returns
+
+Example response (no parameters)
+
+```bash
+{
+	"ts": 1715202907,
+	"rates": {
+		"aed": 225719,
+		"ars": 54183236,
+		"aud": 93418,
+		"bdt": 6746218,
+		"bhd": 23166,
+		"bmd": 61454,
+		"brl": 312906,
+		"btc": 1,
+		"cad": 84335,
+		"chf": 55782,
+		"clp": 57470384,
+		"cny": 444013,
+		"czk": 1431616,
+		"dkk": 426517,
+		"eth": 20.883776,
+		"eur": 57180,
+		"gbp": 49183,
+		"hkd": 480538,
+		"huf": 22229838,
+		"idr": 987428100,
+		"ils": 228138,
+		"inr": 5129526,
+		"jpy": 9553091,
+		"krw": 83890250,
+		"kwd": 18900.92,
+		"lkr": 18456228,
+		"mmk": 129085460,
+		"mxn": 1038877,
+		"myr": 291447,
+		"ngn": 86472640,
+		"nok": 670323,
+		"nzd": 102381,
+		"php": 3526397,
+		"pkr": 17096138,
+		"pln": 245996,
+		"rub": 5638003,
+		"sar": 230485,
+		"sek": 670115,
+		"sgd": 83328,
+		"thb": 2269721,
+		"try": 1982182,
+		"twd": 1989857,
+		"uah": 2422187,
+		"usd": 61454,
+		"vef": 6153.41,
+		"vnd": 1562925600,
+		"zar": 1140179
+	}
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/tickers \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/tickers \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

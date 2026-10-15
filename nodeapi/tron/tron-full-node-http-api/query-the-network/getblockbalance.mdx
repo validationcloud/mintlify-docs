@@ -1,0 +1,91 @@
+---
+title: "GetBlockBalance"
+---
+
+Get all balance change operations in a block.(Note: At present, the interface data can only be queried through the following official nodes 13.228.119.63 & 18.139.193.235&18.141.79.38 &18.139.248.26).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `hash` - String - Block hash.
+* `number` - int32 - Block number.
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+| Field                       | Type                       | Description                                          |
+| --------------------------- | -------------------------- | ---------------------------------------------------- |
+| timestamp                   | int64                      | timestamp                                            |
+| block\_identifier.hash      | string                     | block hash                                           |
+| block\_identifier.number    | int64                      | block number                                         |
+| transaction\_balance\_trace | TransactionBalanceTrace\[] | List of transaction information with balance changes |
+
+The fields contained in the TransactionBalanceTrace object are as follows:
+
+| Field                   | Type         | Description                                                                                                                                                                                                                                                                                   |
+| ----------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transaction\_identifier | string       | transaction hash                                                                                                                                                                                                                                                                              |
+| operation               | Operation\[] | The operation list contains the balance change operations involved in this transaction. Each operation contains the following fields: `operation_identifier`: operation identifier, int64 type; `address`: address, string type; `amount`: amount of balance increase or decrease, int64 type |
+| type                    | string       | transaction type                                                                                                                                                                                                                                                                              |
+| status                  | string       | transaction result                                                                                                                                                                                                                                                                            |
+
+```bash
+// Result
+{
+  "block_identifier": {
+    "hash": "000000000000dc2a3731e28a75b49ac1379bcc425afc95f6ab3916689fbb0189",
+    "number": 56362
+  },
+  "timestamp": 1530060672000,
+  "transaction_balance_trace": [
+    {
+      "transaction_identifier": "e6cabb1833cd1f795eed39d8dd7689eaa70e5bb217611766c74c7aa9feea80df",
+      "operation": [
+        {
+          "operation_identifier": 0,
+          "address": "TPttBLmFuykRi83y9HxDoEWxTQw6CCcQ4p",
+          "amount": -100000
+        },
+        {
+          "operation_identifier": 1,
+          "address": "TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy",
+          "amount": 100000
+        },
+        {
+          "operation_identifier": 2,
+          "address": "TPttBLmFuykRi83y9HxDoEWxTQw6CCcQ4p",
+          "amount": -10000000
+        },
+        {
+          "operation_identifier": 3,
+          "address": "TMrysg7DbwR1M8xqhpaPdVCHCuWFhw7uk1",
+          "amount": 10000000
+        }
+      ],
+      "type": "TransferContract",
+      "status": "SUCCESS"
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getblockbalance \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "hash": "0000000001f5b9ca67c722d9263879696c92e8e383d4f0b31c15a91b8a249029",
+  "number": 32881098,
+  "visible": true
+}
+'
+'
+```
+
+</CodeGroup>

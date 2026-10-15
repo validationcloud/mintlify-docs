@@ -1,0 +1,21 @@
+---
+title: "/eth/v1/beacon/states/{state_id}/committees"
+description: "Get all committees for a state"
+openapi: "/nodeapi/openapi/beacon-node-oapi-v2.json GET /eth/v1/beacon/states/{state_id}/committees"
+---
+
+<CodeGroup>
+
+```bash title="Mainnet"
+curl -X GET \
+    "https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/committees" \
+    -H "Content-Type: application/json"
+```
+
+```bash title="Testnet"
+curl -X GET \
+    "https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/eth/v1/beacon/states/head/committees" \
+    -H "Content-Type: application/json"
+```
+
+</CodeGroup>

@@ -1,0 +1,46 @@
+---
+title: "net_listening"
+---
+
+Returns `true` if client is actively listening for network connections.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#net_listening)
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`Boolean` - `true` when listening, otherwise `false`.
+
+```bash
+// Result
+{
+  "id":67,
+  "jsonrpc":"2.0",
+  "result":true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mezo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"net_listening","params":[],"id":67}'
+```
+
+```bash title="testnet"
+curl https://testnet.mezo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"net_listening","params":[],"id":67}'
+```
+
+</CodeGroup>

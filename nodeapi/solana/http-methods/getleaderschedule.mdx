@@ -1,0 +1,74 @@
+---
+title: "getLeaderSchedule"
+---
+
+Returns the leader schedule for an epoch.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `u64` string _optional_. Fetchs the leader schedule for the epoch that corresponds to the provided slot. If unspecified, the leader schedule for the current epoch is fetched.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string.&#x20;
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+      * `confirmed` string.
+        * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+      * `processed` string.
+        * The node will query its most recent block. Note that the block may not be complete.
+  * `identity` string. Only returns the results for this validator identity encoded as base-58.
+
+## Returns
+
+`result` Null if the requested epoch is not found otherwise the result field will be a dictionary of validator identities, as base-58 encoded strings, and their corresponding leader slot indices as values (indices are relative to the first slot in the requested epoch)
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"138KHwTqKNWGLoo8fK5i8UxYtwoC5tC8o7M9rY1CDEjT": [
+			120416,
+			120417,
+			120418,
+			120419,
+			195840,
+			195841,
+			195842,
+			195843,
+			...
+		],
+		"13cm6z7ajighVFYN1aR2hPQ3Rhp4QJenDbHGRmps9P1n": [
+			213272,
+			213273,
+			...
+		],
+		...
+		]
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getLeaderSchedule"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getLeaderSchedule"}'
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,87 @@
+---
+title: "getTokenLargestAccounts"
+---
+
+Returns the 20 largest accounts of a particular SPL Token type.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Warning>
+
+`getTokenLargestAccounts` for Solana is limited to 50 requests per second. If you have higher rate limit needs, [contact us](https://www.validationcloud.io/contact).
+
+</Warning>
+
+## **Parameters**
+
+* `pubkey` string. The Pubkey of token Mint to query encoded as base-58 string.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string. The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string. The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string. The node will query its most recent block. Note that the block may not be complete.
+
+## Returns
+
+`result` An object with the following fields:
+
+* `context` The information about the current state of the program.
+  * `apiVersion` The version of the Solana RPC API to use.
+  * `slot` An integer representing the slot for which to retrieve the fee calculator.
+* `value` A JSON object with the following fields:
+  * `address` The address of the token account.
+  * `amount` The raw total token supply without decimals, a string representation of a u64 integer.
+  * `decimals` An integer value representing the number of decimal places used by the token.
+  * `uiAmount` The total token supply using mint-prescribed decimals (DEPRECATED).
+  * `uiAmountString` The total token supply as a string using mint-prescribed decimals.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "context": {
+      "slot": 1114
+    },
+    "value": [
+      {
+        "address": "FYjHNoFtSQ5uijKrZFyYAxvEr87hsKXkXcxkcmkBAf4r",
+        "amount": "771",
+        "decimals": 2,
+        "uiAmount": 7.71,
+        "uiAmountString": "7.71"
+      },
+      {
+        "address": "BnsywxTcaYeNUtzrPxQUvzAWxfzZe3ZLUJ4wMMuLESnu",
+        "amount": "229",
+        "decimals": 2,
+        "uiAmount": 2.29,
+        "uiAmountString": "2.29"
+      }
+    ]
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getTokenLargestAccounts", "params": ["1YDQ35V8g68FGvcT85haHwAXv1U7XMzuc4mZeEXfrjE"]}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "id":1, "method":"getTokenLargestAccounts", "params": ["1YDQ35V8g68FGvcT85haHwAXv1U7XMzuc4mZeEXfrjE"]}'
+    
+```
+
+</CodeGroup>

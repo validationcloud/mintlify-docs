@@ -1,0 +1,65 @@
+---
+title: "Logs"
+description: "Logs are a way to see the requests and responses being made to your Node API endpoints."
+---
+
+![](/nodeapi/assets/screenshot-2026-10-01-at-13-29-12-3.png)
+
+### **What are Logs in Node API?**
+
+_Plan restrictions: Teams on Scale Plan and above_
+
+For those teams on qualifying plans, **Logs** lets you enable request and response logging for your Node API endpoint keys.
+
+With Logs enabled for an endpoint:
+
+* You can see requests that have come in and which IP address those requests have come from. You might want to use that to check that these IPs are correct. You could also combine this with the [Allow Lists for Node API Endpoints](/nodeapi/about/security/allow-lists-for-node-api-endpoints) feature if you want to restrict requests to only be allowed from certain IPs or domains.
+* Alternatively, you might use Logs to do some debugging on a particular response, error or spot check your traffic to see that your requests are working as expected.
+
+There is also a Logs tab on the Node API overview dashboard, so if you have Logs enabled for several of your endpoints, you can see those logs all in one place and filter them.
+
+Good to know:
+
+* Log retention is 48 hours.
+* The Logs page does not currently automatically refresh or update if new requests come in, you will need to refresh the page in your web browser.
+* Request and response bodies will be displayed where available, e.g. JSON RPC requests, unless they are over 4KB.
+
+### **Where it is and who can use it**
+
+Plans: **Scale** and **Enterprise**. Free teams see the tab described below but with an "Unlock Logs with Scale" overlay and an Upgrade button.
+
+Roles:
+
+* Only **Team Admins** can turn on or off Logs for endpoint. They can view and filter as well.
+* **Team Members** can only view and filter Logs for already enabled endpoints.
+
+To enable Logs and see them at the per endpoint level:
+
+* Node API: [app.validationcloud.io/node](https://app.validationcloud.io/node)
+  * Click an endpoint
+  * Click the **Logs** tab
+    * Note: _After you enable Logs on an endpoint it will take a few minutes for any requests to show up and you will need to refresh the page._
+
+To see Logs from all endpoints that have Logs enabled:
+
+* Node API: [https://app.validationcloud.io/node/logs](https://app.validationcloud.io/node/logs)
+  * You can use the dropdown filters to only view specific endpoints, IP addresses etc that you are interested in.
+
+### How to enable Logs for a Node API endpoint & view them
+
+1. Go to Node API and click on the endpoint you want to enable Logs on.
+2. Select the **Logs** tab and click the button “**Turn on request logs**”, see screenshot below:
+
+![](/nodeapi/assets/screenshot-2026-10-01-at-13-35-07-2.png)
+
+3. After 5-10 minutes, refresh the page, requests should start to show up.
+   1. Once logs start to come in for this endpoint, you will also be able to view them on the Node API Dashboard Logs page ([https://app.validationcloud.io/node/logs](https://app.validationcloud.io/node/logs)) which shows logs from _all_ endpoints in your Team that have Logs enabled. You can filter the Node API Dashboard Logs page by which endpoints you want to see logs for, see screenshot:
+
+![](/nodeapi/assets/screenshot-2026-10-01-at-13-48-19-2.png)
+
+**How to turn off / disable Logs for an endpoint**
+
+1. Go to Node API and click on the endpoint you want to disable Logs for.
+2. Click the “cog” icon above the table and click "Turn off request logs", see screenshot:
+
+![](/nodeapi/assets/screenshot-2026-10-01-at-13-19-48-2.png)

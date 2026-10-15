@@ -1,0 +1,39 @@
+---
+title: "eth_gasPrice"
+---
+
+Returns the current price per gas in wei.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gasprice)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`String` - hex string value representing an integer of the current price per gas in WEI.
+
+```bash
+//Result
+{
+    "jsonrpc":"2.0",
+    "id":73,
+    "result":"0xffc1dc"//16761308 wei
+} 
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.wemix.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":73}'
+```
+
+</CodeGroup>

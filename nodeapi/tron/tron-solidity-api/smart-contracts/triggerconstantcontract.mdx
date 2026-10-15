@@ -1,0 +1,85 @@
+---
+title: "TriggerConstantContract"
+---
+
+Invoke the readonly function (modified by the `view` or `pure` modifier) of a contract for contract data query; or Invoke the non-readonly function of a contract for predicting whether the transaction can be successfully executed or estimating the energy consumption (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Owner address that triggers the contract. If visible=true, use base58check format, otherwise use hex format. For constant call you can use the all-zero address
+* `contract_address` - String - Smart contract address. If visible=true, use base58check format, otherwise use hex format
+* `function_selector` - String - Function call, must not be left blank
+* `parameter` - String - Parameter encoding needs to be in accordance with the ABI rules, the rules are more complicated, users can use the ethers library to encode. For details, please refer to the document-Guide-Smart Contract-Best Practice-Parameter Encoding and Decoding.
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+| Field            | Type         | Description                                                                                                                          |
+| ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| result           | Return       | Run result, for detailed parameter definition, refer to [EstimateEnergy](https://developers.tron.network/reference/estimateenergy-2) |
+| energy\_used     | int64        | Estimated energy consumption                                                                                                         |
+| constant\_result | string array | Result list of tiggered functions                                                                                                    |
+| transaction      | Transaction  | Transaction information, refer to [GetTransactionByID](https://developers.tron.network/reference/gettransactionbyid)                 |
+
+```json
+// Result
+{
+  "result": {
+    "result": true
+  },
+  "energy_used": 541,
+  "constant_result": [
+    "00000000000000000000000000000000000000000000000000000001aa19755e"
+  ],
+  "transaction": {
+    "ret": [
+      {}
+    ],
+    "visible": true,
+    "txID": "a127e2929f5ba31e476bc318639985f901dcbd26c4ca35bd361da1f1e3eb18d5",
+    "raw_data": {
+      "contract": [
+        {
+          "parameter": {
+            "value": {
+              "data": "70a08231000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c",
+              "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+              "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs"
+            },
+            "type_url": "type.googleapis.com/protocol.TriggerSmartContract"
+          },
+          "type": "TriggerSmartContract"
+        }
+      ],
+      "ref_block_bytes": "e188",
+      "ref_block_hash": "e46b13d6dd4be275",
+      "expiration": 1759507482000,
+      "timestamp": 1759507483733
+    },
+    "raw_data_hex": "0a02e1882208e46b13d6dd4be27540908bc6d69a335a8e01081f1289010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412540a1541b3dcf27c251da9363f1a4888257c16676cf54edf12154142a1e39aefa49290f2b3f9ed688d7cecf86cd6e0222470a08231000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c70d598c6d69a33"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/triggerconstantcontract \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TSNEe5Tf4rnc9zPMNXfaTF5fZfHDDH8oyW",
+  "contract_address": "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+  "function_selector": "balanceOf(address)",
+  "parameter": "000000000000000000000000a614f803b6fd780986a42c78ec9c7f77e6ded13c",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

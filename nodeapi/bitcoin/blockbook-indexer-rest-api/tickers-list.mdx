@@ -1,0 +1,94 @@
+---
+title: "Tickers list"
+---
+
+Returns a list of available currency rate tickers (secondary currencies) for the specified date, along with an actual data timestamp.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#tickers-list)
+
+```bash
+GET /api/v2/tickers-list/?timestamp=<timestamp>
+```
+
+## **Parameters**
+
+**`timestamp`**- Unix timestamp, required.&#x20;
+
+Example: `1704070861`
+
+## Returns
+
+```bash
+{
+	"ts": 1715202001,
+	"available_currencies": [
+		"aed",
+		"ars",
+		"aud",
+		"bdt",
+		"bhd",
+		"bmd",
+		"brl",
+		"btc",
+		"cad",
+		"chf",
+		"clp",
+		"cny",
+		"czk",
+		"dkk",
+		"eth",
+		"eur",
+		"gbp",
+		"hkd",
+		"huf",
+		"idr",
+		"ils",
+		"inr",
+		"jpy",
+		"krw",
+		"kwd",
+		"lkr",
+		"mmk",
+		"mxn",
+		"myr",
+		"ngn",
+		"nok",
+		"nzd",
+		"php",
+		"pkr",
+		"pln",
+		"rub",
+		"sar",
+		"sek",
+		"sgd",
+		"thb",
+		"try",
+		"twd",
+		"uah",
+		"usd",
+		"vef",
+		"vnd",
+		"zar"
+	]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/tickers-list/?timestamp=1704070861 \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/tickers-list/?timestamp=1704070861 \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

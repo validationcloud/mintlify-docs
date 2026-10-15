@@ -1,0 +1,115 @@
+---
+title: "debug_traceCall"
+---
+
+Executes a call within the context of the given block and returns the trace of its execution.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`object` - Object - The transaction call object with the following fields:
+
+* `from` - String - The address the transaction is sent from
+* `to` - String - <span style={{color: "red"}}>Required</span> -  The address the transaction is directed to
+* `gas` - Integer - The integer of the gas provided for the transaction execution
+* `gasPrice` - Integer - The integer of the gasPrice used for paid gas
+* `value` - Integer - The integer of the value sent with this transaction
+* `data` - String - The call data: the 4-byte function selector followed by the ABI-encoded parameters
+
+`blockReference` - String - <span style={{color: "red"}}>Required</span> - The block number in hexadecimal format, the block hash, or tags: `"earliest"`, `"latest"` or `"pending"`.
+
+`object` - Object (Optional) - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - An array of transaction objects for that block, each containing:
+
+* `txHash` - The transaction hash of the transaction
+* `result` - An object containing detailed information about the traced transaction
+  * `beforeEVMTransfers` - An array representing EVM transfers that occurred before the execution of the transaction
+    * `purpose` - (Optional) The purpose of the EVM transfer
+    * `from` - (Optional) The Ethereum address initiating the transfer
+    * `to` - (Optional) The Ethereum address receiving the transfer
+    * `value` - (Optional) The value of the transfer, specified in hexadecimal format (Wei)
+  * `afterEVMTransfers` - An array representing EVM transfers that occurred after the execution of the transaction
+    * Optional fields are the same as `beforeEVMTransfers` above
+  * `from` - The address the transaction is sent from.
+  * `gas` - The integer of the gas provided for the transaction execution.
+  * `gasUsed` - The integer of the gas used.
+  * `to` - The address the transaction is directed to.
+  * `input` - The data given at the time of input.
+  * `value` - The integer of the value sent with this transaction.
+  * `type` - The type of call.
+* `calls` - A list of sub-calls.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"beforeEVMTransfers": [
+			{
+				"purpose": "feePayment",
+				"from": "0x0000000000000000000000000000000000000000",
+				"to": null,
+				"value": "0x0"
+			}
+		],
+		"afterEVMTransfers": [
+			{
+				"purpose": "gasRefund",
+				"from": null,
+				"to": "0x0000000000000000000000000000000000000000",
+				"value": "0x0"
+			},
+			{
+				"purpose": "feeCollection",
+				"from": null,
+				"to": "0xbF5041Fc07E1c866D15c749156657B8eEd0fb649",
+				"value": "0x321626b400"
+			},
+			{
+				"purpose": "feeCollection",
+				"from": null,
+				"to": "0xa4B00000000000000000000000000000000000F6",
+				"value": "0x14184a66780"
+			}
+		],
+		"from": "0x0000000000000000000000000000000000000000",
+		"gas": "0x2fd41dd",
+		"gasUsed": "0x26f73",
+		"to": "0x16b5856dbc2f66d6dc5b361b0073f51ed5ffb52b",
+		"input": "0x727fa213619edc134b3c8b36e117a4b8e95cb5f7cd2330eab81aa241346ebe07",
+		"value": "0x0",
+		"type": "CALL"
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceCall","params":[{"from":null,"to":"0x6b175474e89094c44da98b954eedeac495271d0f","data":"0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE"}, "latest", {"tracer": "callTracer"}],"id":1}'
+```
+
+```bash title="testnet"
+curl https://sepolia.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceCall","params":[{"from":null,"to":"0x6b175474e89094c44da98b954eedeac495271d0f","data":"0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE"}, "latest"],"id":1}'
+```
+
+</CodeGroup>

@@ -1,0 +1,50 @@
+---
+title: "GetAccountBalance"
+---
+
+Get the account balance in a specific block. (Note: At present, the interface data can only be queried through the following official nodes 13.228.119.63 & 18.139.193.235 & 18.141.79.38 & 18.139.248.26).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `account_identifier` - JSON object
+* `block_identifier` - JSON object
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+```json
+// Result
+{
+  "balance": 64086449348265040,
+  "block_identifier": {
+    "hash": "0000000000010c4a732d1e215e87466271e425c86945783c3d3f122bfa5affd9",
+    "number": 68682
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getaccountbalance \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "account_identifier": {
+    "address": "TLLM21wteSPs4hKjbxgmH1L6poyMjeTbHm"
+  },
+  "block_identifier": {
+    "hash": "0000000000010c4a732d1e215e87466271e425c86945783c3d3f122bfa5affd9",
+    "number": 68682
+  },
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

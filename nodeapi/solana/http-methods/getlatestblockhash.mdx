@@ -1,0 +1,70 @@
+---
+title: "getLatestBlockhash"
+---
+
+Returns the latest blockhash.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string.&#x20;
+      * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+      * `confirmed` string.
+        * The node will query the most recent block that has been voted on by the supermajority of the cluster.
+      * `processed` string.
+        * The node will query its most recent block. Note that the block may not be complete.
+  * `minContextSlot` integer. The minimum slot at which the request can be evaluated.
+
+## Returns
+
+`result` The RpcResponse JSON object with the following fields:
+
+* `context` The information about the current state of the program.
+  * `apiVersion` The version of the Solana RPC API to use.
+  * `slot` An integer representing the slot for which to retrieve the fee calculator.
+* `value` A JSON object with the following fields:
+  * `blockhash` The block hash encoded as base-58 string.
+  * `lastValidBlockHeight` The last block height at which the blockhash will be valid.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"context": {
+			"apiVersion": "2.1.11",
+			"slot": 320148671
+		},
+		"value": {
+			"blockhash": "HBVZtYyJnpeWNo3uDL5RfqAjdu5TWrRTcmaVk7sUDc2C",
+			"lastValidBlockHeight": 298423682
+		}
+	},
+	"id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getLatestBlockhash", "params": [{"commitment":"processed"}]}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getLatestBlockhash", "params": [{"commitment":"processed"}]}'
+    
+```
+
+</CodeGroup>

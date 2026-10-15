@@ -1,0 +1,58 @@
+---
+title: "GetBlockById"
+---
+
+Query block by ID (block hash) (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `value` - String - The block ID
+
+## **Returns**
+
+| Field                                    | Type           | Description                                                                                                                                                     |
+| ---------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| blockID                                  | string         | block hash                                                                                                                                                      |
+| block\_header.raw\_data.timestamp        | int64          | block timestamp                                                                                                                                                 |
+| block\_header.raw\_data.txTrieRoot       | string         | the root of transaction merkle tree                                                                                                                             |
+| block\_header.raw\_data.parentHash       | string         | parent block hash                                                                                                                                               |
+| block\_header.raw\_data.number           | int64          | block number                                                                                                                                                    |
+| block\_header.raw\_data.witness\_id      | int64          | super representative id                                                                                                                                         |
+| block\_header.raw\_data.witness\_address | string         | super representative address                                                                                                                                    |
+| block\_header.raw\_data.version          | int32          | version                                                                                                                                                         |
+| block\_header.raw\_data.accountStateRoot | string         | the root of account state tree                                                                                                                                  |
+| block\_header.witness\_signature         | string         | the signature of SR                                                                                                                                             |
+| transactions                             | Transaction\[] | Transaction information in the block, please refer to [gettransactionbyid](/nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid) for the content contained in each transaction |
+
+```json
+// Result
+{
+	"blockID": "000000000487073bbb35501d882bd1656d487af0241fa251db821739e7597d61",
+	"block_header": {
+		"raw_data": {
+			"number": 75958075,
+			"txTrieRoot": "043c9f3c73165fb91d57498e8926e97e3b158cfa42a5432af017091276e79ff9",
+			"witness_address": "411c8163d2a981b90481dcc8ca34c0f837b3305bc6",
+			"parentHash": "000000000487073a2a88e074342beaa1355e72e84a88f18398368f58120a3127",
+			"version": 32,
+			"timestamp": 1758534306000
+		},
+		"witness_signature": "005342a355f3d132261b137c9914d3e893ba296ab12fcc4b55648f4c6b01503b58198b6d3e7f1481f176aab67e2bece9acec260c49d000981873008d1dfe7bfe00"
+	}
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getblockbyid \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"value":"000000000487030b928c1fde590788cd03920a68177d565661fec5a8c2897a2a"}'
+```
+
+</CodeGroup>

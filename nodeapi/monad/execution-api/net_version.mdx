@@ -1,0 +1,52 @@
+---
+title: "net_version"
+---
+
+Returns the current network id.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#net_version)
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`String` - The current network id.
+
+The full list of current network IDs is available at [chainlist.org](https://chainlist.org/). Some common ones are:
+
+* `1`: Ethereum Mainnet
+* `5`: Goerli testnet
+* `11155111`: Sepolia testnet
+
+```bash
+// Result
+{
+  "id":67,
+  "jsonrpc": "2.0",
+  "result": "3"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}'
+```
+
+```bash title="testnet"
+curl https://testnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}'
+```
+
+</CodeGroup>

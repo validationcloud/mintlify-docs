@@ -1,0 +1,50 @@
+---
+title: "channel_verify"
+---
+
+Checks the validity of a signature that can be used to redeem a specific amount of XRP from a payment channel.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/payment-channel-methods/channel_verify)
+
+## **Parameters**
+
+* `amount` (string, required) The amount of XRP, in drops, that the provided `signature` authorizes.
+* `channel_id` (string, required) The Channel ID of the channel that provides the amount. This is a 64-character hexadecimal string.
+* `public_key` (string, required) The public key of the channel and the key pair that was used to create the signature, in hexadecimal or the XRP Ledger's base58 format.
+* `signature` (string, required) The signature to verify, in hexadecimal.
+
+## Returns
+
+* `signature_verified` (boolean) If `true`, the signature is valid for the stated amount, channel, and public key.
+
+```bash
+// Result
+{
+  "result": {
+    "signature_verified": true,
+    "status": "success"
+  },
+  "status": "success",
+  "type": "response",
+  "forwarded": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"channel_verify","params":[{"channel_id":"5DB01B7FFED6B67E6B0414DED11E051D2EE2B7619CE0EAA6286D67A3A4D5BDB3","signature":"304402204EF0AFB78AC23ED1C472E74F4299C0C21F1B21D07EFC0A3838A420F76D783A400220154FB11B6F54320666E4C36CA7F686C16A3A0456800BBC43746F34AF50290064","public_key":"aB44YfzW24VDEJQ2UuLPV2PvqcPCSoLnL7y5M1EzhdW4LnK5xMS3","amount":"1000000"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"channel_verify","channel_id":"5DB01B7FFED6B67E6B0414DED11E051D2EE2B7619CE0EAA6286D67A3A4D5BDB3","signature":"304402204EF0AFB78AC23ED1C472E74F4299C0C21F1B21D07EFC0A3838A420F76D783A400220154FB11B6F54320666E4C36CA7F686C16A3A0456800BBC43746F34AF50290064","public_key":"aB44YfzW24VDEJQ2UuLPV2PvqcPCSoLnL7y5M1EzhdW4LnK5xMS3","amount":"1000000"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> The channel, signature and key in this example are the documented xrpl.org sample values; the response was captured live from our endpoint. The check is a pure signature verification and does not require the channel to exist in the ledger.

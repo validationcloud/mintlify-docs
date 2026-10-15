@@ -1,0 +1,39 @@
+---
+title: "eth_accounts"
+---
+
+Returns a list of addresses owned by client.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth\_accounts)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`array of data` - 20 Bytes - addresses owned by the client
+
+```bash
+// Result
+{
+  "id":1,
+  "jsonrpc": "2.0",
+  "result": ["0x407d73d8a49eeb85d32cf465507dd71d507100c1"]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.optimism.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'
+```
+
+</CodeGroup>

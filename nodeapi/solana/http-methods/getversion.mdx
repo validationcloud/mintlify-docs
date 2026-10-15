@@ -1,0 +1,52 @@
+---
+title: "getVersion"
+---
+
+Returns the current solana version running on the node.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## Returns
+
+`result` A JSON object with the following fields:&#x20;
+
+* `solana-core` The software version of solana-core.
+* `feature-set` The unique identifier of the current software's feature set.
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": { 
+    "feature-set": 2891131721, 
+    "solana-core": "1.16.7" 
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getVersion"}'
+    
+```
+
+```bash title="devnet"
+curl https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","id":1, "method":"getVersion"}'
+    
+```
+
+</CodeGroup>

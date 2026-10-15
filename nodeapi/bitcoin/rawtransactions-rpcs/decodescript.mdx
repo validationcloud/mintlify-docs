@@ -1,0 +1,71 @@
+---
+title: "decodescript"
+---
+
+Decode a hex-encoded script.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://developer.bitcoin.org/reference/rpc/decodescript.html)
+
+## **Parameters**
+
+**`hexstring`** - **string, required**
+
+the hex-encoded script
+
+## Returns
+
+```json
+{                             (json object)
+  "asm" : "str",              (string) Script public key
+  "type" : "str",             (string) The output type (e.g. nonstandard, pubkey, pubkeyhash, scripthash, multisig, nulldata, witness_v0_scripthash, witness_v0_keyhash, witness_v1_taproot, witness_unknown)
+  "reqSigs" : n,              (numeric) The required signatures
+  "addresses" : [             (json array)
+    "str",                    (string) bitcoin address
+    ...
+  ],
+  "p2sh" : "str",             (string) address of P2SH script wrapping this redeem script (not returned if the script is already a P2SH)
+  "segwit" : {                (json object) Result of a witness script public key wrapping this redeem script (not returned if the script is a P2SH or witness)
+    "asm" : "str",            (string) String representation of the script public key
+    "hex" : "hex",            (string) Hex string of the script public key
+    "type" : "str",           (string) The type of the script public key (e.g. witness_v0_keyhash or witness_v0_scripthash)
+    "reqSigs" : n,            (numeric) The required signatures (always 1)
+    "addresses" : [           (json array) (always length 1)
+      "str",                  (string) segwit address
+      ...
+    ],
+    "p2sh-segwit" : "str"     (string) address of the P2SH script wrapping this witness redeem script
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "decodescript",
+	"params": ["hexstring"]
+}'
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "decodescript",
+	"params": ["hexstring"]
+}'
+```
+
+</CodeGroup>

@@ -1,0 +1,56 @@
+---
+title: "Admin API Keys"
+description: "Manage programmatic access to your Validation Cloud account and data."
+---
+
+<Info>
+
+**Using Claude Code or another AI harness like Codex?** You can interact with the Admin API using our skills & plugins. Visit [https://github.com/validationcloud/skills](https://github.com/validationcloud/skills) to get started
+
+</Info>
+
+Admin API Keys are team-scoped credentials for managing your Validation Cloud setup programmatically.\
+Provisioning Node API endpoints, reading usage, or wiring Validation Cloud into your own CI/CD.
+
+![Admin Keys page](/nodeapi/assets/screenshot-2026-06-18-at-11-41-50.png)
+
+<Info>
+
+**Availability.** Admin API Keys are available on the **Scale** and **Enterprise** Node API plans (not Free). Within those teams, only **Admins** can view this page, create keys, or revoke them. See [Team Accounts](/nodeapi/about/team-accounts) for how roles differ.
+
+</Info>
+
+### Scopes
+
+Each key is assigned a single scope. Choose the least-privileged one that does the job.
+
+<table><thead><tr><th width="131.88922119140625">Scope</th><th>What the key can do</th></tr></thead><tbody><tr><td><strong>Read</strong></td><td>List endpoints and read usage data</td></tr><tr><td><strong>Read &#x26; Write</strong></td><td>Read operations plus create and delete endpoints</td></tr></tbody></table>
+
+### Creating a key
+
+1. On the Admin API Keys page: [https://app.validationcloud.io/api-keys](https://app.validationcloud.io/api-keys), choose a **Scope** (Read or Read & Write).
+2. Give the key a descriptive **Name** (for example, `ci-provisioner`).
+3. Click **Create key**, then copy the key and store it somewhere secure.
+
+<Danger>
+
+**Keys are shown once** and can't be retrieved later. If you lose one, revoke it and create a new one. Treat keys like passwords, store them in a secrets manager and never commit them to source control.
+
+</Danger>
+
+Keys are prefixed with `vc_adm_`. Pass yours in the `Authorization` header, using the `ApiKey` scheme, on every request:
+
+```bash
+curl -s "https://api.validationcloud.io/admin/v1/endpoints" \
+  -H "Authorization: ApiKey vc_adm_xxxxxxxxxxxxxxxxxxxx"
+```
+
+### Revoking a key
+
+Find the key in the **Active Keys** list and click **Revoke**.
+
+<Warning>
+
+Revoking is immediate and permanent. Anything still using the key will start failing authentication. Roll your applications over to a new key before revoking the old one.
+
+</Warning>

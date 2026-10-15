@@ -1,0 +1,86 @@
+---
+title: "GetTransactionInfoByBlockNum"
+---
+
+Query the transaction fee, block height by block number.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `num` - Int32 - <span style={{color: "red"}}>Required</span> - Block height
+
+## **Returns**
+
+This interface returns the TransactionInfo data of all transactions contained in the block of the specified height. For the content of each transaction Info, please refer to [walletsolidity/gettransactioninfobyid](/nodeapi/tron/tron-solidity-api/transactions/gettransactioninfobyid).
+
+```json
+// Result
+[
+	{
+		"blockNumber": 75957003,
+		"contractResult": [
+			""
+		],
+		"blockTimeStamp": 1758531090000,
+		"receipt": {
+			"net_usage": 268
+		},
+		"id": "82ef30148057b4df12d601da3b4956dc22544f5f9cdaeb03b23371becbf669e9"
+	},
+	{
+		"log": [
+			{
+				"address": "a614f803b6fd780986a42c78ec9c7f77e6ded13c",
+				"data": "0000000000000000000000000000000000000000000000000000000008a48640",
+				"topics": [
+					"ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+					"000000000000000000000000dd4d75ff8dff669889e496222efcdae512fe169b",
+					"00000000000000000000000096da1faa9c1e85b122696e57fec2364c405eb932"
+				]
+			}
+		],
+		"fee": 6773400,
+		"blockNumber": 75957003,
+		"contractResult": [
+			"0000000000000000000000000000000000000000000000000000000000000000"
+		],
+		"blockTimeStamp": 1758531090000,
+		"receipt": {
+			"result": "SUCCESS",
+			"net_fee": 345000,
+			"energy_penalty_total": 49635,
+			"energy_fee": 6428400,
+			"energy_usage_total": 64285,
+			"origin_energy_usage": 1
+		},
+		"id": "279798a8d93b33d593f2f0448a7c31669301a12499b4b1b0e470c0c4c3234ff7",
+		"contract_address": "41a614f803b6fd780986a42c78ec9c7f77e6ded13c"
+	},
+	{
+		"blockNumber": 75957003,
+		"contractResult": [
+			""
+		],
+		"blockTimeStamp": 1758531090000,
+		"receipt": {
+			"net_usage": 265
+		},
+		"id": "ea265711bef2cca474ab1e9eda29e33f84ef16fc6d991c6675d96c9869ded2e0"
+	},
+	...
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/gettransactioninfobyblocknum \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"num":75957003}'
+```
+
+</CodeGroup>

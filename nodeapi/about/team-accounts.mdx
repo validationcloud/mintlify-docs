@@ -1,0 +1,76 @@
+---
+title: "Team Accounts"
+description: "How to share your Validation Cloud account with teammates."
+---
+
+With Team Accounts, your team can have individual accounts with controlled access to your Node API keys, Staking, and a single bill, instead of sharing one login.
+
+If you already have a Validation Cloud account, you are the Admin of your own team. Until you add teammates, nothing changes about how you use your account.
+
+<Info>
+
+**Scope.** Team Accounts cover Node API and Staking. Everyone gets access to the free version of Mavrik whether they are in their own team or join another one.
+
+</Info>
+
+## Roles
+
+There are two roles: **Admin** and **Team Member**. A team must always have at least one Admin.
+
+| Action                                           | Admin                               | Team Member                         |
+| ------------------------------------------------ | ----------------------------------- | ----------------------------------- |
+| View and create Node API endpoint keys           | ✓                                   | ✓                                   |
+| View usage and metrics                           | ✓                                   | ✓                                   |
+| Edit endpoint Allow Lists                        | ✓ (Scale and Enterprise plans only) | -                                   |
+| Logs - Turn On/Off for an endpoint               | ✓ (Scale and Enterprise plans only) | -                                   |
+| Logs - View/Filter for enabled endpoints         | ✓ (Scale and Enterprise plans only) | ✓ (Scale and Enterprise plans only) |
+| Delete Node API endpoint keys                    | ✓                                   | -                                   |
+| View team members                                | ✓                                   | ✓                                   |
+| View billing, change plan, change payment method | ✓                                   | -                                   |
+| Access Staking                                   | ✓                                   | -                                   |
+| Add an Admin or Team Member to your team         | ✓                                   | -                                   |
+| Remove, or change role of others in a team       | ✓                                   | -                                   |
+
+One bill per team covers Node API usage for all team members.&#x20;
+
+Two-Factor Authentication (2FA) is per user, see: [Two-Factor Authentication (2FA) for Sign In](/nodeapi/about/security/two-factor-authentication-2fa-for-sign-in).
+
+## Where to manage your team
+
+As an Admin, you can see your team's members and their roles on the Team page in your Validation Cloud account.
+
+Team Members see a read-only version of the team page.
+
+<Frame caption="Team Page (Admin view)">
+  ![Validation Cloud Team Page Admin view](/nodeapi/assets/screenshot-2026-06-08-at-10-10-53.png)
+</Frame>
+
+## Adding teammates
+
+<Danger>
+
+**Before you add a teammate, make sure they are not using their own existing Node API keys.**
+
+When someone joins a team, if they already had an account on the Validation Cloud Platform, their previous Node API keys are deleted.&#x20;
+
+Any applications or services running with those keys will break and the keys cannot be recovered.
+
+Have an Admin or Team Member in the account you will be invited to create any keys you need. Switch them over in your application and verify they are working before joining a team.
+
+</Danger>
+
+To add a teammate:
+
+1. Make sure you are an Admin in the team you are inviting someone to
+2. Go to [https://app.validationcloud.io/team](https://app.validationcloud.io/team)
+3. Type in the email address of the person you wish to invite, select their role, either Member or Admin ([see Roles above](/nodeapi/about/team-accounts#roles) for differences). Then click Invite.
+   1. If this person has _not_ previously set up an account on Validation Cloud before, they will receive an email guiding them through the process to create an account and join your team
+   2. If this person already has an existing account on the Validation Cloud platform, they will receive an email inviting them to join your team. _As above, please note they will lose access to any keys they have in the team they are moving from_
+
+## Leaving or moving between teams & changing permissions of existing team members
+
+Admins can change permissions or remove others that are in their team.
+
+An Admin cannot change their own permissions or remove themselves from a team, another Admin would need to do that.&#x20;
+
+Alternatively, contact your Validation Cloud account manager for help managing a team.

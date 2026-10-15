@@ -1,0 +1,41 @@
+---
+title: "GetAvailableUnfreezeCount"
+---
+
+Stake2.0 API: remaining times of executing unstake operation (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Owner address, default hexString
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+`count` - Int64 : Remaining times of available unstaking.
+
+```json
+// Result
+{
+  "count": 32
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getavailableunfreezecount \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

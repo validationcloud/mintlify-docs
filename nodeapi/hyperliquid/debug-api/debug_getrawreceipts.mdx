@@ -1,0 +1,45 @@
+---
+title: "debug_getRawReceipts"
+---
+
+Returns an array of EIP-2718 binary-encoded receipts.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+This method is served by nanoreth, the HyperEVM archive client, and works for any block back to genesis. On blocks that carry a HyperCore deposit, block-level traces include the deposit as their first entry; see [Overview](/nodeapi/hyperliquid/overview).
+
+</Info>
+
+## **Parameters**
+
+`blockNumber` - Quantity (hex) | Tag - <span style={{color: "red"}}>Required</span>  - The block number as a string in hexadecimal format or latest
+
+## **Returns**
+
+`result` - An array of EIP-2718 binary-encoded receipts.
+
+```json wrap
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		"0xb901a902f901a501830186a0b9010000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000002000000000050000000000000000008000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f89bf899944b186949f31fca0ad08497df9169a6bebf0e26efe1a05548c837ab068cf56a2c2479df0882a4922fd203edb7517321831d95078c5f62b860000000000000000000000000322ddf49013f5745dd67a12409c6c085acbda4bb000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000048655cf1673c2800",
+		...
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_getRawReceipts","params":["latest"],"id":1}'
+    
+```
+
+</CodeGroup>

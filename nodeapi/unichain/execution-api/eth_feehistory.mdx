@@ -1,0 +1,92 @@
+---
+title: "eth_feeHistory"
+---
+
+Returns transaction base fee per gas and effective priority fee per gas for the requested/supported block range.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+1. `blockCount` - `QUANTITY` - hexadecimal number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query. It will return less than the requested range if not all blocks are available.
+2. `newestBlock` - String - hexadecimal block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+3. `rewardPercentiles` - Array of numbers - A list of percentile values from 0 to 100, in increasing order, fractional values allowed,, showing how much people are willing to pay to have their transactions processed quickly. These values are based on:
+
+    1. Looking at each block in the time period you're interested in
+    2. Ranking the transactions by how much extra tip they offered per unit of gas
+    3. Calculating the typical tip amount for different levels (percentiles)
+    4. Taking into account how much gas each transaction used
+
+    This helps you understand what people are typically paying to get their transactions processed at different speed levels.
+
+## Returns
+
+`Object` - `oldestBlock` (the first block of the range), `baseFeePerGas` (one entry per block plus one for the next block), `gasUsedRatio` (one per block), `reward` (one array per block holding the effective priority fee at each requested percentile), `baseFeePerBlobGas` (one entry per block plus one for the next block) and `blobGasUsedRatio` (one per block).
+
+```bash
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "baseFeePerGas": [
+      "0x7a120",
+      "0x7a120",
+      "0x7a120",
+      "0x7a120",
+      "0x7a120"
+    ],
+    "gasUsedRatio": [
+      0.010394533333333334,
+      0.010208066666666666,
+      0.014770366666666666,
+      0.010208466666666667
+    ],
+    "baseFeePerBlobGas": [
+      "0x1",
+      "0x1",
+      "0x1",
+      "0x1",
+      "0x1"
+    ],
+    "blobGasUsedRatio": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "oldestBlock": "0x3a6434a",
+    "reward": [
+      [
+        "0x0",
+        "0x0"
+      ],
+      [
+        "0x0",
+        "0x0"
+      ],
+      [
+        "0x0",
+        "0x1"
+      ],
+      [
+        "0x0",
+        "0x0"
+      ]
+    ]
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_feeHistory","params":["0x4","latest",[25,75]],"id":1}'
+```
+
+</CodeGroup>

@@ -1,0 +1,75 @@
+---
+title: "GetTransactionById"
+---
+
+Return a transaction by transaction id.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `value` - String - <span style={{color: "red"}}>Required</span> - transaction ID
+
+## **Returns**
+
+The interface returns a Transaction object, which contains the following fields:
+
+| Field          | Type      | Description                                                                                                                            |
+| -------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| ret            | Result\[] | Transaction Execution Results                                                                                                          |
+| txID           | string    | Transaction ID                                                                                                                         |
+| raw\_data      | object    | Transaction content, please refer to [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for details |
+| signature      | string\[] | Transaction signature                                                                                                                  |
+| raw\_data\_hex | string    | Transaction content in Hex String                                                                                                      |
+
+```json
+// Result
+{
+	"ret": [
+		{
+			"contractRet": "SUCCESS"
+		}
+	],
+	"signature": [
+		"52faa470bd4ab8352dd8cb68b05d83f563f61b0fea33355b7cc502d814a200c167411540194f0a98c083afed6f475bab90a34edf8589887f2b82666ddedf891400"
+	],
+	"txID": "82ef30148057b4df12d601da3b4956dc22544f5f9cdaeb03b23371becbf669e9",
+	"raw_data": {
+		"contract": [
+			{
+				"parameter": {
+					"value": {
+						"amount": 192060000,
+						"owner_address": "4109c923bce6c02810faa6ecd23707983193f55079",
+						"to_address": "41422dd43fda7275414e0a19ac5ab213df7a90c06d"
+					},
+					"type_url": "type.googleapis.com/protocol.TransferContract"
+				},
+				"type": "TransferContract"
+			}
+		],
+		"ref_block_bytes": "02f7",
+		"ref_block_hash": "5db3e3133a300cdc",
+		"expiration": 1758531144000,
+		"timestamp": 1758531086837
+	},
+	"raw_data_hex": "0a0202f722085db3e3133a300cdc40c092ff8497335a68080112640a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a154109c923bce6c02810faa6ecd23707983193f55079121541422dd43fda7275414e0a19ac5ab213df7a90c06d18e0b4ca5b70f5d3fb849733"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/gettransactionbyid \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "value": "82ef30148057b4df12d601da3b4956dc22544f5f9cdaeb03b23371becbf669e9"
+}
+'
+```
+
+</CodeGroup>

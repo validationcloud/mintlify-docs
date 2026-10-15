@@ -1,0 +1,33 @@
+---
+title: "GetEnergyPrices"
+---
+
+Query historical energy unit price.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## **Returns**
+
+`prices` - string: All historical energy unit price information. Each unit price change is separated by a comma. Before the colon is the millisecond timestamp, and after the colon is the energy unit price in sun.
+
+```json wrap
+// Result
+{
+  "prices": "0:100,1575871200000:10,1606537680000:40,1614238080000:140,1635739080000:280,1681895880000:420,1751253480000:210"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getenergyprices \
+    -X GET
+```
+
+</CodeGroup>

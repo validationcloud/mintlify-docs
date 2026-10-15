@@ -1,0 +1,62 @@
+---
+title: "platform.validatedBy"
+---
+
+Get the Subnet that validates a given blockchain.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformvalidatedby)
+
+## **Parameters**
+
+* `blockchainID` - string - the blockchain’s ID.
+
+## Returns
+
+* `subnetID` - string - the ID of the Subnet that validates the blockchain.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "subnetID": "2bRCr6B4MiEfSjidDwxDpdCyviwnfUVqB2HGwhm947w9YYqb7r"
+  },
+  "id": 1
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.validatedBy",
+    "params": {
+        "blockchainID": "KDYHHKjM4yTJTT8H8qPs5KXzE6gQH5TZrmP1qVr1P6qECj3XN"
+    },
+    "id": 1
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc": "2.0",
+    "method": "platform.validatedBy",
+    "params": {
+        "blockchainID": "KDYHHKjM4yTJTT8H8qPs5KXzE6gQH5TZrmP1qVr1P6qECj3XN"
+    },
+    "id": 1
+}'
+```
+
+</CodeGroup>

@@ -1,0 +1,101 @@
+---
+title: "Overview"
+---
+
+<img className="page-cover" src="/nodeapi/assets/xrpl-overview-2x.png" alt="" noZoom />
+
+The XRP Ledger (XRPL) is a decentralized Layer 1 blockchain built for payments, with native support for issued currencies, a built-in decentralized exchange, automated market makers and NFTs.&#x20;
+
+Validation Cloud serves the complete public ledger history, from ledger 32,570 to the current ledger, with WebSocket and HTTPS access.&#x20;
+
+Developer docs: [https://xrpl.org/docs](https://xrpl.org/docs)
+
+Mainnet block explorer: [https://livenet.xrpl.org](https://livenet.xrpl.org)
+
+### Network Support
+
+| Network      | Full History / Archive | HTTPS | WSS |
+| ------------ | ---------------------- | ----- | --- |
+| XRPL Mainnet | ✅                      | ✅     | ✅   |
+
+> **Request format.** \
+> \
+> XRPL's HTTP API is JSON-RPC shaped but not JSON-RPC 2.0: the body is `{"method": "...", "params": [{...}]}` with no `jsonrpc` or `id` field. \
+> \
+> Over WebSocket, send `{"id": 1, "command": "...", ...}` with the parameters at the top level, as the xrpl.js and xrpl-py libraries do. \
+> \
+> The JSON-RPC shaped request `{"jsonrpc": "2.0", "id": 1, "method": "...", "params": [{...}]}` is accepted over WebSocket as well.
+
+> **Validated by default.** Responses come from Clio, which serves validated ledger data. Requests that need the open ledger (`ledger_current`, `submit`, `fee`, or any request with `"ledger_index": "current"`) are forwarded to rippled automatically.
+
+> **Errors are answers.** XRPL reports failures inside a `200 OK` response as `"status": "error"` with an `error` token (for example `lgrNotFound`, `actNotFound`), an `error_code` and an `error_message`. Check `result.status` rather than the HTTP status.
+
+> **Not served.** `sign`, `sign_for` and `channel_authorize` take a secret key and are refused with `unknownCmd`; sign transactions client-side and send them with `submit`. `path_find` and the `peer_status`, `consensus` and `server` streams are not available.
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Methods & Compute Units
+
+Over WebSocket each method costs the same as over HTTPS. \
+\
+Every message pushed on a subscription (`ledgerClosed`, `transaction`, `validationReceived`, `manifestReceived`, `bookChanges`) is billed as one notification at `10` Compute Units regardless of size.
+
+<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>account_channels</td><td>40</td></tr><tr><td>account_currencies</td><td>20</td></tr><tr><td>account_info</td><td>20</td></tr><tr><td>account_lines</td><td>40</td></tr><tr><td>account_nfts</td><td>40</td></tr><tr><td>account_objects</td><td>40</td></tr><tr><td>account_offers</td><td>40</td></tr><tr><td>account_tx</td><td>40</td></tr><tr><td>amm_info</td><td>20</td></tr><tr><td>book_changes</td><td>40</td></tr><tr><td>book_offers</td><td>40</td></tr><tr><td>channel_verify</td><td>20</td></tr><tr><td>deposit_authorized</td><td>20</td></tr><tr><td>feature</td><td>20</td></tr><tr><td>fee</td><td>20</td></tr><tr><td>gateway_balances</td><td>40</td></tr><tr><td>get_aggregate_price</td><td>20</td></tr><tr><td>ledger</td><td>40</td></tr><tr><td>ledger_closed</td><td>20</td></tr><tr><td>ledger_current</td><td>20</td></tr><tr><td>ledger_data</td><td>40</td></tr><tr><td>ledger_entry</td><td>20</td></tr><tr><td>ledger_index</td><td>20</td></tr><tr><td>ledger_range</td><td>20</td></tr><tr><td>manifest</td><td>20</td></tr><tr><td>nft_buy_offers</td><td>40</td></tr><tr><td>nft_history</td><td>40</td></tr><tr><td>nft_info</td><td>20</td></tr><tr><td>nft_sell_offers</td><td>40</td></tr><tr><td>nfts_by_issuer</td><td>40</td></tr><tr><td>noripple_check</td><td>20</td></tr><tr><td>ping</td><td>20</td></tr><tr><td>random</td><td>20</td></tr><tr><td>ripple_path_find</td><td>40</td></tr><tr><td>server_definitions</td><td>40</td></tr><tr><td>server_info</td><td>20</td></tr><tr><td>server_state</td><td>20</td></tr><tr><td>simulate</td><td>40</td></tr><tr><td>submit</td><td>80</td></tr><tr><td>submit_multisigned</td><td>80</td></tr><tr><td>subscribe</td><td>20</td></tr><tr><td>transaction_entry</td><td>20</td></tr><tr><td>tx</td><td>20</td></tr><tr><td>unsubscribe</td><td>20</td></tr><tr><td>vault_info</td><td>20</td></tr></tbody></table>
+
+### Endpoint Capabilities
+
+XRPL endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* ledger and account data queries, including full history via `account_tx` and `ledger`
+* transaction submission with `submit`
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* the `ledger`, `transactions` and `validations` streams
+* monitoring accounts and order books with `subscribe`
+* xrpl.js and other WebSocket-first client libraries
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on XRPL, connect your application to an XRPL endpoint and send XRPL API requests.
+
+Example request over HTTPS:
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_info","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}]}'
+```
+
+</CodeGroup>
+
+Example request over WebSocket:
+
+```bash
+wscat -c wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+> {"id":1,"command":"account_info","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}
+```
+
+With xrpl.js:
+
+```javascript
+import { Client } from "xrpl";
+
+const client = new Client("wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>");
+await client.connect();
+const info = await client.request({ command: "server_info" });
+console.log(info.result.info.complete_ledgers);
+await client.disconnect();
+```

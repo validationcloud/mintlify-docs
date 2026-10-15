@@ -1,0 +1,40 @@
+---
+title: "txpool_status"
+---
+
+Returns the status of the transaction pool, including the number of pending and queued transactions.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`Object` - An object with keys for `pending` and `queued`, indicating the total number of transactions in each state.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"id": 67,
+	"result": {
+		"pending": "0x0",
+		"queued": "0x0"
+	}
+}
+```
+
+<CodeGroup>
+
+```bash title="testnet"
+curl https://testnet.tempo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"txpool_status","params":[],"id":67}'
+```
+
+</CodeGroup>

@@ -1,0 +1,71 @@
+---
+title: "ledger"
+---
+
+Retrieves information about a ledger version, including its header and optionally its transactions.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/ledger-methods/ledger)
+
+## **Parameters**
+
+* `ledger_hash` (string, optional) A 32-byte hex string for the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `transactions` (boolean, optional) If `true`, return information on transactions in the specified ledger version. The default is `false`.
+* `expand` (boolean, optional) Provide full JSON-formatted transaction information instead of only hashes. The default is `false`. Ignored unless you request transactions.
+* `owner_funds` (boolean, optional) If `true`, include an `owner_funds` field in the metadata of OfferCreate transactions. Ignored unless transactions are included and `expand` is `true`.
+* `binary` (boolean, optional) If `true`, and `transactions` and `expand` are both `true`, return transaction information in binary format instead of JSON.
+* `queue` (boolean, optional) If `true`, and the command is requesting the `current` ledger, include an array of queued transactions in the results.
+
+## Returns
+
+* `ledger` (object) The complete ledger header data, including `account_hash`, `close_flags`, `close_time`, `close_time_human`, `close_time_iso`, `close_time_resolution`, `closed`, `ledger_hash`, `ledger_index`, `parent_close_time`, `parent_hash`, `total_coins`, `transaction_hash` and, if requested, `transactions`.
+* `ledger_hash` (string) The unique identifying hash of the entire ledger, as hexadecimal.
+* `ledger_index` (number) The ledger index of this ledger.
+* `validated` (boolean) If `true`, this is a validated ledger version.
+* `queue_data` (array) Omitted unless requested with the `queue` parameter. Queued transactions, in the same order as the queue.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "3D85D73151567309C4E3EC15ECF94A50FB3954DC0C95A73B354CACBA122F278B",
+    "ledger_index": 107292934,
+    "validated": true,
+    "ledger": {
+      "account_hash": "5A4018168DD91775480EFCFD2258ADA3EDF1256C0F882322FE744CCCB6106EA7",
+      "close_flags": 0,
+      "close_time": 843914951,
+      "close_time_human": "2026-Sep-28 12:49:11.000000000 UTC",
+      "close_time_resolution": 10,
+      "close_time_iso": "2026-09-28T12:49:11Z",
+      "ledger_hash": "3D85D73151567309C4E3EC15ECF94A50FB3954DC0C95A73B354CACBA122F278B",
+      "parent_close_time": 843914950,
+      "parent_hash": "D7DC7B8CA1BAC687F65F293EDBCC990207D292A428F9A5A2474F36C0BE96697D",
+      "total_coins": "99985607278153927",
+      "transaction_hash": "7BF158EC33C6F2CF843C40DDFC4A2C6C2A2FD44A3E37DC9B744A8625144EDA1E",
+      "ledger_index": "107292934",
+      "closed": true
+    },
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ledger","params":[{"ledger_index":"validated","transactions":false,"expand":false}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"ledger","ledger_index":"validated","transactions":false,"expand":false}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> Requesting `transactions: true` with `expand: true` returns every transaction in the ledger in full, including metadata. This is the heaviest call on this endpoint; a busy mainnet ledger can return several megabytes. Request hashes only (`expand: false`) and fetch individual transactions with `tx` when you do not need the whole ledger.

@@ -1,0 +1,46 @@
+---
+title: "eth_blockNumber"
+---
+
+Returns the number of most recent block.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth\_blocknumber)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`INTEGER` - Value of the current block number the client is on
+
+```json
+// Result
+{
+  "id":83,
+  "jsonrpc": "2.0",
+  "result": "0x4b7" // 1207
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.opbnb.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+```bash title="testnet"
+curl https://testnet.opbnb.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>

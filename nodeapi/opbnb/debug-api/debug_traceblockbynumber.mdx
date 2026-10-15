@@ -1,0 +1,82 @@
+---
+title: "debug_traceBlockByNumber"
+---
+
+Traces every transaction in the block specified by block number and returns the tracer result for each one.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span>  - The block number as a string in hexadecimal format.
+
+`object` - Object - <span style={{color: "red"}}>Required</span>  - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` ,`prestateTracer` or `flatCallTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+  * `flatCallTracer` - String - The flatCallTracer is a specific type of tracer that provides a flattened view of all calls made during transaction execution. It offers a simplified output compared to the standard callTracer, making it easier to analyze complex transactions.
+
+## **Returns**
+
+`result` - An array of transactions for that block, each containing:
+
+* `txHash` - The transaction hash of the transaction
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+
+```bash
+// Result
+{
+	"jsonrpc": "2.0",
+	"result": [
+		{
+			"txHash": "0xd12085034c73b21d360a2c970a8b117f3a3d91c6e5a7e4604ae7e5975a163d9c",
+			"result": [
+				{
+					"action": {
+						"callType": "call",
+						"from": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0001",
+						"gas": "0xf4240",
+						"input": "0x440a5e20000109a00009fe9800000000000000020000000066ceedd800000000027d1fb9000000000000000000000000000000000000000000000000000000003c33608000000000000000000000000000000000000000000000000000000000000000014c7e657f69488668490b23dacfc22528d259c9549bb4c0826cb717e10ec6cfaf000000000000000000000000ef8783382ef80ec23b66c43575a6103deca909c3",
+						"to": "0x4200000000000000000000000000000000000015",
+						"value": "0x0"
+					},
+					"blockHash": "0xa66339fb9ad8e1b3280e344b265a979e7292d05a1e24e15ae9e6faa6586a3361",
+					"blockNumber": 33083663,
+					"result": {
+						"gasUsed": "0xab4b",
+						"output": "0x"
+					},
+					"subtraces": 1,
+					"traceAddress": [],
+					"transactionHash": "0xd12085034c73b21d360a2c970a8b117f3a3d91c6e5a7e4604ae7e5975a163d9c",
+					"transactionPosition": 0,
+					"type": "call"
+				},...
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.opbnb.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_traceBlockByNumber","params":["0x1F8D10F", {"tracer": "flatCallTracer"}],"id":1}'
+```
+
+```bash title="testnet"
+curl https://testnet.opbnb.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0", "method":"debug_traceBlockByNumber","params":["0x2433BFC", {"tracer": "flatCallTracer"}],"id":1}'
+```
+
+</CodeGroup>

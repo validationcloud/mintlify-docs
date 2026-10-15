@@ -1,0 +1,68 @@
+---
+title: "avm.getAssetDescription"
+---
+
+Get information about an asset.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/x-chain/api#avmgetassetdescription)
+
+## **Parameters**
+
+* `assetID`- string - The id of the asset for which the information is requested.
+
+## Returns
+
+* `assetID` - string - The id of the asset for which the information is requested.
+* `name` - string - The asset’s human-readable, not necessarily unique name.
+* `symbol` - string - The asset’s symbol.
+* `denomination` - int - determines how balances of this asset are displayed by user interfaces. If denomination is 0, 100 units of this asset are displayed as 100. If denomination is 1, 100 units of this asset are displayed as 10.0. If denomination is 2, 100 units of this asset are displays as .100, etc.
+
+```json
+// Result
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "assetID": "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
+        "name": "Avalanche",
+        "symbol": "AVAX",
+        "denomination": "9"
+    },
+    "id": 1
+}`
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/X \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc":"2.0",
+    "id"     :1,
+    "method" :"avm.getAssetDescription",
+    "params" :{
+        "assetID" :"FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"
+    }
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/X \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc":"2.0",
+    "id"     :1,
+    "method" :"avm.getAssetDescription",
+    "params" :{
+        "assetID" :"FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"
+    }
+}'
+```
+
+</CodeGroup>

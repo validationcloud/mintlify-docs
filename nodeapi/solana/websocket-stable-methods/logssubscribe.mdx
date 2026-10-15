@@ -1,0 +1,62 @@
+---
+title: "logsSubscribe"
+---
+
+(Subscription Websocket) Subscribe to transaction logging.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Warning>
+
+The `all` and `allWithVotes` filters on `logsSubscribe` for Solana are disabled by default. If you need these filters, [contact us](https://www.validationcloud.io/contact).
+
+</Warning>
+
+## **Parameters**
+
+* `filters` string. The filter criteria for the logs to receive results by account type. Only one of the following filter can be passed at a time. The following filters types are currently supported:
+  * `all` string. Subscribe to all transactions except for simple vote transactions.
+  * `allWithVotes` string. Subscribe to all transactions including simple vote transactions.
+  * `object` object. An object with the following field:
+    * `mentions` array. Subscribe to all transactions that mention the provided Pubkey (as base-58 encoded string). The mentions field currently only supports one Pubkey string per method call. Listing additional addresses will result in an error.
+* `encoding` string. The encoding format for account data. It can be one of base58 (slow), base64, base64+zstd or jsonParsed.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string. The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string. The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string. The node will query its most recent block. Note that the block may not be complete.
+
+## Returns
+
+`result` integer. The result will be an RpcResponse JSON object with id equal to the subscription id (needed to unsubscribe).
+
+`Notification Format:` object. The notification will be an RpcResponse JSON object with value equal to:
+
+* `signature` string. The transaction signature base58 encoded.
+* `err` object. Error if transaction failed, null if transaction succeeded.
+* `logs` array. An array of log messages the transaction instructions output during execution, null if simulation failed before the transaction was able to execute (for example due to an invalid blockhash or signature verification failure).
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": 24040, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"jsonrpc": "2.0", "id": 1, "method": "logsSubscribe", "params": [{"mentions": ["Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf"]}, {"commitment": "finalized"}]}
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"jsonrpc": "2.0", "id": 1, "method": "logsSubscribe", "params": [{"mentions": ["E645TckHQnDcavVv92Etc6xSWQaq8zzPtPRGBheviRAk"]}, {"commitment": "finalized"}]}
+    
+```
+
+</CodeGroup>

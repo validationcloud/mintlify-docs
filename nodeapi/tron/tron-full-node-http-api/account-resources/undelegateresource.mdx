@@ -1,0 +1,48 @@
+---
+title: "UnDelegateResource"
+---
+
+Cancel the delegation of bandwidth or energy resources to other accounts in Stake2.0.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String, required - Owner address, default hexString
+* `receiver_address` - String, required - Resource receiver address
+* `balance` - int64 - Amount of TRX staked for resources to be undelegated, unit is sun
+* `resource` - String - Resource type: 'BANDWIDTH' or 'ENERGY'
+* `Permission_id` - int32 - Optional, for multi-signature use
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `UnDelegateResourceContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field             | Type   | Description                                                      |
+| ----------------- | ------ | ---------------------------------------------------------------- |
+| owner\_address    | string | Account address                                                  |
+| resource          | string | Resource type                                                    |
+| receiver\_address | string | Resource receiving address                                       |
+| balance           | Int64  | The number of canceled delegate resource shares, the unit is sun |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/undelegateresource \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "receiver_address": "TPswDDCAWhJAZGdHPidFg5nEf8TkNToDX1",
+  "balance": 1000000,
+  "resource": "BANDWIDTH",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

@@ -1,0 +1,92 @@
+---
+title: "trace_call"
+---
+
+Executes a new message call and returns a number of possible traces.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span> - The block number as a string in hexadecimal format or tags. The supported tag values include:
+
+* `earliest` - For the earliest/genesis block
+* `latest` for the latest mined block
+* `safe` for the most recent secure block
+* `finalized` for the most recent secure block accepted by more than 2/3 of validators
+
+## **Returns**
+
+`object` - object -The transaction trace result object
+
+* `output` - string - The data returned as output encoded in hexadecimal format
+* `stateDiff` - object - The altered Ethereum state due to execution of the given transaction, or null if not available
+* `trace` - array - An array of basic trace objects for the given transaction containing:
+  * `action` - object The ParityTrace action object containing call details
+    * `from` - string - The address of the sender
+    * `callType` - string - The type of method such as call, staticcall, delegatecall
+    * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+    * `input` - string - The input data sent along with the transaction
+    * `to` - string - The address of the receiver
+    * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+  * `result` - object - The execution result of the trace
+    * `gasUsed` - string - The amount of gas used by this trace
+    * `output` - string - The return value of the contract call, empty if no RETURN executed
+  * `subtraces` - integer - The number of subtraces (internal calls) within this trace
+  * `traceAddress` - array - The list of addresses where the call executed, including parent calls and order
+  * `type` - string The type of the trace, such as call or create
+* `vmTrace` - object - The full trace of the virtual machine's state during execution, including sub-calls, or null if not available
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "stateDiff": null,
+      "trace": [
+        {
+          "type": "call",
+          "action": {
+            "from": "0x786d1ecc7ad626f48d6d95ccb2c0500e52e4a15b",
+            "callType": "call",
+            "gas": "0x2fa9c18",
+            "input": "0xa9059cbb0000000000000000000000009406c483929bac16a41efae8665d8dab68c33eea0000000000000000000000000000000000000000000000000000000002fa2d30",
+            "to": "0x20c0000000000000000000000000000000000000",
+            "value": "0x0"
+          },
+          "result": {
+            "gasUsed": "0x8a2e",
+            "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+          },
+          "subtraces": 0,
+          "traceAddress": []
+        }
+      ],
+      "vmTrace": null
+    }
+  }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_call","params":[{"from":"0x786d1ecc7ad626f48d6d95ccb2c0500e52e4a15b","to":"0x20c0000000000000000000000000000000000000","data":"0xa9059cbb000000000000
+  0000000000009406c483929bac16a41efae8665d8dab68c33eea0000000000000000000000000000000000000000000000000000000002fa2d30"},["trace"],"latest"],"id":1}'
+```
+
+```bash title="testnet"
+curl https://testnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_call","params":[{"from":"0x786d1ecc7ad626f48d6d95ccb2c0500e52e4a15b","to":"0x20c0000000000000000000000000000000000000","data":"0xa9059cbb000000000000
+  0000000000009406c483929bac16a41efae8665d8dab68c33eea0000000000000000000000000000000000000000000000000000000002fa2d30"},["trace"],"latest"],"id":1}'
+```
+
+</CodeGroup>

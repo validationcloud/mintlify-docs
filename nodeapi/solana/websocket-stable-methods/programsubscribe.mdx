@@ -1,0 +1,49 @@
+---
+title: "programSubscribe"
+---
+
+(Subscription Websocket) Subscribe to a program to receive notifications when the lamports or data for a given account owned by the program changes.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `program_id` string. The Pubkey encoded base-58 string.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string. The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string. The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string. The node will query its most recent block. Note that the block may not be complete.
+* `encoding` string. The encoding format for account data. It can be one of base58 (slow), base64, base64+zstd or jsonParsed.
+* `filters` string. The filter results using various filter objects; The account must meet all filter criteria to be included in results.
+
+## Returns
+
+`result` The result will be an RpcResponse JSON object with id equal to the subscription id (needed to unsubscribe).
+
+`Notification Format:` The notification format is the same as seen in the getProgramAccounts RPC HTTP method.
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": 24040, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"jsonrpc": "2.0", "id": 1,"method": "programSubscribe","params": ["11111111111111111111111111111111", {"encoding": "base64", "commitment": "finalized"}]}
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"jsonrpc": "2.0", "id": 1,"method": "programSubscribe","params": ["11111111111111111111111111111111", {"encoding": "base64", "commitment": "finalized"}]}
+    
+```
+
+</CodeGroup>

@@ -1,0 +1,43 @@
+---
+title: "ProposalDelete"
+---
+
+Deletes Proposal Transaction.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `owner_address` - String - Address of the proposal owner
+* `proposal_id` - int32 - Proposal ID
+* `parameters` - json - Proposal parameters
+* `permission_id` - int32 - Optional, for multi-signature use
+* `visible` - boolean - Optional. Specifies whether the address is in Base58 format (default: false)
+
+## **Returns**
+
+Transaction object - JSON object: Unsigned transaction, please refer to the [Transaction](https://developers.tron.network/docs/tron-protocol-transaction) chapter for the fields contained in it. Since the transaction type is `ProposalDeleteContract`, the fields contained in `raw_data.contract[0].parameter.value` in the transaction are as follows:
+
+| Field          | Type   | Description     |
+| -------------- | ------ | --------------- |
+| owner\_address | string | Account address |
+| proposal\_id   | int64  | Proposal id     |
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/proposaldelete \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "owner_address": "TCuM8e98jmPwT1RU2jW7dekUC5HpXbGzFG",
+  "proposal_id": 89,
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

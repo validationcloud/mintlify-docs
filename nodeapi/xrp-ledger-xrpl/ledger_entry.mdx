@@ -1,0 +1,72 @@
+---
+title: "ledger_entry"
+---
+
+Returns a single ledger entry from the XRP Ledger in its raw format. Specify exactly one entry selector (for example `index`, `account_root`, `amm`, `check`, `credential`, `deposit_preauth`, `did`, `directory`, `escrow`, `mptoken`, `mpt_issuance`, `nft_page`, `nft_offer`, `offer`, `oracle`, `payment_channel`, `permissioned_domain`, `ripple_state`, `signer_list`, `ticket` or `vault`).
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/ledger-methods/ledger_entry)
+
+## **Parameters**
+
+* `binary` (boolean, optional) If `true`, return the entry's contents as a hex string in the XRP Ledger's binary format. The default is `false`.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `include_deleted` (boolean, optional) Clio only. If `true` and the queried object has been deleted, return its data as it was prior to deletion.
+* `index` (string) The ledger entry ID of a single entry to retrieve, as a 64-character hexadecimal string.
+* `account_root` (string) The classic address of the AccountRoot entry to retrieve.
+* `amm` (object or string) The AMM entry to retrieve, as a ledger entry ID or an object with `asset` and `asset2`.
+* `offer` (object or string) The Offer entry, as a ledger entry ID or an object with `account` and `seq`.
+* `oracle` (object) The Oracle entry, as an object with `account` and `oracle_document_id`.
+* `ripple_state` (object) The trust line, as an object with `accounts` (2-length array) and `currency`.
+* `payment_channel`, `check`, `nft_page`, `nft_offer`, `signer_list`, `mpt_issuance`, `vault` (string) The ledger entry ID of the entry to retrieve.
+* `escrow`, `ticket`, `deposit_preauth`, `credential`, `directory`, `mptoken`, `permissioned_domain`, `did` (object or string) See the reference for the sub-fields of each selector.
+
+## Returns
+
+* `index` (string) The ledger entry ID of this ledger entry.
+* `ledger_index` (unsigned integer) The ledger index of the ledger that was used when retrieving this data.
+* `node` (object) Omitted if `binary` is `true`. The data of this ledger entry, according to the ledger format.
+* `node_binary` (string) Omitted unless `binary` is `true`. The binary representation of the ledger entry, as hexadecimal.
+* `deleted_ledger_index` (unsigned integer) Clio only, returned if `include_deleted` is set. The ledger index where the entry was deleted.
+
+```bash
+// Result
+{
+  "result": {
+    "ledger_hash": "3D85D73151567309C4E3EC15ECF94A50FB3954DC0C95A73B354CACBA122F278B",
+    "ledger_index": 107292934,
+    "validated": true,
+    "index": "383BB05FBB110F9BE530B75C44DF100F86C5600F0F146593D3E7133FD1C99FF2",
+    "node": {
+      "Account": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+      "Balance": "99808735",
+      "Domain": "68747470733A2F2F726970706C652E636F6D2F",
+      "Flags": 2174353408,
+      "LedgerEntryType": "AccountRoot",
+      "OwnerCount": 19,
+      "PreviousTxnID": "58C7183FAFD82139CB60103E176BD5609AFC3F9F8159F5A981EA67825F6C88B8",
+      "PreviousTxnLgrSeq": 107292791,
+      "Sequence": 89926395,
+      "index": "383BB05FBB110F9BE530B75C44DF100F86C5600F0F146593D3E7133FD1C99FF2"
+    },
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ledger_entry","params":[{"account_root":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"ledger_entry","account_root":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

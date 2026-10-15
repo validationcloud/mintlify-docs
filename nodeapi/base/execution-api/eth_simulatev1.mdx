@@ -1,0 +1,174 @@
+---
+title: "eth_simulateV1"
+---
+
+Simulates one or more transaction bundles against the current preconfirmed Flashblock state.
+
+This method supports state overrides, block overrides, multi-block simulation, and optional ETH transfer tracing.\
+\
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+### Parameters:
+
+`params` - array containing:
+
+1. `simulationPayload` — object - required
+
+Configuration object for the simulation.
+
+#### **simulationPayload fields:**
+
+* `blockStateCalls` — array - required\
+  Array of block simulation objects. Each represents a simulated block.
+* `traceTransfers` — boolean - optional\
+  If `true`, ETH transfers are included as logs. Defaults to `false`.
+* `validation` — boolean - optional\
+  If `true`, applies validation checks such as nonce and balance. Defaults to `false`.
+
+#### **blockStateCalls object fields:**
+
+* `calls` — array\
+  List of transaction call objects to simulate
+* `stateOverrides` — object - optional\
+  Override account state (balance, nonce, code, storage)
+* `blockOverrides` — object - optional\
+  Override block-level fields (e.g. `number`, `timestamp`, `baseFeePerGas`)
+
+#### **call object fields:**
+
+* `from` — string - optional\
+  Sender address
+* `to` — string\
+  Recipient address
+* `maxFeePerGas` — string - optional\
+  Max fee per gas (hex)
+* `value` — string - optional\
+  ETH value sent (hex)
+* `data` — string - optional\
+  Hex-encoded calldata
+
+2. `blockParameter` — string - required
+
+Block number, hash, or tag.
+
+Use `"pending"` to simulate against the latest Flashblock state.
+
+### Returns:
+
+`array of objects` - simulated block results
+
+Each object represents one simulated block.
+
+#### **Block result fields:**
+
+* `number` — string\
+  Block number (hex)
+* `hash` — string\
+  Block hash
+* `gasUsed` — string\
+  Total gas used (hex)
+* `baseFeePerGas` — string\
+  Base fee (hex)
+* `calls` — array\
+  Results of each simulated call
+
+#### **Call result fields:**
+
+* `status` — string\
+  "0x1" = success, "0x0" = failure
+* `gasUsed` — string\
+  Gas used (hex)
+* `returnData` — string\
+  Return data (hex)
+* `logs` — array\
+  Emitted logs (includes transfers if enabled)
+* `error` — string\
+  Error or revert reason (if failed)
+
+```javascript
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "number": "0x29442bb",
+      "hash": "0xcefc6e6e...",
+      "gasUsed": "0x79ce",
+      "calls": [
+        {
+          "returnData": "0x00000000000000000000000000000000000000000000000000000000011420f9",
+          "logs": [],
+          "gasUsed": "0x79ce",
+          "status": "0x1"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Example Request
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.base.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_simulateV1",
+    "params": [
+      {
+        "blockStateCalls": [
+          {
+            "calls": [
+              {
+                "from": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "to": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                "data": "0x70a08231000000000000000000000000d8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+              }
+            ]
+          }
+        ],
+        "traceTransfers": true,
+        "validation": false
+      },
+      "pending"
+    ],
+    "id": 1
+  }'
+```
+
+```bash title="testnet"
+curl https://sepolia.base.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_simulateV1",
+    "params": [
+      {
+        "blockStateCalls": [
+          {
+            "calls": [
+              {
+                "to": "0x...",
+                "data": "0x..."
+              }
+            ],
+            "stateOverrides": {}
+          }
+        ],
+        "traceTransfers": true,
+        "validation": true
+      },
+      "pending"
+    ],
+    "id": 1
+  }'
+```
+
+</CodeGroup>

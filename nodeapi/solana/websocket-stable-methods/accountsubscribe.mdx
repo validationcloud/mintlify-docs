@@ -1,0 +1,48 @@
+---
+title: "accountSubscribe"
+---
+
+(Subscription Websocket) Subscribe to an account to receive notifications when the lamports or data for a given account public key changes.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `Pubkey` string. The public key of account to query encoded as base-58 string.
+* `object` _optional._ Configuration object containing the following fields:
+  * `commitment` string. The level of commitment required for the query. The options include:
+    * `finalized` string. The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
+    * `confirmed` string. The node will query the most recent block that has been voted on by the supermajority of the cluster.
+    * `processed` string. The node will query its most recent block. Note that the block may not be complete.
+  * `encoding` string. The encoding format for account data. It can be one of base58 (slow), base64, base64+zstd or jsonParsed.
+
+## Returns
+
+`result` integer. The result will be an RpcResponse JSON object with id equal to the subscription id (needed to unsubscribe).
+
+**Notification Format:** The notification format is the same as seen in the getAccountInfo RPC HTTP method.
+
+```bash
+// Result
+{ "jsonrpc": "2.0", "result": 23784, "id": 1 }
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method":"accountSubscribe","params":["Ec37CQZjwRgGnuMmUi3BnEBXS5Xa3siakAPxPkHtahSf",{"encoding": "jsonParsed", "commitment": "finalized"}]}
+    
+```
+
+```bash title="devnet"
+wscat -c wss://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+# wait for connection
+{"id":1,"jsonrpc":"2.0","method":"accountSubscribe","params":["E645TckHQnDcavVv92Etc6xSWQaq8zzPtPRGBheviRAk",{"encoding": "jsonParsed", "commitment": "finalized"}]}
+    
+```
+
+</CodeGroup>

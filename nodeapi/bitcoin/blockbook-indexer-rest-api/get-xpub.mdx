@@ -1,0 +1,104 @@
+---
+title: "Get xpub"
+---
+
+Returns balances and transactions of an xpub or output descriptor, applicable only for Bitcoin-type coins.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Reference:** [**Here**](https://github.com/trezor/blockbook/blob/master/docs/api.md#get-xpub)
+
+```bash
+GET /api/v2/xpub/<xpub|descriptor>[?page=<page>&pageSize=<size>&from=<block height>&to=<block height>&details=<basic|tokens|tokenBalances|txids|txs>&tokens=<nonzero|used|derived>&secondary=eur]
+```
+
+## **Parameters**
+
+Required parameters
+
+**`xpub OR descriptor`**- string, required.&#x20;
+
+Optional parameters
+
+* _**`page`**_: specifies page of returned transactions, starting from 1. If out of range, Blockbook returns the closest possible page.
+* _**`pageSize`**_: number of transactions returned by call (default and maximum 1000)
+* _**`from`**_, _to_: filter of the returned transactions _from_ block height _to_ block height (default no filter)
+* _**`details`**_: specifies level of details returned by request (default _`txids`_)
+  * _**`basic`**_: return only xpub balances, without any derived addresses and transactions
+  * _**`tokens`**_: _basic_ + tokens (addresses) derived from the xpub, subject to _tokens_ parameter
+  * _**`tokenBalances`**_: _basic_ + tokens (addresses) derived from the xpub with balances, subject to _tokens_ parameter
+  * _**`txids`**_: _tokenBalances_ + list of txids, subject to _from_, _to_ filter and paging
+  * _**`txs`**_: _tokenBalances_ + list of transaction with details, subject to _from_, _to_ filter and paging
+* _**`tokens`**_: specifies what tokens (xpub addresses) are returned by the request (default _nonzero_)
+  * _**`nonzero`**_: return only addresses with nonzero balance
+  * _**`used`**_: return addresses with at least one transaction
+  * _**`derived`**_: return all derived addresses
+* _**`secondary`**_: specifies secondary (fiat) currency in which the token and total balances are returned in addition to crypto values
+
+## Returns
+
+Example response
+
+```bash
+{
+  "page": 1,
+  "totalPages": 1,
+  "itemsOnPage": 1000,
+  "address": "dgub8sbe5Mi8LA4dXB9zPfLZW8arm...9Vjp2HHx91xdDEmWYpmD49fpoUYF",
+  "balance": "90000000",
+  "totalReceived": "3093381250",
+  "totalSent": "3083381250",
+  "unconfirmedBalance": "0",
+  "unconfirmedTxs": 0,
+  "txs": 5,
+  "txids": [
+    "383ccb5da16fccad294e24a2ef77bdee5810573bb1b252d8b2af4f0ac8c4e04c",
+    "75fb93d47969ac92112628e39148ad22323e96f0004c18f8c75938cffb6c1798",
+    "e8cd84f204b4a42b98e535e72f461dd9832aa081458720b0a38db5856a884876",
+    "57833d50969208091bd6c950599a1b5cf9d66d992ae8a8d3560fb943b98ebb23",
+    "9cfd6295f20e74ddca6dd816c8eb71a91e4da70fe396aca6f8ce09dc2947839f",
+  ],
+  "usedTokens": 2,
+  "tokens": [
+    {
+      "type": "XPUBAddress",
+      "name": "DUCd1B3YBiXL5By15yXgSLZtEkvwsgEdqS",
+      "path": "m/44'/3'/0'/0/0",
+      "transfers": 3,
+      "decimals": 8,
+      "balance": "90000000",
+      "totalReceived": "2903986975",
+      "totalSent": "2803986975"
+    },
+    {
+      "type": "XPUBAddress",
+      "name": "DKu2a8Wo6zC2dmBBYXwUG3fxWDHbKnNiPj",
+      "path": "m/44'/3'/0'/1/0",
+      "transfers": 2,
+      "decimals": 8,
+      "balance": "0",
+      "totalReceived": "279394275",
+      "totalSent": "279394275"
+    }
+  ],
+  "secondaryValue": 21195.47633568
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/xpub/<xpub|descriptor> \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/api/v2/xpub/<xpub|descriptor> \
+ -X GET \
+ -H "Content-Type: application/json"
+```
+
+</CodeGroup>

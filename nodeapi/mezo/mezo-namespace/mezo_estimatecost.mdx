@@ -1,0 +1,45 @@
+---
+title: "mezo_estimateCost"
+---
+
+Estimates the cost necessary to execute a transaction.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`object` - Object - <span style={{color: "red"}}>Required</span>  with the following fields:
+
+* `from` - DATA, 20 Bytes - The address the transaction is send from.
+* `from` - DATA, 20 Bytes - The address the transaction is send from.
+* `from` - DATA, 20 Bytes - The address the transaction is send from.
+
+## **Returns**
+
+`object` containing:
+
+* decimals - The decimals cost values are presented with.
+* `usdCost` - Estimated USD cost presented using `decimals`. Divide by `10^decimals` to obtain the base USD value.
+* `btcCost` - Estimated BTC cost presented using `decimals`. Divide by `10^decimals` to obtain the base BTC value.
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mezo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"mezo_estimateCost","params":[{"from":"0xFF3014B077D307E7B0bf262d072B25dbE19E2Be3","to":"0xd3CdA913deB6f67967B99D67aCDFa1712C293601","value":"0x186a0"}],"id":1}
+    
+```
+
+```bash title="testnet"
+curl https://testnet.mezo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"mezo_estimateCost","params":[{"from":"0xFF3014B077D307E7B0bf262d072B25dbE19E2Be3","to":"0xd3CdA913deB6f67967B99D67aCDFa1712C293601","value":"0x186a0"}],"id":1}
+    
+```
+
+</CodeGroup>

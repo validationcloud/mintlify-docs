@@ -1,0 +1,33 @@
+---
+title: "GetBandwidthPrices"
+---
+
+Query historical bandwidth unit price.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+None.
+
+## **Returns**
+
+`prices` - string: All historical bandwidth unit price information. Each unit price change is separated by a comma. Before the colon is the millisecond timestamp, and after the colon is the energy unit price in sun.
+
+```json wrap
+// Result
+{
+  "prices": "0:10,1606537680000:40,1614238080000:140,1626581880000:1000,1626925680000:140,1627731480000:1000"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getbandwidthprices \
+    -X GET
+```
+
+</CodeGroup>

@@ -1,0 +1,71 @@
+---
+title: "trace_callMany"
+---
+
+Executes several message calls in sequence against the same state and returns the traces of each, without creating transactions on the block chain.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+This method is served by nanoreth, the HyperEVM archive client, and works for any block back to genesis. On blocks that carry a HyperCore deposit, block-level traces include the deposit as their first entry; see [Overview](/nodeapi/hyperliquid/overview).
+
+</Info>
+
+## **Parameters**
+
+1. `array` - A list of `[transaction, traceTypes]` pairs, executed in order, each later call seeing the state changes of the earlier ones:
+   * `transaction` - Object - The call object with the same fields as [eth\_call](/nodeapi/hyperliquid/execution-api/eth_call) (`from`, `to`, `gas`, `gasPrice`, `value`, `data`).
+   * `traceTypes` - Array - Any of `trace`, `vmTrace`, `stateDiff`.
+2. `QUANTITY | TAG` - Integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+
+## **Returns**
+
+`array` - One result per call, each with `output`, `trace`, `stateDiff` and `vmTrace` as requested.
+
+```bash
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+    {
+        "output": "0x00000000000000000000000000000000000000000002bf4a07d2e8aa28f3768e",
+        "stateDiff": null,
+        "trace": [
+            {
+                "type": "call",
+                "action": {
+                    "from": "0x0000000000000000000000000000000000000000",
+                    "callType": "call",
+                    "gas": "0x2fa9e38",
+                    "input": "0x18160ddd",
+                    "to": "0x5555555555555555555555555555555555555555",
+                    "value": "0x0"
+                },
+                "result": {
+                    "gasUsed": "0xdf",
+                    "output": "0x00000000000000000000000000000000000000000002bf4a07d2e8aa28f3768e"
+                },
+                "subtraces": 0,
+                "traceAddress": []
+            }
+        ],
+        "vmTrace": null
+    }
+]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_callMany","params":[[[{"to":"0x5555555555555555555555555555555555555555","data":"0x18160ddd"},["trace"]]],"latest"],"id":1}'
+```
+
+</CodeGroup>

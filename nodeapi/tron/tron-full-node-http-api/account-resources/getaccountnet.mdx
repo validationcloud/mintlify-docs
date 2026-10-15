@@ -1,0 +1,52 @@
+---
+title: "GetAccountNet"
+---
+
+Query bandwidth information.
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `address` - String - <span style={{color: "red"}}>Required</span> -  Address to be queried. Address should be in base58checksum, hexString, or base64 format. Example `TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g`
+* `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+| Field          | Type                | Description                                                          |
+| -------------- | ------------------- | -------------------------------------------------------------------- |
+| freeNetUsed    | int64               | Free bandwidth used                                                  |
+| freeNetLimit   | int64               | Total free bandwidth                                                 |
+| NetUsed        | int64               | Used amount of bandwidth obtained by staking                         |
+| NetLimit       | int64               | Total bandwidth obtained by staking                                  |
+| TotalNetLimit  | int64               | Total bandwidth can be obtained by staking by the whole network      |
+| TotalNetWeight | int64               | Total TRX staked for bandwidth by the whole network                  |
+| assetNetUsed   | map&lt;string, int64> | The amount of free bandwidth of each TRC10 asset used by the account |
+| assetNetLimit  | map&lt;string, int64> | The amount of free bandwidth for each TRC10 asset in the account     |
+
+```json
+// Result
+{
+  "freeNetLimit": 600,
+  "TotalNetLimit": 43200000000,
+  "TotalNetWeight": 356260866660
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/wallet/getaccountnet \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "address": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

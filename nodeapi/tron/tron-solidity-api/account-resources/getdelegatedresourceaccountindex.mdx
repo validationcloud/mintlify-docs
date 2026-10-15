@@ -1,0 +1,52 @@
+---
+title: "GetDelegatedResourceAccountIndex"
+---
+
+Query the resource delegation during stake 2.0 by an account. i.e. list all addresses that have delegated resources to an account (Confirmed state).
+
+This method will use `30` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+* `value` - String - Address, default hexString
+* `visible` - Boolean - Optional - Specifies whether the address is in Base58 format (default: false).
+
+## **Returns**
+
+delegatedResource - List: Resource delegation list, each resource delegation information includes below fields:
+
+| Field                           | Type   | Description                                                                      |
+| ------------------------------- | ------ | -------------------------------------------------------------------------------- |
+| from                            | string | owner address                                                                    |
+| to                              | string | recipient address                                                                |
+| frozen\_balance\_for\_bandwidth | int64  | amount of TRX staked for bandwidth delegated from `from` address to `to` address |
+| frozen\_balance\_for\_energy    | int64  | amount of TRX staked for energy delegated from `from` address to `to` address    |
+| expire\_time\_for\_bandwidth    | int64  | Lock-up period deadline for bandwidth delegation                                 |
+| expire\_time\_for\_energy       | int64  | Lock-up period deadline for energy delegation                                    |
+
+Note that if the field value is 0 or null, the field will not be displayed in the returned result. For delegation deadlines, expire\_time\_for\_bandwidth or expire\_time\_for\_energy will be 0 if no lock is specified when delegating resources, and does not been displayed.
+
+```json
+// Result
+{
+  "account": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.tron.validationcloud.io/v1/<YOUR_API_KEY_HERE>/walletsolidity/getdelegatedresourceaccountindex \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '
+{
+  "value": "TZ4UXDV5ZhNW7fb2AMSbgfAEZ7hWsnYS2g",
+  "visible": true
+}
+'
+```
+
+</CodeGroup>

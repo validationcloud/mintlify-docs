@@ -1,10 +1,12 @@
 # GitBook migration
 
+> **Historical record.** The conversion is complete, and `docs.json` plus the MDX pages are now the source of truth. The Node API section was later moved from `v1/` to `nodeapi/`, with `/v1/*` redirecting to `/nodeapi/*`, so the converter output no longer matches the repo. Do not re-run it.
+
 The site content was generated from the GitBook Git Sync exports in `validationcloud/docs`:
 
-| Mintlify folder | Source branch (`validationcloud/docs`) | Export folder |
-| --------------- | -------------------------------------- | ------------- |
-| `v1/`           | `migration`                            | `v1/`         |
+| Mintlify folder         | Source branch (`validationcloud/docs`) | Export folder |
+| ----------------------- | -------------------------------------- | ------------- |
+| `nodeapi/` (first `v1/`) | `migration`                            | `v1/`         |
 | `staking/`      | `migration-staking`                    | `staking/`    |
 | `mavrik/`       | `migration-mavrik`                     | `mavrik/`     |
 | `agents/`       | `main` (added in PR #71)               | `agents/`     |
@@ -19,25 +21,7 @@ The GitBook sites have no site-level redirects (checked with the GitBook API). G
 - **Section URLs:** 33 section URLs (for example `/v1/aptos` or `/staking/solana`) redirect to their first page.
 - **Extras:** `/v1/about/admin-api-keys/models` redirects to the Admin API overview, and the 2023-era `/v1/execution-api/*` paths redirect to `/v1/ethereum/execution-api/*`.
 
-The rules live in `migration/docs.base.json` and are copied into `docs.json` when the converter runs.
-
-## Re-run the conversion
-
-Re-run this if GitBook content changes before cutover. It overwrites the generated folders and `docs.json`.
-
-```bash
-EXPORT=$(mktemp -d)
-cd ~/git/docs && git fetch origin
-git archive origin/migration v1 | tar -x -C "$EXPORT"
-git archive origin/migration-staking staking | tar -x -C "$EXPORT"
-git archive origin/migration-mavrik mavrik | tar -x -C "$EXPORT"
-git archive origin/main agents | tar -x -C "$EXPORT"
-
-cd ~/git/mintlify-docs
-rm -rf v1 staking mavrik agents snippets
-python3 -I migration/convert.py "$EXPORT" . migration/docs.base.json
-npx mint validate && npx mint broken-links
-```
+After the move to `nodeapi/`, these rules live under `/nodeapi/...` in `docs.json`. A final catch-all sends `/v1/*` to `/nodeapi/*`, so an old GitBook URL resolves in at most two hops.
 
 Edit `migration/docs.base.json` (not `docs.json`) for site settings until the migration is final.
 

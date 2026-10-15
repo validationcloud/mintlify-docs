@@ -1,0 +1,63 @@
+---
+title: "GET /address/:address/utxo"
+---
+
+Get the list of unspent transaction outputs associated with the address.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+**`address`** - required.&#x20;
+
+Example: `bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2`
+
+## Returns
+
+Get the list of unspent transaction outputs associated with the address.
+
+Available fields: `txid`, `vout`, `value` and `status` (with the status of the funding tx).
+
+```json
+[] -- empty
+
+or
+
+[
+	{
+		"txid": "2bbc22bff64e88f32f3f6315e306de483d07d90fe5ec9cce996cd52df0fd5bff",
+		"vout": 0,
+		"status": {
+			"confirmed": true,
+			"block_height": 910654,
+			"block_hash": "00000000000000000000fa095cce23a639bdc3bc1e3d87bcd8f08054555096de",
+			"block_time": 1755550588
+		},
+		"value": 17120
+	},
+	{
+		"txid": "db18da536c02d08e09d847b910465579fb3098129087a2160b11bafe0d28d362",
+		"vout": 0,
+		"status": {
+			"confirmed": false
+		},
+		"value": 17505
+	}
+]
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/address/bc1q7fnqm5dzah3uzpekw8zjtt2xexc7nnr33zwz0a/utxo \
+ -X GET
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/address/bc1qw2ct3hhavpz2ctg80scfgscu342vxags7cfs09qqk29e7h43ml4s9a3tq2/utxo \
+ -X GET
+```
+
+</CodeGroup>

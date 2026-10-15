@@ -1,0 +1,72 @@
+---
+title: "server_info"
+---
+
+Asks the server for a human-readable version of various information about the server being queried. Our XRPL endpoint answers from Clio, so the response describes the Clio server plus the rippled it is connected to.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/server-info-methods/server_info)
+
+## **Parameters**
+
+* `counters` (boolean, optional) If `true`, return metrics about the job queue, ledger store, and API method activity. The default is `false`.
+
+## Returns
+
+* `info` (object) Server information. Clio returns `complete_ledgers` (the full-history range available), `load_factor`, `time`, `uptime`, `clio_version`, `libxrpl_version`, `rippled_version`, `network_id`, `validation_quorum`, `cache` (Clio's ledger cache state) and `validated_ledger` (`age`, `hash`, `seq`, `base_fee_xrp`, `reserve_base_xrp`, `reserve_inc_xrp`).
+* `validated` (boolean) If `true`, the information comes from a validated ledger version.
+
+```bash
+// Result
+{
+  "result": {
+    "info": {
+      "complete_ledgers": "32570-107292936",
+      "load_factor": 1,
+      "time": "2026-Sep-28 12:49:22.641710 UTC",
+      "uptime": 5829,
+      "clio_version": "nightly-20260904",
+      "libxrpl_version": "3.3.0",
+      "validated_ledger": {
+        "age": 2,
+        "hash": "925A0E8F39F21363E351A8F4551AEEC2751142B5997816FB722B7A1BF1D61F9A",
+        "seq": 107292936,
+        "base_fee_xrp": 0.00001,
+        "reserve_base_xrp": 1,
+        "reserve_inc_xrp": 0.2
+      },
+      "cache": {
+        "size": 3026714,
+        "is_enabled": true,
+        "is_full": false,
+        "latest_ledger_seq": 107292936,
+        "object_hit_rate": 0.050630372017621994,
+        "successor_hit_rate": 1
+      },
+      "validation_quorum": 28,
+      "rippled_version": "3.4.0",
+      "network_id": 0
+    },
+    "validated": true,
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"server_info","params":[{}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"server_info"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> To see the rippled server's own `server_info` (build version, peers, server state, state accounting) send `"ledger_index": "current"` in the request; Clio then forwards the call to rippled.

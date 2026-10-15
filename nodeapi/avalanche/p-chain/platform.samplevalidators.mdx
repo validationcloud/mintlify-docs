@@ -1,0 +1,66 @@
+---
+title: "platform.sampleValidators"
+---
+
+Sample validators from the specified Subnet.
+
+This method will use `60` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://docs.avax.network/reference/avalanchego/p-chain/api#platformsamplevalidators)
+
+## **Parameters**
+
+* `height` - int - the numerical value representing the P-Chain height to get the validator set at.
+* `subnetID` - string - (optional) the subnet ID to get the validator set of. If not given, gets validator set of the Primary Network.
+
+## Returns
+
+* `validators` - object - the validators and their weights of a subnet or the Primary Network.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "validators": [
+      "NodeID-MFrZFVCXPv5iCn6M9K6XduxGTYp891xXZ",
+      "NodeID-NFBbbJ4qCmNaCzeW7sxErhvWqvEQMnYcN"
+    ]
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc":"2.0",
+    "id"     :1,
+    "method" :"platform.sampleValidators",
+    "params" :{
+        "size":2
+    }
+}'
+```
+
+```bash title="testnet"
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/P \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+    "jsonrpc":"2.0",
+    "id"     :1,
+    "method" :"platform.sampleValidators",
+    "params" :{
+        "size":2
+    }
+}'
+```
+
+</CodeGroup>

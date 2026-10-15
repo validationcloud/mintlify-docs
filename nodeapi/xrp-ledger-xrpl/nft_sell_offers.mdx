@@ -1,0 +1,63 @@
+---
+title: "nft_sell_offers"
+---
+
+Returns a list of sell offers for a given NFToken object.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/path-and-order-book-methods/nft_sell_offers)
+
+## **Parameters**
+
+* `nft_id` (string, required) The unique identifier of an NFToken object.
+* `ledger_hash` (string, optional) The unique hash of the ledger version to use.
+* `ledger_index` (number or string, optional) The ledger index of the ledger to use, or a shortcut string such as `validated`, `closed` or `current`.
+* `limit` (integer, optional) Limit the number of NFT sell offers to retrieve. Cannot be lower than 50 or more than 500. The default is 250.
+* `marker` (marker, optional) Value from a previous paginated response. Resume retrieving data where that response left off.
+
+## Returns
+
+* `nft_id` (string) The NFToken these offers are for, as specified in the request.
+* `offers` (array) A list of sell offers for the token. Each has `amount` (drops of XRP as a string, or a token amount object), `flags` (1 = sell offer), `nft_offer_index`, `owner` and optionally `destination` and `expiration`.
+* `limit` (number, may be omitted) The `limit` from the request. Our endpoint did not return it in the example below.
+* `marker` (marker) Server-defined value indicating the response is paginated. Omitted when there are no more pages.
+* `validated` (boolean) If `true`, the information comes from a validated ledger version.
+
+```bash
+// Result
+{
+  "result": {
+    "nft_id": "000817021F9C508EF46557C32AA0584349602955B640D72F71DCDBD0052B8D35",
+    "validated": true,
+    "offers": [
+      {
+        "nft_offer_index": "AAA7DEA0932FC8A1B691E37F6EB5FA283F96E94F70A6A58BB0DCF00B87412D6C",
+        "flags": 1,
+        "owner": "r951cG3Md3ukjV5rwiegaTw35M6FHetawT",
+        "amount": "39364400",
+        "destination": "rKWCPCDKbn3cLRSFpUgqS5Nc3z3s6UUTu6",
+        "expiration": 844174080
+      }
+    ],
+    "status": "success"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"nft_sell_offers","params":[{"nft_id":"000817021F9C508EF46557C32AA0584349602955B640D72F71DCDBD0052B8D35","ledger_index":"validated","limit":50}]}'
+```
+
+</CodeGroup>
+
+Over WebSocket, send `{"id":1,"command":"nft_sell_offers","nft_id":"000817021F9C508EF46557C32AA0584349602955B640D72F71DCDBD0052B8D35","ledger_index":"validated","limit":50}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
+
+> If the token has no sell offers the response is an `objectNotFound` error (HTTP 200 with `"status": "error"`), not an empty list.
