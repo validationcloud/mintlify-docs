@@ -8,16 +8,15 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/hyperliquid-wallpaper-1x.png" alt="" noZoom />
 
+<TryFree chain="Hyperliquid" logo="/nodeapi/assets/chains/hyperliquid.svg" />
+
 Hyperliquid is a Layer 1 built around an on-chain order book. HyperEVM is its EVM execution layer, sharing state with HyperCore, the exchange. This endpoint serves the HyperEVM JSON-RPC API.
 
 Developer docs: [https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm)
 
 Mainnet block explorer: [https://hyperevmscan.io](https://hyperevmscan.io)
 
-<TryFree chain="Hyperliquid" logo="/nodeapi/assets/chains/hyperliquid.svg" />
-
-### Network Support
-
+## Network Support
 | Network             | Full History / Archive                                                                 | HTTPS | WSS |
 | ------------------- | -------------------------------------------------------------------------------------- | ----- | --- |
 | Hyperliquid Mainnet | <p>HTTPS ❌ (~165 days, latest state only)<br /><br />WSS, Debug and Trace ✅ to genesis</p> | ✅     | ✅   |
@@ -41,8 +40,46 @@ Mainnet block explorer: [https://hyperevmscan.io](https://hyperevmscan.io)
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
+### Endpoint Capabilities
 
+Hyperliquid endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* blockchain data queries
+* smart contract deployment and interaction
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* real-time transaction monitoring
+* event subscriptions
+* live dashboards and analytics
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on Hyperliquid, connect your application to a Hyperliquid endpoint and send standard Ethereum JSON-RPC requests.
+
+Example request:
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [debug_getBadBlocks](/nodeapi/hyperliquid/debug-api/debug_getbadblocks) | 80 |
@@ -104,42 +141,3 @@ Mainnet block explorer: [https://hyperevmscan.io](https://hyperevmscan.io)
 | [trace_transaction](/nodeapi/hyperliquid/trace-api/trace_transaction) | 80 |
 | [web3_clientVersion](/nodeapi/hyperliquid/execution-api/web3_clientversion) | 40 |
 | [web3_sha3](/nodeapi/hyperliquid/execution-api/web3_sha3) | 40 |
-
-### Endpoint Capabilities
-
-Hyperliquid endpoints support both HTTP and WebSocket connectivity for production-grade applications.
-
-#### HTTP
-
-Best suited for:
-
-* backend services and APIs
-* blockchain data queries
-* smart contract deployment and interaction
-* development and testing workflows
-
-#### WebSocket
-
-Best suited for:
-
-* real-time transaction monitoring
-* event subscriptions
-* live dashboards and analytics
-* applications that require low-latency data delivery
-
-### Getting Started
-
-To start building on Hyperliquid, connect your application to a Hyperliquid endpoint and send standard Ethereum JSON-RPC requests.
-
-Example request:
-
-<CodeGroup>
-
-```bash title="mainnet"
-curl https://mainnet.hyperliquid.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
-```
-
-</CodeGroup>

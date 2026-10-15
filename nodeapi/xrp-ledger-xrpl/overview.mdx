@@ -8,6 +8,8 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/xrpl-overview-2x.png" alt="" noZoom />
 
+<TryFree chain="XRPL" logo="/nodeapi/assets/chains/xrp-ledger-xrpl.svg" />
+
 The XRP Ledger (XRPL) is a decentralized Layer 1 blockchain built for payments, with native support for issued currencies, a built-in decentralized exchange, automated market makers and NFTs.&#x20;
 
 Validation Cloud serves the complete public ledger history, from ledger 32,570 to the current ledger, with WebSocket and HTTPS access.&#x20;
@@ -16,10 +18,7 @@ Developer docs: [https://xrpl.org/docs](https://xrpl.org/docs)
 
 Mainnet block explorer: [https://livenet.xrpl.org](https://livenet.xrpl.org)
 
-<TryFree chain="XRPL" logo="/nodeapi/assets/chains/xrp-ledger-xrpl.svg" />
-
-### Network Support
-
+## Network Support
 | Network      | Full History / Archive | HTTPS | WSS |
 | ------------ | ---------------------- | ----- | --- |
 | XRPL Mainnet | ✅                      | ✅     | ✅   |
@@ -39,60 +38,6 @@ Mainnet block explorer: [https://livenet.xrpl.org](https://livenet.xrpl.org)
 > **Not served.** `sign`, `sign_for` and `channel_authorize` take a secret key and are refused with `unknownCmd`; sign transactions client-side and send them with `submit`. `path_find` and the `peer_status`, `consensus` and `server` streams are not available.
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
-
-## Methods & Compute Units
-
-Over WebSocket each method costs the same as over HTTPS. \
-\
-Every message pushed on a subscription (`ledgerClosed`, `transaction`, `validationReceived`, `manifestReceived`, `bookChanges`) is billed as one notification at `10` Compute Units regardless of size.
-
-| Method | Compute units |
-| --- | --- |
-| [account_channels](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_channels) | 40 |
-| [account_currencies](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_currencies) | 20 |
-| [account_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_info) | 20 |
-| [account_lines](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_lines) | 40 |
-| [account_nfts](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_nfts) | 40 |
-| [account_objects](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_objects) | 40 |
-| [account_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_offers) | 40 |
-| [account_tx](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_tx) | 40 |
-| [amm_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/amm_info) | 20 |
-| [book_changes](/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_changes) | 40 |
-| [book_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_offers) | 40 |
-| [channel_verify](/nodeapi/xrp-ledger-xrpl/json-rpc-api/channel_verify) | 20 |
-| [deposit_authorized](/nodeapi/xrp-ledger-xrpl/json-rpc-api/deposit_authorized) | 20 |
-| [feature](/nodeapi/xrp-ledger-xrpl/json-rpc-api/feature) | 20 |
-| [fee](/nodeapi/xrp-ledger-xrpl/json-rpc-api/fee) | 20 |
-| [gateway_balances](/nodeapi/xrp-ledger-xrpl/json-rpc-api/gateway_balances) | 40 |
-| [get_aggregate_price](/nodeapi/xrp-ledger-xrpl/json-rpc-api/get_aggregate_price) | 20 |
-| [ledger](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger) | 40 |
-| [ledger_closed](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_closed) | 20 |
-| [ledger_current](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_current) | 20 |
-| [ledger_data](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_data) | 40 |
-| [ledger_entry](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_entry) | 20 |
-| [ledger_index](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_index) | 20 |
-| [ledger_range](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_range) | 20 |
-| [manifest](/nodeapi/xrp-ledger-xrpl/json-rpc-api/manifest) | 20 |
-| [nft_buy_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_buy_offers) | 40 |
-| [nft_history](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_history) | 40 |
-| [nft_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_info) | 20 |
-| [nft_sell_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_sell_offers) | 40 |
-| [nfts_by_issuer](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nfts_by_issuer) | 40 |
-| [noripple_check](/nodeapi/xrp-ledger-xrpl/json-rpc-api/noripple_check) | 20 |
-| [ping](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ping) | 20 |
-| [random](/nodeapi/xrp-ledger-xrpl/json-rpc-api/random) | 20 |
-| [ripple_path_find](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ripple_path_find) | 40 |
-| [server_definitions](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_definitions) | 40 |
-| [server_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_info) | 20 |
-| [server_state](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_state) | 20 |
-| [simulate](/nodeapi/xrp-ledger-xrpl/json-rpc-api/simulate) | 40 |
-| [submit](/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit) | 80 |
-| [submit_multisigned](/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit_multisigned) | 80 |
-| [subscribe](/nodeapi/xrp-ledger-xrpl/json-rpc-api/subscribe) | 20 |
-| [transaction_entry](/nodeapi/xrp-ledger-xrpl/json-rpc-api/transaction_entry) | 20 |
-| [tx](/nodeapi/xrp-ledger-xrpl/json-rpc-api/tx) | 20 |
-| [unsubscribe](/nodeapi/xrp-ledger-xrpl/json-rpc-api/unsubscribe) | 20 |
-| [vault_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/vault_info) | 20 |
 
 ### Endpoint Capabilities
 
@@ -151,3 +96,56 @@ const info = await client.request({ command: "server_info" });
 console.log(info.result.info.complete_ledgers);
 await client.disconnect();
 ```
+
+## Compute Units
+Over WebSocket each method costs the same as over HTTPS. \
+\
+Every message pushed on a subscription (`ledgerClosed`, `transaction`, `validationReceived`, `manifestReceived`, `bookChanges`) is billed as one notification at `10` Compute Units regardless of size.
+
+| Method | Compute units |
+| --- | --- |
+| [account_channels](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_channels) | 40 |
+| [account_currencies](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_currencies) | 20 |
+| [account_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_info) | 20 |
+| [account_lines](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_lines) | 40 |
+| [account_nfts](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_nfts) | 40 |
+| [account_objects](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_objects) | 40 |
+| [account_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_offers) | 40 |
+| [account_tx](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_tx) | 40 |
+| [amm_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/amm_info) | 20 |
+| [book_changes](/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_changes) | 40 |
+| [book_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_offers) | 40 |
+| [channel_verify](/nodeapi/xrp-ledger-xrpl/json-rpc-api/channel_verify) | 20 |
+| [deposit_authorized](/nodeapi/xrp-ledger-xrpl/json-rpc-api/deposit_authorized) | 20 |
+| [feature](/nodeapi/xrp-ledger-xrpl/json-rpc-api/feature) | 20 |
+| [fee](/nodeapi/xrp-ledger-xrpl/json-rpc-api/fee) | 20 |
+| [gateway_balances](/nodeapi/xrp-ledger-xrpl/json-rpc-api/gateway_balances) | 40 |
+| [get_aggregate_price](/nodeapi/xrp-ledger-xrpl/json-rpc-api/get_aggregate_price) | 20 |
+| [ledger](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger) | 40 |
+| [ledger_closed](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_closed) | 20 |
+| [ledger_current](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_current) | 20 |
+| [ledger_data](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_data) | 40 |
+| [ledger_entry](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_entry) | 20 |
+| [ledger_index](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_index) | 20 |
+| [ledger_range](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_range) | 20 |
+| [manifest](/nodeapi/xrp-ledger-xrpl/json-rpc-api/manifest) | 20 |
+| [nft_buy_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_buy_offers) | 40 |
+| [nft_history](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_history) | 40 |
+| [nft_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_info) | 20 |
+| [nft_sell_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_sell_offers) | 40 |
+| [nfts_by_issuer](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nfts_by_issuer) | 40 |
+| [noripple_check](/nodeapi/xrp-ledger-xrpl/json-rpc-api/noripple_check) | 20 |
+| [ping](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ping) | 20 |
+| [random](/nodeapi/xrp-ledger-xrpl/json-rpc-api/random) | 20 |
+| [ripple_path_find](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ripple_path_find) | 40 |
+| [server_definitions](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_definitions) | 40 |
+| [server_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_info) | 20 |
+| [server_state](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_state) | 20 |
+| [simulate](/nodeapi/xrp-ledger-xrpl/json-rpc-api/simulate) | 40 |
+| [submit](/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit) | 80 |
+| [submit_multisigned](/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit_multisigned) | 80 |
+| [subscribe](/nodeapi/xrp-ledger-xrpl/json-rpc-api/subscribe) | 20 |
+| [transaction_entry](/nodeapi/xrp-ledger-xrpl/json-rpc-api/transaction_entry) | 20 |
+| [tx](/nodeapi/xrp-ledger-xrpl/json-rpc-api/tx) | 20 |
+| [unsubscribe](/nodeapi/xrp-ledger-xrpl/json-rpc-api/unsubscribe) | 20 |
+| [vault_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/vault_info) | 20 |

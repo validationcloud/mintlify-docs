@@ -8,16 +8,15 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/arbitrum.jpg" alt="" noZoom />
 
+<TryFree chain="Arbitrum" logo="/nodeapi/assets/chains/arbitrum.svg" />
+
 Arbitrum One is a Layer-2 scaling solution for Ethereum that uses optimistic rollups to enable faster and cheaper transactions while inheriting Ethereum’s security.&#x20;
 
 Fully compatible with the Ethereum Virtual Machine (EVM), Arbitrum One allows developers to deploy existing Ethereum dApps with minimal changes and benefit from greater scalability.
 
 Block explorer: [https://arbiscan.io/](https://arbiscan.io/)
 
-<TryFree chain="Arbitrum" logo="/nodeapi/assets/chains/arbitrum.svg" />
-
 ## Network Support
-
 | Network                        | HTTPS | WSS |
 | ------------------------------ | ----- | --- |
 | Arbitrum One Mainnet           | ✅     | ✅   |
@@ -26,7 +25,6 @@ Block explorer: [https://arbiscan.io/](https://arbiscan.io/)
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
 ## Compute Units
-
 | Method | Compute units |
 | --- | --- |
 | [debug_traceBlockByHash](/nodeapi/arbitrum/debug-api/debug_traceblockbyhash) | 80 |

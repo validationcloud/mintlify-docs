@@ -8,57 +8,20 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/robinhood-chain-overview-2x.png" alt="" noZoom />
 
+<TryFree chain="Robinhood" logo="/nodeapi/assets/chains/robinhood-chain.svg" />
+
 Robinhood Chain is an EVM-compatible blockchain built by Robinhood.
 
 Block explorer (mainnet): [https://robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com)
 Block explorer (testnet): [https://explorer.testnet.chain.robinhood.com](https://explorer.testnet.chain.robinhood.com)
 
-<TryFree chain="Robinhood" logo="/nodeapi/assets/chains/robinhood-chain.svg" />
-
-### Network Support
-
+## Network Support
 | Network            | Full History / Archive | HTTPS | WSS |
 | ------------------ | ---------------------- | ----- | --- |
 | Robinhood Chain Mainnet | ✅                      | ✅     | ✅   |
 | Robinhood Chain Testnet | ✅                      | ✅     | ✅   |
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
-
-## Methods & Compute Units
-
-| Method | Compute units |
-| --- | --- |
-| [debug_traceBlockByHash](/nodeapi/robinhood-chain/debug-api/debug_traceblockbyhash) | 80 |
-| [debug_traceBlockByNumber](/nodeapi/robinhood-chain/debug-api/debug_traceblockbynumber) | 80 |
-| [debug_traceCall](/nodeapi/robinhood-chain/debug-api/debug_tracecall) | 80 |
-| [debug_traceTransaction](/nodeapi/robinhood-chain/debug-api/debug_tracetransaction) | 80 |
-| [eth_blockNumber](/nodeapi/robinhood-chain/execution-api/eth_blocknumber) | 20 |
-| [eth_call](/nodeapi/robinhood-chain/execution-api/eth_call) | 40 |
-| [eth_chainId](/nodeapi/robinhood-chain/execution-api/eth_chainid) | 10 |
-| [eth_estimateGas](/nodeapi/robinhood-chain/execution-api/eth_estimategas) | 40 |
-| [eth_feeHistory](/nodeapi/robinhood-chain/execution-api/eth_feehistory) | 20 |
-| [eth_gasPrice](/nodeapi/robinhood-chain/execution-api/eth_gasprice) | 40 |
-| [eth_getBalance](/nodeapi/robinhood-chain/execution-api/eth_getbalance) | 40 |
-| [eth_getBlockByHash](/nodeapi/robinhood-chain/execution-api/eth_getblockbyhash) | 40 |
-| [eth_getBlockByNumber](/nodeapi/robinhood-chain/execution-api/eth_getblockbynumber) | 40 |
-| [eth_getBlockReceipts](/nodeapi/robinhood-chain/execution-api/eth_getblockreceipts) | 40 |
-| [eth_getBlockTransactionCountByHash](/nodeapi/robinhood-chain/execution-api/eth_getblocktransactioncountbyhash) | 40 |
-| [eth_getBlockTransactionCountByNumber](/nodeapi/robinhood-chain/execution-api/eth_getblocktransactioncountbynumber) | 40 |
-| [eth_getCode](/nodeapi/robinhood-chain/execution-api/eth_getcode) | 40 |
-| [eth_getLogs](/nodeapi/robinhood-chain/execution-api/eth_getlogs) | 80 |
-| [eth_getProof](/nodeapi/robinhood-chain/execution-api/eth_getproof) | 40 |
-| [eth_getStorageAt](/nodeapi/robinhood-chain/execution-api/eth_getstorageat) | 40 |
-| [eth_getTransactionByBlockHashAndIndex](/nodeapi/robinhood-chain/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
-| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/robinhood-chain/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
-| [eth_getTransactionByHash](/nodeapi/robinhood-chain/execution-api/eth_gettransactionbyhash) | 40 |
-| [eth_getTransactionCount](/nodeapi/robinhood-chain/execution-api/eth_gettransactioncount) | 40 |
-| [eth_getTransactionReceipt](/nodeapi/robinhood-chain/execution-api/eth_gettransactionreceipt) | 40 |
-| [eth_sendRawTransaction](/nodeapi/robinhood-chain/execution-api/eth_sendrawtransaction) | 80 |
-| [eth_subscribe](/nodeapi/robinhood-chain/execution-api/eth_subscribe) | 20 |
-| [eth_unsubscribe](/nodeapi/robinhood-chain/execution-api/eth_unsubscribe) | 20 |
-| [net_version](/nodeapi/robinhood-chain/execution-api/net_version) | 10 |
-| [web3_clientVersion](/nodeapi/robinhood-chain/execution-api/web3_clientversion) | 40 |
-| [web3_sha3](/nodeapi/robinhood-chain/execution-api/web3_sha3) | 40 |
 
 ### Endpoint Capabilities
 
@@ -105,3 +68,38 @@ curl https://testnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
 ```
 
 </CodeGroup>
+
+## Compute Units
+| Method | Compute units |
+| --- | --- |
+| [debug_traceBlockByHash](/nodeapi/robinhood-chain/debug-api/debug_traceblockbyhash) | 80 |
+| [debug_traceBlockByNumber](/nodeapi/robinhood-chain/debug-api/debug_traceblockbynumber) | 80 |
+| [debug_traceCall](/nodeapi/robinhood-chain/debug-api/debug_tracecall) | 80 |
+| [debug_traceTransaction](/nodeapi/robinhood-chain/debug-api/debug_tracetransaction) | 80 |
+| [eth_blockNumber](/nodeapi/robinhood-chain/execution-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/robinhood-chain/execution-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/robinhood-chain/execution-api/eth_chainid) | 10 |
+| [eth_estimateGas](/nodeapi/robinhood-chain/execution-api/eth_estimategas) | 40 |
+| [eth_feeHistory](/nodeapi/robinhood-chain/execution-api/eth_feehistory) | 20 |
+| [eth_gasPrice](/nodeapi/robinhood-chain/execution-api/eth_gasprice) | 40 |
+| [eth_getBalance](/nodeapi/robinhood-chain/execution-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/robinhood-chain/execution-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/robinhood-chain/execution-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockReceipts](/nodeapi/robinhood-chain/execution-api/eth_getblockreceipts) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/robinhood-chain/execution-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/robinhood-chain/execution-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/robinhood-chain/execution-api/eth_getcode) | 40 |
+| [eth_getLogs](/nodeapi/robinhood-chain/execution-api/eth_getlogs) | 80 |
+| [eth_getProof](/nodeapi/robinhood-chain/execution-api/eth_getproof) | 40 |
+| [eth_getStorageAt](/nodeapi/robinhood-chain/execution-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/robinhood-chain/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/robinhood-chain/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/robinhood-chain/execution-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionCount](/nodeapi/robinhood-chain/execution-api/eth_gettransactioncount) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/robinhood-chain/execution-api/eth_gettransactionreceipt) | 40 |
+| [eth_sendRawTransaction](/nodeapi/robinhood-chain/execution-api/eth_sendrawtransaction) | 80 |
+| [eth_subscribe](/nodeapi/robinhood-chain/execution-api/eth_subscribe) | 20 |
+| [eth_unsubscribe](/nodeapi/robinhood-chain/execution-api/eth_unsubscribe) | 20 |
+| [net_version](/nodeapi/robinhood-chain/execution-api/net_version) | 10 |
+| [web3_clientVersion](/nodeapi/robinhood-chain/execution-api/web3_clientversion) | 40 |
+| [web3_sha3](/nodeapi/robinhood-chain/execution-api/web3_sha3) | 40 |

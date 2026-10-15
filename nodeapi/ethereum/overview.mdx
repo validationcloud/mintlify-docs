@@ -8,6 +8,8 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/eth.jpg" alt="" noZoom />
 
+<TryFree chain="Ethereum" logo="/nodeapi/assets/chains/ethereum.svg" />
+
 Ethereum is a decentralized Layer-1 blockchain that enables developers to build and deploy smart contracts and decentralized applications (dApps) using the Ethereum Virtual Machine (EVM).
 
 As the foundational environment for EVM-compatible chains, Ethereum has become a standard for smart contract execution across a wide range of blockchain ecosystems.
@@ -16,10 +18,7 @@ The native token on Ethereum is ETH.
 
 Block explorer: [https://etherscan.io/](https://etherscan.io/)
 
-<TryFree chain="Ethereum" logo="/nodeapi/assets/chains/ethereum.svg" />
-
 ## Network Support
-
 | Network           | Full History / Archive | HTTPS | WSS |
 | ----------------- | ---------------------- | ----- | --- |
 | Mainnet           | ✅                      | ✅     | ✅   |
@@ -28,7 +27,6 @@ Block explorer: [https://etherscan.io/](https://etherscan.io/)
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
 ## Compute Units
-
 | Method | Compute units |
 | --- | --- |
 | [debug_getBadBlocks](/nodeapi/ethereum/debug-api/debug_getbadblocks) | 80 |

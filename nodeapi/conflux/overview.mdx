@@ -8,6 +8,8 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/conflux-wallpaper.png" alt="" noZoom />
 
+<TryFree chain="Conflux" logo="/nodeapi/assets/chains/conflux.svg" />
+
 Conflux is a high-performance Layer 1 public blockchain that utilizes a hybrid consensus mechanism combining Proof of Work (PoW) and Proof of Stake (PoS), enabling it to process up to 3,000 transactions per second with confirmation times of less than 1 minute.
 
 It features a dual "space" design. You can think of each "space" being a separate blockchain.&#x20;
@@ -18,10 +20,7 @@ The Core Space and eSpace share the same ledger for underlying data storage. A s
 
 However, the Core Space and eSpace function as two logically independent chains, each with their own transactions, account statuses, and contracts.
 
-<TryFree chain="Conflux" logo="/nodeapi/assets/chains/conflux.svg" />
-
 ## Network Support
-
 | Network        | Archive | HTTPS | WSS |
 | -------------- | ------- | ----- | --- |
 | eSpace Mainnet | ✅       | ✅     | ✅   |
@@ -29,8 +28,7 @@ However, the Core Space and eSpace function as two logically independent chains,
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
-
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [debug_traceBlockByHash](/nodeapi/conflux/debug-api/debug_traceblockbyhash) | 40 |

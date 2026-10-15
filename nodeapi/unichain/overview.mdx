@@ -8,16 +8,15 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/unichain-wallpaper-1x.png" alt="" noZoom />
 
+<TryFree chain="Unichain" logo="/nodeapi/assets/chains/unichain.svg" />
+
 Unichain is a DeFi-focused Ethereum Layer 2 built by Uniswap Labs on the OP Stack. It is part of the Optimism Superchain and produces a block every second.
 
 Developer docs: [https://docs.unichain.org](https://docs.unichain.org)
 
 Mainnet block explorer: [https://uniscan.xyz](https://uniscan.xyz)
 
-<TryFree chain="Unichain" logo="/nodeapi/assets/chains/unichain.svg" />
-
-### Network Support
-
+## Network Support
 | Network          | Full History / Archive                                                                    | HTTPS | WSS |
 | ---------------- | ----------------------------------------------------------------------------------------- | ----- | --- |
 | Unichain Mainnet | <p>Blocks, receipts and logs ✅ to genesis<br /><br />State and Debug ❌ (last ~10,000 blocks)</p> | ✅     | ✅   |
@@ -28,8 +27,46 @@ Mainnet block explorer: [https://uniscan.xyz](https://uniscan.xyz)
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
+### Endpoint Capabilities
 
+Unichain endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* blockchain data queries
+* smart contract deployment and interaction
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* real-time transaction monitoring
+* event subscriptions
+* live dashboards and analytics
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on Unichain, connect your application to a Unichain endpoint and send standard Ethereum JSON-RPC requests.
+
+Example request:
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [debug_getBadBlocks](/nodeapi/unichain/debug-api/debug_getbadblocks) | 80 |
@@ -85,42 +122,3 @@ Mainnet block explorer: [https://uniscan.xyz](https://uniscan.xyz)
 | [txpool_content](/nodeapi/unichain/execution-api/txpool_content) | 500 |
 | [web3_clientVersion](/nodeapi/unichain/execution-api/web3_clientversion) | 40 |
 | [web3_sha3](/nodeapi/unichain/execution-api/web3_sha3) | 40 |
-
-### Endpoint Capabilities
-
-Unichain endpoints support both HTTP and WebSocket connectivity for production-grade applications.
-
-#### HTTP
-
-Best suited for:
-
-* backend services and APIs
-* blockchain data queries
-* smart contract deployment and interaction
-* development and testing workflows
-
-#### WebSocket
-
-Best suited for:
-
-* real-time transaction monitoring
-* event subscriptions
-* live dashboards and analytics
-* applications that require low-latency data delivery
-
-### Getting Started
-
-To start building on Unichain, connect your application to a Unichain endpoint and send standard Ethereum JSON-RPC requests.
-
-Example request:
-
-<CodeGroup>
-
-```bash title="mainnet"
-curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
-```
-
-</CodeGroup>

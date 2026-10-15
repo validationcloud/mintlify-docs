@@ -8,16 +8,15 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/optimism.jpg" alt="" noZoom />
 
+<TryFree chain="Optimism" logo="/nodeapi/assets/chains/optimism.svg" />
+
 OP Mainnet, formerly called Optimism, is the main blockchain network in the Optimism ecosystem.\
 \
 OP Mainnet is a Layer 2 network that operates on top of Ethereum's architecture. It is designed to be EVM equivalent and as close to Ethereum as possible.&#x20;
 
 The minor differences between building on OP Mainnet and Ethereum are outlined in [Optimism's developer docs](https://docs.optimism.io/chain/differences).
 
-<TryFree chain="Optimism" logo="/nodeapi/assets/chains/optimism.svg" />
-
 ## Network Support
-
 | Network           | HTTPS | WSS |
 | ----------------- | ----- | --- |
 | Mainnet           | ✅     | ✅   |
@@ -25,8 +24,7 @@ The minor differences between building on OP Mainnet and Ethereum are outlined i
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
-
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [eth_accounts](/nodeapi/optimism/execution-api/eth_accounts) | 20 |

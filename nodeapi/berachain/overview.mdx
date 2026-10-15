@@ -8,6 +8,8 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/wallpaper-1-berachain.png" alt="" noZoom />
 
+<TryFree chain="Berachain" logo="/nodeapi/assets/chains/berachain.svg" />
+
 Berachain is a high-performance EVM-Identical Layer 1 (L1) blockchain utilizing Proof-of-Liquidity (PoL) as a consensus mechanism.
 
 Block explorer:
@@ -18,10 +20,7 @@ Block explorer:
 \
 [Learn more by visiting Berachain's developer docs](https://docs.berachain.com/).
 
-<TryFree chain="Berachain" logo="/nodeapi/assets/chains/berachain.svg" />
-
 ## Network Support
-
 | Network | Full History / Archive | HTTPS | WSS |
 | --- | --- | --- | --- |
 | Mainnet | ✅ | ✅ | ✅ |
@@ -29,8 +28,7 @@ Block explorer:
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
-
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [debug_traceBlockByHash](/nodeapi/berachain/debug-api/debug_traceblockbyhash) | 80 |

@@ -8,16 +8,15 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/tempo-wallpaper-devdocs-2x.png" alt="" noZoom />
 
+<TryFree chain="Tempo" logo="/nodeapi/assets/chains/tempo.svg" />
+
 Tempo is a purpose-built Layer 1 blockchain designed for payments. It is EVM-compatible and built to support high-throughput, low-latency transaction flows, with sub-second finality and near-zero transaction fees.
 
 Tempo is optimized for stablecoin payments and supports payment-specific functionality such as batch transfers, memo fields, compliance tooling including blocklists and allowlists, and the ability to pay transaction fees in supported stablecoins.
 
 Block explorer: [https://explore.tempo.xyz](https://explore.tempo.xyz)
 
-<TryFree chain="Tempo" logo="/nodeapi/assets/chains/tempo.svg" />
-
-### Network Support
-
+## Network Support
 | Network                  | Full History / Archive | HTTPS | WSS |
 | ------------------------ | ---------------------- | ----- | --- |
 | Tempo Mainnet            | ✅                      | ✅     | ✅   |
@@ -25,8 +24,46 @@ Block explorer: [https://explore.tempo.xyz](https://explore.tempo.xyz)
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
+### Endpoint Capabilities
 
+Tempo endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* blockchain data queries
+* smart contract deployment and interaction
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* real-time transaction monitoring
+* event subscriptions
+* live dashboards and analytics
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on Tempo, connect your application to a Tempo endpoint and send standard Ethereum JSON-RPC requests.
+
+Example request:
+
+<CodeGroup>
+
+```bash title="testnet"
+curl https://testnet.tempo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [debug_traceBlockByHash](/nodeapi/tempo/debug-api/debug_traceblockbyhash) | 80 |
@@ -77,42 +114,3 @@ Block explorer: [https://explore.tempo.xyz](https://explore.tempo.xyz)
 | [trace_transaction](/nodeapi/tempo/trace-api/trace_transaction) | 80 |
 | [web3_clientVersion](/nodeapi/tempo/execution-api/web3_clientversion) | 40 |
 | [web3_sha3](/nodeapi/tempo/execution-api/web3_sha3) | 40 |
-
-### Endpoint Capabilities
-
-Tempo endpoints support both HTTP and WebSocket connectivity for production-grade applications.
-
-#### HTTP
-
-Best suited for:
-
-* backend services and APIs
-* blockchain data queries
-* smart contract deployment and interaction
-* development and testing workflows
-
-#### WebSocket
-
-Best suited for:
-
-* real-time transaction monitoring
-* event subscriptions
-* live dashboards and analytics
-* applications that require low-latency data delivery
-
-### Getting Started
-
-To start building on Tempo, connect your application to a Tempo endpoint and send standard Ethereum JSON-RPC requests.
-
-Example request:
-
-<CodeGroup>
-
-```bash title="testnet"
-curl https://testnet.tempo.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
-```
-
-</CodeGroup>

@@ -8,6 +8,8 @@ import TryFree from "/snippets/try-free.mdx";
 
 <img className="page-cover" src="/nodeapi/assets/arc-overview-2x.png" alt="" noZoom />
 
+<TryFree chain="Arc" logo="/nodeapi/assets/chains/arc.svg" />
+
 Arc is a Layer 1 blockchain built for stablecoin finance. It is EVM-compatible and designed to support high-throughput, low-latency transaction processing for moving value seamlessly across systems.
 
 Developer docs: [https://docs.arc.io/arc-chain](https://docs.arc.io/arc-chain)
@@ -16,10 +18,7 @@ Mainnet block explorer: [https://explorer.arc.io](https://explorer.arc.io)
 
 Testnet block explorer: [https://testnet.arcscan.app](https://testnet.arcscan.app)
 
-<TryFree chain="Arc" logo="/nodeapi/assets/chains/arc.svg" />
-
-### Network Support
-
+## Network Support
 | Network       | Full History / Archive | HTTPS | WSS |
 | ------------- | ---------------------- | ----- | --- |
 | Arc Mainnet   | ✅                      | ✅     | ✅   |
@@ -29,8 +28,53 @@ Testnet block explorer: [https://testnet.arcscan.app](https://testnet.arcscan.ap
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-## Methods & Compute Units
+### Endpoint Capabilities
 
+Arc endpoints support both HTTP and WebSocket connectivity for production-grade applications.
+
+#### HTTP
+
+Best suited for:
+
+* backend services and APIs
+* blockchain data queries
+* smart contract deployment and interaction
+* development and testing workflows
+
+#### WebSocket
+
+Best suited for:
+
+* real-time transaction monitoring
+* event subscriptions
+* live dashboards and analytics
+* applications that require low-latency data delivery
+
+### Getting Started
+
+To start building on Arc, connect your application to an Arc endpoint and send standard Ethereum JSON-RPC requests.
+
+Example request:
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+```bash title="testnet"
+curl https://testnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+## Compute Units
 | Method | Compute units |
 | --- | --- |
 | [debug_traceBlockByHash](/nodeapi/arc/debug-api/debug_traceblockbyhash) | 80 |
@@ -87,49 +131,3 @@ Testnet block explorer: [https://testnet.arcscan.app](https://testnet.arcscan.ap
 | [txpool_content](/nodeapi/arc/execution-api/txpool_content) | 500 |
 | [web3_clientVersion](/nodeapi/arc/execution-api/web3_clientversion) | 40 |
 | [web3_sha3](/nodeapi/arc/execution-api/web3_sha3) | 40 |
-
-### Endpoint Capabilities
-
-Arc endpoints support both HTTP and WebSocket connectivity for production-grade applications.
-
-#### HTTP
-
-Best suited for:
-
-* backend services and APIs
-* blockchain data queries
-* smart contract deployment and interaction
-* development and testing workflows
-
-#### WebSocket
-
-Best suited for:
-
-* real-time transaction monitoring
-* event subscriptions
-* live dashboards and analytics
-* applications that require low-latency data delivery
-
-### Getting Started
-
-To start building on Arc, connect your application to an Arc endpoint and send standard Ethereum JSON-RPC requests.
-
-Example request:
-
-<CodeGroup>
-
-```bash title="mainnet"
-curl https://mainnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
-```
-
-```bash title="testnet"
-curl https://testnet.arc.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
-```
-
-</CodeGroup>
