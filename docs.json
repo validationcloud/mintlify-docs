@@ -508,16 +508,21 @@
             "group": "Admin API",
             "pages": [
               "nodeapi/about/admin-api-keys/index",
-              "nodeapi/about/admin-api-keys/account",
-              "nodeapi/about/admin-api-keys/chains",
-              "nodeapi/about/admin-api-keys/compute-unit-costs",
-              "nodeapi/about/admin-api-keys/endpoints",
-              "nodeapi/about/admin-api-keys/create-endpoint",
-              "nodeapi/about/admin-api-keys/get-endpoint",
-              "nodeapi/about/admin-api-keys/delete-endpoint",
-              "nodeapi/about/admin-api-keys/usage",
-              "nodeapi/about/admin-api-keys/endpoint-usage",
-              "nodeapi/about/admin-api-keys/health"
+              {
+                "group": "API reference",
+                "pages": [
+                  "nodeapi/about/admin-api-keys/account",
+                  "nodeapi/about/admin-api-keys/chains",
+                  "nodeapi/about/admin-api-keys/compute-unit-costs",
+                  "nodeapi/about/admin-api-keys/endpoints",
+                  "nodeapi/about/admin-api-keys/create-endpoint",
+                  "nodeapi/about/admin-api-keys/get-endpoint",
+                  "nodeapi/about/admin-api-keys/delete-endpoint",
+                  "nodeapi/about/admin-api-keys/usage",
+                  "nodeapi/about/admin-api-keys/endpoint-usage",
+                  "nodeapi/about/admin-api-keys/health"
+                ]
+              }
             ]
           },
           {
