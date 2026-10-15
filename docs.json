@@ -877,6 +877,22 @@
       "destination": "/nodeapi/solana/websocket-unstable-methods/blocksubscribe"
     },
     {
+      "source": "/v1/about/node-api",
+      "destination": "/nodeapi"
+    },
+    {
+      "source": "/staking/staking/overview",
+      "destination": "/staking"
+    },
+    {
+      "source": "/about/about-javelin/node-api",
+      "destination": "/nodeapi"
+    },
+    {
+      "source": "/about/avalanche/c-chain",
+      "destination": "/nodeapi/avalanche/c-chain"
+    },
+    {
       "source": "/v1",
       "destination": "/nodeapi"
     },
