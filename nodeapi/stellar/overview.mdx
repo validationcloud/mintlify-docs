@@ -12,7 +12,12 @@ import TryFree from "/snippets/try-free.mdx";
 
 ## Network Support
 
-<table><thead><tr><th width="420">Network</th><th>HTTPS</th><th>WSS</th></tr></thead><tbody><tr><td>Pubnet: Horizon (90 day history) &#x26; Stellar RPC (60 day history)</td><td>✅</td><td>❌</td></tr><tr><td>Testnet: Horizon (full history since the latest testnet reset) &#x26; Stellar RPC (7 day history)</td><td>✅</td><td>❌</td></tr><tr><td>Pubnet Archive: Horizon only (1 year history)</td><td>✅</td><td>❌</td></tr><tr><td>Pubnet RPC v2 (Beta): Stellar RPC only (full history from ledger 2)</td><td>✅</td><td>❌</td></tr></tbody></table>
+| Network | HTTPS | WSS |
+| --- | --- | --- |
+| Pubnet: Horizon (90 day history) &#x26; Stellar RPC (60 day history) | ✅ | ❌ |
+| Testnet: Horizon (full history since the latest testnet reset) &#x26; Stellar RPC (7 day history) | ✅ | ❌ |
+| Pubnet Archive: Horizon only (1 year history) | ✅ | ❌ |
+| Pubnet RPC v2 (Beta): Stellar RPC only (full history from ledger 2) | ✅ | ❌ |
 
 > **History retention:** Horizon on Pubnet lets you query the most recent 90 days of history, and the Pubnet Archive endpoint extends this to 1 year (the archive endpoint serves Horizon only; Stellar RPC is not available on it). Stellar RPC (formerly Soroban) serves the most recent 60 days of history on Pubnet and the most recent 7 days on Testnet. Pubnet RPC v2 (Beta) serves Stellar RPC with full Pubnet history, back to ledger 2 in September 2015. Horizon on Testnet serves full history back to the most recent Stellar testnet reset; the Stellar Development Foundation periodically resets testnet, and history restarts from each reset.
 
@@ -133,8 +138,70 @@ The following endpoints support SSE streaming:
 
 ### Stellar RPC (formerly known as Soroban)
 
-<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>getEvents</td><td>10</td></tr><tr><td>getFeeStats</td><td>10</td></tr><tr><td>getHealth</td><td>10</td></tr><tr><td>getLatestLedger</td><td>10</td></tr><tr><td>getLedgerEntries</td><td>10</td></tr><tr><td>getLedgers</td><td>10</td></tr><tr><td>getNetwork</td><td>10</td></tr><tr><td>getTransaction</td><td>10</td></tr><tr><td>getTransactions</td><td>10</td></tr><tr><td>getVersionInfo</td><td>10</td></tr><tr><td>queryEvents (Pubnet RPC v2 only)</td><td>10</td></tr><tr><td>sendTransaction</td><td>10</td></tr><tr><td>simulateTransaction</td><td>10</td></tr></tbody></table>
+| Method | Compute units |
+| --- | --- |
+| [getEvents](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getevents) | 10 |
+| [getFeeStats](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getfeestats) | 10 |
+| [getHealth](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/gethealth) | 10 |
+| [getLatestLedger](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getlatestledger) | 10 |
+| [getLedgerEntries](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getledgerentries) | 10 |
+| [getLedgers](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getledgers) | 10 |
+| [getNetwork](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getnetwork) | 10 |
+| [getTransaction](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/gettransaction) | 10 |
+| [getTransactions](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/gettransactions) | 10 |
+| [getVersionInfo](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/getversioninfo) | 10 |
+| [queryEvents (Pubnet RPC v2 only)](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/queryevents) | 10 |
+| [sendTransaction](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/sendtransaction) | 10 |
+| [simulateTransaction](/nodeapi/stellar/stellar-rpc-formerly-soroban-api/simulatetransaction) | 10 |
 
 ### Horizon
 
-<table data-header-hidden><thead><tr><th width="487"></th><th width="100"></th></tr></thead><tbody><tr><td>GET /</td><td>10</td></tr><tr><td>GET /accounts</td><td>20</td></tr><tr><td>GET /accounts/:account_id</td><td>20</td></tr><tr><td>GET /accounts/:account_id/transactions</td><td>20</td></tr><tr><td>GET /accounts/:account_id/operations</td><td>20</td></tr><tr><td>GET /accounts/:account_id/payments</td><td>20</td></tr><tr><td>GET /accounts/:account_id/effects</td><td>20</td></tr><tr><td>GET /accounts/:account_id/offers</td><td>20</td></tr><tr><td>GET /accounts/:account_id/trades</td><td>20</td></tr><tr><td>GET /accounts/:account_id/data/:key</td><td>20</td></tr><tr><td>GET /assets</td><td>20</td></tr><tr><td>GET /claimable_balances</td><td>20</td></tr><tr><td>GET /claimable_balances/:claimable_balance_id</td><td>20</td></tr><tr><td>GET /claimable_balances/:claimable_balance_id/transactions</td><td>20</td></tr><tr><td>GET /claimable_balances/:claimable_balance_id/operations</td><td>20</td></tr><tr><td>GET /effects</td><td>20</td></tr><tr><td>GET /fee_stats</td><td>10</td></tr><tr><td>GET /ledgers/:sequence</td><td>20</td></tr><tr><td>GET /ledgers/:sequence/transactions</td><td>20</td></tr><tr><td>GET /ledgers/:sequence/payments</td><td>20</td></tr><tr><td>GET /ledgers/:sequence/operations</td><td>20</td></tr><tr><td>GET /ledgers/:sequence/effects</td><td>20</td></tr><tr><td>GET /ledgers</td><td>20</td></tr><tr><td>GET /liquidity_pools</td><td>20</td></tr><tr><td>GET /liquidity_pools/:liquidity_pool_id</td><td>20</td></tr><tr><td>GET /liquidity_pools/:liquidity_pool_id/effects</td><td>20</td></tr><tr><td>GET /liquidity_pools/:liquidity_pool_id/trades</td><td>20</td></tr><tr><td>GET /liquidity_pools/:liquidity_pool_id/transactions</td><td>20</td></tr><tr><td>GET /liquidity_pools/:liquidity_pool_id/operations</td><td>20</td></tr><tr><td>GET /offers</td><td>20</td></tr><tr><td>GET /offers/:offer_id</td><td>20</td></tr><tr><td>GET /offers/:offer_id/trades</td><td>20</td></tr><tr><td>GET /operations/:id</td><td>20</td></tr><tr><td>GET /operations/:id/effects</td><td>20</td></tr><tr><td>GET /operations</td><td>20</td></tr><tr><td>GET /order_book</td><td>10</td></tr><tr><td>GET /paths/strict-receive</td><td>10</td></tr><tr><td>GET /paths/strict-send</td><td>10</td></tr><tr><td>GET /payments</td><td>20</td></tr><tr><td>GET /transactions/:transaction_hash/payments</td><td>10</td></tr><tr><td>GET /trades</td><td>20</td></tr><tr><td>GET /trade_aggregations</td><td>40</td></tr><tr><td>GET /transactions/:transaction_hash</td><td>20</td></tr><tr><td>GET /transactions/:transaction_hash/operations</td><td>20</td></tr><tr><td>GET /transactions/:transaction_hash/effects</td><td>20</td></tr><tr><td>GET /transactions</td><td>20</td></tr><tr><td>POST /transactions</td><td>20</td></tr></tbody></table>
+| Method | Compute units |
+| --- | --- |
+| GET / | 10 |
+| [GET /accounts](/nodeapi/stellar/horizon-api/accounts/list-all-accounts) | 20 |
+| [GET /accounts/:account_id](/nodeapi/stellar/horizon-api/accounts/retrieve-an-account) | 20 |
+| [GET /accounts/:account_id/transactions](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-transactions) | 20 |
+| [GET /accounts/:account_id/operations](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-operations) | 20 |
+| [GET /accounts/:account_id/payments](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-payments) | 20 |
+| [GET /accounts/:account_id/effects](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-effects) | 20 |
+| [GET /accounts/:account_id/offers](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-offers) | 20 |
+| [GET /accounts/:account_id/trades](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-trades) | 20 |
+| [GET /accounts/:account_id/data/:key](/nodeapi/stellar/horizon-api/accounts/retrieve-an-accounts-data) | 20 |
+| [GET /assets](/nodeapi/stellar/horizon-api/assets/list-all-assets) | 20 |
+| [GET /claimable_balances](/nodeapi/stellar/horizon-api/claimable-balances/list-all-claimable-balances) | 20 |
+| [GET /claimable_balances/:claimable_balance_id](/nodeapi/stellar/horizon-api/claimable-balances/retrieve-a-claimable-balance) | 20 |
+| [GET /claimable_balances/:claimable_balance_id/transactions](/nodeapi/stellar/horizon-api/claimable-balances/retrieve-related-transactions) | 20 |
+| [GET /claimable_balances/:claimable_balance_id/operations](/nodeapi/stellar/horizon-api/claimable-balances/retrieve-related-operations) | 20 |
+| [GET /effects](/nodeapi/stellar/horizon-api/effects/list-all-effects) | 20 |
+| [GET /fee_stats](/nodeapi/stellar/horizon-api/fee-stats) | 10 |
+| [GET /ledgers/:sequence](/nodeapi/stellar/horizon-api/ledgers/retrieve-a-ledger) | 20 |
+| [GET /ledgers/:sequence/transactions](/nodeapi/stellar/horizon-api/ledgers/retrieve-a-ledgers-transactions) | 20 |
+| [GET /ledgers/:sequence/payments](/nodeapi/stellar/horizon-api/ledgers/retrieve-a-ledgers-payments) | 20 |
+| [GET /ledgers/:sequence/operations](/nodeapi/stellar/horizon-api/ledgers/retrieve-a-ledgers-operations) | 20 |
+| [GET /ledgers/:sequence/effects](/nodeapi/stellar/horizon-api/ledgers/retrieve-a-ledgerss-effects) | 20 |
+| [GET /ledgers](/nodeapi/stellar/horizon-api/ledgers/list-all-ledgers) | 20 |
+| [GET /liquidity_pools](/nodeapi/stellar/horizon-api/liquidity-pools/list-liquidity-pools) | 20 |
+| [GET /liquidity_pools/:liquidity_pool_id](/nodeapi/stellar/horizon-api/liquidity-pools/retrieve-a-liquidity-pool) | 20 |
+| [GET /liquidity_pools/:liquidity_pool_id/effects](/nodeapi/stellar/horizon-api/liquidity-pools/retrieve-related-effects) | 20 |
+| [GET /liquidity_pools/:liquidity_pool_id/trades](/nodeapi/stellar/horizon-api/liquidity-pools/retrieve-related-trades) | 20 |
+| [GET /liquidity_pools/:liquidity_pool_id/transactions](/nodeapi/stellar/horizon-api/liquidity-pools/retrieve-related-transactions) | 20 |
+| [GET /liquidity_pools/:liquidity_pool_id/operations](/nodeapi/stellar/horizon-api/liquidity-pools/retrieve-related-operations) | 20 |
+| [GET /offers](/nodeapi/stellar/horizon-api/offers/list-all-offers) | 20 |
+| [GET /offers/:offer_id](/nodeapi/stellar/horizon-api/offers/retrieve-an-offer) | 20 |
+| [GET /offers/:offer_id/trades](/nodeapi/stellar/horizon-api/offers/retrieve-an-offers-trades) | 20 |
+| [GET /operations/:id](/nodeapi/stellar/horizon-api/operations/retrieve-an-operation) | 20 |
+| [GET /operations/:id/effects](/nodeapi/stellar/horizon-api/operations/retrieve-an-operations-effects) | 20 |
+| [GET /operations](/nodeapi/stellar/horizon-api/operations/list-all-operations) | 20 |
+| [GET /order_book](/nodeapi/stellar/horizon-api/order-books/retrieve-an-order-book) | 10 |
+| [GET /paths/strict-receive](/nodeapi/stellar/horizon-api/paths/list-strict-receive-payment-paths) | 10 |
+| [GET /paths/strict-send](/nodeapi/stellar/horizon-api/paths/list-strict-send-payment-paths) | 10 |
+| [GET /payments](/nodeapi/stellar/horizon-api/payments/list-all-payments) | 20 |
+| [GET /transactions/:transaction_hash/payments](/nodeapi/stellar/horizon-api/payments/retrieve-a-transactions-payments) | 10 |
+| [GET /trades](/nodeapi/stellar/horizon-api/trades/list-all-trades) | 20 |
+| [GET /trade_aggregations](/nodeapi/stellar/horizon-api/trade-aggregations/list-trade-aggregations) | 40 |
+| [GET /transactions/:transaction_hash](/nodeapi/stellar/horizon-api/transactions/retrieve-a-transaction) | 20 |
+| [GET /transactions/:transaction_hash/operations](/nodeapi/stellar/horizon-api/transactions/retrieve-a-transactions-operations) | 20 |
+| [GET /transactions/:transaction_hash/effects](/nodeapi/stellar/horizon-api/transactions/retrieve-a-transactions-effects) | 20 |
+| [GET /transactions](/nodeapi/stellar/horizon-api/transactions/list-all-transactions) | 20 |
+| [POST /transactions](/nodeapi/stellar/horizon-api/transactions/submit-a-transaction) | 20 |

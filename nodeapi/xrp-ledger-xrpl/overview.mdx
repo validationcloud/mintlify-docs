@@ -46,7 +46,53 @@ Over WebSocket each method costs the same as over HTTPS. \
 \
 Every message pushed on a subscription (`ledgerClosed`, `transaction`, `validationReceived`, `manifestReceived`, `bookChanges`) is billed as one notification at `10` Compute Units regardless of size.
 
-<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>account_channels</td><td>40</td></tr><tr><td>account_currencies</td><td>20</td></tr><tr><td>account_info</td><td>20</td></tr><tr><td>account_lines</td><td>40</td></tr><tr><td>account_nfts</td><td>40</td></tr><tr><td>account_objects</td><td>40</td></tr><tr><td>account_offers</td><td>40</td></tr><tr><td>account_tx</td><td>40</td></tr><tr><td>amm_info</td><td>20</td></tr><tr><td>book_changes</td><td>40</td></tr><tr><td>book_offers</td><td>40</td></tr><tr><td>channel_verify</td><td>20</td></tr><tr><td>deposit_authorized</td><td>20</td></tr><tr><td>feature</td><td>20</td></tr><tr><td>fee</td><td>20</td></tr><tr><td>gateway_balances</td><td>40</td></tr><tr><td>get_aggregate_price</td><td>20</td></tr><tr><td>ledger</td><td>40</td></tr><tr><td>ledger_closed</td><td>20</td></tr><tr><td>ledger_current</td><td>20</td></tr><tr><td>ledger_data</td><td>40</td></tr><tr><td>ledger_entry</td><td>20</td></tr><tr><td>ledger_index</td><td>20</td></tr><tr><td>ledger_range</td><td>20</td></tr><tr><td>manifest</td><td>20</td></tr><tr><td>nft_buy_offers</td><td>40</td></tr><tr><td>nft_history</td><td>40</td></tr><tr><td>nft_info</td><td>20</td></tr><tr><td>nft_sell_offers</td><td>40</td></tr><tr><td>nfts_by_issuer</td><td>40</td></tr><tr><td>noripple_check</td><td>20</td></tr><tr><td>ping</td><td>20</td></tr><tr><td>random</td><td>20</td></tr><tr><td>ripple_path_find</td><td>40</td></tr><tr><td>server_definitions</td><td>40</td></tr><tr><td>server_info</td><td>20</td></tr><tr><td>server_state</td><td>20</td></tr><tr><td>simulate</td><td>40</td></tr><tr><td>submit</td><td>80</td></tr><tr><td>submit_multisigned</td><td>80</td></tr><tr><td>subscribe</td><td>20</td></tr><tr><td>transaction_entry</td><td>20</td></tr><tr><td>tx</td><td>20</td></tr><tr><td>unsubscribe</td><td>20</td></tr><tr><td>vault_info</td><td>20</td></tr></tbody></table>
+| Method | Compute units |
+| --- | --- |
+| [account_channels](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_channels) | 40 |
+| [account_currencies](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_currencies) | 20 |
+| [account_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_info) | 20 |
+| [account_lines](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_lines) | 40 |
+| [account_nfts](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_nfts) | 40 |
+| [account_objects](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_objects) | 40 |
+| [account_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_offers) | 40 |
+| [account_tx](/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_tx) | 40 |
+| [amm_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/amm_info) | 20 |
+| [book_changes](/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_changes) | 40 |
+| [book_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_offers) | 40 |
+| [channel_verify](/nodeapi/xrp-ledger-xrpl/json-rpc-api/channel_verify) | 20 |
+| [deposit_authorized](/nodeapi/xrp-ledger-xrpl/json-rpc-api/deposit_authorized) | 20 |
+| [feature](/nodeapi/xrp-ledger-xrpl/json-rpc-api/feature) | 20 |
+| [fee](/nodeapi/xrp-ledger-xrpl/json-rpc-api/fee) | 20 |
+| [gateway_balances](/nodeapi/xrp-ledger-xrpl/json-rpc-api/gateway_balances) | 40 |
+| [get_aggregate_price](/nodeapi/xrp-ledger-xrpl/json-rpc-api/get_aggregate_price) | 20 |
+| [ledger](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger) | 40 |
+| [ledger_closed](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_closed) | 20 |
+| [ledger_current](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_current) | 20 |
+| [ledger_data](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_data) | 40 |
+| [ledger_entry](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_entry) | 20 |
+| [ledger_index](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_index) | 20 |
+| [ledger_range](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_range) | 20 |
+| [manifest](/nodeapi/xrp-ledger-xrpl/json-rpc-api/manifest) | 20 |
+| [nft_buy_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_buy_offers) | 40 |
+| [nft_history](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_history) | 40 |
+| [nft_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_info) | 20 |
+| [nft_sell_offers](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_sell_offers) | 40 |
+| [nfts_by_issuer](/nodeapi/xrp-ledger-xrpl/json-rpc-api/nfts_by_issuer) | 40 |
+| [noripple_check](/nodeapi/xrp-ledger-xrpl/json-rpc-api/noripple_check) | 20 |
+| [ping](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ping) | 20 |
+| [random](/nodeapi/xrp-ledger-xrpl/json-rpc-api/random) | 20 |
+| [ripple_path_find](/nodeapi/xrp-ledger-xrpl/json-rpc-api/ripple_path_find) | 40 |
+| [server_definitions](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_definitions) | 40 |
+| [server_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_info) | 20 |
+| [server_state](/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_state) | 20 |
+| [simulate](/nodeapi/xrp-ledger-xrpl/json-rpc-api/simulate) | 40 |
+| [submit](/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit) | 80 |
+| [submit_multisigned](/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit_multisigned) | 80 |
+| [subscribe](/nodeapi/xrp-ledger-xrpl/json-rpc-api/subscribe) | 20 |
+| [transaction_entry](/nodeapi/xrp-ledger-xrpl/json-rpc-api/transaction_entry) | 20 |
+| [tx](/nodeapi/xrp-ledger-xrpl/json-rpc-api/tx) | 20 |
+| [unsubscribe](/nodeapi/xrp-ledger-xrpl/json-rpc-api/unsubscribe) | 20 |
+| [vault_info](/nodeapi/xrp-ledger-xrpl/json-rpc-api/vault_info) | 20 |
 
 ### Endpoint Capabilities
 

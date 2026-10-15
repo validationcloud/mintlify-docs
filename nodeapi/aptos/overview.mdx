@@ -19,4 +19,27 @@ import TryFree from "/snippets/try-free.mdx";
 
 ## Compute Units
 
-<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>v1/accounts/\{address\}</td><td>15</td></tr><tr><td>v1/accounts/\{address\}/resources</td><td>30</td></tr><tr><td>v1/accounts/\{address\}/resource/\{resource_name\}</td><td>20</td></tr><tr><td>v1/accounts/\{address\}/modules</td><td>60</td></tr><tr><td>v1/accounts/\{address\}/module/\{module_name\}</td><td>30</td></tr><tr><td>v1/accounts/\{address\}/events/\{creation_number\}</td><td>30</td></tr><tr><td>v1/accounts/\{address\}/events/\{event_handle\}/\{field_name\}</td><td>30</td></tr><tr><td>v1/blocks/by_height/\{block_height\}</td><td>50</td></tr><tr><td>v1/blocks/by_version/\{version\}</td><td>50</td></tr><tr><td>v1/</td><td>10</td></tr><tr><td>v1/tables/\{table_handle\}/item</td><td>150</td></tr><tr><td>v1/tables/\{table_handle\}/raw_item</td><td>200</td></tr><tr><td>v1/transactions (GET)</td><td>150</td></tr><tr><td>v1/transactions (POST)</td><td>350</td></tr><tr><td>v1/transactions/by_hash/\{txn_hash\}</td><td>15</td></tr><tr><td>v1/transactions/by_version/\{txn_version\}</td><td>15</td></tr><tr><td>v1/accounts/\{address\}/transactions</td><td>150</td></tr><tr><td>v1/transactions/batch</td><td>3500</td></tr><tr><td>v1/transactions/simulate</td><td>50</td></tr><tr><td>v1/transactions/encode_submission</td><td>15</td></tr><tr><td>v1/estimate_gas_price</td><td>30</td></tr><tr><td>v1/view</td><td>50</td></tr></tbody></table>
+| Method | Compute units |
+| --- | --- |
+| [v1/accounts/\{address\}](/nodeapi/aptos/endpoints/accounts/get-account) | 15 |
+| [v1/accounts/\{address\}/resources](/nodeapi/aptos/endpoints/accounts/get-account-resources) | 30 |
+| [v1/accounts/\{address\}/resource/\{resource_name\}](/nodeapi/aptos/endpoints/accounts/get-account-resource) | 20 |
+| [v1/accounts/\{address\}/modules](/nodeapi/aptos/endpoints/accounts/get-account-modules) | 60 |
+| [v1/accounts/\{address\}/module/\{module_name\}](/nodeapi/aptos/endpoints/accounts/get-account-module) | 30 |
+| [v1/accounts/\{address\}/events/\{creation_number\}](/nodeapi/aptos/endpoints/events/get-events-by-creation-number) | 30 |
+| [v1/accounts/\{address\}/events/\{event_handle\}/\{field_name\}](/nodeapi/aptos/endpoints/events/get-events-by-event-handle) | 30 |
+| [v1/blocks/by_height/\{block_height\}](/nodeapi/aptos/endpoints/blocks/get-blocks-by-height) | 50 |
+| [v1/blocks/by_version/\{version\}](/nodeapi/aptos/endpoints/blocks/get-blocks-by-version) | 50 |
+| [v1/](/nodeapi/aptos/endpoints/general/get-ledger-info) | 10 |
+| [v1/tables/\{table_handle\}/item](/nodeapi/aptos/endpoints/tables/get-table-item) | 150 |
+| [v1/tables/\{table_handle\}/raw_item](/nodeapi/aptos/endpoints/tables/get-raw-table-iitem) | 200 |
+| [v1/transactions (GET)](/nodeapi/aptos/endpoints/transactions/get-transactions) | 150 |
+| [v1/transactions (POST)](/nodeapi/aptos/endpoints/transactions/submit-transaction) | 350 |
+| [v1/transactions/by_hash/\{txn_hash\}](/nodeapi/aptos/endpoints/transactions/get-transaction-by-hash) | 15 |
+| [v1/transactions/by_version/\{txn_version\}](/nodeapi/aptos/endpoints/transactions/get-transaction-by-version) | 15 |
+| [v1/accounts/\{address\}/transactions](/nodeapi/aptos/endpoints/transactions/get-account-transactions) | 150 |
+| [v1/transactions/batch](/nodeapi/aptos/endpoints/transactions/submit-batch-transactions) | 3500 |
+| [v1/transactions/simulate](/nodeapi/aptos/endpoints/transactions/simulate-transaction) | 50 |
+| [v1/transactions/encode_submission](/nodeapi/aptos/endpoints/transactions/encode-submission) | 15 |
+| [v1/estimate_gas_price](/nodeapi/aptos/endpoints/transactions/estimate-gas-price) | 30 |
+| [v1/view](/nodeapi/aptos/endpoints/view/execute-view-function-of-a-module) | 50 |

@@ -32,4 +32,42 @@ _Note: The RPC differences between Monad and standard Geth RPC behavior are outl
 
 ## Methods & Compute Units
 
-<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>debug_getRawBlock</td><td>80</td></tr><tr><td>debug_getRawHeader</td><td>80</td></tr><tr><td>debug_getRawReceipts</td><td>80</td></tr><tr><td>debug_getRawTransaction</td><td>80</td></tr><tr><td>debug_traceBlockByHash</td><td>80</td></tr><tr><td>debug_traceBlockByNumber</td><td>80</td></tr><tr><td>debug_traceTransaction</td><td>80</td></tr><tr><td>eth_blockNumber</td><td>20</td></tr><tr><td>eth_call</td><td>40</td></tr><tr><td>eth_chainId</td><td>10</td></tr><tr><td>eth_estimateGas</td><td>40</td></tr><tr><td>eth_gasPrice</td><td>40</td></tr><tr><td>eth_feeHistory</td><td>20</td></tr><tr><td>eth_getBalance</td><td>40</td></tr><tr><td>eth_getBlockByHash</td><td>40</td></tr><tr><td>eth_getBlockByNumber</td><td>40</td></tr><tr><td>eth_getBlockReceipts</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByHash</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByNumber</td><td>40</td></tr><tr><td>eth_getCode</td><td>40</td></tr><tr><td>eth_getLogs</td><td>80</td></tr><tr><td>eth_getProof</td><td>40</td></tr><tr><td>eth_getStorageAt</td><td>40</td></tr><tr><td>eth_getTransactionByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByHash</td><td>40</td></tr><tr><td>eth_getTransactionCount</td><td>40</td></tr><tr><td>eth_getTransactionReceipt</td><td>40</td></tr><tr><td>eth_maxPriorityFeePerGas</td><td>20</td></tr><tr><td>eth_sendRawTransaction</td><td>80</td></tr><tr><td>eth_sendRawTransactionSync</td><td>80</td></tr><tr><td>eth_subscribe</td><td>20</td></tr><tr><td>eth_unsubscribe</td><td>20</td></tr><tr><td>eth_syncing</td><td>10</td></tr><tr><td>net_version</td><td>10</td></tr><tr><td>trace_block</td><td>80</td></tr><tr><td>web3_clientVersion</td><td>40</td></tr></tbody></table>
+| Method | Compute units |
+| --- | --- |
+| [debug_getRawBlock](/nodeapi/monad/debug-api/debug_getrawblock) | 80 |
+| [debug_getRawHeader](/nodeapi/monad/debug-api/debug_getrawheader) | 80 |
+| [debug_getRawReceipts](/nodeapi/monad/debug-api/debug_getrawreceipts) | 80 |
+| [debug_getRawTransaction](/nodeapi/monad/debug-api/debug_getrawtransaction) | 80 |
+| [debug_traceBlockByHash](/nodeapi/monad/debug-api/debug_traceblockbyhash) | 80 |
+| [debug_traceBlockByNumber](/nodeapi/monad/debug-api/debug_traceblockbynumber) | 80 |
+| [debug_traceTransaction](/nodeapi/monad/debug-api/debug_tracetransaction) | 80 |
+| [eth_blockNumber](/nodeapi/monad/execution-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/monad/execution-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/monad/execution-api/eth_chainid) | 10 |
+| [eth_estimateGas](/nodeapi/monad/execution-api/eth_estimategas) | 40 |
+| [eth_gasPrice](/nodeapi/monad/execution-api/eth_gasprice) | 40 |
+| [eth_feeHistory](/nodeapi/monad/execution-api/eth_feehistory) | 20 |
+| [eth_getBalance](/nodeapi/monad/execution-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/monad/execution-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/monad/execution-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockReceipts](/nodeapi/monad/execution-api/eth_getblockreceipts) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/monad/execution-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/monad/execution-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/monad/execution-api/eth_getcode) | 40 |
+| [eth_getLogs](/nodeapi/monad/execution-api/eth_getlogs) | 80 |
+| [eth_getProof](/nodeapi/monad/execution-api/eth_getproof) | 40 |
+| [eth_getStorageAt](/nodeapi/monad/execution-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/monad/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/monad/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/monad/execution-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionCount](/nodeapi/monad/execution-api/eth_gettransactioncount) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/monad/execution-api/eth_gettransactionreceipt) | 40 |
+| [eth_maxPriorityFeePerGas](/nodeapi/monad/execution-api/eth_maxpriorityfeepergas) | 20 |
+| [eth_sendRawTransaction](/nodeapi/monad/execution-api/eth_sendrawtransaction) | 80 |
+| [eth_sendRawTransactionSync](/nodeapi/monad/execution-api/eth_sendrawtransactionsync) | 80 |
+| [eth_subscribe](/nodeapi/monad/execution-api/eth_subscribe) | 20 |
+| [eth_unsubscribe](/nodeapi/monad/execution-api/eth_unsubscribe) | 20 |
+| [eth_syncing](/nodeapi/monad/execution-api/eth_syncing) | 10 |
+| [net_version](/nodeapi/monad/execution-api/net_version) | 10 |
+| trace_block | 80 |
+| [web3_clientVersion](/nodeapi/monad/execution-api/web3_clientversion) | 40 |

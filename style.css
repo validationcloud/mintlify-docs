@@ -7,6 +7,11 @@
   margin: 0 0 1.5rem;
 }
 
+/* Chain overviews: let short tables (Network Support, Compute Units) fit the column instead of Mintlify's 150px minimum cell width */
+#content-area:has([class^="chain-logo-"]) .mdx-content td {
+  min-width: 0;
+}
+
 /* Supported Chains and Networks (wide mode): the table uses the full page width, text keeps its usual line length */
 #content-area:has(.chains-table) {
   max-width: 100%;

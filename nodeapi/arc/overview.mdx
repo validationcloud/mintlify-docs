@@ -31,7 +31,62 @@ Testnet block explorer: [https://testnet.arcscan.app](https://testnet.arcscan.ap
 
 ## Methods & Compute Units
 
-<table data-header-hidden><thead><tr><th></th><th width="100"></th></tr></thead><tbody><tr><td>debug_traceBlockByHash</td><td>80</td></tr><tr><td>debug_traceBlockByNumber</td><td>80</td></tr><tr><td>debug_traceCall</td><td>80</td></tr><tr><td>debug_traceTransaction</td><td>80</td></tr><tr><td>eth_blockNumber</td><td>20</td></tr><tr><td>eth_call</td><td>40</td></tr><tr><td>eth_chainId</td><td>10</td></tr><tr><td>eth_createAccessList</td><td>20</td></tr><tr><td>eth_estimateGas</td><td>40</td></tr><tr><td>eth_feeHistory</td><td>20</td></tr><tr><td>eth_gasPrice</td><td>40</td></tr><tr><td>eth_getBalance</td><td>40</td></tr><tr><td>eth_getBlockByHash</td><td>40</td></tr><tr><td>eth_getBlockByNumber</td><td>40</td></tr><tr><td>eth_getBlockReceipts</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByHash</td><td>40</td></tr><tr><td>eth_getBlockTransactionCountByNumber</td><td>40</td></tr><tr><td>eth_getCode</td><td>40</td></tr><tr><td>eth_getFilterChanges</td><td>40</td></tr><tr><td>eth_getFilterLogs</td><td>40</td></tr><tr><td>eth_getLogs</td><td>80</td></tr><tr><td>eth_getProof</td><td>40</td></tr><tr><td>eth_getStorageAt</td><td>40</td></tr><tr><td>eth_getTransactionByBlockHashAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByBlockNumberAndIndex</td><td>40</td></tr><tr><td>eth_getTransactionByHash</td><td>40</td></tr><tr><td>eth_getTransactionCount</td><td>40</td></tr><tr><td>eth_getTransactionReceipt</td><td>40</td></tr><tr><td>eth_getUncleCountByBlockHash</td><td>40</td></tr><tr><td>eth_getUncleCountByBlockNumber</td><td>40</td></tr><tr><td>eth_maxPriorityFeePerGas</td><td>20</td></tr><tr><td>eth_newBlockFilter</td><td>40</td></tr><tr><td>eth_newFilter</td><td>40</td></tr><tr><td>eth_newPendingTransactionFilter</td><td>40</td></tr><tr><td>eth_sendRawTransaction</td><td>80</td></tr><tr><td>eth_simulateV1</td><td>40</td></tr><tr><td>eth_subscribe</td><td>20</td></tr><tr><td>eth_syncing</td><td>10</td></tr><tr><td>eth_uninstallFilter</td><td>20</td></tr><tr><td>eth_unsubscribe</td><td>20</td></tr><tr><td>net_listening</td><td>10</td></tr><tr><td>net_peerCount</td><td>20</td></tr><tr><td>net_version</td><td>10</td></tr><tr><td>trace_block</td><td>80</td></tr><tr><td>trace_call</td><td>80</td></tr><tr><td>trace_filter</td><td>80</td></tr><tr><td>trace_get</td><td>80</td></tr><tr><td>trace_rawTransaction</td><td>80</td></tr><tr><td>trace_replayBlockTransactions</td><td>270</td></tr><tr><td>trace_replayTransaction</td><td>270</td></tr><tr><td>trace_transaction</td><td>80</td></tr><tr><td>txpool_content</td><td>500</td></tr><tr><td>web3_clientVersion</td><td>40</td></tr><tr><td>web3_sha3</td><td>40</td></tr></tbody></table>
+| Method | Compute units |
+| --- | --- |
+| [debug_traceBlockByHash](/nodeapi/arc/debug-api/debug_traceblockbyhash) | 80 |
+| [debug_traceBlockByNumber](/nodeapi/arc/debug-api/debug_traceblockbynumber) | 80 |
+| [debug_traceCall](/nodeapi/arc/debug-api/debug_tracecall) | 80 |
+| [debug_traceTransaction](/nodeapi/arc/debug-api/debug_tracetransaction) | 80 |
+| [eth_blockNumber](/nodeapi/arc/execution-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/arc/execution-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/arc/execution-api/eth_chainid) | 10 |
+| [eth_createAccessList](/nodeapi/arc/execution-api/eth_createaccesslist) | 20 |
+| [eth_estimateGas](/nodeapi/arc/execution-api/eth_estimategas) | 40 |
+| [eth_feeHistory](/nodeapi/arc/execution-api/eth_feehistory) | 20 |
+| [eth_gasPrice](/nodeapi/arc/execution-api/eth_gasprice) | 40 |
+| [eth_getBalance](/nodeapi/arc/execution-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/arc/execution-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/arc/execution-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockReceipts](/nodeapi/arc/execution-api/eth_getblockreceipts) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/arc/execution-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/arc/execution-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/arc/execution-api/eth_getcode) | 40 |
+| [eth_getFilterChanges](/nodeapi/arc/execution-api/eth_getfilterchanges) | 40 |
+| [eth_getFilterLogs](/nodeapi/arc/execution-api/eth_getfilterlogs) | 40 |
+| [eth_getLogs](/nodeapi/arc/execution-api/eth_getlogs) | 80 |
+| [eth_getProof](/nodeapi/arc/execution-api/eth_getproof) | 40 |
+| [eth_getStorageAt](/nodeapi/arc/execution-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/arc/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/arc/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/arc/execution-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionCount](/nodeapi/arc/execution-api/eth_gettransactioncount) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/arc/execution-api/eth_gettransactionreceipt) | 40 |
+| [eth_getUncleCountByBlockHash](/nodeapi/arc/execution-api/eth_getunclecountbyblockhash) | 40 |
+| [eth_getUncleCountByBlockNumber](/nodeapi/arc/execution-api/eth_getunclecountbyblocknumber) | 40 |
+| [eth_maxPriorityFeePerGas](/nodeapi/arc/execution-api/eth_maxpriorityfeepergas) | 20 |
+| [eth_newBlockFilter](/nodeapi/arc/execution-api/eth_newblockfilter) | 40 |
+| [eth_newFilter](/nodeapi/arc/execution-api/eth_newfilter) | 40 |
+| [eth_newPendingTransactionFilter](/nodeapi/arc/execution-api/eth_newpendingtransactionfilter) | 40 |
+| [eth_sendRawTransaction](/nodeapi/arc/execution-api/eth_sendrawtransaction) | 80 |
+| [eth_simulateV1](/nodeapi/arc/execution-api/eth_simulatev1) | 40 |
+| [eth_subscribe](/nodeapi/arc/execution-api/eth_subscribe) | 20 |
+| [eth_syncing](/nodeapi/arc/execution-api/eth_syncing) | 10 |
+| [eth_uninstallFilter](/nodeapi/arc/execution-api/eth_uninstallfilter) | 20 |
+| [eth_unsubscribe](/nodeapi/arc/execution-api/eth_unsubscribe) | 20 |
+| [net_listening](/nodeapi/arc/execution-api/net_listening) | 10 |
+| [net_peerCount](/nodeapi/arc/execution-api/net_peercount) | 20 |
+| [net_version](/nodeapi/arc/execution-api/net_version) | 10 |
+| [trace_block](/nodeapi/arc/trace-api/trace_block) | 80 |
+| [trace_call](/nodeapi/arc/trace-api/trace_call) | 80 |
+| [trace_filter](/nodeapi/arc/trace-api/trace_filter) | 80 |
+| [trace_get](/nodeapi/arc/trace-api/trace_get) | 80 |
+| [trace_rawTransaction](/nodeapi/arc/trace-api/trace_rawtransaction) | 80 |
+| [trace_replayBlockTransactions](/nodeapi/arc/trace-api/trace_replayblocktransactions) | 270 |
+| [trace_replayTransaction](/nodeapi/arc/trace-api/trace_replaytransaction) | 270 |
+| [trace_transaction](/nodeapi/arc/trace-api/trace_transaction) | 80 |
+| [txpool_content](/nodeapi/arc/execution-api/txpool_content) | 500 |
+| [web3_clientVersion](/nodeapi/arc/execution-api/web3_clientversion) | 40 |
+| [web3_sha3](/nodeapi/arc/execution-api/web3_sha3) | 40 |
 
 ### Endpoint Capabilities
 

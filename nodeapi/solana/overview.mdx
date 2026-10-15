@@ -18,7 +18,10 @@ Solana's native token is `SOL`, it's used for transactions, executing smart cont
 
 ## Network Support
 
-<table><thead><tr><th width="292">Network</th><th>HTTPS</th><th>WSS</th></tr></thead><tbody><tr><td>Mainnet <br />(also known as Mainnet-beta)</td><td>✅</td><td>✅</td></tr><tr><td>Devnet</td><td>✅</td><td>✅</td></tr></tbody></table>
+| Network | HTTPS | WSS |
+| --- | --- | --- |
+| Mainnet <br />(also known as Mainnet-beta) | ✅ | ✅ |
+| Devnet | ✅ | ✅ |
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
@@ -26,84 +29,86 @@ Solana's native token is `SOL`, it's used for transactions, executing smart cont
 
 ### HTTP Methods
 
-| getAccountInfo                    | 30  |
-| --------------------------------- | --- |
-| getBalance                        | 30  |
-| getBlock                          | 30  |
-| getBlockCommitment                | 30  |
-| getBlockHeight                    | 30  |
-| getBlockProduction                | 30  |
-| getBlockTime                      | 30  |
-| getBlocks                         | 30  |
-| getBlocksWithLimit                | 30  |
-| getClusterNodes                   | 30  |
-| getConfirmedBlock                 | 30  |
-| getConfirmedBlocks                | 30  |
-| getConfirmedBlocksWithLimit       | 30  |
-| getConfirmedTransaction           | 30  |
-| getEpochInfo                      | 30  |
-| getEpochSchedule                  | 30  |
-| getFeeCalculatorForBlockhash      | 30  |
-| getFeeForMessage                  | 30  |
-| getFirstAvailableBlock            | 30  |
-| getGenesisHash                    | 30  |
-| getHealth                         | 30  |
-| getHighestSnapshotSlot            | 30  |
-| getIdentity                       | 30  |
-| getInflationGovernor              | 30  |
-| getInflationRate                  | 30  |
-| getInflationReward                | 30  |
-| getLatestBlockhash                | 30  |
-| getLeaderSchedule                 | 30  |
-| getMaxRetransmitSlot              | 30  |
-| getMaxShredInsertSlot             | 30  |
-| getMinimumBalanceForRentExemption | 30  |
-| getMultipleAccounts               | 30  |
-| getParsedBlock                    | 30  |
-| getParsedTransaction              | 30  |
-| getProgramAccounts                | 30  |
-| getRecentPerformanceSamples       | 30  |
-| getRecentPrioritizationFees       | 30  |
-| getSignatureStatuses              | 30  |
-| getSignaturesForAddress           | 30  |
-| getSlot                           | 30  |
-| getSlotLeader                     | 30  |
-| getSlotLeaders                    | 30  |
-| getSnapshotSlot                   | 30  |
-| getStakeMinimumDelegation         | 30  |
-| getStakeActivation                | 30  |
-| getSupply                         | 160 |
-| getTokenAccountBalance            | 30  |
-| getTokenAccountsByOwner           | 30  |
-| getTokenLargestAccounts           | 30  |
-| getTokenSupply                    | 30  |
-| getTransaction                    | 30  |
-| getTransactionCount               | 30  |
-| getVersion                        | 30  |
-| getVoteAccounts                   | 30  |
-| isBlockhashValid                  | 30  |
-| minimumLedgerSlot                 | 30  |
-| requestAirdrop                    | 30  |
-| sendTransaction                   | 30  |
-| simulateTransaction               | 30  |
+| Method | Compute units |
+| --- | --- |
+| [getAccountInfo](/nodeapi/solana/http-methods/getaccountinfo) | 30 |
+| [getBalance](/nodeapi/solana/http-methods/getbalance) | 30 |
+| [getBlock](/nodeapi/solana/http-methods/getblock) | 30 |
+| [getBlockCommitment](/nodeapi/solana/http-methods/getblockcommitment) | 30 |
+| [getBlockHeight](/nodeapi/solana/http-methods/getblockheight) | 30 |
+| [getBlockProduction](/nodeapi/solana/http-methods/getblockproduction) | 30 |
+| [getBlockTime](/nodeapi/solana/http-methods/getblocktime) | 30 |
+| [getBlocks](/nodeapi/solana/http-methods/getblocks) | 30 |
+| [getBlocksWithLimit](/nodeapi/solana/http-methods/getblockswithlimit) | 30 |
+| [getClusterNodes](/nodeapi/solana/http-methods/getclusternodes) | 30 |
+| getConfirmedBlock | 30 |
+| getConfirmedBlocks | 30 |
+| getConfirmedBlocksWithLimit | 30 |
+| getConfirmedTransaction | 30 |
+| [getEpochInfo](/nodeapi/solana/http-methods/getepochinfo) | 30 |
+| [getEpochSchedule](/nodeapi/solana/http-methods/getepochschedule) | 30 |
+| getFeeCalculatorForBlockhash | 30 |
+| [getFeeForMessage](/nodeapi/solana/http-methods/getfeeformessage) | 30 |
+| [getFirstAvailableBlock](/nodeapi/solana/http-methods/getfirstavailableblock) | 30 |
+| [getGenesisHash](/nodeapi/solana/http-methods/getgenesishash) | 30 |
+| [getHealth](/nodeapi/solana/http-methods/gethealth) | 30 |
+| [getHighestSnapshotSlot](/nodeapi/solana/http-methods/gethighestsnapshotslot) | 30 |
+| [getIdentity](/nodeapi/solana/http-methods/getidentity) | 30 |
+| [getInflationGovernor](/nodeapi/solana/http-methods/getinflationgovernor) | 30 |
+| [getInflationRate](/nodeapi/solana/http-methods/getinflationrate) | 30 |
+| [getInflationReward](/nodeapi/solana/http-methods/getinflationreward) | 30 |
+| [getLatestBlockhash](/nodeapi/solana/http-methods/getlatestblockhash) | 30 |
+| [getLeaderSchedule](/nodeapi/solana/http-methods/getleaderschedule) | 30 |
+| [getMaxRetransmitSlot](/nodeapi/solana/http-methods/getmaxretransmitslot) | 30 |
+| [getMaxShredInsertSlot](/nodeapi/solana/http-methods/getmaxshredinsertslot) | 30 |
+| [getMinimumBalanceForRentExemption](/nodeapi/solana/http-methods/getminimumbalanceforrentexemption) | 30 |
+| [getMultipleAccounts](/nodeapi/solana/http-methods/getmultipleaccounts) | 30 |
+| [getParsedBlock](/nodeapi/solana/http-methods/getparsedblock) | 30 |
+| [getParsedTransaction](/nodeapi/solana/http-methods/getparsedtransaction) | 30 |
+| [getProgramAccounts](/nodeapi/solana/http-methods/getprogramaccounts) | 30 |
+| [getRecentPerformanceSamples](/nodeapi/solana/http-methods/getrecentperformancesamples) | 30 |
+| [getRecentPrioritizationFees](/nodeapi/solana/http-methods/getrecentprioritizationfees) | 30 |
+| [getSignatureStatuses](/nodeapi/solana/http-methods/getsignaturestatuses) | 30 |
+| [getSignaturesForAddress](/nodeapi/solana/http-methods/getsignaturesforaddress) | 30 |
+| [getSlot](/nodeapi/solana/http-methods/getslot) | 30 |
+| [getSlotLeader](/nodeapi/solana/http-methods/getslotleader) | 30 |
+| [getSlotLeaders](/nodeapi/solana/http-methods/getslotleaders) | 30 |
+| getSnapshotSlot | 30 |
+| [getStakeMinimumDelegation](/nodeapi/solana/http-methods/getstakeminimumdelegation) | 30 |
+| getStakeActivation | 30 |
+| [getSupply](/nodeapi/solana/http-methods/getsupply) | 160 |
+| [getTokenAccountBalance](/nodeapi/solana/http-methods/gettokenaccountbalance) | 30 |
+| [getTokenAccountsByOwner](/nodeapi/solana/http-methods/gettokenaccountsbyowner) | 30 |
+| [getTokenLargestAccounts](/nodeapi/solana/http-methods/gettokenlargestaccounts) | 30 |
+| [getTokenSupply](/nodeapi/solana/http-methods/gettokensupply) | 30 |
+| [getTransaction](/nodeapi/solana/http-methods/gettransaction) | 30 |
+| [getTransactionCount](/nodeapi/solana/http-methods/gettransactioncount) | 30 |
+| [getVersion](/nodeapi/solana/http-methods/getversion) | 30 |
+| [getVoteAccounts](/nodeapi/solana/http-methods/getvoteaccounts) | 30 |
+| [isBlockhashValid](/nodeapi/solana/http-methods/isblockhashvalid) | 30 |
+| [minimumLedgerSlot](/nodeapi/solana/http-methods/minimumledgerslot) | 30 |
+| [requestAirdrop](/nodeapi/solana/http-methods/requestairdrop) | 30 |
+| [sendTransaction](/nodeapi/solana/http-methods/sendtransaction) | 30 |
+| [simulateTransaction](/nodeapi/solana/http-methods/simulatetransaction) | 30 |
 
 ### Websocket Methods
 
-| accountSubscribe                 | 20 |
-| -------------------------------- | -- |
-| accountUnsubscribe               | 20 |
-| logsSubscribe                    | 20 |
-| logUnsubscribe                   | 20 |
-| programSubscribe                 | 20 |
-| programUnsubscribe               | 20 |
-| rootSubscribe                    | 20 |
-| rootUnsubscribe                  | 20 |
-| signatureSubscribe               | 20 |
-| signatureUnsubscribe             | 20 |
-| slotSubscribe                    | 20 |
-| slotUnsubscribe                  | 20 |
-| _——— Websocket Unstable Methods_ |    |
-| blockSubscribe                   | 20 |
-| blockUnsubscribe                 | 20 |
-| slotsUpdatesSubscribe            | 20 |
-| slotsUpdatesUnsubscribe          | 20 |
+| Method | Compute units |
+| --- | --- |
+| [accountSubscribe](/nodeapi/solana/websocket-stable-methods/accountsubscribe) | 20 |
+| [accountUnsubscribe](/nodeapi/solana/websocket-stable-methods/accountunsubscribe) | 20 |
+| [logsSubscribe](/nodeapi/solana/websocket-stable-methods/logssubscribe) | 20 |
+| [logUnsubscribe](/nodeapi/solana/websocket-stable-methods/logunsubscribe) | 20 |
+| [programSubscribe](/nodeapi/solana/websocket-stable-methods/programsubscribe) | 20 |
+| [programUnsubscribe](/nodeapi/solana/websocket-stable-methods/programunsubscribe) | 20 |
+| [rootSubscribe](/nodeapi/solana/websocket-stable-methods/rootsubscribe) | 20 |
+| [rootUnsubscribe](/nodeapi/solana/websocket-stable-methods/rootunsubscribe) | 20 |
+| [signatureSubscribe](/nodeapi/solana/websocket-stable-methods/signaturesubscribe) | 20 |
+| [signatureUnsubscribe](/nodeapi/solana/websocket-stable-methods/signatureunsubscribe) | 20 |
+| [slotSubscribe](/nodeapi/solana/websocket-stable-methods/slotsubscribe) | 20 |
+| [slotUnsubscribe](/nodeapi/solana/websocket-stable-methods/slotunsubscribe) | 20 |
+| _——— Websocket Unstable Methods_ |  |
+| [blockSubscribe](/nodeapi/solana/websocket-unstable-methods/blocksubscribe) | 20 |
+| [blockUnsubscribe](/nodeapi/solana/websocket-unstable-methods/blockunsubscribe) | 20 |
+| [slotsUpdatesSubscribe](/nodeapi/solana/websocket-unstable-methods/slotsupdatessubscribe) | 20 |
+| [slotsUpdatesUnsubscribe](/nodeapi/solana/websocket-unstable-methods/slotsupdatesunsubscribe) | 20 |
