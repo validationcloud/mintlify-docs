@@ -19,6 +19,12 @@
   --gray-950: 18 20 24;
 }
 
+/* Product overview pages (Node API, Staking, Mavrik, Agents) carry <span className="product-overview" />:
+   their title already names the product, so hide the small section label (eyebrow) above it */
+#content-area:has(.product-overview) .eyebrow {
+  display: none;
+}
+
 /* GitBook page covers: full-width banner, same 1990x480 frame GitBook used */
 .page-cover {
   width: 100%;
