@@ -1,0 +1,22 @@
+# Fails when a page links to a docs path that doesn't exist (internal links only).
+name: Broken links
+
+on:
+  pull_request:
+  # Changes are also pushed straight to main during the migration
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  broken-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Pinned so a CLI release can't change the result without a commit; bump when updating locally
+      - run: npx --yes mint@4.2.1040 broken-links
