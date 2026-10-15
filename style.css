@@ -1,3 +1,8 @@
+/* Main text column: 48rem (768px) instead of the Sequoia theme's 40.5rem */
+:root {
+  --content-width: 48rem;
+}
+
 /* GitBook page covers: full-width banner, same 1990x480 frame GitBook used */
 .page-cover {
   width: 100%;
@@ -29,7 +34,7 @@
   max-width: 100%;
 }
 #content-area:has(.chains-table) .mdx-content > :not(.chains-table) {
-  max-width: 43.5rem;
+  max-width: var(--content-width);
 }
 
 /* Compact one-line rows; the Chain column stays visible while scrolling sideways */
