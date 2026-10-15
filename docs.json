@@ -302,7 +302,7 @@
     },
     {
       "source": "/nodeapi/execution-api",
-      "destination": "/nodeapi/ethereum/execution-api"
+      "destination": "/nodeapi/ethereum/execution-api/eth_accounts"
     },
     {
       "source": "/nodeapi/xrp-ledger-xrpl/account_channels",
@@ -497,6 +497,354 @@
       "destination": "/staking/ethereum/staking-tutorial/api/prerequisites"
     },
     {
+      "source": "/nodeapi/aptos/endpoints",
+      "destination": "/nodeapi/aptos/endpoints/accounts/get-account"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/accounts",
+      "destination": "/nodeapi/aptos/endpoints/accounts/get-account"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/blocks",
+      "destination": "/nodeapi/aptos/endpoints/blocks/get-blocks-by-height"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/events",
+      "destination": "/nodeapi/aptos/endpoints/events/get-events-by-creation-number"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/general",
+      "destination": "/nodeapi/aptos/endpoints/general/get-ledger-info"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/tables",
+      "destination": "/nodeapi/aptos/endpoints/tables/get-table-item"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/transactions",
+      "destination": "/nodeapi/aptos/endpoints/transactions/get-transactions"
+    },
+    {
+      "source": "/nodeapi/aptos/endpoints/view",
+      "destination": "/nodeapi/aptos/endpoints/view/execute-view-function-of-a-module"
+    },
+    {
+      "source": "/nodeapi/arbitrum/debug-api",
+      "destination": "/nodeapi/arbitrum/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/arbitrum/execution-api",
+      "destination": "/nodeapi/arbitrum/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/arc/debug-api",
+      "destination": "/nodeapi/arc/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/arc/execution-api",
+      "destination": "/nodeapi/arc/execution-api/eth_blocknumber"
+    },
+    {
+      "source": "/nodeapi/arc/trace-api",
+      "destination": "/nodeapi/arc/trace-api/trace_block"
+    },
+    {
+      "source": "/nodeapi/base/debug-api",
+      "destination": "/nodeapi/base/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/base/execution-api",
+      "destination": "/nodeapi/base/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/base/trace-api",
+      "destination": "/nodeapi/base/trace-api/trace_block"
+    },
+    {
+      "source": "/nodeapi/berachain/debug-api",
+      "destination": "/nodeapi/berachain/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/berachain/execution-api",
+      "destination": "/nodeapi/berachain/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/bitcoin/blockchain-rpcs",
+      "destination": "/nodeapi/bitcoin/blockchain-rpcs/getbestblockhash"
+    },
+    {
+      "source": "/nodeapi/bitcoin/control-rpcs",
+      "destination": "/nodeapi/bitcoin/control-rpcs/getmemoryinfo"
+    },
+    {
+      "source": "/nodeapi/bitcoin/esplora-http-api/addresses",
+      "destination": "/nodeapi/bitcoin/esplora-http-api/addresses/get-address-address"
+    },
+    {
+      "source": "/nodeapi/bitcoin/esplora-http-api/blocks",
+      "destination": "/nodeapi/bitcoin/esplora-http-api/blocks/get-block-hash"
+    },
+    {
+      "source": "/nodeapi/bitcoin/esplora-http-api/mempool",
+      "destination": "/nodeapi/bitcoin/esplora-http-api/mempool/get-mempool"
+    },
+    {
+      "source": "/nodeapi/bitcoin/esplora-http-api/transactions",
+      "destination": "/nodeapi/bitcoin/esplora-http-api/transactions/get-tx-txid"
+    },
+    {
+      "source": "/nodeapi/bitcoin/network-rpcs",
+      "destination": "/nodeapi/bitcoin/network-rpcs/getconnectioncount"
+    },
+    {
+      "source": "/nodeapi/bitcoin/rawtransactions-rpcs",
+      "destination": "/nodeapi/bitcoin/rawtransactions-rpcs/decoderawtransaction"
+    },
+    {
+      "source": "/nodeapi/bitcoin/util-rpcs",
+      "destination": "/nodeapi/bitcoin/util-rpcs/estimatesmartfee"
+    },
+    {
+      "source": "/nodeapi/bsc/debug-api",
+      "destination": "/nodeapi/bsc/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/bsc/execution-api",
+      "destination": "/nodeapi/bsc/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/conflux/debug-api",
+      "destination": "/nodeapi/conflux/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/conflux/execution-api",
+      "destination": "/nodeapi/conflux/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/ethereum/beacon-api",
+      "destination": "/nodeapi/ethereum/beacon-api/eth-v1-beacon-genesis"
+    },
+    {
+      "source": "/nodeapi/ethereum/debug-api",
+      "destination": "/nodeapi/ethereum/debug-api/debug_getbadblocks"
+    },
+    {
+      "source": "/nodeapi/ethereum/execution-api",
+      "destination": "/nodeapi/ethereum/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/ethereum/trace-api",
+      "destination": "/nodeapi/ethereum/trace-api/trace_block"
+    },
+    {
+      "source": "/nodeapi/hedera/rest-mirror-node-api",
+      "destination": "/nodeapi/hedera/rest-mirror-node-api/accounts"
+    },
+    {
+      "source": "/nodeapi/hyperliquid/execution-api",
+      "destination": "/nodeapi/hyperliquid/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/icp-1/data-api/block",
+      "destination": "/nodeapi/icp-1/data-api/block/transaction"
+    },
+    {
+      "source": "/nodeapi/icp-1/data-api/network",
+      "destination": "/nodeapi/icp-1/data-api/network/list"
+    },
+    {
+      "source": "/nodeapi/icrc",
+      "destination": "/nodeapi/icrc/data-api/account"
+    },
+    {
+      "source": "/nodeapi/icrc/data-api",
+      "destination": "/nodeapi/icrc/data-api/account"
+    },
+    {
+      "source": "/nodeapi/icrc/data-api/block",
+      "destination": "/nodeapi/icrc/data-api/block/transaction"
+    },
+    {
+      "source": "/nodeapi/icrc/data-api/network",
+      "destination": "/nodeapi/icrc/data-api/network/list"
+    },
+    {
+      "source": "/nodeapi/mezo/debug-api",
+      "destination": "/nodeapi/mezo/debug-api/debug_traceblockbynumber"
+    },
+    {
+      "source": "/nodeapi/mezo/execution-api",
+      "destination": "/nodeapi/mezo/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/mezo/mezo-namespace",
+      "destination": "/nodeapi/mezo/mezo-namespace/mezo_estimatecost"
+    },
+    {
+      "source": "/nodeapi/monad/debug-api",
+      "destination": "/nodeapi/monad/debug-api/debug_getrawblock"
+    },
+    {
+      "source": "/nodeapi/monad/execution-api",
+      "destination": "/nodeapi/monad/execution-api/eth_blocknumber"
+    },
+    {
+      "source": "/nodeapi/opbnb/debug-api",
+      "destination": "/nodeapi/opbnb/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/opbnb/execution-api",
+      "destination": "/nodeapi/opbnb/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/optimism/execution-api",
+      "destination": "/nodeapi/optimism/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/polygon/debug-api",
+      "destination": "/nodeapi/polygon/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/polygon/execution-api",
+      "destination": "/nodeapi/polygon/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/rayls/debug-api",
+      "destination": "/nodeapi/rayls/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/rayls/execution-api",
+      "destination": "/nodeapi/rayls/execution-api/eth_blocknumber"
+    },
+    {
+      "source": "/nodeapi/rayls/trace-api",
+      "destination": "/nodeapi/rayls/trace-api/trace_block"
+    },
+    {
+      "source": "/nodeapi/robinhood-chain/debug-api",
+      "destination": "/nodeapi/robinhood-chain/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/robinhood-chain/execution-api",
+      "destination": "/nodeapi/robinhood-chain/execution-api/eth_blocknumber"
+    },
+    {
+      "source": "/nodeapi/solana/http-methods",
+      "destination": "/nodeapi/solana/http-methods/getaccountinfo"
+    },
+    {
+      "source": "/nodeapi/somnia/debug-api",
+      "destination": "/nodeapi/somnia/debug-api/debug_tracecall"
+    },
+    {
+      "source": "/nodeapi/somnia/execution-api",
+      "destination": "/nodeapi/somnia/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/tempo/debug-api",
+      "destination": "/nodeapi/tempo/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/tempo/execution-api",
+      "destination": "/nodeapi/tempo/execution-api/eth_blocknumber"
+    },
+    {
+      "source": "/nodeapi/tempo/trace-api",
+      "destination": "/nodeapi/tempo/trace-api/trace_block"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/account-resources",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/account-resources/getaccountresource"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/accounts",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/accounts/createaccount"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/dex-exchange",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/dex-exchange/listexchanges"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/pending-pool",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/pending-pool/gettransactionlistfrompending"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/proposals",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/proposals/listproposals"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/query-the-network",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/query-the-network/getblock"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/smart-contracts",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/smart-contracts/getcontract"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/transactions",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/transactions/broadcasttransaction"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/trc10-token",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyaccount"
+    },
+    {
+      "source": "/nodeapi/tron/tron-full-node-http-api/voting-and-super-representatives-srs",
+      "destination": "/nodeapi/tron/tron-full-node-http-api/voting-and-super-representatives-srs/votewitnessaccount"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api",
+      "destination": "/nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/account-resources",
+      "destination": "/nodeapi/tron/tron-solidity-api/account-resources/getaccount"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/blocks",
+      "destination": "/nodeapi/tron/tron-solidity-api/blocks/getblock"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/dex-exchange",
+      "destination": "/nodeapi/tron/tron-solidity-api/dex-exchange/listexchanges"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/node-and-chain",
+      "destination": "/nodeapi/tron/tron-solidity-api/node-and-chain/getnodeinfo"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/smart-contracts",
+      "destination": "/nodeapi/tron/tron-solidity-api/smart-contracts/triggerconstantcontract"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/transactions",
+      "destination": "/nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/trc10-token",
+      "destination": "/nodeapi/tron/tron-solidity-api/trc10-token/getassetissuebyname"
+    },
+    {
+      "source": "/nodeapi/tron/tron-solidity-api/voting-and-super-representatives",
+      "destination": "/nodeapi/tron/tron-solidity-api/voting-and-super-representatives/listwitnesses"
+    },
+    {
+      "source": "/nodeapi/unichain/execution-api",
+      "destination": "/nodeapi/unichain/execution-api/eth_accounts"
+    },
+    {
+      "source": "/nodeapi/wemix/debug-api",
+      "destination": "/nodeapi/wemix/debug-api/debug_traceblockbyhash"
+    },
+    {
+      "source": "/nodeapi/wemix/execution-api",
+      "destination": "/nodeapi/wemix/execution-api/eth_accounts"
+    },
+    {
+      "source": "/staking/ethereum/staking-api-reference",
+      "destination": "/staking/ethereum/staking-api-reference/authentication"
+    },
+    {
       "source": "/v1",
       "destination": "/nodeapi"
     },
@@ -569,11 +917,9 @@
               "nodeapi/aptos/overview",
               {
                 "group": "Endpoints",
-                "root": "nodeapi/aptos/endpoints/index",
                 "pages": [
                   {
                     "group": "Accounts",
-                    "root": "nodeapi/aptos/endpoints/accounts/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/accounts/get-account",
                       "nodeapi/aptos/endpoints/accounts/get-account-resources",
@@ -584,7 +930,6 @@
                   },
                   {
                     "group": "Blocks",
-                    "root": "nodeapi/aptos/endpoints/blocks/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/blocks/get-blocks-by-height",
                       "nodeapi/aptos/endpoints/blocks/get-blocks-by-version"
@@ -592,7 +937,6 @@
                   },
                   {
                     "group": "Events",
-                    "root": "nodeapi/aptos/endpoints/events/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/events/get-events-by-creation-number",
                       "nodeapi/aptos/endpoints/events/get-events-by-event-handle"
@@ -600,14 +944,12 @@
                   },
                   {
                     "group": "General",
-                    "root": "nodeapi/aptos/endpoints/general/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/general/get-ledger-info"
                     ]
                   },
                   {
                     "group": "Tables",
-                    "root": "nodeapi/aptos/endpoints/tables/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/tables/get-table-item",
                       "nodeapi/aptos/endpoints/tables/get-raw-table-iitem"
@@ -615,7 +957,6 @@
                   },
                   {
                     "group": "Transactions",
-                    "root": "nodeapi/aptos/endpoints/transactions/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/transactions/get-transactions",
                       "nodeapi/aptos/endpoints/transactions/submit-transaction",
@@ -630,7 +971,6 @@
                   },
                   {
                     "group": "View",
-                    "root": "nodeapi/aptos/endpoints/view/index",
                     "pages": [
                       "nodeapi/aptos/endpoints/view/execute-view-function-of-a-module"
                     ]
@@ -646,7 +986,6 @@
               "nodeapi/arbitrum/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/arbitrum/execution-api/index",
                 "pages": [
                   "nodeapi/arbitrum/execution-api/eth_accounts",
                   "nodeapi/arbitrum/execution-api/eth_blocknumber",
@@ -691,7 +1030,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/arbitrum/debug-api/index",
                 "pages": [
                   "nodeapi/arbitrum/debug-api/debug_traceblockbyhash",
                   "nodeapi/arbitrum/debug-api/debug_traceblockbynumber",
@@ -708,7 +1046,6 @@
               "nodeapi/arc/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/arc/execution-api/index",
                 "pages": [
                   "nodeapi/arc/execution-api/eth_blocknumber",
                   "nodeapi/arc/execution-api/eth_call",
@@ -756,7 +1093,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/arc/debug-api/index",
                 "pages": [
                   "nodeapi/arc/debug-api/debug_traceblockbyhash",
                   "nodeapi/arc/debug-api/debug_traceblockbynumber",
@@ -766,7 +1102,6 @@
               },
               {
                 "group": "Trace API",
-                "root": "nodeapi/arc/trace-api/index",
                 "pages": [
                   "nodeapi/arc/trace-api/trace_block",
                   "nodeapi/arc/trace-api/trace_call",
@@ -872,7 +1207,6 @@
               "nodeapi/base/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/base/execution-api/index",
                 "pages": [
                   "nodeapi/base/execution-api/eth_accounts",
                   "nodeapi/base/execution-api/eth_blocknumber",
@@ -922,7 +1256,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/base/debug-api/index",
                 "pages": [
                   "nodeapi/base/debug-api/debug_traceblockbyhash",
                   "nodeapi/base/debug-api/debug_traceblockbynumber",
@@ -932,7 +1265,6 @@
               },
               {
                 "group": "Trace API",
-                "root": "nodeapi/base/trace-api/index",
                 "pages": [
                   "nodeapi/base/trace-api/trace_block",
                   "nodeapi/base/trace-api/trace_call",
@@ -951,7 +1283,6 @@
               "nodeapi/berachain/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/berachain/execution-api/index",
                 "pages": [
                   "nodeapi/berachain/execution-api/eth_accounts",
                   "nodeapi/berachain/execution-api/eth_blocknumber",
@@ -999,7 +1330,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/berachain/debug-api/index",
                 "pages": [
                   "nodeapi/berachain/debug-api/debug_traceblockbyhash",
                   "nodeapi/berachain/debug-api/debug_traceblockbynumber",
@@ -1016,7 +1346,6 @@
               "nodeapi/bsc/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/bsc/execution-api/index",
                 "pages": [
                   "nodeapi/bsc/execution-api/eth_accounts",
                   "nodeapi/bsc/execution-api/eth_blocknumber",
@@ -1061,7 +1390,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/bsc/debug-api/index",
                 "pages": [
                   "nodeapi/bsc/debug-api/debug_traceblockbyhash",
                   "nodeapi/bsc/debug-api/debug_traceblockbynumber",
@@ -1078,7 +1406,6 @@
               "nodeapi/bitcoin/overview",
               {
                 "group": "Blockchain RPCs",
-                "root": "nodeapi/bitcoin/blockchain-rpcs/index",
                 "pages": [
                   "nodeapi/bitcoin/blockchain-rpcs/getbestblockhash",
                   "nodeapi/bitcoin/blockchain-rpcs/getblock",
@@ -1101,21 +1428,18 @@
               },
               {
                 "group": "Control RPCs",
-                "root": "nodeapi/bitcoin/control-rpcs/index",
                 "pages": [
                   "nodeapi/bitcoin/control-rpcs/getmemoryinfo"
                 ]
               },
               {
                 "group": "Network RPCs",
-                "root": "nodeapi/bitcoin/network-rpcs/index",
                 "pages": [
                   "nodeapi/bitcoin/network-rpcs/getconnectioncount"
                 ]
               },
               {
                 "group": "Rawtransactions RPCs",
-                "root": "nodeapi/bitcoin/rawtransactions-rpcs/index",
                 "pages": [
                   "nodeapi/bitcoin/rawtransactions-rpcs/decoderawtransaction",
                   "nodeapi/bitcoin/rawtransactions-rpcs/decodescript",
@@ -1126,7 +1450,6 @@
               },
               {
                 "group": "Util RPCs",
-                "root": "nodeapi/bitcoin/util-rpcs/index",
                 "pages": [
                   "nodeapi/bitcoin/util-rpcs/estimatesmartfee",
                   "nodeapi/bitcoin/util-rpcs/getindexinfo",
@@ -1157,7 +1480,6 @@
                 "pages": [
                   {
                     "group": "Transactions",
-                    "root": "nodeapi/bitcoin/esplora-http-api/transactions/index",
                     "pages": [
                       "nodeapi/bitcoin/esplora-http-api/transactions/get-tx-txid",
                       "nodeapi/bitcoin/esplora-http-api/transactions/get-tx-txid-status",
@@ -1172,7 +1494,6 @@
                   },
                   {
                     "group": "Addresses",
-                    "root": "nodeapi/bitcoin/esplora-http-api/addresses/index",
                     "pages": [
                       "nodeapi/bitcoin/esplora-http-api/addresses/get-address-address",
                       "nodeapi/bitcoin/esplora-http-api/addresses/get-scripthash-hash",
@@ -1188,7 +1509,6 @@
                   },
                   {
                     "group": "Blocks",
-                    "root": "nodeapi/bitcoin/esplora-http-api/blocks/index",
                     "pages": [
                       "nodeapi/bitcoin/esplora-http-api/blocks/get-block-hash",
                       "nodeapi/bitcoin/esplora-http-api/blocks/get-block-hash-header",
@@ -1205,7 +1525,6 @@
                   },
                   {
                     "group": "Mempool",
-                    "root": "nodeapi/bitcoin/esplora-http-api/mempool/index",
                     "pages": [
                       "nodeapi/bitcoin/esplora-http-api/mempool/get-mempool",
                       "nodeapi/bitcoin/esplora-http-api/mempool/get-mempool-txids",
@@ -1224,7 +1543,6 @@
               "nodeapi/conflux/overview",
               {
                 "group": "eSpace - Execution API",
-                "root": "nodeapi/conflux/execution-api/index",
                 "pages": [
                   "nodeapi/conflux/execution-api/eth_accounts",
                   "nodeapi/conflux/execution-api/eth_blocknumber",
@@ -1264,7 +1582,6 @@
               },
               {
                 "group": "eSpace - Debug API",
-                "root": "nodeapi/conflux/debug-api/index",
                 "pages": [
                   "nodeapi/conflux/debug-api/debug_traceblockbyhash",
                   "nodeapi/conflux/debug-api/debug_traceblockbynumber",
@@ -1280,7 +1597,6 @@
               "nodeapi/ethereum/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/ethereum/execution-api/index",
                 "pages": [
                   "nodeapi/ethereum/execution-api/eth_accounts",
                   "nodeapi/ethereum/execution-api/eth_blocknumber",
@@ -1326,7 +1642,6 @@
               },
               {
                 "group": "Beacon API",
-                "root": "nodeapi/ethereum/beacon-api/index",
                 "pages": [
                   "nodeapi/ethereum/beacon-api/eth-v1-beacon-genesis",
                   "nodeapi/ethereum/beacon-api/eth-v2-beacon-blocks-block_id",
@@ -1351,7 +1666,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/ethereum/debug-api/index",
                 "pages": [
                   "nodeapi/ethereum/debug-api/debug_getbadblocks",
                   "nodeapi/ethereum/debug-api/debug_traceblockbyhash",
@@ -1362,7 +1676,6 @@
               },
               {
                 "group": "Trace API",
-                "root": "nodeapi/ethereum/trace-api/index",
                 "pages": [
                   "nodeapi/ethereum/trace-api/trace_block",
                   "nodeapi/ethereum/trace-api/trace_call",
@@ -1425,7 +1738,6 @@
               },
               {
                 "group": "REST Mirror Node API",
-                "root": "nodeapi/hedera/rest-mirror-node-api/index",
                 "pages": [
                   {
                     "group": "Accounts",
@@ -1537,7 +1849,6 @@
               "nodeapi/hyperliquid/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/hyperliquid/execution-api/index",
                 "pages": [
                   "nodeapi/hyperliquid/execution-api/eth_accounts",
                   "nodeapi/hyperliquid/execution-api/eth_blocknumber",
@@ -1642,7 +1953,6 @@
                       },
                       {
                         "group": "Block",
-                        "root": "nodeapi/icp-1/data-api/block/index",
                         "pages": [
                           "nodeapi/icp-1/data-api/block/transaction"
                         ]
@@ -1650,7 +1960,6 @@
                       "nodeapi/icp-1/data-api/call",
                       {
                         "group": "Network",
-                        "root": "nodeapi/icp-1/data-api/network/index",
                         "pages": [
                           "nodeapi/icp-1/data-api/network/list",
                           "nodeapi/icp-1/data-api/network/options",
@@ -1682,11 +1991,9 @@
               },
               {
                 "group": "ICRC",
-                "root": "nodeapi/icrc/index",
                 "pages": [
                   {
                     "group": "Data API",
-                    "root": "nodeapi/icrc/data-api/index",
                     "pages": [
                       {
                         "group": "Account",
@@ -1697,7 +2004,6 @@
                       },
                       {
                         "group": "Block",
-                        "root": "nodeapi/icrc/data-api/block/index",
                         "pages": [
                           "nodeapi/icrc/data-api/block/transaction"
                         ]
@@ -1705,7 +2011,6 @@
                       "nodeapi/icrc/data-api/call",
                       {
                         "group": "Network",
-                        "root": "nodeapi/icrc/data-api/network/index",
                         "pages": [
                           "nodeapi/icrc/data-api/network/list",
                           "nodeapi/icrc/data-api/network/options",
@@ -1744,7 +2049,6 @@
               "nodeapi/mezo/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/mezo/execution-api/index",
                 "pages": [
                   "nodeapi/mezo/execution-api/eth_accounts",
                   "nodeapi/mezo/execution-api/eth_blocknumber",
@@ -1788,7 +2092,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/mezo/debug-api/index",
                 "pages": [
                   "nodeapi/mezo/debug-api/debug_traceblockbynumber",
                   "nodeapi/mezo/debug-api/debug_tracetransaction"
@@ -1796,7 +2099,6 @@
               },
               {
                 "group": "Mezo namespace",
-                "root": "nodeapi/mezo/mezo-namespace/index",
                 "pages": [
                   "nodeapi/mezo/mezo-namespace/mezo_estimatecost"
                 ]
@@ -1810,7 +2112,6 @@
               "nodeapi/monad/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/monad/execution-api/index",
                 "pages": [
                   "nodeapi/monad/execution-api/eth_blocknumber",
                   "nodeapi/monad/execution-api/eth_call",
@@ -1845,7 +2146,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/monad/debug-api/index",
                 "pages": [
                   "nodeapi/monad/debug-api/debug_getrawblock",
                   "nodeapi/monad/debug-api/debug_getrawheader",
@@ -1865,7 +2165,6 @@
               "nodeapi/opbnb/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/opbnb/execution-api/index",
                 "pages": [
                   "nodeapi/opbnb/execution-api/eth_accounts",
                   "nodeapi/opbnb/execution-api/eth_blocknumber",
@@ -1910,7 +2209,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/opbnb/debug-api/index",
                 "pages": [
                   "nodeapi/opbnb/debug-api/debug_traceblockbyhash",
                   "nodeapi/opbnb/debug-api/debug_traceblockbynumber",
@@ -1927,7 +2225,6 @@
               "nodeapi/optimism/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/optimism/execution-api/index",
                 "pages": [
                   "nodeapi/optimism/execution-api/eth_accounts",
                   "nodeapi/optimism/execution-api/eth_blocknumber",
@@ -1979,7 +2276,6 @@
               "nodeapi/polygon/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/polygon/execution-api/index",
                 "pages": [
                   "nodeapi/polygon/execution-api/eth_accounts",
                   "nodeapi/polygon/execution-api/eth_blocknumber",
@@ -2025,7 +2321,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/polygon/debug-api/index",
                 "pages": [
                   "nodeapi/polygon/debug-api/debug_traceblockbyhash",
                   "nodeapi/polygon/debug-api/debug_traceblockbynumber",
@@ -2042,7 +2337,6 @@
               "nodeapi/robinhood-chain/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/robinhood-chain/execution-api/index",
                 "pages": [
                   "nodeapi/robinhood-chain/execution-api/eth_blocknumber",
                   "nodeapi/robinhood-chain/execution-api/eth_call",
@@ -2075,7 +2369,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/robinhood-chain/debug-api/index",
                 "pages": [
                   "nodeapi/robinhood-chain/debug-api/debug_traceblockbyhash",
                   "nodeapi/robinhood-chain/debug-api/debug_traceblockbynumber",
@@ -2092,7 +2385,6 @@
               "nodeapi/rayls/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/rayls/execution-api/index",
                 "pages": [
                   "nodeapi/rayls/execution-api/eth_blocknumber",
                   "nodeapi/rayls/execution-api/eth_call",
@@ -2137,7 +2429,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/rayls/debug-api/index",
                 "pages": [
                   "nodeapi/rayls/debug-api/debug_traceblockbyhash",
                   "nodeapi/rayls/debug-api/debug_traceblockbynumber",
@@ -2147,7 +2438,6 @@
               },
               {
                 "group": "Trace API",
-                "root": "nodeapi/rayls/trace-api/index",
                 "pages": [
                   "nodeapi/rayls/trace-api/trace_block",
                   "nodeapi/rayls/trace-api/trace_call",
@@ -2166,7 +2456,6 @@
               "nodeapi/solana/overview",
               {
                 "group": "HTTP Methods",
-                "root": "nodeapi/solana/http-methods/index",
                 "pages": [
                   "nodeapi/solana/http-methods/getaccountinfo",
                   "nodeapi/solana/http-methods/getbalance",
@@ -2261,7 +2550,6 @@
               "nodeapi/somnia/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/somnia/execution-api/index",
                 "pages": [
                   "nodeapi/somnia/execution-api/eth_accounts",
                   "nodeapi/somnia/execution-api/eth_blocknumber",
@@ -2295,7 +2583,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/somnia/debug-api/index",
                 "pages": [
                   "nodeapi/somnia/debug-api/debug_tracecall",
                   "nodeapi/somnia/debug-api/debug_tracetransaction"
@@ -2475,7 +2762,6 @@
               "nodeapi/tempo/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/tempo/execution-api/index",
                 "pages": [
                   "nodeapi/tempo/execution-api/eth_blocknumber",
                   "nodeapi/tempo/execution-api/eth_call",
@@ -2522,7 +2808,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/tempo/debug-api/index",
                 "pages": [
                   "nodeapi/tempo/debug-api/debug_traceblockbyhash",
                   "nodeapi/tempo/debug-api/debug_traceblockbynumber",
@@ -2532,7 +2817,6 @@
               },
               {
                 "group": "Trace API",
-                "root": "nodeapi/tempo/trace-api/index",
                 "pages": [
                   "nodeapi/tempo/trace-api/trace_block",
                   "nodeapi/tempo/trace-api/trace_call",
@@ -2562,7 +2846,6 @@
                   },
                   {
                     "group": "Transactions",
-                    "root": "nodeapi/tron/tron-full-node-http-api/transactions/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/transactions/broadcasttransaction",
                       "nodeapi/tron/tron-full-node-http-api/transactions/broadcasthex",
@@ -2571,7 +2854,6 @@
                   },
                   {
                     "group": "Accounts",
-                    "root": "nodeapi/tron/tron-full-node-http-api/accounts/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/accounts/createaccount",
                       "nodeapi/tron/tron-full-node-http-api/accounts/getaccount",
@@ -2582,7 +2864,6 @@
                   },
                   {
                     "group": "Account Resources",
-                    "root": "nodeapi/tron/tron-full-node-http-api/account-resources/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/account-resources/getaccountresource",
                       "nodeapi/tron/tron-full-node-http-api/account-resources/getaccountnet",
@@ -2603,7 +2884,6 @@
                   },
                   {
                     "group": "Query The Network",
-                    "root": "nodeapi/tron/tron-full-node-http-api/query-the-network/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/query-the-network/getblock",
                       "nodeapi/tron/tron-full-node-http-api/query-the-network/getblockbynum",
@@ -2626,7 +2906,6 @@
                   },
                   {
                     "group": "TRC10 Token",
-                    "root": "nodeapi/tron/tron-full-node-http-api/trc10-token/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyaccount",
                       "nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyid",
@@ -2643,7 +2922,6 @@
                   },
                   {
                     "group": "Smart Contracts",
-                    "root": "nodeapi/tron/tron-full-node-http-api/smart-contracts/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/smart-contracts/getcontract",
                       "nodeapi/tron/tron-full-node-http-api/smart-contracts/getcontractinfo",
@@ -2658,14 +2936,12 @@
                   },
                   {
                     "group": "Voting & Super Representatives (SRs)",
-                    "root": "nodeapi/tron/tron-full-node-http-api/voting-and-super-representatives-srs/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/voting-and-super-representatives-srs/votewitnessaccount"
                     ]
                   },
                   {
                     "group": "Proposals",
-                    "root": "nodeapi/tron/tron-full-node-http-api/proposals/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/proposals/listproposals",
                       "nodeapi/tron/tron-full-node-http-api/proposals/getproposalbyid",
@@ -2676,7 +2952,6 @@
                   },
                   {
                     "group": "DEX Exchange",
-                    "root": "nodeapi/tron/tron-full-node-http-api/dex-exchange/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/dex-exchange/listexchanges",
                       "nodeapi/tron/tron-full-node-http-api/dex-exchange/getexchangebyid",
@@ -2688,7 +2963,6 @@
                   },
                   {
                     "group": "Pending pool",
-                    "root": "nodeapi/tron/tron-full-node-http-api/pending-pool/index",
                     "pages": [
                       "nodeapi/tron/tron-full-node-http-api/pending-pool/gettransactionlistfrompending",
                       "nodeapi/tron/tron-full-node-http-api/pending-pool/gettransactionfrompending",
@@ -2736,11 +3010,9 @@
               },
               {
                 "group": "Tron Solidity API",
-                "root": "nodeapi/tron/tron-solidity-api/index",
                 "pages": [
                   {
                     "group": "Transactions",
-                    "root": "nodeapi/tron/tron-solidity-api/transactions/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid",
                       "nodeapi/tron/tron-solidity-api/transactions/gettransactioninfobyid",
@@ -2750,7 +3022,6 @@
                   },
                   {
                     "group": "Blocks",
-                    "root": "nodeapi/tron/tron-solidity-api/blocks/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/blocks/getblock",
                       "nodeapi/tron/tron-solidity-api/blocks/getnowblock",
@@ -2762,7 +3033,6 @@
                   },
                   {
                     "group": "Account Resources",
-                    "root": "nodeapi/tron/tron-solidity-api/account-resources/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/account-resources/getaccount",
                       "nodeapi/tron/tron-solidity-api/account-resources/getdelegatedresource",
@@ -2775,7 +3045,6 @@
                   },
                   {
                     "group": "Node & Chain",
-                    "root": "nodeapi/tron/tron-solidity-api/node-and-chain/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/node-and-chain/getnodeinfo",
                       "nodeapi/tron/tron-solidity-api/node-and-chain/getburntrx"
@@ -2783,7 +3052,6 @@
                   },
                   {
                     "group": "Smart Contracts",
-                    "root": "nodeapi/tron/tron-solidity-api/smart-contracts/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/smart-contracts/triggerconstantcontract",
                       "nodeapi/tron/tron-solidity-api/smart-contracts/estimateenergy"
@@ -2791,7 +3059,6 @@
                   },
                   {
                     "group": "TRC10 Token",
-                    "root": "nodeapi/tron/tron-solidity-api/trc10-token/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/trc10-token/getassetissuebyname",
                       "nodeapi/tron/tron-solidity-api/trc10-token/getassetissuebyid",
@@ -2802,7 +3069,6 @@
                   },
                   {
                     "group": "DEX Exchange",
-                    "root": "nodeapi/tron/tron-solidity-api/dex-exchange/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/dex-exchange/listexchanges",
                       "nodeapi/tron/tron-solidity-api/dex-exchange/getexchangebyid"
@@ -2810,7 +3076,6 @@
                   },
                   {
                     "group": "Voting & Super Representatives",
-                    "root": "nodeapi/tron/tron-solidity-api/voting-and-super-representatives/index",
                     "pages": [
                       "nodeapi/tron/tron-solidity-api/voting-and-super-representatives/listwitnesses",
                       "nodeapi/tron/tron-solidity-api/voting-and-super-representatives/getreward",
@@ -2837,7 +3102,6 @@
               "nodeapi/unichain/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/unichain/execution-api/index",
                 "pages": [
                   "nodeapi/unichain/execution-api/eth_accounts",
                   "nodeapi/unichain/execution-api/eth_blobbasefee",
@@ -2909,7 +3173,6 @@
               "nodeapi/wemix/overview",
               {
                 "group": "Execution API",
-                "root": "nodeapi/wemix/execution-api/index",
                 "pages": [
                   "nodeapi/wemix/execution-api/eth_accounts",
                   "nodeapi/wemix/execution-api/eth_blocknumber",
@@ -2954,7 +3217,6 @@
               },
               {
                 "group": "Debug API",
-                "root": "nodeapi/wemix/debug-api/index",
                 "pages": [
                   "nodeapi/wemix/debug-api/debug_traceblockbyhash",
                   "nodeapi/wemix/debug-api/debug_traceblockbynumber",
@@ -3051,7 +3313,6 @@
               },
               {
                 "group": "Staking API Reference",
-                "root": "staking/ethereum/staking-api-reference/index",
                 "pages": [
                   "staking/ethereum/staking-api-reference/authentication",
                   "staking/ethereum/staking-api-reference/get-validators",
