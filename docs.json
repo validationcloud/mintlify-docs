@@ -284,6 +284,186 @@
       "destination": "/nodeapi/ethereum/execution-api"
     },
     {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_channels",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_channels"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_currencies",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_currencies"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_info",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_info"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_lines",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_lines"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_nfts",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_nfts"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_objects",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_objects"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_offers",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_offers"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/account_tx",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/account_tx"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/amm_info",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/amm_info"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/book_changes",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_changes"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/book_offers",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/book_offers"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/channel_verify",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/channel_verify"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/deposit_authorized",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/deposit_authorized"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/feature",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/feature"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/fee",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/fee"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/gateway_balances",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/gateway_balances"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/get_aggregate_price",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/get_aggregate_price"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger_closed",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_closed"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger_current",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_current"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger_data",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_data"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger_entry",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_entry"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger_index",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_index"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ledger_range",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_range"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/manifest",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/manifest"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/nft_buy_offers",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_buy_offers"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/nft_history",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_history"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/nft_info",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_info"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/nft_sell_offers",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_sell_offers"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/nfts_by_issuer",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/nfts_by_issuer"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/noripple_check",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/noripple_check"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ping",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ping"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/random",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/random"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/ripple_path_find",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/ripple_path_find"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/server_definitions",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_definitions"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/server_info",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_info"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/server_state",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/server_state"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/simulate",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/simulate"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/submit",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/submit_multisigned",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/submit_multisigned"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/subscribe",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/subscribe"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/transaction_entry",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/transaction_entry"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/tx",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/tx"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/unsubscribe",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/unsubscribe"
+    },
+    {
+      "source": "/nodeapi/xrp-ledger-xrpl/vault_info",
+      "destination": "/nodeapi/xrp-ledger-xrpl/json-rpc-api/vault_info"
+    },
+    {
       "source": "/v1",
       "destination": "/nodeapi"
     },
@@ -2713,51 +2893,57 @@
             "group": "XRP Ledger (XRPL)",
             "pages": [
               "nodeapi/xrp-ledger-xrpl/overview",
-              "nodeapi/xrp-ledger-xrpl/account_channels",
-              "nodeapi/xrp-ledger-xrpl/account_currencies",
-              "nodeapi/xrp-ledger-xrpl/account_info",
-              "nodeapi/xrp-ledger-xrpl/account_lines",
-              "nodeapi/xrp-ledger-xrpl/account_nfts",
-              "nodeapi/xrp-ledger-xrpl/account_objects",
-              "nodeapi/xrp-ledger-xrpl/account_offers",
-              "nodeapi/xrp-ledger-xrpl/account_tx",
-              "nodeapi/xrp-ledger-xrpl/amm_info",
-              "nodeapi/xrp-ledger-xrpl/book_changes",
-              "nodeapi/xrp-ledger-xrpl/book_offers",
-              "nodeapi/xrp-ledger-xrpl/channel_verify",
-              "nodeapi/xrp-ledger-xrpl/deposit_authorized",
-              "nodeapi/xrp-ledger-xrpl/feature",
-              "nodeapi/xrp-ledger-xrpl/fee",
-              "nodeapi/xrp-ledger-xrpl/gateway_balances",
-              "nodeapi/xrp-ledger-xrpl/get_aggregate_price",
-              "nodeapi/xrp-ledger-xrpl/ledger",
-              "nodeapi/xrp-ledger-xrpl/ledger_closed",
-              "nodeapi/xrp-ledger-xrpl/ledger_current",
-              "nodeapi/xrp-ledger-xrpl/ledger_data",
-              "nodeapi/xrp-ledger-xrpl/ledger_entry",
-              "nodeapi/xrp-ledger-xrpl/ledger_index",
-              "nodeapi/xrp-ledger-xrpl/ledger_range",
-              "nodeapi/xrp-ledger-xrpl/manifest",
-              "nodeapi/xrp-ledger-xrpl/nft_buy_offers",
-              "nodeapi/xrp-ledger-xrpl/nft_history",
-              "nodeapi/xrp-ledger-xrpl/nft_info",
-              "nodeapi/xrp-ledger-xrpl/nft_sell_offers",
-              "nodeapi/xrp-ledger-xrpl/nfts_by_issuer",
-              "nodeapi/xrp-ledger-xrpl/noripple_check",
-              "nodeapi/xrp-ledger-xrpl/ping",
-              "nodeapi/xrp-ledger-xrpl/random",
-              "nodeapi/xrp-ledger-xrpl/ripple_path_find",
-              "nodeapi/xrp-ledger-xrpl/server_definitions",
-              "nodeapi/xrp-ledger-xrpl/server_info",
-              "nodeapi/xrp-ledger-xrpl/server_state",
-              "nodeapi/xrp-ledger-xrpl/simulate",
-              "nodeapi/xrp-ledger-xrpl/submit",
-              "nodeapi/xrp-ledger-xrpl/submit_multisigned",
-              "nodeapi/xrp-ledger-xrpl/subscribe",
-              "nodeapi/xrp-ledger-xrpl/transaction_entry",
-              "nodeapi/xrp-ledger-xrpl/tx",
-              "nodeapi/xrp-ledger-xrpl/unsubscribe",
-              "nodeapi/xrp-ledger-xrpl/vault_info"
+              {
+                "group": "JSON-RPC API",
+                "root": "nodeapi/xrp-ledger-xrpl/json-rpc-api/index",
+                "pages": [
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_channels",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_currencies",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_info",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_lines",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_nfts",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_objects",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_offers",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/account_tx",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/amm_info",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/book_changes",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/book_offers",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/channel_verify",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/deposit_authorized",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/feature",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/fee",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/gateway_balances",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/get_aggregate_price",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_closed",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_current",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_data",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_entry",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_index",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ledger_range",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/manifest",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_buy_offers",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_history",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_info",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/nft_sell_offers",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/nfts_by_issuer",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/noripple_check",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ping",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/random",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/ripple_path_find",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/server_definitions",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/server_info",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/server_state",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/simulate",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/submit",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/submit_multisigned",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/subscribe",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/transaction_entry",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/tx",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/unsubscribe",
+                  "nodeapi/xrp-ledger-xrpl/json-rpc-api/vault_info"
+                ]
+              }
             ]
           }
         ]
