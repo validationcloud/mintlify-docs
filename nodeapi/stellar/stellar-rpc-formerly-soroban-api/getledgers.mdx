@@ -12,8 +12,8 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ## **Parameters**
 
-* `startLedger` (number) - Ledger sequence number to start fetching responses from (inclusive).&#x20;
-  * This method will return an error if `startLedger` is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node.&#x20;
+* `startLedger` (number) - Ledger sequence number to start fetching responses from (inclusive).
+  * This method will return an error if `startLedger` is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node.
   * If a `cursor` is included in the request, `startLedger` must be omitted.
 * `pagination` - Pagination in stellar-rpc is similar to pagination in Horizon. See [Pagination](https://developers.stellar.org/docs/data/rpc/api-reference/structure/pagination).
   *   `cursor` (string)

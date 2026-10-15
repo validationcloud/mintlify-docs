@@ -21,18 +21,18 @@ Both lists are per endpoint key, not per team. The default behavior for new and 
     * Click on one of your endpoints or create a new one
     * Then, click the **Allow Lists** tab, example screenshot below:
 
-    ![](/nodeapi/assets/node-api-allow-list-example.png)
-* Plans: **Scale and Enterprise**. Free teams see the tab but with an "Unlock allow lists with Scale" overlay and an Upgrade button.
+    ![Allow Lists tab of a Node API endpoint](/nodeapi/assets/node-api-allow-list-example.png)
+* Plans: **Scale and Private**. Free teams see the tab but with an "Unlock allow lists with Scale" overlay and an Upgrade button.
 * Roles: only **Team Admins** can add, remove or save entries. Team Members can view the saved lists but cannot edit them. If nothing is set, members see "None, open to all".
 * The Node API user interface is the only place to set Allow Lists for endpoints, this functionality is not currently in the Admin API.
 
 ### How to create or edit Allow Lists for a Node API endpoint key
 
 1. Go to Node API and click on the endpoint you want to restrict.
-2. Select the **Allow Lists** tab (_Note you need to be a Team Admin in a Scale or Enterprise plan to modify Allow Lists as described below_)
+2. Select the **Allow Lists** tab (_Note you need to be a Team Admin in a Scale or Private plan to modify Allow Lists as described below_)
 3.  Under **Allowed IPs**, click **Add IP address** and enter an IPv4 address or CIDR range. Repeat for each address. Example screenshot:
 
-    ![](/nodeapi/assets/node-api-allow-list-ip-set-keys-redacted.png)
+    ![Allowed IPs list with IP addresses added to an endpoint](/nodeapi/assets/node-api-allow-list-ip-set-keys-redacted.png)
 4. Under **Allowed origins**, click **Add origin** and enter the full URL of the site that will call the endpoint from the browser.
 5. Click **Save**. Changes apply within a few minutes.
 6. To remove a restriction, click the X next to an entry. To reopen the key to all clients, remove all entries and click Save.
@@ -66,10 +66,10 @@ HTTP/1.1 403 Forbidden
 
 Screenshot example, curl request to an endpoint with IP restrictions, request from an IP not on that list:
 
-![](/nodeapi/assets/node-api-endpoint-allow-list-fail-key-redacted.png)
+![curl request rejected because the caller IP is not on the allow list](/nodeapi/assets/node-api-endpoint-allow-list-fail-key-redacted.png)
 
 **Origin not allowed**
 
-Browser apps calling from a non-allowed origin will see a CORS failure in the console rather than the 403 body, because the preflight response carries no CORS headers for that origin.&#x20;
+Browser apps calling from a non-allowed origin will see a CORS failure in the console rather than the 403 body, because the preflight response carries no CORS headers for that origin.
 
 Allowed origins get a proper Access-Control-Allow-Origin header back.

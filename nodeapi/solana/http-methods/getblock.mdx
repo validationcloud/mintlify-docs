@@ -12,11 +12,11 @@ This method will use `30` [Compute Units](/nodeapi/about/billing).
 
 * `slot` integer. The slot number of the block to retrieve encoded as u64 (64-bit unsigned integer) integer.
 * `object` _optional._ Configuration object containing the following fields:
-  * `encoding` string&#x20;
+  * `encoding` string
     * The encoding format for account data. It can be one of base58 (slow), base64, base64+zstd or jsonParsed.
   * `transactionDetails` string
     * (default:full) The level of transaction detail to return. It could be full, accounts, signatures, or none.
-  * `rewards` boolean&#x20;
+  * `rewards` boolean
     * (default:false) A boolean flag that indicates whether to include reward information in the block response.
   * `commitment` string. The level of commitment required for the query. The options include:
     * `finalized` string

@@ -13,8 +13,8 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 ## **Parameters**
 
 * `startLedger` number. Sequence number of the ledger.
-  * Ledger sequence number to start fetching responses from (inclusive).&#x20;
-  * This method will return an error if `startLedger` is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node.&#x20;
+  * Ledger sequence number to start fetching responses from (inclusive).
+  * This method will return an error if `startLedger` is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node.
   * Note: If a cursor is included in the request, `startLedger` must be omitted.
 * `pagination` object containing the following fields:
   * `cursor` string. An opaque string which acts as a paging token. To obtain the next page of results occurring after a given response set this value to the `cursor` field of the response.

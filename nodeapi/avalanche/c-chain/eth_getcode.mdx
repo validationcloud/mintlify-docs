@@ -8,7 +8,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 
 ***
 
-## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth\_getcode)
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getcode)
 
 ## **Parameters**
 
@@ -45,7 +45,7 @@ curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/
 ```
 
 ```bash title="testnet"
-curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/C/rpc \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"jsonrpc":"2.0","method":"eth_getCode","params":["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"],"id":1}'

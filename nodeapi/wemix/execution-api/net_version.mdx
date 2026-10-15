@@ -8,7 +8,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ***
 
-## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#net\_version)
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#net_version)
 
 ## **Parameters**
 
@@ -21,7 +21,6 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 The full list of current network IDs is available at [chainlist.org](https://chainlist.org/). Some common ones are:
 
 * `1`: Ethereum Mainnet
-* `5`: Goerli testnet
 * `11155111`: Sepolia testnet
 
 ```bash
@@ -36,25 +35,7 @@ The full list of current network IDs is available at [chainlist.org](https://cha
 <CodeGroup>
 
 ```bash title="mainnet"
-curl https://mainnet.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}'
-```
-
-</CodeGroup>
-
-<CodeGroup>
-
-```bash title="mainnet"
 curl https://mainnet.wemix.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}'
-```
-
-```bash title="testnet"
-curl https://testnet.wemix.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}'

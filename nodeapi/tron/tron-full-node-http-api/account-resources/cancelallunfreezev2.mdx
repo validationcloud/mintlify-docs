@@ -8,7 +8,7 @@ This method will use `30` [Compute Units](/nodeapi/about/billing).
 
 ***
 
-When cancelling unstakings, all unstaked funds still in the waiting period will be re-staked, and the resource obtained through the re-staking remains the same as before.&#x20;
+When cancelling unstakings, all unstaked funds still in the waiting period will be re-staked, and the resource obtained through the re-staking remains the same as before.
 
 Unstakings that exceeded the 14-day waiting period cannot be cancelled, and this part of the unstaked funds will be automatically withdrawn to the owner’s account. The users can use `wallet/gettransactioninfobyid` to query the amount of unstaking TRX that canceled (`cancel_unfreezeV2_amount`) and the amount of unstaked TRX withdrawn to the account (`withdraw_expire_amount` ).
 

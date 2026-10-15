@@ -10,7 +10,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ## **Parameters**
 
-**`scripthash`** - required.&#x20;
+**`scripthash`** - required.
 
 **`last_seen_txid`** - optional, to retrieve more than 25 transactions.
 
@@ -23,12 +23,12 @@ Returns 25 transactions per page. More can be requested by specifying the last t
 <CodeGroup>
 
 ```bash title="mainnet"
-curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/scripthash/<scripthash>/txs/chain[/:last_seen_txid] \
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/scripthash/<scripthash>/txs/chain[/:last_seen_txid] \
  -X GET
 ```
 
 ```bash title="testnet"
-curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/scripthash/<scripthash>/txs/chain[/:last_seen_txid] \
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/scripthash/<scripthash>/txs/chain[/:last_seen_txid] \
  -X GET
 ```
 

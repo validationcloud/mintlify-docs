@@ -16,11 +16,11 @@
   "servers": [
     {
       "url": "https://mainnet.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/",
-      "description": "Mainnet Beacon APIr"
+      "description": "Mainnet Beacon API"
     },
     {
-      "url": "https://goerli.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/",
-      "description": "Testnet Beacon API"
+      "url": "https://sepolia.ethereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/",
+      "description": "Sepolia Beacon API"
     }
   ],
   "tags": [
@@ -50,7 +50,7 @@
     },
     {
       "name": "ValidatorRequiredApi",
-      "description": "Minimal set of endpoints to enable a working validator implementation.\n\n[Checkout validator flow](./validator-flow.md) to learn how to use this api.\n"
+      "description": "Minimal set of endpoints to enable a working validator implementation.\n\n[Checkout validator flow](https://github.com/ethereum/beacon-APIs/blob/master/validator-flow.md) to learn how to use this api.\n"
     }
   ],
   "paths": {

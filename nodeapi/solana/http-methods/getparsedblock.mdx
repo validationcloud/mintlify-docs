@@ -104,7 +104,7 @@ The `getParsedBlock` method is only supported with the @solana/web3.js SDK. To u
 ```javascript title="mainnet"
 const web3 = require("@solana/web3.js");
 (async () => {
-  const solana = new web3.Connection("https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY>");
+  const solana = new web3.Connection("https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>");
   console.log(
     await solana.getParsedBlock(320370619, { maxSupportedTransactionVersion: 0 })
   );
@@ -114,7 +114,7 @@ const web3 = require("@solana/web3.js");
 ```javascript title="devnet"
 const web3 = require("@solana/web3.js");
 (async () => {
-  const solana = new web3.Connection("https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY>");
+  const solana = new web3.Connection("https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>");
   console.log(
     await solana.getParsedBlock(320370619, { maxSupportedTransactionVersion: 0 })
   );

@@ -10,11 +10,11 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ## **Parameters**
 
-**`txid`**- transaction hash, required.&#x20;
+**`txid`**- transaction hash, required.
 
 Example: `92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655`
 
-**`vout`**- transaction output, required.&#x20;
+**`vout`**- transaction output, required.
 
 Example: `0`
 
@@ -33,12 +33,12 @@ Available fields: spent (boolean), txid (optional), vin (optional) and status (o
 <CodeGroup>
 
 ```bash title="mainnet"
-curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/outspend/0 \
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/outspend/0 \
  -X GET
 ```
 
 ```bash title="testnet"
-curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/outspend/0 \
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE>/tx/92e61d56a3d79fd6b2fc53d4577f51faa61485e0165eae746a6f3ded5b994655/outspend/0 \
  -X GET
 ```
 

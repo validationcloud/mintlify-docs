@@ -13,9 +13,9 @@ This method will use `30` [Compute Units](/nodeapi/about/billing).
 * `owner_address` - String, required - Owner address, default hexString
 * `receiver_address` - String, required - Resource receiver address
 * `balance` - int64 - Amount of TRX staked for resources to be delegated, unit is sun
-* `lock` - Boolean - Whether it is locked (default is false), if it is set to true, the delegated resources cannot be undelegated within the lock period specified by `lock_period`.&#x20;
+* `lock` - Boolean - Whether it is locked (default is false), if it is set to true, the delegated resources cannot be undelegated within the lock period specified by `lock_period`.
   * When the lock time is not over, if the owner delegates the same type of resources using the lock to the same address, the lock time will be set to the value specified by `lock_period`. If it is false, that means there is no lock-up period for this resource delegation, and the resource for the target address can be canceled at any time. The default value of this field is false
-* `lock_period` - int64 - Lock time.&#x20;
+* `lock_period` - int64 - Lock time.
   * The unit is block interval(3 seconds), indicates the time of how many blocks which the delegation will be locked. Only when lock is true, this field is valid. If the delegate lock period is 1 day, the lock\_period is: 28800. The minimum value of lock\_period is the remaining lock period of this type of resource that was delegated last time, and the maximum value is 864000 (30 days). If lock is true and lock\_period is not set or set to 0, lock\_period will be set to the default value 86400 (3 days) automatically
 * `Permission_id` - int32 - Optional, for multi-signature use
 * `visible` - Boolean - Optional. Specifies whether the address is in Base58 format (default: false).

@@ -8,7 +8,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 
 ***
 
-## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth\_getstorageat)
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getstorageat)
 
 ## **Parameters**
 
@@ -39,7 +39,7 @@ curl https://mainnet.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/
 ```
 
 ```bash title="testnet"
-curl https://fuji.etheavalanchereum.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/C/rpc \
+curl https://fuji.avalanche.validationcloud.io/v1/<YOUR_API_KEY_HERE>/ext/bc/C/rpc \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"jsonrpc":"2.0", "method": "eth_getStorageAt", "params": ["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x0", "latest"], "id": 1}'

@@ -14,7 +14,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 * `startLedger` _(required)_
   * Stringified ledger sequence number to fetch events after (inclusive). This method will return an error if `startLedger` is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node. If a cursor is included in the request, `startLedger` must be omitted.
-* `filters`&#x20;
+* `filters`
   * array of: type (string) A comma separated list of event types (`system`, `contract`, or `diagnostic`) used to filter events. If omitted, all event types are included.
   * contractIds (array) (optional) List of contract ids to query for events. If omitted, return events for all contracts. Maximum 5 contract IDs are allowed per request.
   * topics (array) (optional) List of topic filters. If omitted, query for all events. If multiple filters are specified, events will be included if they match any of the filters. Maximum 5 filters are allowed per request.

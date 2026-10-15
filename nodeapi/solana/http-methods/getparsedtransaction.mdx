@@ -121,7 +121,7 @@ The `getParsedTransaction` method is only supported with the @solana/web3.js SDK
 ```javascript title="mainnet"
 const web3 = require("@solana/web3.js");
 (async () => {
-  const solana = new web3.Connection("https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY>");
+  const solana = new web3.Connection("https://mainnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>");
   console.log(
     await solana.getParsedTransaction(
       "4tUuoRQUV42vAEGphy7bAXGqa6ZSK3zjHDyp4rrMzsAgQi1wvvcuKjZAVexGLnYmu9wNwfUf2jNvuEi9KmYG88jX",
@@ -134,7 +134,7 @@ const web3 = require("@solana/web3.js");
 ```javascript title="devnet"
 const web3 = require("@solana/web3.js");
 (async () => {
-  const solana = new web3.Connection("https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY>");
+  const solana = new web3.Connection("https://devnet.solana.validationcloud.io/v1/<YOUR_API_KEY_HERE>");
   console.log(
     await solana.getParsedTransaction(
       "4tUuoRQUV42vAEGphy7bAXGqa6ZSK3zjHDyp4rrMzsAgQi1wvvcuKjZAVexGLnYmu9wNwfUf2jNvuEi9KmYG88jX",

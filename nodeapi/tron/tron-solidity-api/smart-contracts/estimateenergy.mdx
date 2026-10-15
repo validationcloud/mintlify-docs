@@ -10,7 +10,7 @@ This method will use `30` [Compute Units](/nodeapi/about/billing).
 
 **Note:**
 
-* The `wallet/triggerconstantcontract` API can be used to estimate the energy consumption value of calling most smart contracts on the chain, such as USDD, USDT, USDC, TUSD, etc.&#x20;
+* The `wallet/triggerconstantcontract` API can be used to estimate the energy consumption value of calling most smart contracts on the chain, such as USDD, USDT, USDC, TUSD, etc.
 * `estimateenergy` will not generate an on-chain transaction, nor will it change the status of the current node.
 * The `energy_required` field in the returned value is the energy estimated amount. Therefore, the `fee_limit` of the transaction can be set to `energy_required x energy unit price`.
 * Parameter encoding and decoding example: [Parameter and return value encoding and decoding](https://developers.tron.network/docs/parameter-and-return-value-encoding-and-decoding)

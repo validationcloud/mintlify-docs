@@ -2,7 +2,7 @@
 title: "eth_newBlockFilter"
 ---
 
-Creates a filter in the node, to notify when a new block arrives. To check if the state has changed, call [eth\_getFilterChanges](/nodeapi/arbitrum/execution-api/eth_getfilterchanges).
+Creates a filter in the node, to notify when a new block arrives. To check if the state has changed, call [eth\_getFilterChanges](/nodeapi/rayls/execution-api/eth_getfilterchanges).
 
 This method will use `40` [Compute Units](/nodeapi/about/billing).
 
@@ -30,7 +30,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 <CodeGroup>
 
 ```bash title="mainnet"
-curl https://mainnet.wemix.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+curl https://mainnet.rayls.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":73}'

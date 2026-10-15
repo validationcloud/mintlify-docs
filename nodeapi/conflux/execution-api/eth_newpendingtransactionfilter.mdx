@@ -2,7 +2,7 @@
 title: "eth_newPendingTransactionFilter"
 ---
 
-Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call [eth\_getFilterChanges](/nodeapi/arbitrum/execution-api/eth_getfilterchanges).
+Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call [eth\_getFilterChanges](/nodeapi/conflux/execution-api/eth_getfilterchanges).
 
 This method will use `20` [Compute Units](/nodeapi/about/billing).
 
@@ -37,7 +37,7 @@ curl https://mainnet.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
 ```
 
 ```bash title="testnet"
-curl https://testnetash.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+curl https://testnet.conflux.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"jsonrpc":"2.0","method":"eth_newPendingTransactionFilter","params":[],"id":73}'

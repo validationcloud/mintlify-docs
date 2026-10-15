@@ -13,13 +13,13 @@ This method will use `30` [Compute Units](/nodeapi/about/billing).
 * `address` string _<span style={{color: "red"}}>Required</span>._ The Pubkey of the account to query encoded as base-58 string.
 * `object` _optional._ Configuration object containing the following fields:
   * `commitment` string. The level of commitment required for the query. The options include:
-    * `finalized` string.&#x20;
+    * `finalized` string.
       * The node will query the most recent block confirmed by the supermajority of the cluster as having reached maximum lockout, meaning the cluster has recognized this block as finalized.
     * `confirmed` string.
       * The node will query the most recent block that has been voted on by the supermajority of the cluster.
     * `processed` string.
       * The node will query its most recent block. Note that the block may not be complete.
-  * `encoding` string.&#x20;
+  * `encoding` string.
     * The encoding format for account data. It can be one of `base58` (slow), `base64`, `base64+zstd` or `jsonParsed`.
   * `dataSlice` string.
     * The returned account data using the provided `offset: <usize>` and `length: <usize>` fields; only available for base58, base64, or base64+zstd encodings.
