@@ -7,6 +7,18 @@
   margin: 0 0 1.5rem;
 }
 
+/* Sidebar section labels (e.g. "Ethereum", "Account"): 14px semibold instead of Mintlify's 12px, with 16px icons.
+   The doubled class outranks Mintlify's text-xs utility regardless of stylesheet order. */
+.sidebar-group-header.sidebar-group-header {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+.sidebar-group-icon.sidebar-group-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 /* Chain overviews: let short tables (Network Support, Compute Units) fit the column instead of Mintlify's 150px minimum cell width */
 #content-area:has([class^="chain-logo-"]) .mdx-content td {
   min-width: 0;
