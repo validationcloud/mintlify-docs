@@ -19,6 +19,13 @@
   --gray-950: 18 20 24;
 }
 
+/* Buttons use the brand #D63D57 in both themes. Mintlify would use the dark-mode accent (#DF687D, kept for text links
+   because #D63D57 text is hard to read on #1A1D1F) for the navbar button too. */
+.dark [data-component-name="primary-header-button"] {
+  background-color: #D63D57;
+  color: #fff;
+}
+
 /* Product overview pages (Node API, Staking, Mavrik, Agents) carry <span className="product-overview" />:
    their title already names the product, so hide the small section label (eyebrow) above it */
 #content-area:has(.product-overview) .eyebrow {
