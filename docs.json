@@ -2917,7 +2917,7 @@
             ]
           },
           {
-            "group": "XRP Ledger (XRPL)",
+            "group": "XRPL",
             "icon": "/nodeapi/assets/chains/xrp-ledger-xrpl.svg",
             "pages": [
               "nodeapi/xrp-ledger-xrpl/overview",
