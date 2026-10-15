@@ -12,7 +12,7 @@ Validation Cloud gives AI agents and automation the same access to Mavrik and yo
 
 Pick the one that fits where your agent runs. The MCP server and the CLI share one login and one set of permissions. The skill uses an Admin API key.
 
-<CardGroup cols={3}>
+<CardGroup cols={1}>
   <Card title="MCP server" icon="plug" href="/agents/mcp">
     **For editors and chat clients.** One remote server over Streamable HTTP with OAuth: twelve tools across Node API and Mavrik, for Claude Code, Codex, Cursor, VS Code and any MCP client.
   </Card>
@@ -23,30 +23,6 @@ Pick the one that fits where your agent runs. The MCP server and the CLI share o
     **For Claude Code and Codex.** The `admin-api` skill teaches your agent the Admin API: endpoints, usage, chains and compute-unit costs.
   </Card>
 </CardGroup>
-
-## How it fits
-
-Agents add a layer on the products you already use, with your team's account, plan and roles.
-
-```mermaid
-flowchart TD
-    agent["<b>Your agent</b><br/>Claude Code, Codex, Cursor, VS Code,<br/>any MCP client, scripts and CI"]
-    cli["<b>CLI</b><br/>The same tools as shell commands"]
-    mcp["<b>MCP server</b><br/>One login, twelve tools"]
-    admin["<b>Admin API</b><br/>Create and delete endpoints,<br/>read usage, plan and costs"]
-    node["<b>Node API</b><br/>JSON-RPC calls through<br/>your endpoints"]
-    mavrik["<b>Mavrik</b><br/>Digital-asset market<br/>intelligence"]
-    agent -->|terminal, scripts, CI| cli
-    agent -->|editors and chat clients| mcp
-    cli --> mcp
-    mcp --> admin
-    mcp --> node
-    mcp --> mavrik
-    classDef vc fill:transparent,stroke:#D63D57,stroke-width:1.5px
-    class agent,cli,mcp,admin,node,mavrik vc
-```
-
-The CLI sits on the MCP server, so one login covers both. The Admin API skill sits beside this stack: it teaches Claude Code and Codex to call the Admin API directly.
 
 ## Connect, prompt, execute
 
