@@ -478,8 +478,7 @@
         "tab": "Node API",
         "groups": [
           {
-            "group": "About",
-            "icon": "circle-info",
+            "group": "Node API",
             "pages": [
               "nodeapi/index",
               "nodeapi/about/billing",

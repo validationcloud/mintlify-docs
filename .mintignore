@@ -11,3 +11,6 @@ migration/
 
 # Repo tooling
 scripts/
+
+# Contributor instructions for coding agents; not a docs page (otherwise it shadows /agents)
+AGENTS.md
