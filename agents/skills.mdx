@@ -1,0 +1,66 @@
+---
+title: "Skills"
+description: "Install Validation Cloud skills so AI coding agents can manage your Node API account through the Admin API."
+---
+
+Skills give AI coding agents, such as Claude Code, Codex and Cursor, built-in knowledge of a Validation Cloud product and the scripts to call it. They are published in the public [validationcloud/skills](https://github.com/validationcloud/skills) repository.
+
+## Available skills
+
+| Skill | What it does |
+| --- | --- |
+| `admin-api` | Manages Node API endpoints, checks your plan, quota and usage, lists supported chains and looks up compute unit costs, all through the [Admin API](/nodeapi/about/admin-api-keys). It can also write `curl`, JavaScript, Python or Go snippets, or add a small Admin API client to your project. |
+
+## Before you start
+
+The `admin-api` skill authenticates with an Admin API key. Admin API keys are available on the Scale and Enterprise plans.
+
+1. Create a key on the [Admin API keys page](https://app.validationcloud.io/api-keys). See [Admin API](/nodeapi/about/admin-api-keys) for scopes.
+2. Add the key to your shell profile, so it is set before your agent starts:
+
+   ```bash
+   echo 'export VC_ADMIN_KEY=<YOUR_ADMIN_KEY>' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+   If your agent is already running, restart it.
+
+## Install
+
+<Tabs>
+  <Tab title="Claude Code">
+    Run these commands inside Claude Code:
+
+    ```text
+    /plugin marketplace add validationcloud/skills
+    /plugin install admin-api@validationcloud
+    /reload-plugins
+    ```
+  </Tab>
+  <Tab title="Other agents">
+    Clone the repository:
+
+    ```bash
+    git clone https://github.com/validationcloud/skills.git
+    ```
+
+    Then have your agent read `plugins/admin-api/skills/admin-api/AGENTS.md`, the skill's portable entry point. The skill needs `bash` and `curl`. `jq` is optional and pretty-prints responses.
+  </Tab>
+</Tabs>
+
+## Check it works
+
+Ask your agent "Check my admin key". It replies with your plan and the key's scope (Read or Read & Write).
+
+## Example prompts
+
+- "List my RPC endpoints."
+- "What's my compute unit usage this month?"
+- "How much does `eth_call` cost on Ethereum Mainnet?"
+- "Create an Ethereum Mainnet endpoint called `prod-eth`." This needs a Read & Write key, and the agent asks you to confirm first.
+- "Give me a Python client for the Admin API."
+
+## Safety
+
+- The skill never writes your key to disk, and shows at most its last 4 characters.
+- Creating or deleting an endpoint needs your confirmation before it runs. Deleting an endpoint can't be undone.

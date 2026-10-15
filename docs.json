@@ -3081,7 +3081,8 @@
             "pages": [
               "agents/index",
               "agents/mcp",
-              "agents/cli"
+              "agents/cli",
+              "agents/skills"
             ]
           }
         ]
