@@ -27,7 +27,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 * `state` (array) Array of ledger entries from the ledger's state tree. In JSON mode each has `LedgerEntryType`, `index` and the fields for that entry type; in binary mode each has `data` and `index`.
 * `marker` (marker) Server-defined value indicating the response is paginated. Pass this to the next call to resume.
 
-```bash
+```json
 // Result
 {
   "result": {

@@ -13,7 +13,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 1. `DATA`, 32 Bytes - Hash of a block.
 2. `Boolean` - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions are returned.
 
-```bash
+```javascript
 params: [
  "0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae",
  false,
@@ -44,7 +44,7 @@ params: [
 * `transactions`: `Array` - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
 * `uncles`: `Array` - Array of uncle hashes.
 
-```bash
+```json
 // Result
 {
   "id":83,

@@ -14,7 +14,7 @@ This method will use `70` [Compute Units](/nodeapi/about/billing).
 
 `QUANTITY` - the filter id.
 
-```bash
+```javascript
 params: 
 [
   "0x16", // 22
@@ -38,7 +38,7 @@ params:
   * `data`: `DATA` - contains one or more 32 Bytes non-indexed arguments of the log.
   * `topics`: `Array of DATA` - Array of 0 to 4 32 Bytes `DATA` of indexed log arguments. (In _solidity_: The first topic is the _hash_ of the signature of the event (e.g. `Deposit(address,bytes32,uint256)`), except you declared the event with the `anonymous` specifier.)
 
-```bash
+```json
 // Result
 {
   "id":1,

@@ -23,7 +23,7 @@ This method will use `20` [Compute Units](/nodeapi/about/billing).
 * `vault` (object) The vault description object: `Account` (the vault's pseudo-account), `Asset` (`currency` and `issuer`, or `mpt_issuance_id`), `AssetsAvailable`, `AssetsMaximum`, `AssetsTotal`, `Flags`, `index`, `LossUnrealized`, `Owner`, `Scale`, `ShareMPTID`, `WithdrawalPolicy`, optional `Data`, `LEVersion`, `VaultKind`, `RedemptionDate` and `SubscriptionDate`, plus `shares` (the MPTokenIssuance entry for the vault's shares).
 * `ledger_hash`, `ledger_index` or `ledger_current_index`, `validated` The ledger version used.
 
-```bash
+```json
 // Result
 // Illustrative example from xrpl.org (devnet data)
 {

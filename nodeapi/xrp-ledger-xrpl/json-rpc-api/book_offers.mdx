@@ -27,7 +27,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 * `ledger_hash` (string) The identifying hash of the ledger version used.
 * `offers` (array) Array of Offer ledger entries, each with the additional fields `owner_funds` (how much of `TakerGets` the owner can trade), `quality` (`taker_pays` divided by `taker_gets`) and, for partially funded offers, `taker_gets_funded` and `taker_pays_funded`.
 
-```bash
+```json
 // Result
 {
   "result": {

@@ -19,7 +19,7 @@ This method will use `20` [Compute Units](/nodeapi/about/billing).
 * `info` (object) Server information. Clio returns `complete_ledgers` (the full-history range available), `load_factor`, `time`, `uptime`, `clio_version`, `libxrpl_version`, `rippled_version`, `network_id`, `validation_quorum`, `cache` (Clio's ledger cache state) and `validated_ledger` (`age`, `hash`, `seq`, `base_fee_xrp`, `reserve_base_xrp`, `reserve_inc_xrp`).
 * `validated` (boolean) If `true`, the information comes from a validated ledger version.
 
-```bash
+```json
 // Result
 {
   "result": {

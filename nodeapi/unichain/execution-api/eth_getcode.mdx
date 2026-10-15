@@ -21,7 +21,7 @@ Unichain Mainnet keeps historical state for roughly the last 10,000 blocks, abou
 1. `DATA`, 20 Bytes - address.
 2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
 
-```bash
+```javascript
 params: [
   "0x4200000000000000000000000000000000000006",
   "latest"
@@ -32,7 +32,7 @@ params: [
 
 `DATA` - the code from the given address.
 
-```bash
+```json
 // Result
 {
   "jsonrpc": "2.0",

@@ -15,7 +15,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 1. `DATA`, 20 Bytes - address.
 2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
 
-```bash
+```javascript
 params: [
   "0x3085881c3265e664eda4db114db5865f8786bddb",
   "latest", // state at the latest block
@@ -26,7 +26,7 @@ params: [
 
 `QUANTITY` - String hex value representing integer of the number of transactions sent from this address.
 
-```bash
+```json
 // Result
 {
   "id":1,

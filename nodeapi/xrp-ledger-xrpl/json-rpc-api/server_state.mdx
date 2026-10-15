@@ -18,7 +18,7 @@ This method will use `20` [Compute Units](/nodeapi/about/billing).
 
 * `state` (object) Server state information: `build_version`, `complete_ledgers` (the range held by rippled, not the Clio full-history range), `io_latency_ms`, `jq_trans_overflow`, `last_close` (`converge_time` in milliseconds and `proposers`), `load_base`, `load_factor` and the related `load_factor_*` fields, `network_id`, `peers`, `ports`, `pubkey_node`, `server_state`, `server_state_duration_us`, `state_accounting`, `time`, `uptime`, `validated_ledger` (`base_fee`, `close_time`, `hash`, `reserve_base`, `reserve_inc`, `seq`), `validation_quorum` and `validator_list_expires`.
 
-```bash
+```json
 // Result
 {
   "result": {

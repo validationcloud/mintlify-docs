@@ -31,7 +31,7 @@ The `peer_status`, `consensus` and `server` streams are not available on this en
 
 Each subsequent push message is a JSON object with a `type` field that identifies the stream. A `ledger` stream message looks like this:
 
-```bash
+```json
 // Result
 // Captured from our endpoint: the acknowledgement, then the first ledgerClosed message
 {"id":1,"result":{"network_id":0,"ledger_index":107334674,"ledger_hash":"0705FC87C96C67F40DFD4AC1B8E6AF0E235704CBA8BC9BBFE2F0A8D2B45300D8","ledger_time":844077070,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"32570-107334674"},"status":"success","type":"response"}

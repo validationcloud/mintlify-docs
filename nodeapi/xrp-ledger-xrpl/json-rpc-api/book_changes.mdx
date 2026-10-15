@@ -24,7 +24,7 @@ This method will use `40` [Compute Units](/nodeapi/about/billing).
 * `validated` (boolean) If `true`, the information comes from a validated ledger version.
 * `changes` (array) One book update object per order book that was updated in this ledger, each with `currency_a` (`XRP_drops` for XRP, otherwise `issuer/currency`), `currency_b`, `volume_a`, `volume_b`, `high`, `low`, `open` and `close`. Empty if no order books were updated.
 
-```bash
+```json
 // Result
 {
   "result": {

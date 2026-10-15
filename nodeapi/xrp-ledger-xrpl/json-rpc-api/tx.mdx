@@ -29,7 +29,7 @@ This method will use `20` [Compute Units](/nodeapi/about/billing).
 * Various transaction fields (`Account`, `TransactionType`, `Fee`, `Sequence`, `SigningPubKey`, `TxnSignature` and the type-specific fields) at the top level of `result`, or `tx` (hex string) in binary mode.
 * `searched_all` (boolean) Only in a not-found response when `min_ledger` and `max_ledger` were provided. If `true`, all of the specified ledgers were searched.
 
-```bash
+```json
 // Result
 {
   "result": {
