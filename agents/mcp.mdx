@@ -112,7 +112,7 @@ Tool names are the ones the server exposes. Some clients rewrite the dot: Claude
 | `nodeapi.create_endpoint`        | `name`, `chain`, `network`                  | Creates an endpoint. Over your endpoint limit, it is created disabled. Not idempotent: check `nodeapi.list_endpoints` before retrying. |
 | `nodeapi.delete_endpoint`        | `id`                                        | Deletes the endpoint and revokes its API key.                                                                                      |
 
-Every tool works on every plan except `nodeapi.create_endpoint` and `nodeapi.delete_endpoint`, which need the Scale plan. `nodeapi.delete_endpoint` also needs the team Admin role.
+Every tool works on every plan except `nodeapi.create_endpoint` and `nodeapi.delete_endpoint`, which need the Scale plan. `nodeapi.delete_endpoint` also needs the team Admin role. On the Free plan, you can still create endpoints manually in the [Validation Cloud app](https://app.validationcloud.io/node).
 
 For the usage tools, `from` (inclusive) and `to` (exclusive) are RFC 3339 timestamps and default to the current UTC month. `granularity` is `HOUR` (up to 7 days), `DAY` (the default, up to 92 days), `WEEK` or `MONTH` (up to 366 days). Endpoint `id` values, and `endpoint_id` for `nodeapi.rpc_call`, are the UUIDs returned by `nodeapi.list_endpoints`. `body` is a JSON-RPC 2.0 request object or a non-empty batch.
 

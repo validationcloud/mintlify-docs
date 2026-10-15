@@ -351,7 +351,7 @@ paths:
             default: mainnet
             enum:
               - mainnet
-              - holesky
+              - hoodi
           description: The network
       responses:
         "200":
@@ -395,7 +395,7 @@ paths:
           type: string
           enum:
             - mainnet
-            - holesky
+            - hoodi
         description: The network
     post:
       description: Sends a signed deposit transaction to the Ethereum network, initiating
@@ -414,7 +414,7 @@ paths:
             default: mainnet
             enum:
               - mainnet
-              - holesky
+              - hoodi
           description: The network
       responses:
         "200":
@@ -467,7 +467,7 @@ paths:
             default: mainnet
             enum:
               - mainnet
-              - holesky
+              - hoodi
           description: The network
       responses:
         "200":
@@ -522,7 +522,7 @@ paths:
             default: mainnet
             enum:
               - mainnet
-              - holesky
+              - hoodi
           description: The Ethereum network.
       responses:
         "200":

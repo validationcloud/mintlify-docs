@@ -21,7 +21,7 @@ There is also a Logs tab on the Node API overview dashboard, so if you have Logs
 Good to know:
 
 * Log retention is 48 hours.
-* The Logs page does not currently automatically refresh or update if new requests come in, you will need to refresh the page in your web browser.
+* The Logs page refreshes automatically: new requests appear without reloading the page.
 * Request and response bodies will be displayed where available, e.g. JSON RPC requests, unless they are over 4KB.
 
 ### **Where it is and who can use it**
@@ -38,7 +38,7 @@ To enable Logs and see them at the per endpoint level:
 * Node API: [app.validationcloud.io/node](https://app.validationcloud.io/node)
   * Click an endpoint
   * Click the **Logs** tab
-    * Note: _After you enable Logs on an endpoint it will take a few minutes for any requests to show up and you will need to refresh the page._
+    * Note: _After you enable Logs on an endpoint, it takes a few minutes for the first requests to show up. They appear automatically._
 
 To see Logs from all endpoints that have Logs enabled:
 
@@ -52,7 +52,7 @@ To see Logs from all endpoints that have Logs enabled:
 
 ![Turn on request logs button on the endpoint Logs tab](/nodeapi/assets/screenshot-2026-10-01-at-13-35-07-2.png)
 
-3. After 5-10 minutes, refresh the page, requests should start to show up.
+3. After 5-10 minutes, requests start to show up automatically.
    1. Once logs start to come in for this endpoint, you will also be able to view them on the Node API Dashboard Logs page ([https://app.validationcloud.io/node/logs](https://app.validationcloud.io/node/logs)) which shows logs from _all_ endpoints in your Team that have Logs enabled. You can filter the Node API Dashboard Logs page by which endpoints you want to see logs for, see screenshot:
 
 ![Node API dashboard Logs page with the endpoint filter open](/nodeapi/assets/screenshot-2026-10-01-at-13-48-19-2.png)
