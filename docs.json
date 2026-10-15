@@ -654,11 +654,11 @@
     },
     {
       "source": "/nodeapi/icrc",
-      "destination": "/nodeapi/icrc/data-api/account"
+      "destination": "/nodeapi/icrc/data-api/account/balance"
     },
     {
       "source": "/nodeapi/icrc/data-api",
-      "destination": "/nodeapi/icrc/data-api/account"
+      "destination": "/nodeapi/icrc/data-api/account/balance"
     },
     {
       "source": "/nodeapi/icrc/data-api/block",
@@ -843,6 +843,30 @@
     {
       "source": "/staking/ethereum/staking-api-reference",
       "destination": "/staking/ethereum/staking-api-reference/authentication"
+    },
+    {
+      "source": "/nodeapi/icp-1/data-api/account",
+      "destination": "/nodeapi/icp-1/data-api/account/balance"
+    },
+    {
+      "source": "/nodeapi/icp-1/data-api/search",
+      "destination": "/nodeapi/icp-1/data-api/search/transactions"
+    },
+    {
+      "source": "/nodeapi/icrc/data-api/account",
+      "destination": "/nodeapi/icrc/data-api/account/balance"
+    },
+    {
+      "source": "/nodeapi/icrc/data-api/search",
+      "destination": "/nodeapi/icrc/data-api/search/transactions"
+    },
+    {
+      "source": "/nodeapi/solana/websocket-stable-methods",
+      "destination": "/nodeapi/solana/websocket-stable-methods/accountsubscribe"
+    },
+    {
+      "source": "/nodeapi/solana/websocket-unstable-methods",
+      "destination": "/nodeapi/solana/websocket-unstable-methods/blocksubscribe"
     },
     {
       "source": "/v1",
@@ -1946,7 +1970,6 @@
                     "pages": [
                       {
                         "group": "Account",
-                        "root": "nodeapi/icp-1/data-api/account/index",
                         "pages": [
                           "nodeapi/icp-1/data-api/account/balance"
                         ]
@@ -1968,7 +1991,6 @@
                       },
                       {
                         "group": "Search",
-                        "root": "nodeapi/icp-1/data-api/search/index",
                         "pages": [
                           "nodeapi/icp-1/data-api/search/transactions"
                         ]
@@ -1997,7 +2019,6 @@
                     "pages": [
                       {
                         "group": "Account",
-                        "root": "nodeapi/icrc/data-api/account/index",
                         "pages": [
                           "nodeapi/icrc/data-api/account/balance"
                         ]
@@ -2019,7 +2040,6 @@
                       },
                       {
                         "group": "Search",
-                        "root": "nodeapi/icrc/data-api/search/index",
                         "pages": [
                           "nodeapi/icrc/data-api/search/transactions"
                         ]
@@ -2515,7 +2535,6 @@
               },
               {
                 "group": "Websocket Stable Methods",
-                "root": "nodeapi/solana/websocket-stable-methods/index",
                 "pages": [
                   "nodeapi/solana/websocket-stable-methods/accountsubscribe",
                   "nodeapi/solana/websocket-stable-methods/accountunsubscribe",
@@ -2533,7 +2552,6 @@
               },
               {
                 "group": "Websocket Unstable Methods",
-                "root": "nodeapi/solana/websocket-unstable-methods/index",
                 "pages": [
                   "nodeapi/solana/websocket-unstable-methods/blocksubscribe",
                   "nodeapi/solana/websocket-unstable-methods/blockunsubscribe",
