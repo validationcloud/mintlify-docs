@@ -30,6 +30,14 @@
       "href": "https://app.validationcloud.io"
     }
   },
+  "contextual": {
+    "options": [
+      "claude",
+      "chatgpt",
+      "copy",
+      "view"
+    ]
+  },
   "redirects": [
     {
       "source": "/mavrik/mavrik",
