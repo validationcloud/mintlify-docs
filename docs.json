@@ -20,6 +20,14 @@
       "family": "Poppins"
     }
   },
+  "styling": {
+    "codeblocks": {
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark-default"
+      }
+    }
+  },
   "favicon": "/favicon.ico",
   "logo": {
     "light": "/logo/light.svg",
