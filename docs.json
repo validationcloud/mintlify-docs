@@ -61,7 +61,7 @@
     },
     {
       "source": "/staking/ethereum",
-      "destination": "/staking/ethereum/staking-tutorial"
+      "destination": "/staking/ethereum/staking-tutorial/api/prerequisites"
     },
     {
       "source": "/staking/ethereum/staking-tutorial/authenticating-with-auth0",
@@ -474,6 +474,14 @@
     {
       "source": "/nodeapi/about/security",
       "destination": "/nodeapi/about/security/allow-lists-for-node-api-endpoints"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial",
+      "destination": "/staking/ethereum/staking-tutorial/api/prerequisites"
+    },
+    {
+      "source": "/staking/ethereum/staking-tutorial/api",
+      "destination": "/staking/ethereum/staking-tutorial/api/prerequisites"
     },
     {
       "source": "/v1",
@@ -3018,21 +3026,14 @@
             "pages": [
               {
                 "group": "Staking Tutorial",
-                "root": "staking/ethereum/staking-tutorial/index",
                 "pages": [
-                  {
-                    "group": "API",
-                    "root": "staking/ethereum/staking-tutorial/api/index",
-                    "pages": [
-                      "staking/ethereum/staking-tutorial/api/prerequisites",
-                      "staking/ethereum/staking-tutorial/api/authenticating-with-auth0",
-                      "staking/ethereum/staking-tutorial/api/setting-up-a-wallet",
-                      "staking/ethereum/staking-tutorial/api/get-staking-transaction",
-                      "staking/ethereum/staking-tutorial/api/signing-a-transaction",
-                      "staking/ethereum/staking-tutorial/api/broadcast-transaction",
-                      "staking/ethereum/staking-tutorial/api/full-code"
-                    ]
-                  }
+                  "staking/ethereum/staking-tutorial/api/prerequisites",
+                  "staking/ethereum/staking-tutorial/api/authenticating-with-auth0",
+                  "staking/ethereum/staking-tutorial/api/setting-up-a-wallet",
+                  "staking/ethereum/staking-tutorial/api/get-staking-transaction",
+                  "staking/ethereum/staking-tutorial/api/signing-a-transaction",
+                  "staking/ethereum/staking-tutorial/api/broadcast-transaction",
+                  "staking/ethereum/staking-tutorial/api/full-code"
                 ]
               },
               {
@@ -3050,7 +3051,7 @@
             ]
           },
           {
-            "group": "SOLANA",
+            "group": "Solana",
             "pages": [
               {
                 "group": "Solana Staking Reporting API",
