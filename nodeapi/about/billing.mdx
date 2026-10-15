@@ -16,6 +16,7 @@ Our pricing model is structured around three plans: The Free Plan and Scale Plan
 | Cost                                                                           | $0                      | Pay as you go                                           | Custom                                                                  |
 | Compute units                                                                  | 50M per month included  | \$0.50 to \$0.35 per 1M CU above 50M ([details](#compute-unit-thresholds)) | Volume-based pricing                                                    |
 | Chains                                                                         | Node API chains         | Node API chains                                         | Node API chains, plus [80+ Private Chains](/nodeapi/about/supported-chains) |
+| [Rate limit](#free-plan-rate-limit) | 120 requests per second | No team-wide limit | No team-wide limit |
 | [Teams and roles](/nodeapi/about/team-accounts)                                | ✅                      | ✅                                                      | ✅                                                                      |
 | [Two-factor authentication](/nodeapi/about/security/two-factor-authentication-2fa-for-sign-in) | ✅                      | ✅                                                      | ✅                                                                      |
 | [Request logs](/nodeapi/about/logs)                                            | ❌                      | ✅                                                      | ✅                                                                      |
@@ -26,7 +27,33 @@ Ready for more? [Upgrade to Scale](https://app.validationcloud.io/node/upgrade) 
 
 ## **Free Plan**
 
-Get started with our Node API without any upfront costs or commitment. Simply sign up for free—no credit card required—and gain immediate access to our enterprise-grade nodes with no performance limitations, free of charge up to your 50 millionth compute unit.
+Get started with our Node API without any upfront costs or commitment. Simply sign up for free, with no credit card required, and gain immediate access to our enterprise-grade nodes, with 50 million compute units (CUs) free each month. Free plan teams can send up to 120 requests per second.
+
+### Free plan rate limit
+
+Each Free plan team can send up to 120 requests per second. The limit is shared across all of the team's endpoints, chains and methods.
+
+* Short bursts of up to 120 requests are allowed, and the allowance refills at 120 requests per second.
+* Every request in a JSON-RPC batch counts toward the limit. A batch is accepted or rejected as a whole, so a batch of more than 120 requests is always rejected.
+* Requests sent over WebSocket count toward the limit. Subscription notifications and Stellar streaming events that we send to you don't.
+* Method-specific limits, such as those on some Solana methods, still apply. They're listed on each method's page.
+* Scale and Private plans have no team-wide limit.
+
+JSON-RPC requests over the limit return error code `-32077`:
+
+```json
+{"jsonrpc":"2.0","error":{"code":-32077,"message":"rate limit exceeded"},"id":1}
+```
+
+A batch of more than 120 requests returns `rate limit exceeded: requested amount exceeds bucket capacity` for every request in the batch.
+
+REST requests over the limit, for example to the Hedera Mirror Node API or Stellar Horizon, return HTTP `429 Too Many Requests` with a `Retry-After` header and this body:
+
+```json
+{"error":"rate limit exceeded"}
+```
+
+Sending faster than the limit doesn't lock your team out. Requests are accepted while the allowance lasts and the rest are rejected. Spread requests out to avoid errors, or upgrade to the [Scale Plan](#scale-plan) to remove the team-wide limit. The limit lifts within a few minutes of upgrading.
 
 ## Scale Plan
 
