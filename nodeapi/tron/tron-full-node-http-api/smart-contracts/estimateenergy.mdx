@@ -14,7 +14,7 @@ This method will use `30` [Compute Units](/nodeapi/about/billing).
 * The `wallet/triggerconstantcontract` API can be used to estimate the energy consumption value of calling most smart contracts on the chain, such as USDD, USDT, USDC, TUSD, etc. Meanwhile, Compared to the existing `wallet/triggerconstantcontract` API, `wallet/estimateEnergy` API will be more accurate in estimating the energy consumption of calling a small number of special contract. But for FullNode, enabling the `wallet/estimateEnergy` API is optional. So please pay attention that when developers call `wallet/estimateEnergy`, if the error message (this node does not support estimate energy) shows when calling the new API, it is recommended to continue using the `wallet/triggerconstantcontract` API to estimate energy consumption.
 * `estimateenergy` will not generate an on-chain transaction, nor will it change the status of the current node.
 * The `energy_required` field in the returned value is the energy estimated amount. Therefore, the `fee_limit` of the transaction can be set to `energy_required x energy unit price`.
-* Parameter encoding and decoding example: [Parameter and return value encoding and decoding](https://developers.tron.network/docs/parameter-and-return-value-encoding-and-decoding)
+* Parameter encoding and decoding example: [Parameter and return value encoding and decoding](https://developers.tron.network/docs/parameter-encoding-and-decoding)
 
 ## **Parameters**
 

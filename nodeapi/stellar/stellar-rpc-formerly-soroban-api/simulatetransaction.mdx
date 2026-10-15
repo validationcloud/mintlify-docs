@@ -8,7 +8,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ***
 
-## Reference: [Here](https://soroban.stellar.org/api/methods/simulateTransaction)
+## Reference: [Here](https://developers.stellar.org/docs/data/apis/rpc/api-reference/methods/simulateTransaction)
 
 ## **Parameters**
 
@@ -16,7 +16,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ## Returns
 
-* minResourceFee string (optional) -  Stringified number - Recommended minimum resource fee to add when submitting the transaction. This fee is to be added on top of the [Stellar network fee](https://developers.stellar.org/docs/encyclopedia/fees-surge-pricing-fee-strategies#network-fees-on-stellar). Not present in case of error.
+* minResourceFee string (optional) -  Stringified number - Recommended minimum resource fee to add when submitting the transaction. This fee is to be added on top of the [Stellar network fee](https://developers.stellar.org/docs/learn/fundamentals/fees-resource-limits-metering#inclusion-fee). Not present in case of error.
 * `cost` object (optional) - Information about instructions used, etc. Not present in case of error.
 * `results` array\[object] (optional) - This array will only have one element: the result for the Host Function invocation. Only present on successful simulation (i.e. no error) of `InvokeHostFunction` operations.
 * `transactionData` string (optional) - Serialized base64 string - The recommended Soroban Transaction Data to use when submitting the simulated transaction. This data contains the refundable fee and resource usage information such as the ledger footprint and IO access data (serialized in a base64 string). Not present in case of error.

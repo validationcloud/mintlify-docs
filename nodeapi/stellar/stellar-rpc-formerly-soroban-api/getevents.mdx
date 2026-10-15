@@ -8,7 +8,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
 
 ***
 
-## Reference: [Here](https://soroban.stellar.org/api/methods/getEvents)
+## Reference: [Here](https://developers.stellar.org/docs/data/apis/rpc/api-reference/methods/getEvents)
 
 ## **Parameters**
 
@@ -18,7 +18,7 @@ This method will use `10` [Compute Units](/nodeapi/about/billing).
   * array of: type (string) A comma separated list of event types (`system`, `contract`, or `diagnostic`) used to filter events. If omitted, all event types are included.
   * contractIds (array) (optional) List of contract ids to query for events. If omitted, return events for all contracts. Maximum 5 contract IDs are allowed per request.
   * topics (array) (optional) List of topic filters. If omitted, query for all events. If multiple filters are specified, events will be included if they match any of the filters. Maximum 5 filters are allowed per request.
-* `pagination` (see "[Pagination](https://soroban.stellar.org/api/pagination)")
+* `pagination` (see "[Pagination](https://developers.stellar.org/docs/data/apis/rpc/api-reference/structure/pagination)")
 
 ## Returns
 

@@ -16,10 +16,10 @@ This method will use `500` [Compute Units](/nodeapi/about/billing).
 
 Example transctionHash from testnet: 0x5dee41c73116ff6b57c4b0adc45f9ff4472dd643549a0fd31e929fa4350c77da
 
-Note: If retrieving a transactionHash from the [HashScan explorer](https://hashscan.io/mainnet/dashboard), it needs to be a transaction from the "Smart Contract Calls" section and when you copy the Transaction Hash, it needs to be truncated to 64 characters to work with this method call.
+Note: If retrieving a transactionHash from the [HashScan explorer](https://hashscan.io/), it needs to be a transaction from the "Smart Contract Calls" section and when you copy the Transaction Hash, it needs to be truncated to 64 characters to work with this method call.
 
 * **tracer** `string enum:` `callTracer` or `opcodeLogger` <span style={{color: "red"}}>required</span>
-* **tracerConfig** `object` <span style={{color: "red"}}>required\*</span> _tracerConfig should not be required but currently needs to be included with at least one property due to a bug with Hedera, see_ [_reported issue_](https://github.com/hashgraph/hedera-json-rpc-relay/issues/2627)_._
+* **tracerConfig** `object` <span style={{color: "red"}}>required\*</span> _tracerConfig should not be required but currently needs to be included with at least one property due to a bug with Hedera, see_ [_reported issue_](https://github.com/hiero-ledger/hiero-json-rpc-relay/issues/2627)_._
 
 Example traceConfig with all available properties set to `true`
 
