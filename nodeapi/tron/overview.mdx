@@ -20,3 +20,160 @@ Tron's own Developer Documentation is here: [https://developers.tron.network/ref
 | Network | Full Node HTTP API | JSON-RPC API | Solidity HTTP API |
 | ------- | ------------------ | ------------ | ----------------- |
 | Mainnet | ✅                  | ✅            | ✅                 |
+
+## Compute Units
+### Tron Full Node HTTP API
+
+| Method | Compute units |
+| --- | --- |
+| [ValidateAddress](/nodeapi/tron/tron-full-node-http-api/address-utilities/validateaddress) | 30 |
+| [BroadcastTransaction](/nodeapi/tron/tron-full-node-http-api/transactions/broadcasttransaction) | 30 |
+| [BroadcastHex](/nodeapi/tron/tron-full-node-http-api/transactions/broadcasthex) | 30 |
+| [CreateTransaction](/nodeapi/tron/tron-full-node-http-api/transactions/createtransaction) | 30 |
+| [CreateAccount](/nodeapi/tron/tron-full-node-http-api/accounts/createaccount) | 30 |
+| [GetAccount](/nodeapi/tron/tron-full-node-http-api/accounts/getaccount) | 30 |
+| [UpdateAccount](/nodeapi/tron/tron-full-node-http-api/accounts/updateaccount) | 30 |
+| [AccountPermissionUpdate](/nodeapi/tron/tron-full-node-http-api/accounts/accountpermissionupdate) | 30 |
+| [GetAccountBalance](/nodeapi/tron/tron-full-node-http-api/accounts/getaccountbalance) | 30 |
+| [GetAccountResource](/nodeapi/tron/tron-full-node-http-api/account-resources/getaccountresource) | 30 |
+| [GetAccountNet](/nodeapi/tron/tron-full-node-http-api/account-resources/getaccountnet) | 30 |
+| [GetDelegatedResource](/nodeapi/tron/tron-full-node-http-api/account-resources/getdelegatedresource) | 30 |
+| [GetDelegatedResourceAccountIndex](/nodeapi/tron/tron-full-node-http-api/account-resources/getdelegatedresourceaccountindex) | 30 |
+| [FreezeBalanceV2](/nodeapi/tron/tron-full-node-http-api/account-resources/freezebalancev2) | 30 |
+| [UnfreezeBalanceV2](/nodeapi/tron/tron-full-node-http-api/account-resources/unfreezebalancev2) | 30 |
+| [CancelAllUnfreezeV2](/nodeapi/tron/tron-full-node-http-api/account-resources/cancelallunfreezev2) | 30 |
+| [DelegateResource](/nodeapi/tron/tron-full-node-http-api/account-resources/delegateresource) | 30 |
+| [UnDelegateResource](/nodeapi/tron/tron-full-node-http-api/account-resources/undelegateresource) | 30 |
+| [WithdrawExpireUnfreeze](/nodeapi/tron/tron-full-node-http-api/account-resources/withdrawexpireunfreeze) | 30 |
+| [GetAvailableUnfreezeCount](/nodeapi/tron/tron-full-node-http-api/account-resources/getavailableunfreezecount) | 30 |
+| [GetCanWithdrawUnfreezeAmount](/nodeapi/tron/tron-full-node-http-api/account-resources/getcanwithdrawunfreezeamount) | 30 |
+| [GetCanDelegatedMaxSize](/nodeapi/tron/tron-full-node-http-api/account-resources/getcandelegatedmaxsize) | 30 |
+| [GetDelegatedResourceV2](/nodeapi/tron/tron-full-node-http-api/account-resources/getdelegatedresourcev2) | 30 |
+| [GetDelegatedResourceAccountIndexV2](/nodeapi/tron/tron-full-node-http-api/account-resources/getdelegatedresourceaccountindexv2) | 30 |
+| [GetBlock](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblock) | 30 |
+| [GetBlockByNum](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblockbynum) | 30 |
+| [GetBlockById](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblockbyid) | 30 |
+| [GetBlockByLatestNum](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblockbylatestnum) | 30 |
+| [GetBlockByLimitNext](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblockbylimitnext) | 30 |
+| [GetNowBlock](/nodeapi/tron/tron-full-node-http-api/query-the-network/getnowblock) | 30 |
+| [GetTransactionById](/nodeapi/tron/tron-full-node-http-api/query-the-network/gettransactionbyid) | 30 |
+| [GetTransactionInfoById](/nodeapi/tron/tron-full-node-http-api/query-the-network/gettransactioninfobyid) | 30 |
+| [GetTransactionInfoByBlockNum](/nodeapi/tron/tron-full-node-http-api/query-the-network/gettransactioninfobyblocknum) | 30 |
+| [ListNodes](/nodeapi/tron/tron-full-node-http-api/query-the-network/listnodes) | 30 |
+| [GetNodeInfo](/nodeapi/tron/tron-full-node-http-api/query-the-network/getnodeinfo) | 30 |
+| [GetChainParameters](/nodeapi/tron/tron-full-node-http-api/query-the-network/getchainparameters) | 30 |
+| [GetBlockBalance](/nodeapi/tron/tron-full-node-http-api/query-the-network/getblockbalance) | 30 |
+| [GetEnergyPrices](/nodeapi/tron/tron-full-node-http-api/query-the-network/getenergyprices) | 30 |
+| [GetBandwidthPrices](/nodeapi/tron/tron-full-node-http-api/query-the-network/getbandwidthprices) | 30 |
+| [GetBurnTRX](/nodeapi/tron/tron-full-node-http-api/query-the-network/getburntrx) | 30 |
+| [GetApprovedList](/nodeapi/tron/tron-full-node-http-api/query-the-network/getapprovedlist) | 30 |
+| [GetAssetIssueByAccount](/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyaccount) | 30 |
+| [GetAssetIssueById](/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyid) | 30 |
+| [GetAssetIssueByName](/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuebyname) | 30 |
+| [GetAssetIssueList](/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuelist) | 30 |
+| [GetAssetIssueListByName](/nodeapi/tron/tron-full-node-http-api/trc10-token/getassetissuelistbyname) | 30 |
+| [GetPaginatedAssetIssueList](/nodeapi/tron/tron-full-node-http-api/trc10-token/getpaginatedassetissuelist) | 30 |
+| [TransferAsset](/nodeapi/tron/tron-full-node-http-api/trc10-token/transferasset) | 30 |
+| [CreateAssetIssue](/nodeapi/tron/tron-full-node-http-api/trc10-token/createassetissue) | 30 |
+| [ParticipateAssetIssue](/nodeapi/tron/tron-full-node-http-api/trc10-token/participateassetissue) | 30 |
+| [UnfreezeAsset](/nodeapi/tron/tron-full-node-http-api/trc10-token/unfreezeasset) | 30 |
+| [UpdateAsset](/nodeapi/tron/tron-full-node-http-api/trc10-token/updateasset) | 30 |
+| [GetContract](/nodeapi/tron/tron-full-node-http-api/smart-contracts/getcontract) | 30 |
+| [GetContractInfo](/nodeapi/tron/tron-full-node-http-api/smart-contracts/getcontractinfo) | 30 |
+| [TriggerSmartContract](/nodeapi/tron/tron-full-node-http-api/smart-contracts/triggersmartcontract) | 30 |
+| [TriggerConstantContract](/nodeapi/tron/tron-full-node-http-api/smart-contracts/triggerconstantcontract) | 30 |
+| [DeployContract](/nodeapi/tron/tron-full-node-http-api/smart-contracts/deploycontract) | 30 |
+| [UpdateSetting](/nodeapi/tron/tron-full-node-http-api/smart-contracts/updatesetting) | 30 |
+| [UpdateEnergyLimit](/nodeapi/tron/tron-full-node-http-api/smart-contracts/updateenergylimit) | 30 |
+| [ClearAbi](/nodeapi/tron/tron-full-node-http-api/smart-contracts/clearabi) | 30 |
+| [EstimateEnergy](/nodeapi/tron/tron-full-node-http-api/smart-contracts/estimateenergy) | 30 |
+| [VoteWitnessAccount](/nodeapi/tron/tron-full-node-http-api/voting-and-super-representatives-srs/votewitnessaccount) | 30 |
+| [ListProposals](/nodeapi/tron/tron-full-node-http-api/proposals/listproposals) | 30 |
+| [GetProposalById](/nodeapi/tron/tron-full-node-http-api/proposals/getproposalbyid) | 30 |
+| [ProposalCreate](/nodeapi/tron/tron-full-node-http-api/proposals/proposalcreate) | 30 |
+| [ProposalApprove](/nodeapi/tron/tron-full-node-http-api/proposals/proposalapprove) | 30 |
+| [ProposalDelete](/nodeapi/tron/tron-full-node-http-api/proposals/proposaldelete) | 30 |
+| [ListExchanges](/nodeapi/tron/tron-full-node-http-api/dex-exchange/listexchanges) | 30 |
+| [GetExchangeById](/nodeapi/tron/tron-full-node-http-api/dex-exchange/getexchangebyid) | 30 |
+| [ExchangeCreate](/nodeapi/tron/tron-full-node-http-api/dex-exchange/exchangecreate) | 30 |
+| [ExchangeInject](/nodeapi/tron/tron-full-node-http-api/dex-exchange/exchangeinject) | 30 |
+| [ExchangeWithdraw](/nodeapi/tron/tron-full-node-http-api/dex-exchange/exchangewithdraw) | 30 |
+| [ExchangeTransaction](/nodeapi/tron/tron-full-node-http-api/dex-exchange/exchangetransaction) | 30 |
+| [GetTransactionListFromPending](/nodeapi/tron/tron-full-node-http-api/pending-pool/gettransactionlistfrompending) | 30 |
+| [GetTransactionFromPending](/nodeapi/tron/tron-full-node-http-api/pending-pool/gettransactionfrompending) | 30 |
+| [GetPendingSize](/nodeapi/tron/tron-full-node-http-api/pending-pool/getpendingsize) | 30 |
+
+### Tron JSON-RPC API
+
+| Method | Compute units |
+| --- | --- |
+| [buildTransaction](/nodeapi/tron/tron-json-rpc-api/buildtransaction) | 40 |
+| [eth_accounts](/nodeapi/tron/tron-json-rpc-api/eth_accounts) | 20 |
+| [eth_blockNumber](/nodeapi/tron/tron-json-rpc-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/tron/tron-json-rpc-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/tron/tron-json-rpc-api/eth_chainid) | 10 |
+| [eth_estimateGas](/nodeapi/tron/tron-json-rpc-api/eth_estimategas) | 40 |
+| [eth_gasPrice](/nodeapi/tron/tron-json-rpc-api/eth_gasprice) | 40 |
+| [eth_getBalance](/nodeapi/tron/tron-json-rpc-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/tron/tron-json-rpc-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/tron/tron-json-rpc-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/tron/tron-json-rpc-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/tron/tron-json-rpc-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/tron/tron-json-rpc-api/eth_getcode) | 40 |
+| [eth_getFilterChanges](/nodeapi/tron/tron-json-rpc-api/eth_getfilterchanges) | 40 |
+| [eth_getFilterLogs](/nodeapi/tron/tron-json-rpc-api/eth_getfilterlogs) | 40 |
+| [eth_getLogs](/nodeapi/tron/tron-json-rpc-api/eth_getlogs) | 80 |
+| [eth_newBlockFilter](/nodeapi/tron/tron-json-rpc-api/eth_newblockfilter) | 40 |
+| [eth_newFilter](/nodeapi/tron/tron-json-rpc-api/eth_newfilter) | 40 |
+| [eth_getStorageAt](/nodeapi/tron/tron-json-rpc-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/tron/tron-json-rpc-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/tron/tron-json-rpc-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/tron/tron-json-rpc-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/tron/tron-json-rpc-api/eth_gettransactionreceipt) | 40 |
+| [eth_getProtocolVersion](/nodeapi/tron/tron-json-rpc-api/eth_getprotocolversion) | 10 |
+| [eth_syncing](/nodeapi/tron/tron-json-rpc-api/eth_syncing) | 10 |
+| [eth_uninstallFilter](/nodeapi/tron/tron-json-rpc-api/eth_uninstallfilter) | 20 |
+| [net_listening](/nodeapi/tron/tron-json-rpc-api/net_listening) | 10 |
+| [net_peerCount](/nodeapi/tron/tron-json-rpc-api/net_peercount) | 20 |
+| [net_version](/nodeapi/tron/tron-json-rpc-api/net_version) | 10 |
+| [web3_clientVersion](/nodeapi/tron/tron-json-rpc-api/web3_clientversion) | 40 |
+| [web3_sha3](/nodeapi/tron/tron-json-rpc-api/web3_sha3) | 40 |
+
+### Tron Solidity API
+
+| Method | Compute units |
+| --- | --- |
+| [GetTransactionById](/nodeapi/tron/tron-solidity-api/transactions/gettransactionbyid) | 30 |
+| [GetTransactionInfoById](/nodeapi/tron/tron-solidity-api/transactions/gettransactioninfobyid) | 30 |
+| [GetTransactionInfoByBlockNum](/nodeapi/tron/tron-solidity-api/transactions/gettransactioninfobyblocknum) | 30 |
+| [GetTransactionCountByBlockNum](/nodeapi/tron/tron-solidity-api/transactions/gettransactioncountbyblocknum) | 30 |
+| [GetBlock](/nodeapi/tron/tron-solidity-api/blocks/getblock) | 30 |
+| [GetNowBlock](/nodeapi/tron/tron-solidity-api/blocks/getnowblock) | 30 |
+| [GetBlockByNum](/nodeapi/tron/tron-solidity-api/blocks/getblockbynum) | 30 |
+| [GetBlockById](/nodeapi/tron/tron-solidity-api/blocks/getblockbyid) | 30 |
+| [GetBlockByLatestNum](/nodeapi/tron/tron-solidity-api/blocks/getblockbylatestnum) | 30 |
+| [GetBlockByLimitNext](/nodeapi/tron/tron-solidity-api/blocks/getblockbylimitnext) | 30 |
+| [GetAccount](/nodeapi/tron/tron-solidity-api/account-resources/getaccount) | 30 |
+| [GetDelegatedResource](/nodeapi/tron/tron-solidity-api/account-resources/getdelegatedresource) | 30 |
+| [GetDelegatedResourceAccountIndex](/nodeapi/tron/tron-solidity-api/account-resources/getdelegatedresourceaccountindex) | 30 |
+| [GetCanDelegatedMaxSize](/nodeapi/tron/tron-solidity-api/account-resources/getcandelegatedmaxsize) | 30 |
+| [GetCanWithdrawUnfreezeAmount](/nodeapi/tron/tron-solidity-api/account-resources/getcanwithdrawunfreezeamount) | 30 |
+| [GetDelegatedResourceAccountIndexV2](/nodeapi/tron/tron-solidity-api/account-resources/getdelegatedresourceaccountindexv2) | 30 |
+| [GetAvailableUnfreezeCount](/nodeapi/tron/tron-solidity-api/account-resources/getavailableunfreezecount) | 30 |
+| [GetNodeInfo](/nodeapi/tron/tron-solidity-api/node-and-chain/getnodeinfo) | 30 |
+| [GetBurnTRX](/nodeapi/tron/tron-solidity-api/node-and-chain/getburntrx) | 30 |
+| [TriggerConstantContract](/nodeapi/tron/tron-solidity-api/smart-contracts/triggerconstantcontract) | 30 |
+| [EstimateEnergy](/nodeapi/tron/tron-solidity-api/smart-contracts/estimateenergy) | 30 |
+| [GetAssetIssueByName](/nodeapi/tron/tron-solidity-api/trc10-token/getassetissuebyname) | 30 |
+| [GetAssetIssueById](/nodeapi/tron/tron-solidity-api/trc10-token/getassetissuebyid) | 30 |
+| [GetAssetIssueList](/nodeapi/tron/tron-solidity-api/trc10-token/getassetissuelist) | 30 |
+| [GetAssetIssueListByName](/nodeapi/tron/tron-solidity-api/trc10-token/getassetissuelistbyname) | 30 |
+| [GetPaginatedAssetIssueList](/nodeapi/tron/tron-solidity-api/trc10-token/getpaginatedassetissuelist) | 30 |
+| [ListExchanges](/nodeapi/tron/tron-solidity-api/dex-exchange/listexchanges) | 30 |
+| [GetExchangeById](/nodeapi/tron/tron-solidity-api/dex-exchange/getexchangebyid) | 30 |
+| [ListWitnesses](/nodeapi/tron/tron-solidity-api/voting-and-super-representatives/listwitnesses) | 30 |
+| [GetReward](/nodeapi/tron/tron-solidity-api/voting-and-super-representatives/getreward) | 30 |
+| [GetBrokerage](/nodeapi/tron/tron-solidity-api/voting-and-super-representatives/getbrokerage) | 30 |
+| [ScanShieldedTrc20NotesByIvk](/nodeapi/tron/tron-solidity-api/tronz-shielded-smart-contract/scanshieldedtrc20notesbyivk) | 30 |
+| [ScanShieldedTrc20NotesByOvk](/nodeapi/tron/tron-solidity-api/tronz-shielded-smart-contract/scanshieldedtrc20notesbyovk) | 30 |
+| [IsShieldedTrc20ContractNoteSpent](/nodeapi/tron/tron-solidity-api/tronz-shielded-smart-contract/isshieldedtrc20contractnotespent) | 30 |
