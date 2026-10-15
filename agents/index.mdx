@@ -1,11 +1,104 @@
 ---
 title: "Agents"
 sidebarTitle: "Overview"
-description: "Connect AI agents, scripts and CI jobs to Mavrik and your Node API account."
+description: "AI infrastructure for digital assets. Bring Validation Cloud into Claude Code, Codex, Cursor or VS Code through the MCP server, the CLI or the Admin API skill."
 ---
 
-Validation Cloud gives AI agents and automation the same access to Mavrik and your team's Node API account that you have in the dashboard.
+import Cta from "/snippets/cta.mdx";
 
-* [MCP Server](/agents/mcp): connect Claude Code, Codex, Cursor, VS Code or any MCP client
-* [CLI](/agents/cli): call the same tools from your terminal, shell scripts and CI jobs
-* [Skills](/agents/skills): give Claude Code, Codex and other coding agents built-in knowledge of the Admin API
+Validation Cloud gives AI agents and automation the same access to Mavrik and your team's Node API account that you have in the dashboard. Your agent works with the account, plan and roles your team already has: it can manage endpoints, check usage and compute-unit costs, send RPC calls through your endpoints, and ask Mavrik about digital-asset markets.
+
+## Choose how to connect
+
+Pick the one that fits where your agent runs. The MCP server and the CLI share one login and one set of permissions. The skill uses an Admin API key.
+
+<CardGroup cols={3}>
+  <Card title="MCP server" icon="plug" href="/agents/mcp">
+    **For editors and chat clients.** One remote server over Streamable HTTP with OAuth: twelve tools across Node API and Mavrik, for Claude Code, Codex, Cursor, VS Code and any MCP client.
+  </Card>
+  <Card title="CLI" icon="terminal" href="/agents/cli">
+    **For terminals, scripts and CI.** Log in once, then create endpoints, check usage and send RPC calls from scripts and from agents that work in a shell.
+  </Card>
+  <Card title="Skills" icon="wand-magic-sparkles" href="/agents/skills">
+    **For Claude Code and Codex.** The `admin-api` skill teaches your agent the Admin API: endpoints, usage, chains and compute-unit costs.
+  </Card>
+</CardGroup>
+
+## How it fits
+
+Agents add a layer on the products you already use, with your team's account, plan and roles.
+
+```mermaid
+flowchart TD
+    agent["<b>Your agent</b><br/>Claude Code, Codex, Cursor, VS Code,<br/>any MCP client, scripts and CI"]
+    cli["<b>CLI</b><br/>The same tools as shell commands"]
+    mcp["<b>MCP server</b><br/>One login, twelve tools"]
+    admin["<b>Admin API</b><br/>Create and delete endpoints,<br/>read usage, plan and costs"]
+    node["<b>Node API</b><br/>JSON-RPC calls through<br/>your endpoints"]
+    mavrik["<b>Mavrik</b><br/>Digital-asset market<br/>intelligence"]
+    agent -->|terminal, scripts, CI| cli
+    agent -->|editors and chat clients| mcp
+    cli --> mcp
+    mcp --> admin
+    mcp --> node
+    mcp --> mavrik
+    classDef vc fill:transparent,stroke:#D63D57,stroke-width:1.5px
+    class agent,cli,mcp,admin,node,mavrik vc
+```
+
+The CLI sits on the MCP server, so one login covers both. The Admin API skill sits beside this stack: it teaches Claude Code and Codex to call the Admin API directly.
+
+## Connect, prompt, execute
+
+Three steps, whichever client you use.
+
+<Steps>
+  <Step title="Connect">
+    Add the MCP server to your client, or install the CLI, then log in with your Validation Cloud account. For Claude Code:
+
+    ```bash
+    claude mcp add --transport http validation-cloud https://mcp.validationcloud.io/mcp
+    ```
+
+    See [MCP server](/agents/mcp#connect-your-client) for Codex, Cursor, VS Code and other clients.
+  </Step>
+  <Step title="Prompt">
+    Describe what you need in plain language. The agent picks the tool and its parameters, within your plan and your role.
+
+    > "Create a Base mainnet endpoint for staging and give me the HTTPS URL."
+
+    Tools it calls: `nodeapi.create_endpoint`, `nodeapi.get_endpoint`.
+  </Step>
+  <Step title="Execute">
+    The agent runs the tools against your team's account and brings the results back into the conversation.
+
+    > "Show this month's compute-unit usage, by day."
+
+    Tool it calls: `nodeapi.get_team_usage`.
+  </Step>
+</Steps>
+
+## Tools
+
+The MCP server exposes twelve tools, grouped by product:
+
+- **Node API (11):** your account and plan, supported chains, compute-unit costs, endpoints, team and endpoint usage, and RPC calls through your endpoints.
+- **Mavrik (1):** ask a question about digital-asset markets, wallets or flows in plain language.
+
+See the [full list of tools](/agents/mcp#tools), with their parameters.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What should I use?">
+    The MCP server when your agent lives in an editor or a chat client and you want tool calls with no setup beyond a login. The CLI when the work happens in a shell, a script or CI. The skill when you want Claude Code or Codex to write code against the Admin API.
+  </Accordion>
+  <Accordion title="Do I need a key?">
+    No. The MCP server and the CLI log in with your Validation Cloud account in the browser and inherit your team's plan and your role, so there is no key to create. The Admin API skill is the exception: it uses an [Admin API key](/nodeapi/about/admin-api-keys) from your dashboard.
+  </Accordion>
+  <Accordion title="What does it cost?">
+    Every tool works on every plan except creating and deleting endpoints, which need the Scale plan. Deleting an endpoint also needs the Admin role on the team. RPC calls made through an agent are metered in compute units, like any other request to the same endpoint. See [Plans and billing](/nodeapi/about/billing).
+  </Accordion>
+</AccordionGroup>
+
+<Cta title="Connect your agent today" text="Free tier, no credit card required. Add the server, log in, and ask your agent about your chains, your endpoints or the market." href="https://app.validationcloud.io/auth/signup" cta="Get started" />
