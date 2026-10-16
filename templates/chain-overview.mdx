@@ -1,0 +1,79 @@
+---
+title: "Overview"
+---
+
+{/* Chain overview template. Copy to nodeapi/<folder>/overview.mdx and replace every <...> placeholder.
+    Section order is checked by scripts/check-chain-overviews.py (runs in CI):
+    logo marker, cover, TryFree, intro, ## Network Support, optional chain-specific ## sections,
+    ## Getting Started, ## Compute Units (always last). */}
+
+import TryFree from "/snippets/try-free.mdx";
+
+<span className="chain-logo-<folder>" />
+
+<img className="page-cover" src="/nodeapi/assets/<folder>-cover.png" alt="" noZoom />
+
+<TryFree chain="<Chain name>" logo="/nodeapi/assets/chains/<folder>.svg" />
+
+<Chain name> is <one or two sentences: what the chain is and what it is for>. Its native token is `<TOKEN>`.
+
+Block explorer: [<explorer URL>](<explorer URL>)
+
+<Chain name>'s own developer documentation: [<docs URL>](<docs URL>)
+
+## Network Support
+
+| Network | Full History / Archive | HTTPS | WSS |
+| --- | --- | --- | --- |
+| Mainnet | ✅ | ✅ | ✅ |
+| Testnet (<name>) | ✅ | ✅ | ✅ |
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+{/* Optional: chain-specific ## sections go here (for example Stellar RPC v2, ICRC tokens). */}
+
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+{/* Copy the CodeGroup from a cheap method page of this chain (eth_blockNumber for EVM chains), one tab per network. */}
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.<chain>.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+```bash title="testnet"
+curl https://testnet.<chain>.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+{/* Only when Network Support marks WSS. Use the chain's real WebSocket URL (EVM chains: /v1/wss/<KEY>). */}
+
+Connect over WebSocket:
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.<chain>.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+```bash title="testnet"
+wscat -c wss://testnet.<chain>.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+</CodeGroup>
+
+## Compute Units
+
+| Method | Compute units |
+| --- | --- |
+| [eth_blockNumber](/nodeapi/<folder>/execution-api/eth_blocknumber) | 20 |

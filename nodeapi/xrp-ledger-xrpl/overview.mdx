@@ -39,29 +39,7 @@ Mainnet block explorer: [https://livenet.xrpl.org](https://livenet.xrpl.org)
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-### Endpoint Capabilities
-
-XRPL endpoints support both HTTP and WebSocket connectivity for production-grade applications.
-
-#### HTTP
-
-Best suited for:
-
-* backend services and APIs
-* ledger and account data queries, including full history via `account_tx` and `ledger`
-* transaction submission with `submit`
-* development and testing workflows
-
-#### WebSocket
-
-Best suited for:
-
-* the `ledger`, `transactions` and `validations` streams
-* monitoring accounts and order books with `subscribe`
-* xrpl.js and other WebSocket-first client libraries
-* applications that require low-latency data delivery
-
-### Getting Started
+## Getting Started
 
 To start building on XRPL, connect your application to an XRPL endpoint and send XRPL API requests.
 
@@ -77,6 +55,8 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
 ```
 
 </CodeGroup>
+
+Use WebSocket for the `ledger`, `transactions` and `validations` streams and for `subscribe`.
 
 Example request over WebSocket:
 

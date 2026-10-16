@@ -27,33 +27,9 @@ Mainnet block explorer: [https://uniscan.xyz](https://uniscan.xyz)
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
-### Endpoint Capabilities
+## Getting Started
 
-Unichain endpoints support both HTTP and WebSocket connectivity for production-grade applications.
-
-#### HTTP
-
-Best suited for:
-
-* backend services and APIs
-* blockchain data queries
-* smart contract deployment and interaction
-* development and testing workflows
-
-#### WebSocket
-
-Best suited for:
-
-* real-time transaction monitoring
-* event subscriptions
-* live dashboards and analytics
-* applications that require low-latency data delivery
-
-### Getting Started
-
-To start building on Unichain, connect your application to a Unichain endpoint and send standard Ethereum JSON-RPC requests.
-
-Example request:
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
 
 <CodeGroup>
 
@@ -62,6 +38,16 @@ curl https://mainnet.unichain.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+Connect over WebSocket:
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.unichain.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
 ```
 
 </CodeGroup>

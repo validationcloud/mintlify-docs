@@ -22,6 +22,38 @@ Bitcoin's native token is `BTC` .
 | Mainnet - including Blockbook & Esplora Indexer support  | ✅     | N/A |
 | Testnet (Testnet3) - Blockbook & Esplora Indexer support | ✅     | N/A |
 
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getblockcount",
+	"params": []
+}'
+```
+
+```bash title="testnet"
+curl https://testnet.bitcoin.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{
+	"jsonrpc": "1.0",
+	"id": "curltest",
+	"method": "getblockcount",
+	"params": []
+}'
+```
+
+</CodeGroup>
+
 ## Compute Units
 | Method | Compute units |
 | --- | --- |

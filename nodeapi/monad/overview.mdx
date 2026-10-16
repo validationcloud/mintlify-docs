@@ -29,6 +29,42 @@ _Note: The RPC differences between Monad and standard Geth RPC behavior are outl
 
 > WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
 
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+```bash title="testnet"
+curl https://testnet.monad.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+Connect over WebSocket:
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.monad.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+```bash title="testnet"
+wscat -c wss://testnet.monad.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+</CodeGroup>
+
 ## Compute Units
 | Method | Compute units |
 | --- | --- |

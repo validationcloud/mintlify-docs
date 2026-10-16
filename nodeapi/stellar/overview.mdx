@@ -64,6 +64,28 @@ Total CUs = (cu_amount × requests) + ((response_size_bytes / 1024) × cu_per_kb
 * **Standard endpoints:** Fixed cost per request (no data-based charges)
 * **SSE endpoints:** Base request cost plus variable cost based on streamed data volume
 
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0", "id": 8675309, "method": "getHealth"}'
+```
+
+```bash title="testnet"
+curl https://testnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc": "2.0", "id": 8675309, "method": "getHealth"}'
+```
+
+</CodeGroup>
+
 ## Compute Units
 ### SSE Streaming Endpoints
 

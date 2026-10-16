@@ -39,8 +39,22 @@ To add a chain:
 1. Add its folder and sprite ID to `LOGOS` in `scripts/export-chain-logos.py`.
 2. Run `python3 scripts/export-chain-logos.py`.
 3. Add the icon, card and marker in the 3 places above.
+4. Write its overview from `templates/chain-overview.mdx` (see below).
 
 Do not edit `chain-logos.css` by hand.
+
+## Chain overview pages
+
+Every `nodeapi/<folder>/overview.mdx` follows `templates/chain-overview.mdx`, in this order:
+
+1. Logo marker, cover image and the `<TryFree />` banner.
+2. A short intro: what the chain is, its native token, block explorer and the chain's own developer docs.
+3. `## Network Support`: the networks table (archive, HTTPS, WSS) and any notes, such as the WebSocket `ping` rule.
+4. Optional chain-specific `##` sections, such as Stellar RPC v2 or ICRC tokens.
+5. `## Getting Started`: one `curl` request per network, copied from a cheap method page of the same chain (`eth_blockNumber` for EVM chains), plus a `wscat` example when the chain supports WebSockets.
+6. `## Compute Units`: the method cost table, always last.
+
+Don't add generic sections such as "Endpoint Capabilities". `python3 scripts/check-chain-overviews.py` checks the order and runs in CI.
 
 ## Terminology
 

@@ -83,6 +83,28 @@ _How to use the canister principals above:_ For the token you are interested in,
 }
 ```
 
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="ICP"
+curl https://icp-mainnet.icp.validationcloud.io/v1/<YOUR_API_KEY_HERE>/network/list \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"metadata":{}}'
+```
+
+```bash title="ICRC"
+curl https://icrc-mainnet.icp.validationcloud.io/v1/<YOUR_API_KEY_HERE>/network/list \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"metadata":{}}'
+```
+
+</CodeGroup>
+
 ## Compute Units
 All ICP and ICRC methods are currently `10` Compute Units.
 
