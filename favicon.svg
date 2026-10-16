@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Validation Cloud mark, same as the web app's favicon (frontend/apps/web-app/public/favicons/icon.svg), colours inlined -->
+  <rect width="32" height="32" rx="6" fill="#242731" />
+  <rect x="2.5" y="9.5" width="27" height="14" rx="7" stroke="white" />
+  <rect x="4.5" y="11.5" width="23" height="10" rx="5" stroke="white" />
+  <rect x="6.5" y="13.5" width="19" height="6" rx="3" stroke="white" />
+</svg>
