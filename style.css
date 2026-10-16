@@ -53,6 +53,13 @@
   height: 1rem;
 }
 
+/* Chain rows under "Chains" (nested groups with a logo): 15px names instead of 14px.
+   Rows without a logo (API groups, "API reference") keep the default size. */
+.sidebar-group > li > button:has(img) {
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
 /* Chain overviews: let short tables (Network Support, Compute Units) fit the column instead of Mintlify's 150px minimum cell width */
 #content-area:has([class^="chain-logo-"]) .mdx-content td {
   min-width: 0;
