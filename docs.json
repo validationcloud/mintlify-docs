@@ -877,6 +877,10 @@
       "destination": "/nodeapi/solana/websocket-unstable-methods/blocksubscribe"
     },
     {
+      "source": "/nodeapi/stellar/horizon-api/operations/list-all-payments",
+      "destination": "/nodeapi/stellar/horizon-api/payments/list-all-payments"
+    },
+    {
       "source": "/v1/about/node-api",
       "destination": "/nodeapi"
     },
@@ -2744,8 +2748,7 @@
                         "pages": [
                           "nodeapi/stellar/horizon-api/operations/retrieve-an-operation",
                           "nodeapi/stellar/horizon-api/operations/retrieve-an-operations-effects",
-                          "nodeapi/stellar/horizon-api/operations/list-all-operations",
-                          "nodeapi/stellar/horizon-api/operations/list-all-payments"
+                          "nodeapi/stellar/horizon-api/operations/list-all-operations"
                         ]
                       },
                       {
