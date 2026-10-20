@@ -58,4 +58,7 @@ curl https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/graphql/q
 ## Next steps
 
 - [Guide](/nodeapi/stellar/wallet-backend/guide): pagination, time bounds, balances, state changes, errors and persisted queries, with example queries.
-- **Queries** and **Types** in the sidebar: the full schema reference, generated from the service's GraphQL schema.
+- The query pages in the sidebar: arguments, return fields, and an example query and response for each.
+- Every type and field: the upstream [schema reference](https://github.com/stellar/wallet-backend/blob/9594eaa/docs/api/schema.md).
+
+There is no hosted GraphQL playground. To build queries with autocomplete, import the [schema file](https://raw.githubusercontent.com/validationcloud/mintlify-docs/main/nodeapi/openapi/stellar-wallet-backend.graphql) into a GraphQL client such as Postman, Insomnia or Altair, and point it at your endpoint URL.

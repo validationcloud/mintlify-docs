@@ -2809,7 +2809,10 @@
                       "directory": "nodeapi/stellar/wallet-backend"
                     },
                     "pages": [
-                      "nodeapi/stellar/wallet-backend/guide"
+                      "nodeapi/stellar/wallet-backend/guide",
+                      "QUERY accountByAddress",
+                      "QUERY transactionByHash",
+                      "QUERY operationById"
                     ]
                   }
                 ]

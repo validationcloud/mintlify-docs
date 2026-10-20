@@ -281,7 +281,7 @@ A state change records one change to one account's ledger state: a balance movem
 | `category` | `StateChangeCategory` | For example `BALANCE`, `SIGNER`, `TRUSTLINE` |
 | `reason` | `StateChangeReason` | For example `CREDIT`, `DEBIT`, `ADD` |
 
-Each node is a concrete type such as `BalanceChange` or `SignerAddedChange`, and `category` and `reason` identify the type too. Each type's page under **Types** lists its valid category and reason pairs.
+Each node is a concrete type such as `BalanceChange` or `SignerAddedChange`, and `category` and `reason` identify the type too. The [schema reference](https://github.com/stellar/wallet-backend/blob/9594eaa/docs/api/schema.md) lists each type's valid category and reason pairs.
 
 A fee charge is a `BalanceChange` with reason `DEBIT` and a null `operation`.
 

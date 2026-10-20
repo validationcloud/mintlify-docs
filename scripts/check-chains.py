@@ -25,7 +25,8 @@ chains = next(g for g in node_api['groups'] if g['group'] == 'Chains')['pages']
 def nav_pages(group):
     for p in group.get('pages', []):
         if isinstance(p, str):
-            yield p
+            if ' ' not in p:  # skip generated-page selectors such as "QUERY accountByAddress"
+                yield p
         else:
             if p.get('root'):
                 yield p['root']
