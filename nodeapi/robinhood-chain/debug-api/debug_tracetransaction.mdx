@@ -14,9 +14,10 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 `object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
 
-* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+* `tracer` - String - The type of tracer, options are: `callTracer`, `prestateTracer` or `flatCallTracer`.
   * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
   * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+  * `flatCallTracer` - String - The flatCallTracer is a specific type of tracer that provides a flattened view of all calls made during transaction execution. It offers a simplified output compared to the standard callTracer, in the same format as the `trace_` namespace used by other EVM clients.
 * `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
   * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
 * `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
@@ -36,17 +37,45 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 ```json
 // Result
 {
-	"jsonrpc": "2.0",
-	"result": {
-		"from": "0x0a8683c3b94820ffdfdac7a2f70be8790491884b",
-		"gas": "0x5208",
-		"gasUsed": "0x5208",
-		"to": "0x487719abbbdffb54aa469c67e70c03d10691def1",
-		"input": "0x",
-		"value": "0x68ff2a4050dfd651fc",
-		"type": "CALL"
-	},
-	"id": 1
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "beforeEVMTransfers": [
+            {
+                "purpose": "feePayment",
+                "from": "0x823d163c73C193E1a417d2e8be45d31466e03830",
+                "to": null,
+                "value": "0x400746fe000"
+            }
+        ],
+        "afterEVMTransfers": [
+            {
+                "purpose": "gasRefund",
+                "from": null,
+                "to": "0x823d163c73C193E1a417d2e8be45d31466e03830",
+                "value": "0x39eaa7c7800"
+            },
+            {
+                "purpose": "feeCollection",
+                "from": null,
+                "to": "0x5a2B80a9b7effc06129bD5462D77BC20A8A59BE7",
+                "value": "0x61c9f36800"
+            },
+            {
+                "purpose": "feeCollection",
+                "from": null,
+                "to": "0xa4B00000000000000000000000000000000000F6",
+                "value": "0x0"
+            }
+        ],
+        "from": "0x823d163c73c193e1a417d2e8be45d31466e03830",
+        "gas": "0x35b60",
+        "gasUsed": "0x5208",
+        "to": "0xf83004e222925921364ecb8c88e2b11e579c685d",
+        "input": "0x",
+        "value": "0x1dee7d86f254fb4",
+        "type": "CALL"
+    }
 }
 ```
 
@@ -56,14 +85,14 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 curl https://mainnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x43ae0b5870f3fe2e5357d9f1ab6bec874e6512710130c368b471d7b9d9e3b965", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x31fc0f0dcae216113ce69e751a16f234c6de13d8329e812094879a045ef127e7", {"tracer": "callTracer"}],"id":1}'
 ```
 
 ```bash title="testnet"
 curl https://testnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x43ae0b5870f3fe2e5357d9f1ab6bec874e6512710130c368b471d7b9d9e3b965", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x6275492d6923d7847cad866448333c0c8a7f7e4684f9c2e1e9b052d0c0b9b655", {"tracer": "callTracer"}],"id":1}'
 ```
 
 </CodeGroup>

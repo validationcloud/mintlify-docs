@@ -23,9 +23,10 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 `object` - Object (Optional) - The tracer object with the following fields:
 
-* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+* `tracer` - String - The type of tracer, options are: `callTracer`, `prestateTracer` or `flatCallTracer`.
   * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
   * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+  * `flatCallTracer` - String - The flatCallTracer is a specific type of tracer that provides a flattened view of all calls made during transaction execution. It offers a simplified output compared to the standard callTracer, in the same format as the `trace_` namespace used by other EVM clients.
 * `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
   * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
 

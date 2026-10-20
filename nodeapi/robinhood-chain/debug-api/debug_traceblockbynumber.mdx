@@ -14,9 +14,10 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 `object` - Object - <span style={{color: "red"}}>Required</span>  - The tracer object with the following fields:
 
-* `tracer` - String - The type of tracer, options are: `callTracer` or`prestateTracer`.
+* `tracer` - String - The type of tracer, options are: `callTracer`, `prestateTracer` or `flatCallTracer`.
   * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
   * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+  * `flatCallTracer` - String - The flatCallTracer is a specific type of tracer that provides a flattened view of all calls made during transaction execution. It offers a simplified output compared to the standard callTracer, in the same format as the `trace_` namespace used by other EVM clients.
 * `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
   * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
 
@@ -37,27 +38,87 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 ```json
 // Result
 {
-	"jsonrpc": "2.0",
-	"result": [
-		{
-			"txHash": "0xa3b5b3d805ae110ef84f3bd11762175abc103274c6f3be87cac77287dcfb4614",
-			"result": {
-				"from": "0xed237edb351c5da602bfa65304fcaa0ad59b9aca",
-				"gas": "0x33450",
-				"gasUsed": "0x17ec7",
-				"to": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d",
-				"input": "0x38ed1739000000000000000000000000000000000000000000001787c9c50d38b50d5e5000000000000000000000000000000000000000000000000054c8c67e5503180000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000ed237edb351c5da602bfa65304fcaa0ad59b9aca0000000000000000000000000000000000000000000000000000000066d8208d0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000f3768d6e78e65fc64b8f12ffc824452130bd5394000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-				"output": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000001787c9c50d38b50d5e500000000000000000000000000000000000000000000000005535d836ed3c9a67",
-				"calls": [
-					{
-						"from": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d",
-						"gas": "0x2bc60",
-						"gasUsed": "0x9c8",
-						"to": "0x34a43471377dcce420ce8e3ffd9360b2e08fa7b4",
-						"input": "0x0902f1ac",
-						"output": "0x000000000000000000000000000000000000000000000015e5d5c4c4fe59833b00000000000000000000000000000000000000000005efeba2b86bbae29e230b0000000000000000000000000000000000000000000000000000000066d8200f",
-						"type": "STATICCALL"
-					},...
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": [
+        {
+            "txHash": "0x0d6b3d0eb3c450d103391719db3930c0626afecc9025b4b16ca72834842cbab8",
+            "result": {
+                "beforeEVMTransfers": [],
+                "afterEVMTransfers": [],
+                "from": "0x00000000000000000000000000000000000a4b05",
+                "gas": "0x0",
+                "gasUsed": "0x0",
+                "to": "0x00000000000000000000000000000000000a4b05",
+                "input": "0x6bf6a42d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000190475b00000000000000000000000000000000000000000000000000000000058ff57b0000000000000000000000000000000000000000000000000000000000000000",
+                "calls": [
+                    {
+                        "from": "0xfffffffffffffffffffffffffffffffffffffffe",
+                        "gas": "0x1c9c380",
+                        "gasUsed": "0x212c",
+                        "to": "0x0000f90827f1c53a10cb7a02335b175320002935",
+                        "input": "0xde01a8cc3481e5d8e742f77c53ff43b91b8c5ae6e617d8d661cb8b35149c08c3",
+                        "calls": [
+                            {
+                                "from": "0x0000f90827f1c53a10cb7a02335b175320002935",
+                                "gas": "0x1c29238",
+                                "gasUsed": "0x323",
+                                "to": "0x0000000000000000000000000000000000000064",
+                                "input": "0xa3b1b31d",
+                                "output": "0x00000000000000000000000000000000000000000000000000000000058ff57b",
+                                "type": "STATICCALL"
+                            }
+                        ],
+                        "value": "0x0",
+                        "type": "CALL"
+                    }
+                ],
+                "value": "0x0",
+                "type": "CALL"
+            }
+        },
+        {
+            "txHash": "0x31fc0f0dcae216113ce69e751a16f234c6de13d8329e812094879a045ef127e7",
+            "result": {
+                "beforeEVMTransfers": [
+                    {
+                        "purpose": "feePayment",
+                        "from": "0x823d163c73C193E1a417d2e8be45d31466e03830",
+                        "to": null,
+                        "value": "0x400746fe000"
+                    }
+                ],
+                "afterEVMTransfers": [
+                    {
+                        "purpose": "gasRefund",
+                        "from": null,
+                        "to": "0x823d163c73C193E1a417d2e8be45d31466e03830",
+                        "value": "0x39eaa7c7800"
+                    },
+                    {
+                        "purpose": "feeCollection",
+                        "from": null,
+                        "to": "0x5a2B80a9b7effc06129bD5462D77BC20A8A59BE7",
+                        "value": "0x61c9f36800"
+                    },
+                    {
+                        "purpose": "feeCollection",
+                        "from": null,
+                        "to": "0xa4B00000000000000000000000000000000000F6",
+                        "value": "0x0"
+                    }
+                ],
+                "from": "0x823d163c73c193e1a417d2e8be45d31466e03830",
+                "gas": "0x35b60",
+                "gasUsed": "0x5208",
+                "to": "0xf83004e222925921364ecb8c88e2b11e579c685d",
+                "input": "0x",
+                "value": "0x1dee7d86f254fb4",
+                "type": "CALL"
+            }
+        }
+    ]
+}
 ```
 
 <CodeGroup>
@@ -66,7 +127,7 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 curl https://mainnet.robinhood.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0", "method":"debug_traceBlockByNumber","params":["0x5BBC507", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0", "method":"debug_traceBlockByNumber","params":["0x58ff57b", {"tracer": "callTracer"}],"id":1}'
     
 ```
 
