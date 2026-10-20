@@ -4,6 +4,8 @@ title: "debug_traceBlockByHash"
 
 Traces every transaction in the block specified by block hash and returns the tracer result for each one.
 
+**Note:** Arbitrum serves recent state only, so trace a recent block. Replace `<RECENT_BLOCK_HASH>` with the hash of a recent block, for example from `eth_getBlockByNumber` with `latest`. See [Supported Chains](/nodeapi/about/supported-chains) for how far back each network goes.
+
 This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 ***
@@ -14,9 +16,10 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 `object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
 
-* `tracer` - String - The type of tracer, options are: `callTracer` or`prestateTracer`.
+* `tracer` - String - The type of tracer, options are: `callTracer`, `prestateTracer` or `flatCallTracer`.
   * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
   * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+  * `flatCallTracer` - String - The flatCallTracer is a specific type of tracer that provides a flattened view of all calls made during transaction execution. It offers a simplified output compared to the standard callTracer, in the same format as the `trace_` namespace used by other EVM clients.
 * `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
   * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
 
@@ -131,7 +134,7 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 curl https://mainnet.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["0x89f968e73472c656cbed1e084980e09b3ec06fbaa4b174b51f1cb60ac457ae99", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["<RECENT_BLOCK_HASH>", {"tracer": "callTracer"}],"id":1}'
     
 ```
 
@@ -139,7 +142,7 @@ curl https://mainnet.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
 curl https://sepolia.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["0x74d50bc463c2b56f48c7fa597d3b3167847f91b936fe6a30f2f3a48d8f85b193", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["<RECENT_BLOCK_HASH>", {"tracer": "callTracer"}],"id":1}'
     
 ```
 

@@ -4,6 +4,8 @@ title: "debug_traceTransaction"
 
 Returns all traces of a given transaction.
 
+**Note:** Arbitrum serves recent state only, so trace a recent transaction. Replace `<RECENT_TRANSACTION_HASH>` with the hash of a transaction from a recent block. See [Supported Chains](/nodeapi/about/supported-chains) for how far back each network goes.
+
 This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 ***
@@ -14,9 +16,10 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 `object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
 
-* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+* `tracer` - String - The type of tracer, options are: `callTracer`, `prestateTracer` or `flatCallTracer`.
   * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
   * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+  * `flatCallTracer` - String - The flatCallTracer is a specific type of tracer that provides a flattened view of all calls made during transaction execution. It offers a simplified output compared to the standard callTracer, in the same format as the `trace_` namespace used by other EVM clients.
 * `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
   * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
 * `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
@@ -94,14 +97,14 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 curl https://mainnet.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x8c09e1f80fecf242ac01e93200217f8a199a01e2258db49ab380d045eeab27a5", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["<RECENT_TRANSACTION_HASH>", {"tracer": "callTracer"}],"id":1}'
 ```
 
 ```bash title="testnet"
 curl https://sepolia.arbitrum.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0xcd14a4f427bedcd4beb2eb091422851925170f1790a26bdf6689d2a618d2d843", {"tracer": "callTracer"}],"id":1}'
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["<RECENT_TRANSACTION_HASH>", {"tracer": "callTracer"}],"id":1}'
 ```
 
 </CodeGroup>
