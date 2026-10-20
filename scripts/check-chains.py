@@ -84,6 +84,8 @@ for group in chains:
     for link, cu in rows.items():
         page = link.lstrip('/') + '.mdx'
         if not os.path.exists(page):
+            page = link.lstrip('/') + '/index.mdx'  # a folder link opens its index page
+        if not os.path.exists(page):
             fail('Compute Units row links to missing page %s' % link)
             continue
         m = re.search(r'will use `([\d,]+)`', open(page).read())

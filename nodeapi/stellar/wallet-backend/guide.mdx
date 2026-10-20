@@ -1,0 +1,569 @@
+---
+title: "Wallet Backend guide"
+sidebarTitle: "Guide"
+description: "Query accounts, balances, transactions, operations and state changes, page through results, and handle limits and errors."
+---
+
+## Send a request
+
+Send queries with `POST` and `Content-Type: application/json` to:
+
+```text
+https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/graphql/query
+```
+
+The examples on this page save the query to `query.graphql` and the variables to `vars.json`, then send both with this command:
+
+```bash
+jq -n --rawfile query query.graphql --slurpfile vars vars.json '{query: $query, variables: $vars[0]}' \
+  | curl -s https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/graphql/query \
+      -H 'Content-Type: application/json' --data @-
+```
+
+A `POST` with any other content type returns HTTP 400 with the message `transport not supported`.
+
+## Root queries
+
+| Query | Returns | When the result is null |
+| --- | --- | --- |
+| [`accountByAddress(address: String!)`](/nodeapi/stellar/wallet-backend/queries/accountByAddress) | `Account` for a `G...` account or `C...` contract | Only for an invalid address, with `INVALID_ADDRESS`. A valid address with no indexed activity returns an `Account` whose lists are empty. |
+| [`transactionByHash(hash: String!)`](/nodeapi/stellar/wallet-backend/queries/transactionByHash) | `Transaction` | A malformed hash returns `INVALID_TRANSACTION_HASH`. An unknown hash returns `INTERNAL_SERVER_ERROR`. |
+| [`operationById(id: Int64!)`](/nodeapi/stellar/wallet-backend/queries/operationById) | `Operation` | An unknown ID returns `INTERNAL_SERVER_ERROR`. |
+
+A muxed address (`M...`) is not accepted. Pass the underlying `G...` address.
+
+The service does not tell a missing transaction or operation apart from a database failure. Both return `null` with the message `internal server error` and the code `INTERNAL_SERVER_ERROR`.
+
+## Pagination
+
+Lists of transactions, operations, state changes, balances and allowances are Relay connections: `edges { cursor node }` plus `pageInfo`.
+
+| Argument | Meaning |
+| --- | --- |
+| `first` | Up to N edges from the start of the list, or after `after` |
+| `after` | Cursor. Edges after it. Read only together with `first`. |
+| `last` | Up to N edges from the end of the list, or before `before` |
+| `before` | Cursor. Edges before it. Read only together with `last`. |
+
+| Rule | Result |
+| --- | --- |
+| No `first` and no `last` | A page of 50. `after` and `before` are ignored. |
+| `first` or `last` above 100 | `BAD_USER_INPUT`: `first must be less than or equal to 100` |
+| `first` or `last` of 0 or less | `BAD_USER_INPUT`: `first must be greater than 0` |
+| `first` with `last` | `BAD_USER_INPUT`: `first and last cannot be used together` |
+| `after` with `before` | `BAD_USER_INPUT`: `after and before cannot be used together` |
+| `first` with `before`, or `last` with `after` | `BAD_USER_INPUT` |
+| A cursor the service did not issue | `BAD_USER_INPUT` |
+
+The cap of 100 applies to every connection: account history, balances, SEP-41 allowances, and the connections nested under a transaction or operation.
+
+Edges in a page are always oldest first, in both directions. History connections start at the oldest record, so `first: 10` returns the account's first ten transactions. For the most recent ten, use `last: 10`, then `before: <startCursor>` to step further back.
+
+Treat cursors as opaque strings. Pass a cursor back only to the same field it came from.
+
+| `pageInfo` field | Forward paging (`first`) | Backward paging (`last`) |
+| --- | --- | --- |
+| `hasNextPage` | More edges follow this page | `true` whenever `before` was given |
+| `hasPreviousPage` | `true` whenever `after` was given | More edges precede this page |
+| `startCursor`, `endCursor` | Cursors of the first and last edge; null on an empty page | Same |
+
+Four lists are plain arrays with no pagination. `Transaction.accounts` and `Operation.accounts` return every participant. `AccountTransactionEdge.operations` returns every operation the account took part in inside that one transaction. `AccountTransactionEdge.stateChanges` returns the account's state changes in that transaction, newest first, up to 2,000 (see [State changes](#state-changes)).
+
+### Example: page through an account's transactions
+
+```graphql query.graphql
+query AccountTransactions($address: String!, $first: Int, $after: String) {
+  accountByAddress(address: $address) {
+    transactions(first: $first, after: $after) {
+      edges {
+        cursor
+        node {
+          hash
+          ledgerNumber
+          ledgerCreatedAt
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
+```
+
+```json vars.json
+{"address": "<G_ADDRESS>", "first": 20}
+```
+
+```json Response
+{
+  "data": {
+    "accountByAddress": {
+      "transactions": {
+        "edges": [
+          {
+            "cursor": "MTcwMDAwMDAwMDAwMDAwMDAwMDo0Mjk0OTY3MzAwMDk2",
+            "node": {
+              "hash": "<TX_HASH>",
+              "ledgerNumber": 1000,
+              "ledgerCreatedAt": "2023-11-14T22:13:20Z"
+            }
+          }
+        ],
+        "pageInfo": {
+          "endCursor": "MTcwMDAwMDAwMDAwMDAwMDAwMDo0Mjk0OTY3MzAwMDk2",
+          "hasNextPage": true
+        }
+      }
+    }
+  }
+}
+```
+
+For the next page, send the same query with `"after"` set to `endCursor`. Stop when `hasNextPage` is `false`.
+
+## Time bounds
+
+`Account.transactions`, `Account.operations` and `Account.stateChanges` take `since` and `until`. Both are RFC 3339 timestamps compared with the ledger close time.
+
+| Argument | Meaning |
+| --- | --- |
+| `since` | Items whose ledger closed at or after this time |
+| `until` | Items whose ledger closed at or before this time |
+
+Either bound can be used alone. `until` earlier than `since` returns `BAD_USER_INPUT`: `until must not be before since`. Bounds combine with cursors and with the state change filter, and they don't change a query's complexity score.
+
+Set a bound when you can: on a long history, a bounded query runs faster. For one day of operations, declare `$since: Time, $until: Time`, pass them to `operations(since: $since, until: $until, first: $first)`, and send:
+
+```json vars.json
+{"address": "<G_ADDRESS>", "since": "2026-09-01T00:00:00Z", "until": "2026-09-01T23:59:59Z", "first": 50}
+```
+
+## Balances
+
+`accountByAddress(...).balances` returns every token balance as one connection. What you get depends on the address:
+
+| Address | Balance types, in this order |
+| --- | --- |
+| `G...` account | `NativeBalance`, `TrustlineBalance`, `SEP41Balance`, `LiquidityPoolBalance` |
+| `C...` contract | `SACBalance`, `SEP41Balance` |
+| `M...` muxed | Not accepted: `INVALID_ADDRESS` |
+
+The types always come in that order. Inside one type the order is stable across pages but is not alphabetical.
+
+Each node implements `Balance` with `balance`, `tokenId` and `tokenType`. Use `__typename` or `tokenType` to tell them apart, and inline fragments for the rest.
+
+| `__typename` | `tokenType` | `balance` format | Type-specific fields |
+| --- | --- | --- | --- |
+| `NativeBalance` | `NATIVE` | 7 decimal places, for example `"100.0000000"` | `minimumBalance`, `buyingLiabilities`, `sellingLiabilities`, `numSubentries`, `lastModifiedLedger` |
+| `TrustlineBalance` | `CLASSIC` | 7 decimal places | `code`, `issuer`, `assetType`, `limit`, `buyingLiabilities`, `sellingLiabilities`, `lastModifiedLedger`, `isAuthorized`, `isAuthorizedToMaintainLiabilities` |
+| `SACBalance` | `SAC` | 7 decimal places | `code`, `issuer`, `decimals`, `isAuthorized`, `isClawbackEnabled` |
+| `SEP41Balance` | `SEP41` | Integer in the token's smallest unit | `name`, `symbol`, `decimals`, `lastModifiedLedger` |
+| `LiquidityPoolBalance` | `LIQUIDITY_POOL` | Pool shares, 7 decimal places | `reserves { asset amount }`, `lastModifiedLedger` |
+
+All amounts are strings. Only `SEP41Balance` needs scaling: divide `balance` by 10^`decimals` to display it. `SACBalance.decimals` is always 7, and the string already carries the decimal point. `tokenId` is the token's contract ID (`C...`): for XLM and classic assets it is the Stellar Asset Contract ID, and for pool shares it is the hex pool ID.
+
+Spendable XLM is `balance - minimumBalance - sellingLiabilities`.
+
+`Account.sep41Allowances` lists the active SEP-41 allowances the account granted, ordered by spender. Expired allowances are left out.
+
+### Example: all balance types
+
+```graphql query.graphql
+query AccountBalances($address: String!, $first: Int, $after: String) {
+  accountByAddress(address: $address) {
+    balances(first: $first, after: $after) {
+      edges {
+        node {
+          __typename
+          balance
+          tokenId
+          tokenType
+          ... on NativeBalance {
+            minimumBalance
+            buyingLiabilities
+            sellingLiabilities
+          }
+          ... on TrustlineBalance {
+            code
+            issuer
+            limit
+            isAuthorized
+          }
+          ... on SACBalance {
+            code
+            issuer
+            decimals
+          }
+          ... on SEP41Balance {
+            name
+            symbol
+            decimals
+          }
+          ... on LiquidityPoolBalance {
+            reserves {
+              asset
+              amount
+            }
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
+```
+
+```json vars.json
+{"address": "<G_ADDRESS>", "first": 100}
+```
+
+```json Response
+{
+  "data": {
+    "accountByAddress": {
+      "balances": {
+        "edges": [
+          {
+            "node": {
+              "__typename": "NativeBalance",
+              "balance": "100.0000000",
+              "tokenId": "<C_ADDRESS>",
+              "tokenType": "NATIVE",
+              "minimumBalance": "1.5000000",
+              "buyingLiabilities": "0.0000000",
+              "sellingLiabilities": "0.0000000"
+            }
+          },
+          {
+            "node": {
+              "__typename": "TrustlineBalance",
+              "balance": "25.0000000",
+              "tokenId": "<C_ADDRESS>",
+              "tokenType": "CLASSIC",
+              "code": "USDC",
+              "issuer": "<G_ADDRESS>",
+              "limit": "922337203685.4775807",
+              "isAuthorized": true
+            }
+          }
+        ],
+        "pageInfo": {"endCursor": "...", "hasNextPage": false}
+      }
+    }
+  }
+}
+```
+
+## State changes
+
+A state change records one change to one account's ledger state: a balance movement, a signer edit, a trustline added, and so on. Each one points to the transaction that caused it and, except for fee charges, the operation.
+
+| Field | Scope | Filters |
+| --- | --- | --- |
+| `Account.stateChanges` | Changes to that account | `filter`, `since`, `until`, pagination |
+| `Transaction.stateChanges` | Changes produced by that transaction, for all accounts | Pagination only |
+| `Operation.stateChanges` | Changes produced by that operation, for all accounts | Pagination only |
+| `AccountTransactionEdge.stateChanges` | Changes to the account inside one transaction | None. Not paginated: at most 2,000 rows, newest first |
+
+`AccountTransactionEdge.stateChanges` keeps a transaction's newest 2,000 rows for the account and drops older ones, so a list of exactly 2,000 may be incomplete. Page `Transaction.stateChanges` for every row of a large transaction.
+
+`filter` is an `AccountStateChangeFilterInput`. All the fields you set must match.
+
+| Field | Type | Matches |
+| --- | --- | --- |
+| `transactionHash` | `String` | Changes from this transaction. A malformed hash returns `INVALID_TRANSACTION_HASH`. |
+| `operationId` | `Int64` | Changes from this operation |
+| `category` | `StateChangeCategory` | For example `BALANCE`, `SIGNER`, `TRUSTLINE` |
+| `reason` | `StateChangeReason` | For example `CREDIT`, `DEBIT`, `ADD` |
+
+Each node is a concrete type such as `BalanceChange` or `SignerAddedChange`, and `category` and `reason` identify the type too. Each type's page under **Types** lists its valid category and reason pairs.
+
+A fee charge is a `BalanceChange` with reason `DEBIT` and a null `operation`.
+
+Some field names have different types on different state change types. `tokenId` is `String!` on `BalanceChange` and `AllowanceChange` but nullable on the trustline types, and `flags` is `[AccountFlag!]!` on `AccountFlagsChange` but `[TrustlineFlag!]` on `BalanceAuthorizationChange`. GraphQL rejects a query that selects both under the same name, so give each one an alias, as below.
+
+### Example: incoming payments to an account
+
+```graphql query.graphql
+query Credits($address: String!, $filter: AccountStateChangeFilterInput, $first: Int) {
+  accountByAddress(address: $address) {
+    stateChanges(filter: $filter, first: $first) {
+      edges {
+        cursor
+        node {
+          __typename
+          category
+          reason
+          ledgerCreatedAt
+          transaction {
+            hash
+          }
+          ... on BalanceChange {
+            balanceTokenId: tokenId
+            amount
+            toMuxedId
+          }
+          ... on TrustlineAddedChange {
+            trustlineTokenId: tokenId
+            limit
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
+```
+
+```json vars.json
+{"address": "<G_ADDRESS>", "filter": {"category": "BALANCE", "reason": "CREDIT"}, "first": 50}
+```
+
+```json Response
+{
+  "data": {
+    "accountByAddress": {
+      "stateChanges": {
+        "edges": [
+          {
+            "cursor": "...",
+            "node": {
+              "__typename": "BalanceChange",
+              "category": "BALANCE",
+              "reason": "CREDIT",
+              "ledgerCreatedAt": "2026-09-01T10:15:02Z",
+              "transaction": {"hash": "<TX_HASH>"},
+              "balanceTokenId": "<C_ADDRESS>",
+              "amount": "250000000",
+              "toMuxedId": null
+            }
+          }
+        ],
+        "pageInfo": {"endCursor": "...", "hasNextPage": true}
+      }
+    }
+  }
+}
+```
+
+`BalanceChange.amount` is an integer string in the token's smallest unit. For XLM and classic assets that is stroops, so `"250000000"` is 25 units.
+
+## Transactions and operations
+
+| `Transaction` field | Notes |
+| --- | --- |
+| `hash` | 64 hex characters. For a fee-bump transaction, the outer hash. |
+| `feeCharged` | `Int64`, in stroops |
+| `resultCode` | XDR result code name, for example `TransactionResultCodeTxSuccess` |
+| `isFeeBump` | Whether the transaction is a fee bump |
+| `ledgerNumber`, `ledgerCreatedAt` | Ledger sequence and close time |
+| `ingestedAt` | When the service stored the row |
+| `accounts` | Every account and contract that took part |
+
+| `Operation` field | Notes |
+| --- | --- |
+| `id` | TOID, an `Int64` that is unique and sorts by time |
+| `type` | `OperationType` enum, for example `PAYMENT` or `INVOKE_HOST_FUNCTION` |
+| `operationXdr` | The operation body as base64 XDR |
+| `successful` | Whether the operation succeeded |
+| `resultCode` | Snake case, for example `op_success` or `op_underfunded` |
+
+`Int64` and `UInt32` are JSON numbers. A TOID can be larger than 2^53 - 1, so JavaScript clients should parse responses with a big-integer-safe JSON parser. Timestamps are RFC 3339 strings.
+
+### Example: a transaction with its operations and state changes
+
+```graphql query.graphql
+query TransactionDetail($hash: String!) {
+  transactionByHash(hash: $hash) {
+    hash
+    feeCharged
+    resultCode
+    isFeeBump
+    ledgerNumber
+    ledgerCreatedAt
+    operations(first: 20) {
+      edges {
+        node {
+          id
+          type
+          successful
+          resultCode
+          operationXdr
+        }
+      }
+    }
+    stateChanges(first: 50) {
+      edges {
+        node {
+          __typename
+          category
+          reason
+          account {
+            address
+          }
+          ... on BalanceChange {
+            tokenId
+            amount
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+```json vars.json
+{"hash": "<TX_HASH>"}
+```
+
+```json Response
+{
+  "data": {
+    "transactionByHash": {
+      "hash": "<TX_HASH>",
+      "feeCharged": 100,
+      "resultCode": "TransactionResultCodeTxSuccess",
+      "isFeeBump": false,
+      "ledgerNumber": 1000,
+      "ledgerCreatedAt": "2023-11-14T22:13:20Z",
+      "operations": {
+        "edges": [
+          {
+            "node": {
+              "id": 4294967300097,
+              "type": "PAYMENT",
+              "successful": true,
+              "resultCode": "op_success",
+              "operationXdr": "<BASE64_XDR>"
+            }
+          }
+        ]
+      },
+      "stateChanges": {
+        "edges": [
+          {
+            "node": {
+              "__typename": "BalanceChange",
+              "category": "BALANCE",
+              "reason": "DEBIT",
+              "account": {"address": "<G_ADDRESS>"},
+              "tokenId": "<C_ADDRESS>",
+              "amount": "100"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+For an account's full history in one call, select `operations` and `stateChanges` on each `Account.transactions` edge. Those two lists hold only what that account did in the transaction.
+
+## Limits
+
+| Limit | Value | When exceeded |
+| --- | --- | --- |
+| Query complexity | 10,000 | HTTP 200, `COMPLEXITY_LIMIT_EXCEEDED`, `data: null` |
+| Query depth | 15 | HTTP 200, `QUERY_TOO_DEEP`, `data: null` |
+| Page size | 100 per connection | HTTP 200, `BAD_USER_INPUT` |
+| Request time | 30 seconds | Fields still waiting on the database fail with `INTERNAL_SERVER_ERROR` |
+
+Complexity: each selected field costs 1. A connection multiplies the cost of what you select inside it by `first` or `last`, or by 50 when neither is set. `Transaction.accounts` and `Operation.accounts` multiply by 50. The unpaginated lists on `AccountTransactionEdge` are not multiplied.
+
+| Query shape | Complexity |
+| --- | --- |
+| `transactions(first: 10)` > `operations(first: 2)` > `stateChanges(first: 5)`, a few fields each | 490 |
+| The same shape with no `first` | 507,650 |
+
+Always pass `first` or `last` on nested connections. Inline fragments add up: the service counts every inline fragment you select, even though each node matches only one, so a query that selects fields on every state change type pays for all of them on every edge. For depth, every field adds one level; inline and named fragments add none.
+
+```json
+{"errors":[{"message":"operation has complexity 507651, which exceeds the limit of 10000","extensions":{"code":"COMPLEXITY_LIMIT_EXCEEDED"}}],"data":null}
+```
+
+```json
+{"errors":[{"message":"operation has depth 22, which exceeds the limit of 15","extensions":{"code":"QUERY_TOO_DEEP"}}],"data":null}
+```
+
+## Errors
+
+GraphQL errors come in the standard envelope. Branch on `extensions.code`; `path` names the field that failed.
+
+```json
+{
+  "errors": [
+    {
+      "message": "first and last cannot be used together",
+      "path": ["accountByAddress", "transactions"],
+      "extensions": {"code": "BAD_USER_INPUT"}
+    }
+  ],
+  "data": {"accountByAddress": null}
+}
+```
+
+A failed field becomes `null`. When the field is non-null in the schema, the null moves up to the closest nullable parent, so a failure deep inside a transaction can null the whole `transactionByHash` result.
+
+| Code | Cause |
+| --- | --- |
+| `BAD_USER_INPUT` | Bad pagination arguments, a bad cursor, or `until` before `since` |
+| `INVALID_ADDRESS` | `accountByAddress` got something other than a `G...` or `C...` address. `extensions.address` echoes it. |
+| `INVALID_TRANSACTION_HASH` | The hash is not 64 hex characters. `extensions.hash` echoes it. |
+| `GRAPHQL_PARSE_FAILED` | The query text does not parse |
+| `GRAPHQL_VALIDATION_FAILED` | The query does not match the schema, for example an unknown field |
+| `COMPLEXITY_LIMIT_EXCEEDED` | See [Limits](#limits) |
+| `QUERY_TOO_DEEP` | See [Limits](#limits) |
+| `PERSISTED_QUERY_NOT_FOUND` | See [Persisted queries](#persisted-queries) |
+| `INTERNAL_ERROR` | Balances could not be read. Message: `failed to process account balances`. |
+| `INTERNAL_SERVER_ERROR` | Anything else, including a missing transaction or operation and a timeout. The message is always `internal server error`. |
+
+| HTTP status | When |
+| --- | --- |
+| 200 | The query ran, with or without errors in the envelope. Also limit errors and `PERSISTED_QUERY_NOT_FOUND`. |
+| 400 | The body is not valid JSON, or the method or content type is unsupported |
+| 401 | The API key in the URL is missing or invalid |
+| 422 | The query fails to parse or validate (400 instead with `Accept: application/graphql-response+json`) |
+
+## Persisted queries
+
+The service supports Automatic Persisted Queries (APQ): after the first request, a client can send a 64-character hash in place of the full query text.
+
+1. Compute the lowercase hex SHA-256 of the exact query string you send. When the query comes from `query.graphql`, hash the file:
+
+   ```bash
+   shasum -a 256 query.graphql | cut -d' ' -f1
+   ```
+
+2. Send the hash with no `query`:
+
+   ```json
+   {
+     "variables": {"hash": "<TX_HASH>"},
+     "extensions": {"persistedQuery": {"version": 1, "sha256Hash": "<SHA256_OF_QUERY>"}}
+   }
+   ```
+
+3. On a miss the response is:
+
+   ```json
+   {"errors":[{"message":"PersistedQueryNotFound","extensions":{"code":"PERSISTED_QUERY_NOT_FOUND"}}],"data":null}
+   ```
+
+   Send the same body again with `"query"` set to the query text. The service checks the hash, stores the query and runs it.
+
+4. Later requests send the hash alone and get the normal result.
+
+`version` must be `1`, and a hash that doesn't match the query returns `INTERNAL_SERVER_ERROR`. Each service instance keeps its own cache of 100 queries, so a client should always handle `PERSISTED_QUERY_NOT_FOUND` by resending the query text.
+
+<Note>
+  Adapted from the [stellar/wallet-backend documentation](https://github.com/stellar/wallet-backend/tree/main/docs/api) (Apache-2.0).
+</Note>

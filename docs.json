@@ -2800,6 +2800,17 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "group": "Wallet Backend",
+                    "root": "nodeapi/stellar/wallet-backend/index",
+                    "graphql": {
+                      "source": "nodeapi/openapi/stellar-wallet-backend.graphql",
+                      "directory": "nodeapi/stellar/wallet-backend"
+                    },
+                    "pages": [
+                      "nodeapi/stellar/wallet-backend/guide"
+                    ]
                   }
                 ]
               },

@@ -1,0 +1,61 @@
+---
+title: "Wallet Backend"
+description: "Query Stellar account history, balances and state changes with one GraphQL API."
+---
+
+Wallet Backend indexes Stellar Pubnet for wallets. One GraphQL query returns what would otherwise take several Horizon and Stellar RPC calls: an account's transactions, operations and state changes, and all of its balances, including XLM, trustlines, Stellar Asset Contract (SAC) tokens, SEP-41 tokens and liquidity pool shares.
+
+Validation Cloud runs the open-source [stellar/wallet-backend](https://github.com/stellar/wallet-backend) service.
+
+## Endpoint
+
+| Item | Value |
+| --- | --- |
+| URL | `https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/graphql/query` |
+| Network | Pubnet (mainnet) only |
+| Method | `POST` with `Content-Type: application/json` and a body of `{"query": "...", "variables": {...}}` |
+| Queries | Read-only: [accountByAddress](/nodeapi/stellar/wallet-backend/queries/accountByAddress), [transactionByHash](/nodeapi/stellar/wallet-backend/queries/transactionByHash) and [operationById](/nodeapi/stellar/wallet-backend/queries/operationById) |
+| Authentication | The API key in the URL, as on every Node API endpoint |
+
+Each request costs `20` [Compute Units](/nodeapi/about/billing), plus 1 compute unit per KB of the response. Select only the fields you need, and pass `first` or `last` on every list, to keep responses small.
+
+## Send a query
+
+This request returns an account's address and its first two balances:
+
+```bash
+curl https://mainnet.stellar.validationcloud.io/v1/<YOUR_API_KEY_HERE>/graphql/query \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"query":"{ accountByAddress(address: \"GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN\") { address balances(first: 2) { edges { node { tokenType balance } } } } }"}'
+```
+
+```json
+{
+  "data": {
+    "accountByAddress": {
+      "address": "GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
+      "balances": {
+        "edges": [
+          { "node": { "tokenType": "NATIVE", "balance": "26180.7714477" } },
+          { "node": { "tokenType": "CLASSIC", "balance": "12407658868.1412355" } }
+        ]
+      }
+    }
+  }
+}
+```
+
+## Limits
+
+| Limit | Value |
+| --- | --- |
+| Page size | Up to 100 items per list; 50 when you pass neither `first` nor `last` |
+| Query depth | 15 levels |
+| Query complexity | 10,000 (see [Limits](/nodeapi/stellar/wallet-backend/guide#limits)) |
+| Request time | 30 seconds |
+
+## Next steps
+
+- [Guide](/nodeapi/stellar/wallet-backend/guide): pagination, time bounds, balances, state changes, errors and persisted queries, with example queries.
+- **Queries** and **Types** in the sidebar: the full schema reference, generated from the service's GraphQL schema.
