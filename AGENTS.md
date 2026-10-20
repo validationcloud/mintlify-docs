@@ -34,12 +34,7 @@ Chain logos come from the `fractal-ui` sprite (`~/git/frontend/packages/fractal-
 - **Node API home:** the "Supported chains" card grid in `nodeapi/index.mdx`.
 - **Each chain's overview:** a `<span className="chain-logo-<folder>" />` marker at the top of the page. It puts the logo before the page title through the generated `chain-logos.css`.
 
-To add a chain:
-
-1. Add its folder and sprite ID to `LOGOS` in `scripts/export-chain-logos.py`.
-2. Run `python3 scripts/export-chain-logos.py`.
-3. Add the icon, card and marker in the 3 places above.
-4. Write its overview from `templates/chain-overview.mdx` (see below).
+To add a chain or a network, follow `.claude/skills/adding-a-chain/SKILL.md`: it covers the facts to gather, every file to touch, and the checks.
 
 Do not edit `chain-logos.css` by hand.
 
@@ -54,7 +49,7 @@ Every `nodeapi/<folder>/overview.mdx` follows `templates/chain-overview.mdx`, in
 5. `## Getting Started`: one `curl` request per network, copied from a cheap method page of the same chain (`eth_blockNumber` for EVM chains), plus a `wscat` example when the chain supports WebSockets.
 6. `## Compute Units`: the method cost table, always last.
 
-Don't add generic sections such as "Endpoint Capabilities". `python3 scripts/check-chain-overviews.py` checks the order and runs in CI.
+Don't add generic sections such as "Endpoint Capabilities". `python3 scripts/check-chains.py` runs in CI. It checks the section order, that the Compute Units table matches the method pages, that every chain page is in the sidebar, and that no page carries another chain's endpoint host or links.
 
 ## Terminology
 

@@ -21,9 +21,9 @@ jobs:
       # Pinned so a CLI release can't change the result without a commit; bump when updating locally
       - run: npx --yes mint@4.2.1040 broken-links
 
-  # Chain overview pages must follow templates/chain-overview.mdx
+  # Chain overviews follow templates/chain-overview.mdx; chain pages are complete and don't mix chains
   chain-overviews:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/check-chain-overviews.py
+      - run: python3 scripts/check-chains.py
