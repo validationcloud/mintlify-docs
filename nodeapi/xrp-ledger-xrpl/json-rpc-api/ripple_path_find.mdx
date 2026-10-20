@@ -81,6 +81,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"ripple_path_find","params":[{"source_account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","destination_account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","destination_amount":{"currency":"524C555344000000000000000000000000000000","issuer":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","value":"1"},"source_currencies":[{"currency":"XRP"}],"ledger_index":"validated"}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ripple_path_find","params":[{"source_account":"rJzt9K4obfhXRk9jY74oVk5uT65xaB2JiL","destination_account":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu","destination_amount":{"currency":"USD","issuer":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu","value":"1"},"source_currencies":[{"currency":"USD","issuer":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu"}]}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"ripple_path_find","source_account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","destination_account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","destination_amount":{"currency":"524C555344000000000000000000000000000000","issuer":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","value":"1"},"source_currencies":[{"currency":"XRP"}],"ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

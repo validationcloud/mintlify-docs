@@ -64,6 +64,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"ledger","params":[{"ledger_index":"validated","transactions":false,"expand":false}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ledger","params":[{"ledger_index":"validated","transactions":false,"expand":false}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"ledger","ledger_index":"validated","transactions":false,"expand":false}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

@@ -43,6 +43,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"ledger_index","params":[{"date":"2025-01-01T00:00:00Z"}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"ledger_index","params":[{"date":"2026-10-15T00:00:00Z"}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"ledger_index","date":"2025-01-01T00:00:00Z"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

@@ -61,6 +61,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"get_aggregate_price","params":[{"base_asset":"XRP","quote_asset":"USD","trim":20,"oracles":[{"account":"rsNvoAZ9MquZSRhu4cEY9wTv1VqHXpVPPt","oracle_document_id":1}],"ledger_index":"validated"}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"get_aggregate_price","params":[{"base_asset":"BTC","quote_asset":"USD","trim":20,"oracles":[{"account":"rwQLEtnUXgtGpvnFtCHeiMykDQ2cKJbwDW","oracle_document_id":1}]}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"get_aggregate_price","base_asset":"XRP","quote_asset":"USD","trim":20,"oracles":[{"account":"rsNvoAZ9MquZSRhu4cEY9wTv1VqHXpVPPt","oracle_document_id":1}],"ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

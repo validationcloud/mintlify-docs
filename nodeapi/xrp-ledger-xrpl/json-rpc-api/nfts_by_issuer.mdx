@@ -66,6 +66,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"nfts_by_issuer","params":[{"issuer":"rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ","limit":2}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"nfts_by_issuer","params":[{"issuer":"rK2dNJDJBGPvshUSNe2gjeg6rDGcPCkGgD","limit":2}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"nfts_by_issuer","issuer":"rCUbpFYSh2vySPLT26SMwqAQU9rzKAxvZ","limit":2}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

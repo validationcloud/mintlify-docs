@@ -66,6 +66,14 @@ wscat -c wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
 {"type":"ledgerClosed","ledger_index":107334675,"ledger_hash":"2471C26C1A629496D7267B2E5F919B98667DD7FDDAF81F39347D25645D437C20","ledger_time":844077071,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"32570-107334675","txn_count":57,"network_id":0}
 ```
 
+```bash title="testnet"
+wscat -c wss://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+
+{"id":1,"command":"subscribe","streams":["ledger"]}
+{"id":1,"result":{"network_id":1,"ledger_index":21685208,"ledger_hash":"2B5CD4E2E4FF5296989D412DFDBEC3AFFB7ACEFD8EB4264DF8B454D003618A27","ledger_time":845821190,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"21490680-21685208"},"status":"success","type":"response"}
+{"type":"ledgerClosed","ledger_index":21685209,"ledger_hash":"E7F5B2A639355393D79193AD12841EADCA1DEC320EEB7A8DAE4E67432EBA83D7","ledger_time":845821191,"fee_base":10,"reserve_base":1000000,"reserve_inc":200000,"validated_ledgers":"21490680-21685209","txn_count":9,"network_id":1}
+```
+
 </CodeGroup>
 
 The native XRPL request shape shown above puts the parameters at the top level next to `command`. The JSON-RPC shaped request `{"jsonrpc":"2.0","id":1,"method":"subscribe","params":[{"streams":["ledger"]}]}` is also accepted on the same WebSocket connection. To watch specific accounts or an order book, add `accounts` or `books` to the same request, for example `{"id":2,"command":"subscribe","accounts":["rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De"]}`. Subscriptions end when you send `unsubscribe` or close the connection.

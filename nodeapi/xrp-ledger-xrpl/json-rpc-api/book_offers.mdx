@@ -70,6 +70,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"book_offers","params":[{"taker_gets":{"currency":"XRP"},"taker_pays":{"currency":"524C555344000000000000000000000000000000","issuer":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De"},"ledger_index":"validated","limit":2}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"book_offers","params":[{"taker_gets":{"currency":"WAR","issuer":"rQGbw4Q5jqq2t25r4vjsyRksXvoM1o2Jf6"},"taker_pays":{"currency":"XRP"},"ledger_index":"validated","limit":5}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"book_offers","taker_gets":{"currency":"XRP"},"taker_pays":{"currency":"524C555344000000000000000000000000000000","issuer":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De"},"ledger_index":"validated","limit":2}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

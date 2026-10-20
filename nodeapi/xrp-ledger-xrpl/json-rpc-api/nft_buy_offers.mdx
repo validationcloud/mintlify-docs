@@ -56,6 +56,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"nft_buy_offers","params":[{"nft_id":"0008170207397A8AA414511E6E0649C9980E185E1C19D74010CEAF0005E46EE3","ledger_index":"validated","limit":50}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"nft_buy_offers","params":[{"nft_id":"000800007F56A15E723EA4AAFF323C7A6A800013BC49EBDA9AE925ED01424A73","ledger_index":"validated","limit":5}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"nft_buy_offers","nft_id":"0008170207397A8AA414511E6E0649C9980E185E1C19D74010CEAF0005E46EE3","ledger_index":"validated","limit":50}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

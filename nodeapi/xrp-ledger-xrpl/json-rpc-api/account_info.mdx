@@ -78,6 +78,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"account_info","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_info","params":[{"account":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu","ledger_index":"validated"}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"account_info","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
