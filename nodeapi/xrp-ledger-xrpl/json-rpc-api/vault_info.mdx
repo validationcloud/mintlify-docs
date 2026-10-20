@@ -76,8 +76,15 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"vault_info","params":[{"vault_id":"9E48171960CD9F62C3A7B6559315A510AE544C3F51E02947B5D4DAC8AA66C3BA","ledger_index":"validated"}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"vault_info","params":[{"vault_id":"9E48171960CD9F62C3A7B6559315A510AE544C3F51E02947B5D4DAC8AA66C3BA","ledger_index":"validated"}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"vault_info","vault_id":"9E48171960CD9F62C3A7B6559315A510AE544C3F51E02947B5D4DAC8AA66C3BA","ledger_index":"validated"}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.
 
-> The SingleAssetVault amendment is not yet enabled on XRPL mainnet (checked with `feature` on 28 September 2026), so there are no vaults to look up and a live call returns `entryNotFound`. The method is routed and billed as above and will return real data once the amendment activates.
+> The SingleAssetVault amendment is not yet enabled on XRPL Mainnet or Testnet (checked with `feature` on 20 October 2026), so there are no vaults to look up and a live call returns `entryNotFound`. The method is routed and billed as above and will return real data once the amendment activates.

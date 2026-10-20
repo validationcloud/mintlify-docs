@@ -63,6 +63,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"transaction_entry","params":[{"tx_hash":"EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E","ledger_index":107045822}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"transaction_entry","params":[{"tx_hash":"0851366B9DABA8426AC4B5BC40C6231F1F025A8FE0752A545350F041473F6631","ledger_index":21683660}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"transaction_entry","tx_hash":"EAF2C49070D83BB7A6DFC4DAF2547E01BA69248B9C4E9DE429BCF7406F6B250E","ledger_index":107045822}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

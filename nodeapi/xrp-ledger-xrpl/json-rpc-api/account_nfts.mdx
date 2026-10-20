@@ -63,6 +63,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"account_nfts","params":[{"account":"rGNtXLja1ZJk2Kcum2wDdvaAk12pXHCcro","ledger_index":"validated","limit":20}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_nfts","params":[{"account":"rDeH7SFsSsT9A8hti9bH5TsaUqTtuoxnX5","ledger_index":"validated","limit":20}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"account_nfts","account":"rGNtXLja1ZJk2Kcum2wDdvaAk12pXHCcro","ledger_index":"validated","limit":20}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

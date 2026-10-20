@@ -71,6 +71,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"simulate","params":[{"tx_json":{"TransactionType":"Payment","Account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","Destination":"rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH","Amount":"1000000"},"binary":false}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"simulate","params":[{"tx_json":{"TransactionType":"Payment","Account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","Destination":"rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH","Amount":"1000000"},"binary":false}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"simulate","tx_json":{"TransactionType":"Payment","Account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","Destination":"rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH","Amount":"1000000"},"binary":false}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

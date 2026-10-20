@@ -48,6 +48,13 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"noripple_check","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","role":"gateway","ledger_index":"validated","limit":2}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"noripple_check","params":[{"account":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu","role":"gateway","ledger_index":"validated","limit":2}]}'
+```
+
 </CodeGroup>
 
 Over WebSocket, send `{"id":1,"command":"noripple_check","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","role":"gateway","ledger_index":"validated","limit":2}` to `wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>`.

@@ -38,6 +38,15 @@ wscat -c wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
 {"id":2,"result":{},"status":"success","type":"response"}
 ```
 
+```bash title="testnet"
+wscat -c wss://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+
+{"id":1,"command":"subscribe","streams":["ledger"]}
+{"id":1,"result":{},"status":"success","type":"response"}
+{"id":2,"command":"unsubscribe","streams":["ledger"]}
+{"id":2,"result":{},"status":"success","type":"response"}
+```
+
 </CodeGroup>
 
 The JSON-RPC shaped request `{"jsonrpc":"2.0","id":2,"method":"unsubscribe","params":[{"streams":["ledger"]}]}` is also accepted on the same WebSocket connection. Closing the WebSocket connection removes all of its subscriptions without needing an explicit `unsubscribe`.

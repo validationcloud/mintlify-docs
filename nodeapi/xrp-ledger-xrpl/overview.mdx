@@ -12,16 +12,21 @@ import TryFree from "/snippets/try-free.mdx";
 
 The XRP Ledger (XRPL) is a decentralized Layer 1 blockchain built for payments, with native support for issued currencies, a built-in decentralized exchange, automated market makers and NFTs.
 
-Validation Cloud serves the complete public ledger history, from ledger 32,570 to the current ledger, with WebSocket and HTTPS access.
+Validation Cloud serves XRPL Mainnet with the complete public ledger history, from ledger 32,570 to the current ledger, and XRPL Testnet (Altnet) with history since mid-October 2026. Both networks have WebSocket and HTTPS access.
 
 Developer docs: [https://xrpl.org/docs](https://xrpl.org/docs)
 
 Mainnet block explorer: [https://livenet.xrpl.org](https://livenet.xrpl.org)
 
+Testnet block explorer: [https://testnet.xrpl.org](https://testnet.xrpl.org)
+
 ## Network Support
 | Network      | Full History / Archive | HTTPS | WSS |
 | ------------ | ---------------------- | ----- | --- |
 | XRPL Mainnet | ✅                      | ✅     | ✅   |
+| XRPL Testnet | Since mid-October 2026 | ✅     | ✅   |
+
+> **Testnet resets.** Ripple occasionally resets XRPL Testnet, which deletes all accounts and balances and restarts ledger numbering at 1. The last reset was on 19 August 2024. After a reset, fund your accounts again from the [XRPL faucet](https://xrpl.org/resources/dev-tools/xrp-faucets).
 
 > **Request format.** \
 > \
@@ -54,16 +59,32 @@ curl https://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
     -d '{"method":"account_info","params":[{"account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}]}'
 ```
 
+```bash title="testnet"
+curl https://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"method":"account_info","params":[{"account":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu","ledger_index":"validated"}]}'
+```
+
 </CodeGroup>
 
 Use WebSocket for the `ledger`, `transactions` and `validations` streams and for `subscribe`.
 
 Example request over WebSocket:
 
-```bash
+<CodeGroup>
+
+```bash title="mainnet"
 wscat -c wss://mainnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
 > {"id":1,"command":"account_info","account":"rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De","ledger_index":"validated"}
 ```
+
+```bash title="testnet"
+wscat -c wss://testnet.xrpl.validationcloud.io/v1/<YOUR_API_KEY_HERE>
+> {"id":1,"command":"account_info","account":"rDzYkrDBG8uLa5EotddkzhZnAuFXXxf8Bu","ledger_index":"validated"}
+```
+
+</CodeGroup>
 
 With xrpl.js:
 
