@@ -1,0 +1,87 @@
+---
+title: "debug_traceBlockByHash"
+---
+
+Traces every transaction in the block specified by block hash and returns the tracer result for each one.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`blockHash` - String - <span style={{color: "red"}}>Required</span> - The block hash.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - An array with one entry per transaction in the block, each containing:
+
+* `txHash` - The hash of the transaction.
+* `result` - With `callTracer`, the call trace of the transaction, an object with:
+  * `from` - The address the transaction is sent from.
+  * `gas` - The integer of the gas provided for the transaction execution.
+  * `gasUsed` - The integer of the gas used.
+  * `to` - The address the transaction is directed to.
+  * `input` - The data given at the time of input.
+  * `output` - The data returned by the call, when present.
+  * `value` - The integer of the value sent with this transaction.
+  * `type` - The type of call.
+  * `calls` - A list of sub-calls, when present.
+
+With `prestateTracer`, each result is instead a map keyed by account address, holding the state the transaction touched (such as `balance`, `nonce`, `code` and `storage`).
+
+```json
+// Result (first of the block's 10 traces shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "result": {
+        "from": "0x0740557b450b5a8a2154af30f75c7f4c4aa03c33",
+        "gas": "0x10444",
+        "gasUsed": "0x9870",
+        "to": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "input": "0xa9059cbb000000000000000000000000fa1711c6513b09b13ee8aeef0dff266114b4e97c00000000000000000000000000000000000000000000000000000000...",
+        "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "calls": [
+          {
+            "from": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "gas": "0x91ba",
+            "gasUsed": "0x3acd",
+            "to": "0xf555a12bffaef20cc201a74ae6513cb4aadb34b9",
+            "input": "0xa9059cbb000000000000000000000000fa1711c6513b09b13ee8aeef0dff266114b4e97c00000000000000000000000000000000000000000000000000000000...",
+            "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "value": "0x0",
+            "type": "DELEGATECALL"
+          }
+        ],
+        "value": "0x0",
+        "type": "CALL"
+      },
+      "txHash": "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7"
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByHash","params":["0xfea405cc05c207915fd74418090b6cdf203b0700fd0c7f3aa127d9a7cc02bbe5",{"tracer":"callTracer"}],"id":1}'
+    
+```
+
+</CodeGroup>
+

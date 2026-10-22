@@ -1,0 +1,93 @@
+---
+title: "eth_getTransactionReceipt"
+---
+
+Returns the receipt of a transaction by transaction hash. Note that the receipt is not available for pending transactions.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionreceipt)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - hash of a transaction
+
+```javascript
+params: [
+  "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7"
+]
+```
+
+## Returns
+
+`Object` - A transaction receipt object, or `null` when no receipt was found:
+
+* `transactionHash` : `DATA`, 32 Bytes - hash of the transaction.
+* `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block.
+* `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in.
+* `blockNumber`: `QUANTITY` - block number where this transaction was in.
+* `from`: `DATA`, 20 Bytes - address of the sender.
+* `to`: `DATA`, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+* `cumulativeGasUsed` : `QUANTITY` - The total amount of gas used when this transaction was executed in the block.
+* `effectiveGasPrice` : `QUANTITY` - The sum of the base fee and tip paid per unit of gas.
+* `gasUsed` : `QUANTITY` - The amount of gas used by this specific transaction alone.
+* `contractAddress` : `DATA`, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise `null`.
+* `logs`: `Array` - Array of log objects, which this transaction generated.
+* `logsBloom`: `DATA`, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
+* `type`: `DATA` - integer of the transaction type, `0x00` for legacy transactions, `0x01` for access list types, `0x02` for dynamic fees. It also returns _either_ :
+* `root` : `DATA` 32 bytes of post-transaction stateroot (pre Byzantium)
+* `status`: `QUANTITY` either `1` (success) or `0` (failure)
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "type": "0x0",
+    "status": "0x1",
+    "cumulativeGasUsed": "0x9870",
+    "logs": [
+      {
+        "address": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x0000000000000000000000000740557b450b5a8a2154af30f75c7f4c4aa03c33",
+          "0x000000000000000000000000fa1711c6513b09b13ee8aeef0dff266114b4e97c"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000005638799",
+        "blockHash": "0xfea405cc05c207915fd74418090b6cdf203b0700fd0c7f3aa127d9a7cc02bbe5",
+        "blockNumber": "0x2214aa3",
+        "blockTimestamp": "0x6ada16f5",
+        "transactionHash": "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7",
+        "transactionIndex": "0x0",
+        "logIndex": "0x0",
+        "removed": false
+      }
+    ],
+    "logsBloom": "0x00000000400000000000000000000000000000000000020000000000000000000000000000000000000000000001000000000000080000000000000000000000...",
+    "transactionHash": "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7",
+    "transactionIndex": "0x0",
+    "blockHash": "0xfea405cc05c207915fd74418090b6cdf203b0700fd0c7f3aa127d9a7cc02bbe5",
+    "blockNumber": "0x2214aa3",
+    "gasUsed": "0x9870",
+    "effectiveGasPrice": "0x77359400",
+    "from": "0x0740557b450b5a8a2154af30f75c7f4c4aa03c33",
+    "to": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+    "contractAddress": null
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7"],"id":1}'
+```
+
+</CodeGroup>

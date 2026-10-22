@@ -18,7 +18,7 @@ LOGOS = {
     'aptos': 'apt', 'arbitrum': 'arb', 'arc': 'arc', 'avalanche': 'avax', 'base': 'base',
     'berachain': 'bera', 'bitcoin': 'btc', 'bsc': 'bnb', 'conflux': 'cfx', 'ethereum': 'eth',
     'hedera': 'hbar', 'hyperliquid': 'hype', 'icp': 'icp', 'mezo': 'mezo', 'monad': 'mon',
-    'opbnb': 'opbnb', 'optimism': 'optimism', 'polygon': 'matic', 'rayls': 'rls',
+    'opbnb': 'opbnb', 'optimism': 'optimism', 'plasma': 'xpl', 'polygon': 'matic', 'rayls': 'rls',
     'robinhood-chain': 'rbh', 'solana': 'sol', 'somnia': 'stt', 'stellar': 'xlm', 'tempo': 'tempo',
     'tron': 'trx', 'unichain': 'uni', 'wemix': 'wemix', 'xrp-ledger-xrpl': 'xrp',
 }

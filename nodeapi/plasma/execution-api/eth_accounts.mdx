@@ -1,0 +1,39 @@
+---
+title: "eth_accounts"
+---
+
+Returns a list of addresses owned by client. Validation Cloud does not manage keys, so the result is always an empty array.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_accounts)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`array of data` - 20 Bytes - addresses owned by the client
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": []
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'
+```
+
+</CodeGroup>

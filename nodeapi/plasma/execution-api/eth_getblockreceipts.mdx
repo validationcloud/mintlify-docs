@@ -1,0 +1,102 @@
+---
+title: "eth_getBlockReceipts"
+---
+
+Returns all transaction receipts for a given block.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+1. `blockReference` - string - a block number in hexadecimal, a block hash, or a tag such as `"latest"`.
+
+The block number or block hash in hexadecimal format or tags. The supported tag values include earliest for the earliest/genesis block, latest for the latest mined block, pending for the pending state/transactions, `safe` for the latest block derived from data posted to Ethereum, and `finalized` for the latest block whose Ethereum (L1) data is finalized
+
+```json
+params: [
+  "0x2214aa3"
+]
+```
+
+## **Returns**
+
+* `type`: `string` - the value type
+* `cumulativeGasUsed`: `string` - the sum of gas used by this transaction and all preceding transactions in the same block.
+* `blockHash`: `string` - the hash of the block. null when pending
+* `blockNumber`: `string` - the block number
+* `contractAddress`: `string` (optional) - the contract address created, if the transaction was a contract creation, otherwise null.
+* `effectiveGasPrice` : `string` - the actual value per gas deducted from the sender account
+* `from` : `string` - the address of the sender
+* `gasUsed` : `string` - the amount of gas used by this specific transaction alone
+* `logs` : `array` objects
+  * `transactionHash`: `string` - the hash of the transactions this log was created from. null when its a pending log
+  * `address` : `string` (optional) - an address from which this log originated
+  * `topics` : `array` (optional) - an array of zero to four 32 Bytes DATA of indexed log arguments. In Solidity, the first topic is the hash of the signature of the event (e.g. Deposit(address, bytes32, uint256)), except you declare the event with the anonymous specifier.
+  * `data` : `string` (optional) - contains one or more 32 Bytes non-indexed arguments of the log
+  * `blockNumber`: `string` (optional) - the block number where this log was in. null when its a pending log
+  * `transactionIndex`: `string` (optional) - the integer of the transaction's index position that the log was created from. null when it's a pending log
+  * `blockHash` : `string` (optional) - the hash of the block where this log was in. null when its a pending log
+  * `logIndex` : `string` (optional) - the integer of the log index position in the block. null when its a pending log
+  * `removed`: `boolean` (optional) - true when the log was removed due to a chain reorganization, and false if it's a valid log
+* `logsBloom` : `string` - the bloom filter for light clients to quickly retrieve related logs
+* `status`: `string` (optional) - it is either 1 (success) or 0 (failure) encoded as a hexadecimal
+* `to`: `string` (optional) - the address of the receiver. null when it's a contract creation transaction
+* `transactionHash`: `string` - the hash of the transaction
+* `transactionIndex`: `string` - an index of the transaction in the block
+
+```json
+// Result (first of the block's 10 receipts shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "type": "0x0",
+      "status": "0x1",
+      "cumulativeGasUsed": "0x9870",
+      "logs": [
+        {
+          "address": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+          "topics": [
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            "0x0000000000000000000000000740557b450b5a8a2154af30f75c7f4c4aa03c33",
+            "0x000000000000000000000000fa1711c6513b09b13ee8aeef0dff266114b4e97c"
+          ],
+          "data": "0x0000000000000000000000000000000000000000000000000000000005638799",
+          "blockHash": "0xfea405cc05c207915fd74418090b6cdf203b0700fd0c7f3aa127d9a7cc02bbe5",
+          "blockNumber": "0x2214aa3",
+          "blockTimestamp": "0x6ada16f5",
+          "transactionHash": "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7",
+          "transactionIndex": "0x0",
+          "logIndex": "0x0",
+          "removed": false
+        }
+      ],
+      "logsBloom": "0x00000000400000000000000000000000000000000000020000000000000000000000000000000000000000000001000000000000080000000000000000000000...",
+      "transactionHash": "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7",
+      "transactionIndex": "0x0",
+      "blockHash": "0xfea405cc05c207915fd74418090b6cdf203b0700fd0c7f3aa127d9a7cc02bbe5",
+      "blockNumber": "0x2214aa3",
+      "gasUsed": "0x9870",
+      "effectiveGasPrice": "0x77359400",
+      "from": "0x0740557b450b5a8a2154af30f75c7f4c4aa03c33",
+      "to": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+      "contractAddress": null
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBlockReceipts","params":["0x2214aa3"],"id":1}'
+```
+
+</CodeGroup>
+

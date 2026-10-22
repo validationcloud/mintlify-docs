@@ -1,0 +1,40 @@
+---
+title: "eth_getBalance"
+---
+
+Returns the balance of the account of given address.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getbalance)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - address to check for balance.
+2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`QUANTITY` - hexadecimal value of the current balance in wei.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x3a661138a4800"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x0740557b450b5a8a2154af30f75c7f4c4aa03c33","latest"],"id":1}'
+```
+
+</CodeGroup>
