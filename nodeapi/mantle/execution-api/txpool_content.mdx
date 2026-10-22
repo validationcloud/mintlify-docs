@@ -1,0 +1,65 @@
+---
+title: "txpool_content"
+---
+
+Returns a list of pending and queued transactions.
+
+This method will use `500` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Mantle transactions are forwarded to the Mantle sequencer rather than held in our node's pool, so `pending` and `queued` are usually empty.
+
+</Info>
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+An object with two maps, `pending` and `queued`. Each map is keyed by sender address, then by nonce, and each entry is a transaction object with the following fields:
+
+* `blockHash` - Hash of block the transaction is in, null since its pending
+* `blockNumber` - hexadecimal block number of the block the transaction is in, null since pending
+* `from` - Address of the sender
+* `gas` - The gas limit of the transaction
+* `gasPrice` - The gas price, in wei per unit of gas
+* `maxFeePerGas` - The maximum total fee the sender will pay, in wei per unit of gas
+* `maxPriorityFeePerGas` - The maximum priority fee (tip) the sender will pay, in wei per unit of gas
+* `hash` - Hash of the transaction
+* `input` - Encoded transaction input data
+* `nonce` - Number of transactions the sender has sent till now
+* `v` - hexadecimal ECDSA recovery id
+* `r` - ECDSA signature r
+* `s` - ECDSA signature s
+* `to` - Address of the receiver
+* `transactionIndex` - hexadecimal integer of the transactions index position in the block, null since pending
+* `type` - A number between 0 and 0x7f, for a total of 128 possible transaction types.
+* `value` - hexadecimal value transferred
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "pending": {},
+    "queued": {}
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"txpool_content","params":[],"id":1}'
+```
+
+</CodeGroup>
+

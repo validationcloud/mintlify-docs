@@ -1,0 +1,85 @@
+---
+title: "eth_getTransactionByBlockNumberAndIndex"
+---
+
+Returns information about a transaction by block number and transaction index position.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyblocknumberandindex)
+
+## **Parameters**
+
+1. `QUANTITY|TAG` - a block number, or the string `"earliest"`, `"latest"` or `"pending"`, as in the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+2. `QUANTITY` - the transaction index position.
+
+```json
+params: [
+  "0x618a700",
+  "0x1"
+]
+```
+
+## Returns
+
+`Object` - A transaction object, or `null` when no transaction was found:
+
+* `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+* `blockNumber`: `QUANTITY` - block number where this transaction was in. `null` when its pending.
+* `from`: `DATA`, 20 Bytes - address of the sender.
+* `gas`: `QUANTITY` - gas provided by the sender.
+* `gasPrice`: `QUANTITY` - gas price provided by the sender in Wei.
+* `hash`: `DATA`, 32 Bytes - hash of the transaction.
+* `input`: `DATA` - the data send along with the transaction.
+* `nonce`: `QUANTITY` - the number of transactions made by the sender prior to this one.
+* `to`: `DATA`, 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+* `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block. `null` when its pending.
+* `value`: `QUANTITY` - value transferred in Wei.
+* `v`: `QUANTITY` - ECDSA recovery id
+* `r`: `QUANTITY` - ECDSA signature r
+* `s`: `QUANTITY` - ECDSA signature s
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "blockHash": "0x0e9f8b25705acb6e4eee68d5b43e6565827fbd2976ab27f7e7ed0704e3c9eaca",
+    "blockNumber": "0x618a700",
+    "blockTimestamp": "0x6ada4008",
+    "from": "0xe7cac669cc341bae5edda780538d2dcd5ba37bdc",
+    "gas": "0x30d40",
+    "gasPrice": "0xdf8492cc0",
+    "maxFeePerGas": "0xdf8492cc0",
+    "maxPriorityFeePerGas": "0xdf8492cc0",
+    "hash": "0x1ecda3069718c657ba153c9bb5b6c6551eed60024ccd129162eea5643d1c7eb5",
+    "input": "0x414bf389000000000000000000000000779ded0c9e1022225f8e0630b35a9b54be713736000000000000000000000000deaddeaddeaddeaddeaddeaddeaddead...",
+    "nonce": "0x49e",
+    "to": "0x5628a59df0ecac3f3171f877a94beb26ba6dfaa0",
+    "transactionIndex": "0x1",
+    "value": "0x0",
+    "type": "0x2",
+    "accessList": [],
+    "chainId": "0x1388",
+    "v": "0x1",
+    "r": "0x1b878aa6f1e8bb5b729dfc662d6120fe93ca6569bae92de2e5a63345d21c4ac5",
+    "s": "0x7ad3b8190bfdd4d095c57fd5e00bb1ef563d3428b2822864791711aa58a58c22",
+    "yParity": "0x1"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionByBlockNumberAndIndex","params":["0x618a700","0x1"],"id":1}'
+```
+
+</CodeGroup>
+

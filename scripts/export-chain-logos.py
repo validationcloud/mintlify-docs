@@ -17,7 +17,7 @@ OUT = 'nodeapi/assets/chains'
 LOGOS = {
     'aptos': 'apt', 'arbitrum': 'arb', 'arc': 'arc', 'avalanche': 'avax', 'base': 'base',
     'berachain': 'bera', 'bitcoin': 'btc', 'bsc': 'bnb', 'conflux': 'cfx', 'ethereum': 'eth',
-    'hedera': 'hbar', 'hyperliquid': 'hype', 'icp': 'icp', 'mezo': 'mezo', 'monad': 'mon',
+    'hedera': 'hbar', 'hyperliquid': 'hype', 'icp': 'icp', 'mantle': 'mnt', 'mezo': 'mezo', 'monad': 'mon',
     'opbnb': 'opbnb', 'optimism': 'optimism', 'polygon': 'matic', 'rayls': 'rls',
     'robinhood-chain': 'rbh', 'solana': 'sol', 'somnia': 'stt', 'stellar': 'xlm', 'tempo': 'tempo',
     'tron': 'trx', 'unichain': 'uni', 'wemix': 'wemix', 'xrp-ledger-xrpl': 'xrp',

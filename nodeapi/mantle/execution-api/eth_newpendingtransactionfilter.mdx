@@ -1,0 +1,39 @@
+---
+title: "eth_newPendingTransactionFilter"
+---
+
+Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call [eth\_getFilterChanges](/nodeapi/mantle/execution-api/eth_getfilterchanges).
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_newpendingtransactionfilter)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`QUANTITY` - A filter id.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 73,
+  "result": "0x59f6e4e087de42399ea8fb0b6773308"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_newPendingTransactionFilter","params":[],"id":73}'
+```
+
+</CodeGroup>

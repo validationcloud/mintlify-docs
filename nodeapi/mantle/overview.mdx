@@ -1,0 +1,111 @@
+---
+title: "Overview"
+---
+
+import TryFree from "/snippets/try-free.mdx";
+
+<span className="chain-logo-mantle" />
+
+<img className="page-cover" src="/nodeapi/assets/mantle-overview-2x.png" alt="" noZoom />
+
+<TryFree chain="Mantle" logo="/nodeapi/assets/chains/mantle.svg" />
+
+Mantle is an EVM-compatible scaling solution for Ethereum, built on the OP Stack as a ZK validity rollup. It produces a block every 2 seconds. Its native token is `MNT`.
+
+Block explorer: [https://mantlescan.xyz](https://mantlescan.xyz)
+
+Mantle's own developer documentation: [https://docs.mantle.xyz](https://docs.mantle.xyz)
+
+## Network Support
+
+| Network | Full History / Archive | HTTPS | WSS |
+| --- | --- | --- | --- |
+| Mantle Mainnet | <p>Blocks, receipts and logs ✅ to genesis<br /><br />State and Debug ❌ (last 128 blocks)</p> | ✅ | ✅ |
+
+> Mantle Mainnet keeps historical state for the last 128 blocks, about 4 minutes at Mantle's 2-second block time. State methods (`eth_call`, `eth_createAccessList`, `eth_estimateGas`, `eth_getBalance`, `eth_getCode`, `eth_getProof`, `eth_getStorageAt`, `eth_getTransactionCount`, `eth_simulateV1`) and the [Debug API](/nodeapi/mantle/debug-api) work for blocks inside that window. Older blocks return JSON-RPC error `-32000` with a message that contains `historical state <root> is not available`.
+
+> The Trace API (`trace_*`) is not available on Mantle. Use the [Debug API](/nodeapi/mantle/debug-api) for call traces.
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+Connect over WebSocket:
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.mantle.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+</CodeGroup>
+
+## Compute Units
+| Method | Compute units |
+| --- | --- |
+| [debug_getBadBlocks](/nodeapi/mantle/debug-api/debug_getbadblocks) | 80 |
+| [debug_traceBlockByHash](/nodeapi/mantle/debug-api/debug_traceblockbyhash) | 80 |
+| [debug_traceBlockByNumber](/nodeapi/mantle/debug-api/debug_traceblockbynumber) | 80 |
+| [debug_traceCall](/nodeapi/mantle/debug-api/debug_tracecall) | 80 |
+| [debug_traceTransaction](/nodeapi/mantle/debug-api/debug_tracetransaction) | 80 |
+| [eth_accounts](/nodeapi/mantle/execution-api/eth_accounts) | 20 |
+| [eth_blobBaseFee](/nodeapi/mantle/execution-api/eth_blobbasefee) | 10 |
+| [eth_blockNumber](/nodeapi/mantle/execution-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/mantle/execution-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/mantle/execution-api/eth_chainid) | 10 |
+| [eth_createAccessList](/nodeapi/mantle/execution-api/eth_createaccesslist) | 20 |
+| [eth_estimateGas](/nodeapi/mantle/execution-api/eth_estimategas) | 40 |
+| [eth_feeHistory](/nodeapi/mantle/execution-api/eth_feehistory) | 20 |
+| [eth_gasPrice](/nodeapi/mantle/execution-api/eth_gasprice) | 40 |
+| [eth_getBalance](/nodeapi/mantle/execution-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/mantle/execution-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/mantle/execution-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockReceipts](/nodeapi/mantle/execution-api/eth_getblockreceipts) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/mantle/execution-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/mantle/execution-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/mantle/execution-api/eth_getcode) | 40 |
+| [eth_getFilterChanges](/nodeapi/mantle/execution-api/eth_getfilterchanges) | 40 |
+| [eth_getFilterLogs](/nodeapi/mantle/execution-api/eth_getfilterlogs) | 40 |
+| [eth_getLogs](/nodeapi/mantle/execution-api/eth_getlogs) | 80 |
+| [eth_getProof](/nodeapi/mantle/execution-api/eth_getproof) | 40 |
+| [eth_getRawTransactionByHash](/nodeapi/mantle/execution-api/eth_getrawtransactionbyhash) | 10 |
+| [eth_getStorageAt](/nodeapi/mantle/execution-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/mantle/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/mantle/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/mantle/execution-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionCount](/nodeapi/mantle/execution-api/eth_gettransactioncount) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/mantle/execution-api/eth_gettransactionreceipt) | 40 |
+| [eth_getUncleByBlockHashAndIndex](/nodeapi/mantle/execution-api/eth_getunclebyblockhashandindex) | 40 |
+| [eth_getUncleByBlockNumberAndIndex](/nodeapi/mantle/execution-api/eth_getunclebyblocknumberandindex) | 40 |
+| [eth_getUncleCountByBlockHash](/nodeapi/mantle/execution-api/eth_getunclecountbyblockhash) | 40 |
+| [eth_getUncleCountByBlockNumber](/nodeapi/mantle/execution-api/eth_getunclecountbyblocknumber) | 40 |
+| [eth_maxPriorityFeePerGas](/nodeapi/mantle/execution-api/eth_maxpriorityfeepergas) | 20 |
+| [eth_newBlockFilter](/nodeapi/mantle/execution-api/eth_newblockfilter) | 40 |
+| [eth_newFilter](/nodeapi/mantle/execution-api/eth_newfilter) | 40 |
+| [eth_newPendingTransactionFilter](/nodeapi/mantle/execution-api/eth_newpendingtransactionfilter) | 40 |
+| [eth_sendRawTransaction](/nodeapi/mantle/execution-api/eth_sendrawtransaction) | 80 |
+| [eth_simulateV1](/nodeapi/mantle/execution-api/eth_simulatev1) | 40 |
+| [eth_subscribe](/nodeapi/mantle/execution-api/eth_subscribe) | 20 |
+| [eth_syncing](/nodeapi/mantle/execution-api/eth_syncing) | 10 |
+| [eth_uninstallFilter](/nodeapi/mantle/execution-api/eth_uninstallfilter) | 20 |
+| [eth_unsubscribe](/nodeapi/mantle/execution-api/eth_unsubscribe) | 20 |
+| [net_listening](/nodeapi/mantle/execution-api/net_listening) | 10 |
+| [net_peerCount](/nodeapi/mantle/execution-api/net_peercount) | 20 |
+| [net_version](/nodeapi/mantle/execution-api/net_version) | 10 |
+| [txpool_content](/nodeapi/mantle/execution-api/txpool_content) | 500 |
+| [web3_clientVersion](/nodeapi/mantle/execution-api/web3_clientversion) | 40 |
+| [web3_sha3](/nodeapi/mantle/execution-api/web3_sha3) | 40 |
+
