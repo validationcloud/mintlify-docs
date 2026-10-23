@@ -1,0 +1,115 @@
+---
+title: "eth_simulateV1"
+---
+
+Simulates one or more transaction bundles against the state of a given block, without broadcasting anything.
+
+This method supports state overrides, block overrides, multi-block simulation and optional transfer tracing.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Mantle Mainnet keeps historical state for the last 128 blocks, about 4 minutes at Mantle's 2-second block time. Requests for an older block return JSON-RPC error `-32000` with a message that contains `historical state <root> is not available`.
+
+</Info>
+
+### Parameters:
+
+`params` - array containing:
+
+1. `simulationPayload` - object - required
+
+Configuration object for the simulation.
+
+#### **simulationPayload fields:**
+
+* `blockStateCalls` - array - required\
+  Array of block simulation objects. Each represents a simulated block.
+* `traceTransfers` - boolean - optional\
+  If `true`, value transfers are included as logs. Defaults to `false`.
+* `validation` - boolean - optional\
+  If `true`, applies validation checks such as nonce and balance. Defaults to `false`.
+
+#### **blockStateCalls object fields:**
+
+* `calls` - array\
+  List of transaction call objects to simulate
+* `stateOverrides` - object - optional\
+  Override account state (balance, nonce, code, storage)
+* `blockOverrides` - object - optional\
+  Override block-level fields (e.g. `number`, `timestamp`, `baseFeePerGas`)
+
+#### **call object fields:**
+
+* `from` - string - optional\
+  Sender address
+* `to` - string - optional\
+  Recipient address. Omit it to simulate a contract creation
+* `maxFeePerGas` - string - optional\
+  Max fee per gas (hex)
+* `value` - string - optional\
+  Value sent (hex)
+* `data` - string - optional\
+  Hex-encoded calldata
+
+2. `blockParameter` - string - required
+
+Block number, hash, or tag such as `"latest"`.
+
+### Returns:
+
+`array of objects` - simulated block results. Each object is a full block header for the simulated block plus a `calls` array.
+
+#### **Call result fields:**
+
+* `status` - string\
+  "0x1" = success, "0x0" = failure
+* `gasUsed` - string\
+  Gas used (hex)
+* `returnData` - string\
+  Return data (hex)
+* `logs` - array\
+  Emitted logs (includes transfers if enabled)
+* `error` - string\
+  Error or revert reason (if failed)
+
+```javascript
+// Result (block header fields other than number, hash, gasUsed and baseFeePerGas omitted)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "number": "0x3a636de",
+      "hash": "0xfe0a79cf9b4bd07cb455f8ec20804a6e58e7fcb42da75f1afa59ed5f8cf9d34e",
+      "gasUsed": "0x5343",
+      "baseFeePerGas": "0x0",
+      "calls": [
+        {
+          "returnData": "0x00000000000000000000000000000000000000000000008aabff43c24bb147b6",
+          "logs": [],
+          "gasUsed": "0x5343",
+          "status": "0x1"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Example Request
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_simulateV1","params":[{"blockStateCalls":[{"calls":[{"to":"0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8","data":"0x18160ddd"}]}]},"latest"],"id":1}'
+```
+
+</CodeGroup>
+

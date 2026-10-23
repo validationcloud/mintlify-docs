@@ -1,0 +1,69 @@
+---
+title: "eth_subscribe"
+---
+
+Subscribes to real-time events over WebSocket and returns a subscription ID that is attached to every notification.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing) and each notification delivered on the subscription will use `10` Compute Units regardless of size.
+
+***
+
+## **Reference:** [**Here**](https://ethereum.org/en/developers/tutorials/using-websockets/#eth-subscribe)
+
+## **Parameters**
+
+`subscription name` - **string** - The type of event you want to subscribe to (newHeads, logs). This method supports the following subscription types:
+
+* **newHeads** - Fires a notification each time a new header is appended to the chain, including chain reorganizations.
+* **logs** - Returns logs that are included in new imported blocks and match the given filter criteria.
+
+`data - object -` (Optional) - Arguments such as an address, multiple addresses, and topics. Note, only logs that are created from these addresses or match the specified topics will return logs.
+
+```json
+// newHeads
+params: ["newHeads"]
+
+// logs from one contract
+params: ["logs", {"address": "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8"}]
+```
+
+## Returns
+
+`result - string` - Hex encoded subscription ID. This ID will be attached to all received events and can also be used to cancel the subscription using [eth\_unsubscribe](/nodeapi/mantle/execution-api/eth_unsubscribe).
+
+```json
+// Result
+{"id":1,"result":"0xb07dfbe23ce7a66acac7a048cb26ca4f","jsonrpc":"2.0"}
+
+//Example (newHeads)
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0xb07dfbe23ce7a66acac7a048cb26ca4f",
+    "result": {
+      "number": "0x618a665",
+      "hash": "0x9a397929902f7c09be0b0d41ab4b83ea06e45a8e3f6b25f538baf4b31612a266",
+      "parentHash": "0x67473ade049fb767bcf0ca4c8de7bb166cf701511020f4a97d49bc742030b82e",
+      "timestamp": "0x6ada3ed2",
+      "gasLimit": "0x3938700",
+      "gasUsed": "0xb4db",
+      "baseFeePerGas": "0xba43b7400",
+      "miner": "0x4200000000000000000000000000000000000011",
+      "transactionsRoot": "0x3e1709537329b0fa7ccbf673c46264031dc24b03711b132d1c09f1acae0a8fc2",
+      "receiptsRoot": "0x74cf646e910ffb147115148f6beeafc558ab5fa6b5655156e03cf67e977e81f5"
+    }
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.mantle.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+{"jsonrpc":  "2.0",  "id":  1,  "method":"eth_subscribe","params":["newHeads"]}
+{"jsonrpc":"2.0","result":"0xb07dfbe23ce7a66acac7a048cb26ca4f","id":1}
+```
+
+</CodeGroup>
+

@@ -1,0 +1,46 @@
+---
+title: "eth_getRawTransactionByHash"
+---
+
+Returns the raw, signed and RLP-encoded bytes of a transaction, given its hash.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.github.io/execution-apis/)
+
+## **Parameters**
+
+`DATA`, 32 Bytes - Hash of a transaction.
+
+```json
+params: [
+  "0x1ecda3069718c657ba153c9bb5b6c6551eed60024ccd129162eea5643d1c7eb5"
+]
+```
+
+## **Returns**
+
+`DATA` - The raw transaction bytes, or `null` when no transaction was found.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x02f9017782138882049e850df8492cc0850df8492cc083030d40945628a59df0ecac3f3171f877a94beb26ba6dfaa080b90104414bf389000000000000000000..."
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getRawTransactionByHash","params":["0x1ecda3069718c657ba153c9bb5b6c6551eed60024ccd129162eea5643d1c7eb5"],"id":1}'
+```
+
+</CodeGroup>
+

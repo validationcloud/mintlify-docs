@@ -1,0 +1,46 @@
+---
+title: "eth_unsubscribe"
+---
+
+Cancels an existing subscription so that no further events are sent.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`subscription ID` - string, the ID returned by an [eth\_subscribe](/nodeapi/mantle/execution-api/eth_subscribe) call
+
+```json
+params: [
+  "0xb07dfbe23ce7a66acac7a048cb26ca4f"
+]
+```
+
+## Returns
+
+`true` if a subscription was successfully cancelled, or `false` if no subscription existed with the given ID.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": true
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.mantle.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+{"jsonrpc":  "2.0",  "id":  1,  "method":"eth_subscribe","params":["newHeads"]}
+{"jsonrpc":"2.0","result":"0xb07dfbe23ce7a66acac7a048cb26ca4f","id":1}
+## subscription data
+{"id": 1, "jsonrpc":  "2.0", "method": "eth_unsubscribe", "params": ["0xb07dfbe23ce7a66acac7a048cb26ca4f"]}
+{"jsonrpc":"2.0","result":true,"id":1}
+```
+
+</CodeGroup>
+

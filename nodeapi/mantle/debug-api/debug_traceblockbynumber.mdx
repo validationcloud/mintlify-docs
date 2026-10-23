@@ -1,0 +1,91 @@
+---
+title: "debug_traceBlockByNumber"
+---
+
+Traces every transaction in the block specified by block number and returns the tracer result for each one.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Traces need the state of the traced block, so Mantle Mainnet can trace the last 127 blocks, about 4 minutes at Mantle's 2-second block time. Older blocks return JSON-RPC error `-32000` with the message `required historical state unavailable (reexec=128)`.
+
+</Info>
+
+## **Parameters**
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span>  - The block number as a string in hexadecimal format.
+
+`object` - Object - <span style={{color: "red"}}>Required</span>  - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - An array with one entry per transaction in the block, each containing:
+
+* `txHash` - The hash of the transaction.
+* `result` - With `callTracer`, the call trace of the transaction, an object with:
+  * `from` - The address the transaction is sent from.
+  * `gas` - The integer of the gas provided for the transaction execution.
+  * `gasUsed` - The integer of the gas used.
+  * `to` - The address the transaction is directed to.
+  * `input` - The data given at the time of input.
+  * `output` - The data returned by the call, when present.
+  * `value` - The integer of the value sent with this transaction.
+  * `type` - The type of call.
+  * `calls` - A list of sub-calls, when present.
+
+With `prestateTracer`, each result is instead a map keyed by account address, holding the state the transaction touched (such as `balance`, `nonce`, `code` and `storage`).
+
+```json
+// Result (first of the block's 4 traces shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "txHash": "0x0e3d604e1c3dd585778a84b1e59e826a2ac3059476bb621b024217e3363af510",
+      "result": {
+        "from": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0001",
+        "gas": "0xf4240",
+        "gasUsed": "0xb4e7",
+        "to": "0x4200000000000000000000000000000000000015",
+        "input": "0x49e723830002943b000000000000000000000004000000006ada3fcb000000000190890b00000000000000000000000000000000000000000000000000000000...",
+        "calls": [
+          {
+            "from": "0x4200000000000000000000000000000000000015",
+            "gas": "0xe9ac8",
+            "gasUsed": "0x48a4",
+            "to": "0xe977b52f42ae5ce38e4300f1a83feac4a7f84700",
+            "input": "0x49e723830002943b000000000000000000000004000000006ada3fcb000000000190890b00000000000000000000000000000000000000000000000000000000...",
+            "value": "0x0",
+            "type": "DELEGATECALL"
+          }
+        ],
+        "value": "0x0",
+        "type": "CALL"
+      }
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceBlockByNumber","params":["0x618a700",{"tracer":"callTracer"}],"id":1}'
+    
+```
+
+</CodeGroup>
+

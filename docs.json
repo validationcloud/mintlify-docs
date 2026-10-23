@@ -2094,6 +2094,76 @@
                 ]
               },
               {
+                "group": "Mantle",
+                "icon": "/nodeapi/assets/chains/mantle.svg",
+                "root": "nodeapi/mantle/overview",
+                "pages": [
+                  {
+                    "group": "Execution API",
+                    "pages": [
+                      "nodeapi/mantle/execution-api/eth_accounts",
+                      "nodeapi/mantle/execution-api/eth_blobbasefee",
+                      "nodeapi/mantle/execution-api/eth_blocknumber",
+                      "nodeapi/mantle/execution-api/eth_call",
+                      "nodeapi/mantle/execution-api/eth_chainid",
+                      "nodeapi/mantle/execution-api/eth_createaccesslist",
+                      "nodeapi/mantle/execution-api/eth_estimategas",
+                      "nodeapi/mantle/execution-api/eth_feehistory",
+                      "nodeapi/mantle/execution-api/eth_gasprice",
+                      "nodeapi/mantle/execution-api/eth_getbalance",
+                      "nodeapi/mantle/execution-api/eth_getblockbyhash",
+                      "nodeapi/mantle/execution-api/eth_getblockbynumber",
+                      "nodeapi/mantle/execution-api/eth_getblockreceipts",
+                      "nodeapi/mantle/execution-api/eth_getblocktransactioncountbyhash",
+                      "nodeapi/mantle/execution-api/eth_getblocktransactioncountbynumber",
+                      "nodeapi/mantle/execution-api/eth_getcode",
+                      "nodeapi/mantle/execution-api/eth_getfilterchanges",
+                      "nodeapi/mantle/execution-api/eth_getfilterlogs",
+                      "nodeapi/mantle/execution-api/eth_getlogs",
+                      "nodeapi/mantle/execution-api/eth_getproof",
+                      "nodeapi/mantle/execution-api/eth_getrawtransactionbyhash",
+                      "nodeapi/mantle/execution-api/eth_getstorageat",
+                      "nodeapi/mantle/execution-api/eth_gettransactionbyblockhashandindex",
+                      "nodeapi/mantle/execution-api/eth_gettransactionbyblocknumberandindex",
+                      "nodeapi/mantle/execution-api/eth_gettransactionbyhash",
+                      "nodeapi/mantle/execution-api/eth_gettransactioncount",
+                      "nodeapi/mantle/execution-api/eth_gettransactionreceipt",
+                      "nodeapi/mantle/execution-api/eth_getunclebyblockhashandindex",
+                      "nodeapi/mantle/execution-api/eth_getunclebyblocknumberandindex",
+                      "nodeapi/mantle/execution-api/eth_getunclecountbyblockhash",
+                      "nodeapi/mantle/execution-api/eth_getunclecountbyblocknumber",
+                      "nodeapi/mantle/execution-api/eth_maxpriorityfeepergas",
+                      "nodeapi/mantle/execution-api/eth_newblockfilter",
+                      "nodeapi/mantle/execution-api/eth_newfilter",
+                      "nodeapi/mantle/execution-api/eth_newpendingtransactionfilter",
+                      "nodeapi/mantle/execution-api/eth_sendrawtransaction",
+                      "nodeapi/mantle/execution-api/eth_simulatev1",
+                      "nodeapi/mantle/execution-api/eth_subscribe",
+                      "nodeapi/mantle/execution-api/eth_syncing",
+                      "nodeapi/mantle/execution-api/eth_uninstallfilter",
+                      "nodeapi/mantle/execution-api/eth_unsubscribe",
+                      "nodeapi/mantle/execution-api/net_listening",
+                      "nodeapi/mantle/execution-api/net_peercount",
+                      "nodeapi/mantle/execution-api/net_version",
+                      "nodeapi/mantle/execution-api/txpool_content",
+                      "nodeapi/mantle/execution-api/web3_clientversion",
+                      "nodeapi/mantle/execution-api/web3_sha3"
+                    ]
+                  },
+                  {
+                    "group": "Debug API",
+                    "root": "nodeapi/mantle/debug-api/index",
+                    "pages": [
+                      "nodeapi/mantle/debug-api/debug_getbadblocks",
+                      "nodeapi/mantle/debug-api/debug_traceblockbyhash",
+                      "nodeapi/mantle/debug-api/debug_traceblockbynumber",
+                      "nodeapi/mantle/debug-api/debug_tracecall",
+                      "nodeapi/mantle/debug-api/debug_tracetransaction"
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Mezo",
                 "icon": "/nodeapi/assets/chains/mezo.svg",
                 "root": "nodeapi/mezo/overview",

@@ -1,0 +1,83 @@
+---
+title: "eth_getProof"
+---
+
+Returns the account and storage values of the specified account including the Merkle-proof.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Mantle Mainnet keeps historical state for the last 128 blocks, about 4 minutes at Mantle's 2-second block time. Requests for an older block return JSON-RPC error `-32000` with a message that contains `historical state <root> is not available`.
+
+</Info>
+
+## **Parameters**
+
+1. `address`- String - The address of the account for which the balance is to be checked.
+2. `storageKeys` - Array\[Strings] - An array of storage-keys that should be proofed and included.
+3. `blockNumber` - String -  The block number as a string in hexadecimal format or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+
+## Returns
+
+* `address` - The address associated with the account.
+* `accountProof` - An array of rlp-serialized MerkleTree-Nodes which starts with the stateRoot-Node and follows the path of the Keccak-256 hash of the address as key.
+* `balance` - The current balance of the account in wei.
+* `codeHash` - A 32 byte hash of the code of the account.
+* `nonce` - The account's transaction count (nonce), as a hexadecimal value.
+* `storageHash` - The 32-byte storage root of the account. Every storage proof starts from this root hash.
+* `storageProof` - An array of storage-entries as requested. Each entry is an object with the following fields:
+  * `key` - The requested storage key.
+  * `value` - The storage value.
+  * `proof` - An array of rlp-serialized MerkleTree-Nodes which starts with the account's `storageHash` node and follows the path of the Keccak-256 hash of the storage key.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "address": "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8",
+    "accountProof": [
+      "0xf90211a09cbe4d7944ea74c7a46250ff911d246327b4cb689bd27e764b64b4e353444ea3a05578d643393e77b2b04db9e4027b6de8b9b70af99a8214b7368758...",
+      "0xf90211a05a1805330ef3f38aaae4367f8ce4ff38f99f3619b56344546714bf2b3afee317a01b0d473fae6587506f0f0e6536211d0110d99fc2ab2833c07bab70...",
+      "0xf90211a08066ec72cc9fe67b9901dbf9f0a6a901f11d4f5ac551eaf22746acecef25aed7a0232bbd670e064dae62df76263d3611a73b66ade2afb93eeaa7654d...",
+      "0xf90211a0917a9476f69da22db4901e2ed397e70d40c57a63a1dca79c1c840d0189ef675ca02bb30da80a77568439e2dd6f939c631e6177d89c59f4cba7248218...",
+      "0xf90211a09cdd642c4c79c9e4a8b1245214e64ea91fca7aba98e525fbb899da3fd42e6c92a06c169750ace3d0e09618045dd7856d3a58c3fb8caef6ce26e5fb4e...",
+      "0xf90131a046bf37dfe35b6c740e4bbe9e799b06638569f0f884577c2f60f1f9b0c4e639bca08be6328e38b17f1bae993e79af1ce1e48df45abb8ad1c4df18c98b...",
+      "0xf8518080808080a0a26f7ad143dfd4cf14b82a79ad2ea2a281188cabbeea49e3ddf8af0c2b44c5c780808080a09f9944e911a4f6c6a02195f51bbe257562d293...",
+      "0xf8719d32cb74abb07ba9282a01213c63b2ac6eadf57fda87ff79462b293d638bb851f84f018b08d9f5b78a3a72d9ce1e17a011a5b90265bec0b9ad9caf02bbb3..."
+    ],
+    "balance": "0x8d9f5b78a3a72d9ce1e17",
+    "codeHash": "0x2c62c876243316714ccacba513e2f0d022c84a93440fb5bd9569aea59437755d",
+    "nonce": "0x1",
+    "storageHash": "0x11a5b90265bec0b9ad9caf02bbb3c5367e7dd6936596e84235dc65d5a9e1bfbd",
+    "storageProof": [
+      {
+        "key": "0x0",
+        "value": "0x0",
+        "proof": [
+          "0xf90211a030efc49951df2a7eef77e4bea3f6bad2efb518fda3fc60d481274b9a71cf5aeca066051289ee2676cc205572c4038b19bd16382222f401ea00560d99...",
+          "0xf90211a0d48b96b701aeb2a20df45c9ec474c6df4c89526d8d5a8ccd3dd5b31e2157303ca0791738eb4f6e957ae03e274922b69419c9115ea1d6fcdf0fda386a...",
+          "0xf90211a013aaea6a37b5d9ceb4b38d99e85556a7dc305e6cc637c171677f8c2a145a8f43a0007a702db4e769b69326c5050afb1cd51cbff5e1df0c4db01d4a85...",
+          "0xf901d1a05524cb37a7b77bc631b93aaa567e80e9891af8ab78faeda4cb6a76240650f786a09fcfed8915724d3b7eb6e585300336d72f0a4da0d4fb68c5d6c49b...",
+          "0xf851808080a05a8906d7cf64c914c469067e36619f91870bce8173b3ca850a135be1e51618f2808080a0d7fafe3c06d57029f4f4477d9ce6c02a8b545a6a8f0f..."
+        ]
+      }
+    ]
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getProof","params":["0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8",["0x0"],"latest"],"id":1}'
+```
+
+</CodeGroup>

@@ -1,0 +1,59 @@
+---
+title: "eth_call"
+---
+
+Executes a new message call immediately without creating a transaction on the block chain.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Mantle Mainnet keeps historical state for the last 128 blocks, about 4 minutes at Mantle's 2-second block time. Requests for an older block return JSON-RPC error `-32000` with a message that contains `historical state <root> is not available`.
+
+</Info>
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call)
+
+## **Parameters**
+
+1. `Object` - The transaction call object
+
+`from` - \[optional] String of the address the transaction is sent from.
+
+`to` - \[optional] String of the address the transaction is directed to. Omit it to simulate a contract creation.
+
+`gas` - \[optional] Integer of the gas provided for the transaction execution.
+
+`gasPrice` - \[optional] Integer of the gasPrice used for each paid gas encoded as a hexadecimal.
+
+`value` - \[optional] Integer of the value sent with this transaction encoded as a hexadecimal.
+
+`data` - \[optional] String of the hash of the method signature and encoded parameters. For more information, see the [Contract ABI description in the Solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html).
+
+2. `QUANTITY | TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`data` - hex value of the executed call or contract
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x00000000000000000000000000000000000000000008d9f5b78a3a72d9ce1e17"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8","data":"0x18160ddd"},"latest"],"id":1}'
+```
+
+</CodeGroup>

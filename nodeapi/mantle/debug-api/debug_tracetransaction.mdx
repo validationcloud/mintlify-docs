@@ -1,0 +1,171 @@
+---
+title: "debug_traceTransaction"
+---
+
+Returns all traces of a given transaction.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Traces need the state of the traced block, so Mantle Mainnet can trace the last 127 blocks, about 4 minutes at Mantle's 2-second block time. Older blocks return JSON-RPC error `-32000` with the message `required historical state unavailable (reexec=128)`.
+
+</Info>
+
+## **Parameters**
+
+`transactionHash` - String - <span style={{color: "red"}}>Required</span> - The transaction hash to be traced.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+* `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
+
+## **Returns**
+
+`result` - With `callTracer`, an object with the result of the trace, containing:
+
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+
+With `prestateTracer`, the result is instead a map keyed by account address, holding the state the transaction touched (such as `balance`, `nonce`, `code` and `storage`).
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from": "0xe7cac669cc341bae5edda780538d2dcd5ba37bdc",
+    "gas": "0x30d40",
+    "gasUsed": "0x2017d",
+    "to": "0x5628a59df0ecac3f3171f877a94beb26ba6dfaa0",
+    "input": "0x414bf389000000000000000000000000779ded0c9e1022225f8e0630b35a9b54be713736000000000000000000000000deaddeaddeaddeaddeaddeaddeaddead...",
+    "output": "0x00000000000000000000000000000000000000000000000029a2241b03935645",
+    "calls": [
+      {
+        "from": "0x5628a59df0ecac3f3171f877a94beb26ba6dfaa0",
+        "gas": "0x28d74",
+        "gasUsed": "0x18a85",
+        "to": "0xa7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+        "input": "0x128acb08000000000000000000000000e7cac669cc341bae5edda780538d2dcd5ba37bdc00000000000000000000000000000000000000000000000000000000...",
+        "output": "0x00000000000000000000000000000000000000000000000000000001a91206b2ffffffffffffffffffffffffffffffffffffffffffffffffd65ddbe4fc6ca9bb",
+        "calls": [
+          {
+            "from": "0xa7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+            "gas": "0x1e42a",
+            "gasUsed": "0x31e8",
+            "to": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111",
+            "input": "0xa9059cbb000000000000000000000000e7cac669cc341bae5edda780538d2dcd5ba37bdc00000000000000000000000000000000000000000000000029a2241b...",
+            "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "value": "0x0",
+            "type": "CALL"
+          },
+          {
+            "from": "0xa7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+            "gas": "0x1a606",
+            "gasUsed": "0x260c",
+            "to": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "input": "0x70a08231000000000000000000000000a7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+            "output": "0x000000000000000000000000000000000000000000000000000002270696399b",
+            "calls": [
+              {
+                "from": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "gas": "0x1840f",
+                "gasUsed": "0xa14",
+                "to": "0x1ec7df9e74be05cb5a456aca2dc1ac2cec9ab6a3",
+                "input": "0x70a08231000000000000000000000000a7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+                "output": "0x000000000000000000000000000000000000000000000000000002270696399b",
+                "value": "0x0",
+                "type": "DELEGATECALL"
+              }
+            ],
+            "type": "STATICCALL"
+          },
+          {
+            "from": "0xa7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+            "gas": "0x17d7b",
+            "gasUsed": "0x6ac6",
+            "to": "0x5628a59df0ecac3f3171f877a94beb26ba6dfaa0",
+            "input": "0xfa461e3300000000000000000000000000000000000000000000000000000001a91206b2ffffffffffffffffffffffffffffffffffffffffffffffffd65ddbe4...",
+            "calls": [
+              {
+                "from": "0x5628a59df0ecac3f3171f877a94beb26ba6dfaa0",
+                "gas": "0x16929",
+                "gasUsed": "0x5aee",
+                "to": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "input": "0x23b872dd000000000000000000000000e7cac669cc341bae5edda780538d2dcd5ba37bdc000000000000000000000000a7c728c4be834ddaf5c49ee4ced678d8...",
+                "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+                "calls": [
+                  {
+                    "from": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                    "gas": "0x1611b",
+                    "gasUsed": "0x5851",
+                    "to": "0x1ec7df9e74be05cb5a456aca2dc1ac2cec9ab6a3",
+                    "input": "0x23b872dd000000000000000000000000e7cac669cc341bae5edda780538d2dcd5ba37bdc000000000000000000000000a7c728c4be834ddaf5c49ee4ced678d8...",
+                    "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+                    "value": "0x0",
+                    "type": "DELEGATECALL"
+                  }
+                ],
+                "value": "0x0",
+                "type": "CALL"
+              }
+            ],
+            "value": "0x0",
+            "type": "CALL"
+          },
+          {
+            "from": "0xa7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+            "gas": "0x111e7",
+            "gasUsed": "0x4d8",
+            "to": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "input": "0x70a08231000000000000000000000000a7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+            "output": "0x00000000000000000000000000000000000000000000000000000228afa8404d",
+            "calls": [
+              {
+                "from": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "gas": "0x10b3f",
+                "gasUsed": "0x244",
+                "to": "0x1ec7df9e74be05cb5a456aca2dc1ac2cec9ab6a3",
+                "input": "0x70a08231000000000000000000000000a7c728c4be834ddaf5c49ee4ced678d8aff49de6",
+                "output": "0x00000000000000000000000000000000000000000000000000000228afa8404d",
+                "value": "0x0",
+                "type": "DELEGATECALL"
+              }
+            ],
+            "type": "STATICCALL"
+          }
+        ],
+        "value": "0x0",
+        "type": "CALL"
+      }
+    ],
+    "value": "0x0",
+    "type": "CALL"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x1ecda3069718c657ba153c9bb5b6c6551eed60024ccd129162eea5643d1c7eb5",{"tracer":"callTracer"}],"id":1}'
+```
+
+</CodeGroup>
+

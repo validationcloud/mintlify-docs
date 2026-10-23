@@ -1,0 +1,55 @@
+---
+title: "eth_getFilterLogs"
+---
+
+Returns an array of all logs matching filter with given id.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterlogs)
+
+## **Parameters**
+
+`QUANTITY` - the filter id.
+
+```javascript
+params: 
+[
+  "0x16", // 22
+]
+```
+
+## Returns
+
+`Array` - Array of log objects matching the filter, or an empty array if none match. Each log object has the following fields:
+  * `removed`: `Boolean` - `true` when the log was removed, due to a chain reorganization. `false` if its a valid log.
+  * `logIndex`: `QUANTITY` - integer of the log index position in the block. `null` when its pending log.
+  * `transactionIndex`: `QUANTITY` - integer of the transactions index position log was created from. `null` when its pending log.
+  * `transactionHash`: `DATA`, 32 Bytes - hash of the transactions this log was created from. `null` when its pending log.
+  * `blockHash`: `DATA`, 32 Bytes - hash of the block where this log was in. `null` when its pending. `null` when its pending log.
+  * `blockNumber`: `QUANTITY` - the block number where this log was in. `null` when its pending. `null` when its pending log.
+  * `address`: `DATA`, 20 Bytes - address from which this log originated.
+  * `data`: `DATA` - contains one or more 32 Bytes non-indexed arguments of the log.
+  * `topics`: `Array of DATA` - Array of 0 to 4 32 Bytes `DATA` of indexed log arguments. (In _solidity_: The first topic is the _hash_ of the signature of the event (e.g. `Deposit(address,bytes32,uint256)`), except you declared the event with the `anonymous` specifier.)
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 74,
+  "result": []
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0xf6f7afd6067b82e45fc70d02144ca284"],"id":74}'
+```
+
+</CodeGroup>

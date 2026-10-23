@@ -1,0 +1,53 @@
+---
+title: "eth_getCode"
+---
+
+Returns code at a given address.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Mantle Mainnet keeps historical state for the last 128 blocks, about 4 minutes at Mantle's 2-second block time. Requests for an older block return JSON-RPC error `-32000` with a message that contains `historical state <root> is not available`.
+
+</Info>
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getcode)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - address.
+2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+```javascript
+params: [
+  "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8",
+  "latest"
+]
+```
+
+## Returns
+
+`DATA` - the code from the given address.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x6080604052600436106100c65760003560e01c8063395093511161007f578063a457c2d711610059578063a457c2d71461021e578063a9059cbb1461023e5780..."
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.mantle.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getCode","params":["0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8","latest"],"id":1}'
+```
+
+</CodeGroup>

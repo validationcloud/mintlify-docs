@@ -1,0 +1,5 @@
+---
+title: "Debug API"
+---
+
+Traces need the state of the traced block, so the Debug API works for the last 127 blocks, about 4 minutes on Mantle Mainnet. Older blocks return JSON-RPC error `-32000` with the message `required historical state unavailable (reexec=128)`.

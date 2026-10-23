@@ -18,6 +18,7 @@
 #content-area:has(.chain-logo-hedera) #page-title::before { background-image: url("/nodeapi/assets/chains/hedera.svg"); }
 #content-area:has(.chain-logo-hyperliquid) #page-title::before { background-image: url("/nodeapi/assets/chains/hyperliquid.svg"); }
 #content-area:has(.chain-logo-icp) #page-title::before { background-image: url("/nodeapi/assets/chains/icp.svg"); }
+#content-area:has(.chain-logo-mantle) #page-title::before { background-image: url("/nodeapi/assets/chains/mantle.svg"); }
 #content-area:has(.chain-logo-mezo) #page-title::before { background-image: url("/nodeapi/assets/chains/mezo.svg"); }
 #content-area:has(.chain-logo-monad) #page-title::before { background-image: url("/nodeapi/assets/chains/monad.svg"); }
 #content-area:has(.chain-logo-opbnb) #page-title::before { background-image: url("/nodeapi/assets/chains/opbnb.svg"); }
