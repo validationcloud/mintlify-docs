@@ -2,7 +2,7 @@
 title: "debug_getRawTransaction"
 ---
 
-Returns an array of EIP-2718 binary-encoded transactions.
+Returns the EIP-2718 binary-encoded transaction.
 
 This method will use `80` [Compute Units](/nodeapi/about/billing).
 
@@ -14,7 +14,7 @@ This method will use `80` [Compute Units](/nodeapi/about/billing).
 
 ## **Returns**
 
-`result` - An array of EIP-2718 binary-encoded transactions.
+`result` - String or null. The EIP-2718 binary-encoded transaction as hex, or `null` if the transaction is not found.
 
 ```json wrap
 // Result

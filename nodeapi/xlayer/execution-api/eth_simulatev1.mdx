@@ -34,7 +34,7 @@ Configuration object for the simulation.
 * `stateOverrides` - object - optional\
   Override account state (balance, nonce, code, storage)
 * `blockOverrides` - object - optional\
-  Override block-level fields (e.g. `number`, `timestamp`, `baseFeePerGas`)
+  Override block-level fields (e.g. `number`, `time`, `baseFeePerGas`)
 
 #### **call object fields:**
 
@@ -67,8 +67,8 @@ Block number, hash, or tag such as `"latest"`.
   Return data (hex)
 * `logs` - array\
   Emitted logs (includes transfers if enabled)
-* `error` - string\
-  Error or revert reason (if failed)
+* `error` - object - optional\
+  Present if the call failed, with `code` and `message` (the error or revert reason)
 
 ```javascript
 // Result (block header fields other than number, hash, gasUsed and baseFeePerGas omitted)
