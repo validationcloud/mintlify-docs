@@ -1,0 +1,76 @@
+---
+title: "eth_getFilterChanges"
+---
+
+Polling method for a filter, which returns an array of logs which occurred since last poll.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterchanges)
+
+## **Parameters**
+
+1. `QUANTITY` - the filter id.
+
+```javascript
+params: 
+[
+  "0x16", // 22
+]
+```
+
+## Returns
+
+`Array` - Array of log objects, or an empty array if nothing has changed since last poll.
+
+* For filters created with `eth_newBlockFilter` the return are block hashes (`DATA`, 32 Bytes), e.g. `["0x3454645634534..."]`.
+* For filters created with `eth_newPendingTransactionFilter` the return are transaction hashes (`DATA`, 32 Bytes), e.g. `["0x6345343454645..."]`.
+* For filters created with `eth_newFilter` logs are objects with following params:
+  * `removed`: `Boolean` - `true` when the log was removed, due to a chain reorganization. `false` if its a valid log.
+  * `logIndex`: `QUANTITY` - integer of the log index position in the block. `null` when its pending log.
+  * `transactionIndex`: `QUANTITY` - integer of the transactions index position log was created from. `null` when its pending log.
+  * `transactionHash`: `DATA`, 32 Bytes - hash of the transactions this log was created from. `null` when its pending log.
+  * `blockHash`: `DATA`, 32 Bytes - hash of the block where this log was in. `null` when its pending. `null` when its pending log.
+  * `blockNumber`: `QUANTITY` - the block number where this log was in. `null` when its pending. `null` when its pending log.
+  * `address`: `DATA`, 20 Bytes - address from which this log originated.
+  * `data`: `DATA` - contains one or more 32 Bytes non-indexed arguments of the log.
+  * `topics`: `Array of DATA` - Array of 0 to 4 32 Bytes `DATA` of indexed log arguments. (In _solidity_: The first topic is the _hash_ of the signature of the event (e.g. `Deposit(address,bytes32,uint256)`), except you declared the event with the `anonymous` specifier.)
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 73,
+  "result": [
+    {
+      "address": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000332ee6d5341f0bd3c69f259e164eef5eab6530e2",
+        "0x000000000000000000000000b76d77291b159a38d0b2dfddaeba192f00c0cdcf"
+      ],
+      "data": "0x000000000000000000000000000000000000000000000000000000000002bf20",
+      "blockHash": "0x87789a36c1b3715aab2412aed9f9047a0c9e92afe533a3cd89ae1e7fd33e9b75",
+      "blockNumber": "0x2214c5e",
+      "blockTimestamp": "0x6ada18b0",
+      "transactionHash": "0x05484418256ceefc0656d4f7344e148c5d61ab0e0bd96356934b4b640ab18dec",
+      "transactionIndex": "0x0",
+      "logIndex": "0x0",
+      "removed": false
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getFilterChanges","params":["0x360bab165cec14f7a79033058c29f1cd"],"id":73}'
+```
+
+</CodeGroup>
