@@ -2321,6 +2321,76 @@
                 ]
               },
               {
+                "group": "Plasma",
+                "icon": "/nodeapi/assets/chains/plasma.svg",
+                "root": "nodeapi/plasma/overview",
+                "pages": [
+                  {
+                    "group": "Execution API",
+                    "pages": [
+                      "nodeapi/plasma/execution-api/eth_accounts",
+                      "nodeapi/plasma/execution-api/eth_blobbasefee",
+                      "nodeapi/plasma/execution-api/eth_blocknumber",
+                      "nodeapi/plasma/execution-api/eth_call",
+                      "nodeapi/plasma/execution-api/eth_chainid",
+                      "nodeapi/plasma/execution-api/eth_createaccesslist",
+                      "nodeapi/plasma/execution-api/eth_estimategas",
+                      "nodeapi/plasma/execution-api/eth_feehistory",
+                      "nodeapi/plasma/execution-api/eth_gasprice",
+                      "nodeapi/plasma/execution-api/eth_getbalance",
+                      "nodeapi/plasma/execution-api/eth_getblockbyhash",
+                      "nodeapi/plasma/execution-api/eth_getblockbynumber",
+                      "nodeapi/plasma/execution-api/eth_getblockreceipts",
+                      "nodeapi/plasma/execution-api/eth_getblocktransactioncountbyhash",
+                      "nodeapi/plasma/execution-api/eth_getblocktransactioncountbynumber",
+                      "nodeapi/plasma/execution-api/eth_getcode",
+                      "nodeapi/plasma/execution-api/eth_getfilterchanges",
+                      "nodeapi/plasma/execution-api/eth_getfilterlogs",
+                      "nodeapi/plasma/execution-api/eth_getlogs",
+                      "nodeapi/plasma/execution-api/eth_getproof",
+                      "nodeapi/plasma/execution-api/eth_getrawtransactionbyhash",
+                      "nodeapi/plasma/execution-api/eth_getstorageat",
+                      "nodeapi/plasma/execution-api/eth_gettransactionbyblockhashandindex",
+                      "nodeapi/plasma/execution-api/eth_gettransactionbyblocknumberandindex",
+                      "nodeapi/plasma/execution-api/eth_gettransactionbyhash",
+                      "nodeapi/plasma/execution-api/eth_gettransactioncount",
+                      "nodeapi/plasma/execution-api/eth_gettransactionreceipt",
+                      "nodeapi/plasma/execution-api/eth_getunclebyblockhashandindex",
+                      "nodeapi/plasma/execution-api/eth_getunclebyblocknumberandindex",
+                      "nodeapi/plasma/execution-api/eth_getunclecountbyblockhash",
+                      "nodeapi/plasma/execution-api/eth_getunclecountbyblocknumber",
+                      "nodeapi/plasma/execution-api/eth_maxpriorityfeepergas",
+                      "nodeapi/plasma/execution-api/eth_newblockfilter",
+                      "nodeapi/plasma/execution-api/eth_newfilter",
+                      "nodeapi/plasma/execution-api/eth_newpendingtransactionfilter",
+                      "nodeapi/plasma/execution-api/eth_protocolversion",
+                      "nodeapi/plasma/execution-api/eth_sendrawtransaction",
+                      "nodeapi/plasma/execution-api/eth_simulatev1",
+                      "nodeapi/plasma/execution-api/eth_subscribe",
+                      "nodeapi/plasma/execution-api/eth_syncing",
+                      "nodeapi/plasma/execution-api/eth_uninstallfilter",
+                      "nodeapi/plasma/execution-api/eth_unsubscribe",
+                      "nodeapi/plasma/execution-api/net_listening",
+                      "nodeapi/plasma/execution-api/net_peercount",
+                      "nodeapi/plasma/execution-api/net_version",
+                      "nodeapi/plasma/execution-api/txpool_content",
+                      "nodeapi/plasma/execution-api/web3_clientversion",
+                      "nodeapi/plasma/execution-api/web3_sha3"
+                    ]
+                  },
+                  {
+                    "group": "Debug API",
+                    "pages": [
+                      "nodeapi/plasma/debug-api/debug_getbadblocks",
+                      "nodeapi/plasma/debug-api/debug_traceblockbyhash",
+                      "nodeapi/plasma/debug-api/debug_traceblockbynumber",
+                      "nodeapi/plasma/debug-api/debug_tracecall",
+                      "nodeapi/plasma/debug-api/debug_tracetransaction"
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Polygon",
                 "icon": "/nodeapi/assets/chains/polygon.svg",
                 "root": "nodeapi/polygon/overview",

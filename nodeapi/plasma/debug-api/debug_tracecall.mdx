@@ -1,0 +1,75 @@
+---
+title: "debug_traceCall"
+---
+
+Executes a call within the context of the given block and returns the trace of its execution.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`object` - Object - The transaction call object with the following fields:
+
+* `from` - String - The address the transaction is sent from
+* `to` - String - (optional) The address the transaction is directed to. Omit it to trace a contract creation
+* `gas` - Integer - The integer of the gas provided for the transaction execution
+* `gasPrice` - Integer - The integer of the gasPrice used for paid gas
+* `value` - Integer - The integer of the value sent with this transaction
+* `data` - String - The call data: the 4-byte function selector followed by the ABI-encoded parameters
+
+`blockReference` - String - <span style={{color: "red"}}>Required</span> - The block number in hexadecimal format, the block hash, or tags: `"earliest"`, `"latest"` or `"pending"`.
+
+`object` - Object (Optional) - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+
+## **Returns**
+
+`result` - With `callTracer`, an object with the result of the trace, containing:
+
+* `from` - The address the call is sent from.
+* `gas` - The integer of the gas provided for the call execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the call is directed to.
+* `input` - The data given at the time of input.
+* `output` - The data returned by the call.
+* `value` - The integer of the value sent with this call.
+* `type` - The type of call.
+* `calls` - A list of sub-calls, present when the call made further calls.
+
+With `prestateTracer`, the result is instead a map keyed by account address, holding the state the transaction touched (such as `balance`, `nonce`, `code` and `storage`).
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from": "0x0000000000000000000000000000000000000000",
+    "gas": "0x23c34600",
+    "gasUsed": "0x53a7",
+    "to": "0x6100e367285b01f48d07953803a2d8dca5d19873",
+    "input": "0x18160ddd",
+    "output": "0x000000000000000000000000000000000000000000dd6b1c9b87c31b7ebbbda7",
+    "value": "0x0",
+    "type": "CALL"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceCall","params":[{"to":"0x6100e367285b01f48d07953803a2d8dca5d19873","data":"0x18160ddd"},"latest",{"tracer":"callTracer"}],"id":1}'
+```
+
+</CodeGroup>

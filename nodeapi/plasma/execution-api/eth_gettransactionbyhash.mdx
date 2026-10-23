@@ -1,0 +1,77 @@
+---
+title: "eth_getTransactionByHash"
+---
+
+Returns the information about a transaction requested by transaction hash.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionbyhash)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - hash of a transaction
+
+```javascript
+params: [
+  "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7"
+]
+```
+
+## **Returns**
+
+`Object` - A transaction object, or `null` when no transaction was found:
+
+* `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+* `blockNumber`: `QUANTITY` - block number where this transaction was in. `null` when its pending.
+* `from`: `DATA`, 20 Bytes - address of the sender.
+* `gas`: `QUANTITY` - gas provided by the sender.
+* `gasPrice`: `QUANTITY` - gas price provided by the sender in Wei.
+* `hash`: `DATA`, 32 Bytes - hash of the transaction.
+* `input`: `DATA` - the data send along with the transaction.
+* `nonce`: `QUANTITY` - the number of transactions made by the sender prior to this one.
+* `to`: `DATA`, 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+* `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block. `null` when its pending.
+* `value`: `QUANTITY` - value transferred in Wei.
+* `v`: `QUANTITY` - ECDSA recovery id
+* `r`: `QUANTITY` - ECDSA signature r
+* `s`: `QUANTITY` - ECDSA signature s
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "type": "0x0",
+    "chainId": "0x2611",
+    "nonce": "0x18",
+    "gasPrice": "0x77359400",
+    "gas": "0x10444",
+    "to": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+    "value": "0x0",
+    "input": "0xa9059cbb000000000000000000000000fa1711c6513b09b13ee8aeef0dff266114b4e97c00000000000000000000000000000000000000000000000000000000...",
+    "r": "0xe5ad4c14b79c8b47e29e73868f96ae0c7a172600d9e3593bd21bd482f88e96a7",
+    "s": "0x2b56c7cca6ab9e12536c4ca45ebdd33da623a1b5c154e67459dfebfe2e360ef3",
+    "v": "0x4c46",
+    "hash": "0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7",
+    "blockHash": "0xfea405cc05c207915fd74418090b6cdf203b0700fd0c7f3aa127d9a7cc02bbe5",
+    "blockNumber": "0x2214aa3",
+    "transactionIndex": "0x0",
+    "from": "0x0740557b450b5a8a2154af30f75c7f4c4aa03c33"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x0c2ab0695470c319a7eeac948d30ceebbfcc0a93858ba657541ffaa589c54fa7"],"id":1}'
+```
+
+</CodeGroup>

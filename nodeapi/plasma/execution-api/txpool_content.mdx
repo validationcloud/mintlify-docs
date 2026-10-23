@@ -1,0 +1,84 @@
+---
+title: "txpool_content"
+---
+
+Returns a list of pending and queued transactions.
+
+This method will use `500` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+An object with two maps, `pending` and `queued`. Each map is keyed by sender address, then by nonce, and each entry is a transaction object with the following fields:
+
+* `blockHash` - Hash of block the transaction is in, null since its pending
+* `blockNumber` - hexadecimal block number of the block the transaction is in, null since pending
+* `from` - Address of the sender
+* `gas` - The gas limit of the transaction
+* `gasPrice` - The gas price, in wei per unit of gas
+* `maxFeePerGas` - The maximum total fee the sender will pay, in wei per unit of gas
+* `maxPriorityFeePerGas` - The maximum priority fee (tip) the sender will pay, in wei per unit of gas
+* `hash` - Hash of the transaction
+* `input` - Encoded transaction input data
+* `nonce` - Number of transactions the sender has sent till now
+* `v` - hexadecimal ECDSA recovery id
+* `r` - ECDSA signature r
+* `s` - ECDSA signature s
+* `to` - Address of the receiver
+* `transactionIndex` - hexadecimal integer of the transactions index position in the block, null since pending
+* `type` - A number between 0 and 0x7f, for a total of 128 possible transaction types.
+* `value` - hexadecimal value transferred
+
+```json
+// Result (one pending transaction shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "pending": {
+      "0x056eb7aba55ae378781bb8350ea0fed5560e7517": {
+        "3624610": {
+          "type": "0x2",
+          "chainId": "0x2611",
+          "nonce": "0x374ea2",
+          "gas": "0x7a1200",
+          "maxFeePerGas": "0x11e1a300",
+          "maxPriorityFeePerGas": "0x1",
+          "to": "0x334987c80502e44f053dde057af1647fcb827808",
+          "value": "0x0",
+          "accessList": [],
+          "input": "0xa9059cbb00374ea2caf2b5c15d657ba8e729adbb556bc1de21615687656957161325f105b183fa6279355e78affd1973134d913ad2a7d3d25a022f551984c6e2...",
+          "r": "0xcbf8400da9991d179277dabdf0ac2f63b5a57309603699cc912985847fa896d5",
+          "s": "0x3c990b057346a79d506d450445a9b2f4ef40a9382082d59a54905ebee06d1620",
+          "yParity": "0x1",
+          "v": "0x1",
+          "hash": "0x717d30a4795c289af0e657931f1215970e7d3283bd97da1601b16acc075bee0a",
+          "blockHash": null,
+          "blockNumber": null,
+          "transactionIndex": null,
+          "from": "0x056eb7aba55ae378781bb8350ea0fed5560e7517",
+          "gasPrice": "0x11e1a300"
+        }
+      }
+    },
+    "queued": {}
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"txpool_content","params":[],"id":1}'
+```
+
+</CodeGroup>
+

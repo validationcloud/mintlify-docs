@@ -1,0 +1,39 @@
+---
+title: "web3_clientVersion"
+---
+
+Returns the current client version.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#web3_clientversion)
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+`string` - The current client version
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 67,
+  "result": "reth/v1.11.3-d6324d6/x86_64-unknown-linux-gnu"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+```
+
+</CodeGroup>

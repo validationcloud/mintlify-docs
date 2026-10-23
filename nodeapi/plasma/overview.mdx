@@ -1,0 +1,112 @@
+---
+title: "Overview"
+---
+
+import TryFree from "/snippets/try-free.mdx";
+
+<span className="chain-logo-plasma" />
+
+<img className="page-cover" src="/nodeapi/assets/plasma-overview-2x.png" alt="" noZoom />
+
+<TryFree chain="Plasma" logo="/nodeapi/assets/chains/plasma.svg" />
+
+Plasma is a payments-focused Layer 1 blockchain built for stablecoin payments. It is EVM-compatible and produces a block about every second. Its native token is `XPL`.
+
+Block explorer: [https://plasmascan.to](https://plasmascan.to)
+
+Plasma's own developer documentation: [https://docs.plasma.org](https://docs.plasma.org)
+
+## Network Support
+
+| Network | Full History / Archive | HTTPS | WSS |
+| --- | --- | --- | --- |
+| Plasma Mainnet | ✅ | ✅ | ✅ |
+
+> State methods such as `eth_call` and `eth_getBalance`, and the [Debug API](/nodeapi/plasma/debug-api/debug_traceblockbynumber), work for any block back to genesis. `eth_getProof` is the exception: it serves the latest block only.
+
+> The Trace API (`trace_*`) is not available on Plasma. Use the [Debug API](/nodeapi/plasma/debug-api/debug_traceblockbynumber) for call traces.
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+Connect over WebSocket:
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.plasma.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+</CodeGroup>
+
+## Compute Units
+| Method | Compute units |
+| --- | --- |
+| [debug_getBadBlocks](/nodeapi/plasma/debug-api/debug_getbadblocks) | 80 |
+| [debug_traceBlockByHash](/nodeapi/plasma/debug-api/debug_traceblockbyhash) | 80 |
+| [debug_traceBlockByNumber](/nodeapi/plasma/debug-api/debug_traceblockbynumber) | 80 |
+| [debug_traceCall](/nodeapi/plasma/debug-api/debug_tracecall) | 80 |
+| [debug_traceTransaction](/nodeapi/plasma/debug-api/debug_tracetransaction) | 80 |
+| [eth_accounts](/nodeapi/plasma/execution-api/eth_accounts) | 20 |
+| [eth_blobBaseFee](/nodeapi/plasma/execution-api/eth_blobbasefee) | 10 |
+| [eth_blockNumber](/nodeapi/plasma/execution-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/plasma/execution-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/plasma/execution-api/eth_chainid) | 10 |
+| [eth_createAccessList](/nodeapi/plasma/execution-api/eth_createaccesslist) | 20 |
+| [eth_estimateGas](/nodeapi/plasma/execution-api/eth_estimategas) | 40 |
+| [eth_feeHistory](/nodeapi/plasma/execution-api/eth_feehistory) | 20 |
+| [eth_gasPrice](/nodeapi/plasma/execution-api/eth_gasprice) | 40 |
+| [eth_getBalance](/nodeapi/plasma/execution-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/plasma/execution-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/plasma/execution-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockReceipts](/nodeapi/plasma/execution-api/eth_getblockreceipts) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/plasma/execution-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/plasma/execution-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/plasma/execution-api/eth_getcode) | 40 |
+| [eth_getFilterChanges](/nodeapi/plasma/execution-api/eth_getfilterchanges) | 40 |
+| [eth_getFilterLogs](/nodeapi/plasma/execution-api/eth_getfilterlogs) | 40 |
+| [eth_getLogs](/nodeapi/plasma/execution-api/eth_getlogs) | 80 |
+| [eth_getProof](/nodeapi/plasma/execution-api/eth_getproof) | 40 |
+| [eth_getRawTransactionByHash](/nodeapi/plasma/execution-api/eth_getrawtransactionbyhash) | 10 |
+| [eth_getStorageAt](/nodeapi/plasma/execution-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/plasma/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/plasma/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/plasma/execution-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionCount](/nodeapi/plasma/execution-api/eth_gettransactioncount) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/plasma/execution-api/eth_gettransactionreceipt) | 40 |
+| [eth_getUncleByBlockHashAndIndex](/nodeapi/plasma/execution-api/eth_getunclebyblockhashandindex) | 40 |
+| [eth_getUncleByBlockNumberAndIndex](/nodeapi/plasma/execution-api/eth_getunclebyblocknumberandindex) | 40 |
+| [eth_getUncleCountByBlockHash](/nodeapi/plasma/execution-api/eth_getunclecountbyblockhash) | 40 |
+| [eth_getUncleCountByBlockNumber](/nodeapi/plasma/execution-api/eth_getunclecountbyblocknumber) | 40 |
+| [eth_maxPriorityFeePerGas](/nodeapi/plasma/execution-api/eth_maxpriorityfeepergas) | 20 |
+| [eth_newBlockFilter](/nodeapi/plasma/execution-api/eth_newblockfilter) | 40 |
+| [eth_newFilter](/nodeapi/plasma/execution-api/eth_newfilter) | 40 |
+| [eth_newPendingTransactionFilter](/nodeapi/plasma/execution-api/eth_newpendingtransactionfilter) | 40 |
+| [eth_protocolVersion](/nodeapi/plasma/execution-api/eth_protocolversion) | 10 |
+| [eth_sendRawTransaction](/nodeapi/plasma/execution-api/eth_sendrawtransaction) | 80 |
+| [eth_simulateV1](/nodeapi/plasma/execution-api/eth_simulatev1) | 40 |
+| [eth_subscribe](/nodeapi/plasma/execution-api/eth_subscribe) | 20 |
+| [eth_syncing](/nodeapi/plasma/execution-api/eth_syncing) | 10 |
+| [eth_uninstallFilter](/nodeapi/plasma/execution-api/eth_uninstallfilter) | 20 |
+| [eth_unsubscribe](/nodeapi/plasma/execution-api/eth_unsubscribe) | 20 |
+| [net_listening](/nodeapi/plasma/execution-api/net_listening) | 10 |
+| [net_peerCount](/nodeapi/plasma/execution-api/net_peercount) | 20 |
+| [net_version](/nodeapi/plasma/execution-api/net_version) | 10 |
+| [txpool_content](/nodeapi/plasma/execution-api/txpool_content) | 500 |
+| [web3_clientVersion](/nodeapi/plasma/execution-api/web3_clientversion) | 40 |
+| [web3_sha3](/nodeapi/plasma/execution-api/web3_sha3) | 40 |
+

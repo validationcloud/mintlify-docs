@@ -22,6 +22,7 @@
 #content-area:has(.chain-logo-monad) #page-title::before { background-image: url("/nodeapi/assets/chains/monad.svg"); }
 #content-area:has(.chain-logo-opbnb) #page-title::before { background-image: url("/nodeapi/assets/chains/opbnb.svg"); }
 #content-area:has(.chain-logo-optimism) #page-title::before { background-image: url("/nodeapi/assets/chains/optimism.svg"); }
+#content-area:has(.chain-logo-plasma) #page-title::before { background-image: url("/nodeapi/assets/chains/plasma.svg"); }
 #content-area:has(.chain-logo-polygon) #page-title::before { background-image: url("/nodeapi/assets/chains/polygon.svg"); }
 #content-area:has(.chain-logo-rayls) #page-title::before { background-image: url("/nodeapi/assets/chains/rayls.svg"); }
 #content-area:has(.chain-logo-robinhood-chain) #page-title::before { background-image: url("/nodeapi/assets/chains/robinhood-chain.svg"); }

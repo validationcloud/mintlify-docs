@@ -1,0 +1,82 @@
+---
+title: "eth_getProof"
+---
+
+Returns the account and storage values of the specified account including the Merkle-proof.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+<Info>
+
+Plasma Mainnet serves `eth_getProof` for the latest block only. A request for any older block returns JSON-RPC error `-32602` with the message `distance to target block exceeds maximum proof window`.
+
+</Info>
+
+## **Parameters**
+
+1. `address`- String - The address of the account for which the balance is to be checked.
+2. `storageKeys` - Array\[Strings] - An array of storage-keys that should be proofed and included.
+3. `blockNumber` - String -  The block number as a string in hexadecimal format or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter).
+
+## Returns
+
+* `address` - The address associated with the account.
+* `accountProof` - An array of rlp-serialized MerkleTree-Nodes which starts with the stateRoot-Node and follows the path of the Keccak-256 hash of the address as key.
+* `balance` - The current balance of the account in wei.
+* `codeHash` - A 32 byte hash of the code of the account.
+* `nonce` - The account's transaction count (nonce), as a hexadecimal value.
+* `storageHash` - The 32-byte storage root of the account. Every storage proof starts from this root hash.
+* `storageProof` - An array of storage-entries as requested. Each entry is an object with the following fields:
+  * `key` - The requested storage key.
+  * `value` - The storage value.
+  * `proof` - An array of rlp-serialized MerkleTree-Nodes which starts with the account's `storageHash` node and follows the path of the Keccak-256 hash of the storage key.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "address": "0x6100e367285b01f48d07953803a2d8dca5d19873",
+    "balance": "0xdd6b1c9b87c31b7ebbbda7",
+    "codeHash": "0x47e6835a0a22b0d581faf0543c650db2190295e3ef4b9c442895b72e2b7dc056",
+    "nonce": "0x1",
+    "storageHash": "0x450609ff0c2231b056733644413253223794d9e9c938a5455b66c0d101e1470e",
+    "accountProof": [
+      "0xf90211a0e321ae5cbeef4c51cf67bea93b68da8c0181e5ba107aa21efdbee7449dfddcf5a075cba638f5a6164bf88c3b64579c7983f6f0e617f4831cb8193637...",
+      "0xf90211a0092523a0651b3c650623170c39de530a1ebbae21ac0fa251d2c89e6a9a030a18a0abbe09ac1bb7d060fd41bbc05e7a4c7a792e33d2f9f00f9591b9da...",
+      "0xf90211a0b44c155c43a315122387a63c0f72e25585b442f3c0afccca10f1d152c65d57a4a0bfeab02dc7774150ca697cd15c738bb2c9cacbab39bc758a3118c3...",
+      "0xf90211a0dbd8aee0d3812b0cd5d9e993f15a495067ac5738605e3d9c022669c93eb09e74a0fee03a6ff3fc816f3f39b6c2149256f96e00e9ee3daf81140b85dc...",
+      "0xf90211a068b34e3af0947d0744bbbf10f1f9be7ab3d2901995ebded1128bb3195b0d827aa02fddf2d4296f9251092054dc2809839a04beb05482b19126643781...",
+      "0xf90111808080a0a9b45f58ee330e42be4896a3a2fb1e045691ce6fecf8c2e7aeb9899b14955298a0a311a4dfc9d45faa908edac1c7286968124a328b2ce76123...",
+      "0xf8729e20a28465b028cdebe5b857d70e749e69e1f31856fbe900349d06ee580a4cb851f84f018bdd6b1c9b87c31b7ebbbda7a0450609ff0c2231b05673364441..."
+    ],
+    "storageProof": [
+      {
+        "key": "0x0",
+        "value": "0x577261707065642058504c000000000000000000000000000000000000000016",
+        "proof": [
+          "0xf90211a04d0067058fb22b1de365335a6c5ee87e7766ee19c7504f05f96872b68e8de4c8a0b32fa7d3c5cdd5f709f10d4e5c52345f212fb3bde0c9e69dadfac2...",
+          "0xf90211a05ef3c4b5a8b8cfb6d9754452a44fdbc29bea611cb9d5f5d263fb6f67822db527a0929d485ac51b5053210dc4665720a6273f1c005200fe63ad00ef4f...",
+          "0xf90211a08ee83d6b461a473763ccdd1723b6586d3e0bef6c152051797bb326c4c09ee714a0d2b5527bb4ad8c64d05b1c00fdc12ba9acdd3f46b651ec46820ecb...",
+          "0xf90111a06cb48a04700f248632f3ce364dbec7a61f480df94648926213c1c9e9f6c120128080a0279e10cff058bfc5d842ae5e35e1d53278a12ea8a6581ba141...",
+          "0xf8429f20ecd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563a1a0577261707065642058504c0000000000000000000000000000000000..."
+        ]
+      }
+    ]
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.plasma.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getProof","params":["0x6100e367285b01f48d07953803a2d8dca5d19873",["0x0"],"latest"],"id":1}'
+```
+
+</CodeGroup>
