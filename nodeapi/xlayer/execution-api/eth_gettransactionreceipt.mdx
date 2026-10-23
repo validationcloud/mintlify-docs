@@ -1,0 +1,101 @@
+---
+title: "eth_getTransactionReceipt"
+---
+
+Returns the receipt of a transaction by transaction hash. Note that the receipt is not available for pending transactions.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_gettransactionreceipt)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - hash of a transaction
+
+```javascript
+params: [
+  "0x6761ad2af540c24d7168489c98e77e8910eba2d07294ae25f24ceeeba11fb382"
+]
+```
+
+## Returns
+
+`Object` - A transaction receipt object, or `null` when no receipt was found:
+
+* `transactionHash` : `DATA`, 32 Bytes - hash of the transaction.
+* `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block.
+* `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in.
+* `blockNumber`: `QUANTITY` - block number where this transaction was in.
+* `from`: `DATA`, 20 Bytes - address of the sender.
+* `to`: `DATA`, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+* `cumulativeGasUsed` : `QUANTITY` - The total amount of gas used when this transaction was executed in the block.
+* `effectiveGasPrice` : `QUANTITY` - The sum of the base fee and tip paid per unit of gas.
+* `gasUsed` : `QUANTITY` - The amount of gas used by this specific transaction alone.
+* `contractAddress` : `DATA`, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise `null`.
+* `logs`: `Array` - Array of log objects, which this transaction generated.
+* `logsBloom`: `DATA`, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
+* `type`: `DATA` - integer of the transaction type, `0x00` for legacy transactions, `0x01` for access list types, `0x02` for dynamic fees. It also returns _either_ :
+* `root` : `DATA` 32 bytes of post-transaction stateroot (pre Byzantium)
+* `status`: `QUANTITY` either `1` (success) or `0` (failure)
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "type": "0x2",
+    "status": "0x1",
+    "cumulativeGasUsed": "0x2be35",
+    "logs": [
+      {
+        "address": "0xbff976f8874814e6f2ee98d559826812ff26597f",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x000000000000000000000000bff976f8874814e6f2ee98d559826812ff26597f",
+          "0x00000000000000000000000019e315ec9cce550dcfe7e3972f148219fed61048"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000021c0331d5dc000",
+        "blockHash": "0x241a36521807e99d82624139dd3dd2ee0007c3126d9e15b82d08e2e76b6b7c8f",
+        "blockNumber": "0x4685f68",
+        "blockTimestamp": "0x6adab4f4",
+        "transactionHash": "0x6761ad2af540c24d7168489c98e77e8910eba2d07294ae25f24ceeeba11fb382",
+        "transactionIndex": "0x1",
+        "logIndex": "0x0",
+        "removed": false
+      }
+    ],
+    "logsBloom": "0x00000010000000000000040000000000000000000040000000000000000000000000000000000000000000000000000000100000000000000000000000000000...",
+    "transactionHash": "0x6761ad2af540c24d7168489c98e77e8910eba2d07294ae25f24ceeeba11fb382",
+    "transactionIndex": "0x1",
+    "blockHash": "0x241a36521807e99d82624139dd3dd2ee0007c3126d9e15b82d08e2e76b6b7c8f",
+    "blockNumber": "0x4685f68",
+    "gasUsed": "0x209db",
+    "effectiveGasPrice": "0x1a831c0",
+    "blobGasUsed": "0x11f80",
+    "from": "0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073",
+    "to": "0xbff976f8874814e6f2ee98d559826812ff26597f",
+    "contractAddress": null,
+    "l1GasPrice": "0x27c9b4d",
+    "l1GasUsed": "0xb81",
+    "l1Fee": "0x0",
+    "l1BaseFeeScalar": "0x0",
+    "l1BlobBaseFee": "0x26bc0a",
+    "l1BlobBaseFeeScalar": "0x0",
+    "daFootprintGasScalar": "0x190"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x6761ad2af540c24d7168489c98e77e8910eba2d07294ae25f24ceeeba11fb382"],"id":1}'
+```
+
+</CodeGroup>

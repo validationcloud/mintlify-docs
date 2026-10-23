@@ -1,0 +1,51 @@
+---
+title: "eth_estimateGas"
+---
+
+Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_estimategas)
+
+## **Parameters**
+
+`from` - \[optional] String of the address the transaction is sent from.
+
+`to` - \[optional] String of the address the transaction is directed to.
+
+`gas` - \[optional] Integer of the gas provided for the transaction execution.
+
+`gasPrice` - \[optional] Integer of the gasPrice used for each paid gas encoded as a hexadecimal.
+
+`value` - \[optional] Integer of the value sent with this transaction encoded as a hexadecimal.
+
+`data` - \[optional] String of the hash of the method signature and encoded parameters. For more information, see the [Contract ABI description in the Solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html).
+
+2. `QUANTITY | TAG` - \[optional] integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`String` - hex string value representing an integer of the amount of gas units used.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x544d"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{"from":"0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073","to":"0xe538905cf8410324e03a5a23c1c177a474d59b2b","data":"0x18160ddd"}],"id":1}'
+```
+
+</CodeGroup>

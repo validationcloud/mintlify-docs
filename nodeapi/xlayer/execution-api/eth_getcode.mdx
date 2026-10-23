@@ -1,0 +1,47 @@
+---
+title: "eth_getCode"
+---
+
+Returns code at a given address.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getcode)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - address.
+2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+```javascript
+params: [
+  "0xe538905cf8410324e03a5a23c1c177a474d59b2b",
+  "latest"
+]
+```
+
+## Returns
+
+`DATA` - the code from the given address.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x6080604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806306fdde03146100b9..."
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getCode","params":["0xe538905cf8410324e03a5a23c1c177a474d59b2b","latest"],"id":1}'
+```
+
+</CodeGroup>

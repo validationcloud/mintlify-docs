@@ -1,0 +1,40 @@
+---
+title: "eth_blobBaseFee"
+---
+
+Returns the current base fee per blob gas, in wei.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.github.io/execution-apis/api/methods/eth_blobBaseFee)
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`QUANTITY` - hexadecimal value of the current blob base fee in wei.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blobBaseFee","params":[],"id":1}'
+```
+
+</CodeGroup>
+

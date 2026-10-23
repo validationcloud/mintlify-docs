@@ -1,0 +1,86 @@
+---
+title: "trace_rawTransaction"
+---
+
+Traces a signed transaction that has not yet been included in a block, without broadcasting it.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+> The transaction must be signed by an account whose nonce has not yet been used. Passing an already-mined transaction returns `nonce too low`.
+
+***
+
+## **Parameters**
+
+`data` - String - <span style={{color: "red"}}>Required</span> - The signed transaction data, as a hexadecimal string
+
+`array` - Array - <span style={{color: "red"}}>Required</span> - The type of trace, which can be one of the following:
+
+* `trace` - string - To get the basic trace of the given transaction
+* `stateDiff` - string - To get information on altered state due to execution of the given transaction
+* `vmTrace` - string - To get a full trace of the virtual machine's state during the execution of the given transaction, including for any subcalls
+
+## **Returns**
+
+`object` - object - The transaction trace result object
+
+* `output` - string - The data returned as output encoded in hexadecimal format
+* `stateDiff` - object - The altered state due to execution of the given transaction, or null if not requested
+* `trace` - array - An array of basic trace objects for the given transaction containing:
+  * `action` - object - The ParityTrace action object containing call details
+    * `from` - string - The address of the sender
+    * `callType` - string - The type of method such as call, staticcall, delegatecall
+    * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+    * `input` - string - The input data sent along with the transaction
+    * `to` - string - The address of the receiver
+    * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+  * `result` - object - The execution result of the trace
+    * `gasUsed` - string - The amount of gas used by this trace
+    * `output` - string - The return value of the contract call, empty if no RETURN executed
+  * `subtraces` - integer - The number of subtraces (internal calls) within this trace
+  * `traceAddress` - array - The list of addresses where the call executed, including parent calls and order
+  * `type` - string - The type of the trace, such as call or create
+* `vmTrace` - object - The full trace of the virtual machine's state during execution, or null if not requested
+
+```json
+// Result (illustrative: the shape of a trace for a transaction you send)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "output": "0x",
+    "stateDiff": null,
+    "trace": [
+      {
+        "type": "call",
+        "action": {
+          "from": "0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073",
+          "callType": "call",
+          "gas": "0x25072",
+          "input": "0x64489bf50000000000000000000000000000000000000000000000000021c0331d5dc00000000000000000000000000019e315ec9cce550dcfe7e3972f148219...",
+          "to": "0xbff976f8874814e6f2ee98d559826812ff26597f",
+          "value": "0x0"
+        },
+        "result": {
+          "gasUsed": "0x1ae57",
+          "output": "0x"
+        },
+        "subtraces": 0,
+        "traceAddress": []
+      }
+    ],
+    "vmTrace": null
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_rawTransaction","params":["<SIGNED_RAW_TRANSACTION>",["trace"]],"id":1}'
+```
+
+</CodeGroup>

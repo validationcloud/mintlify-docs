@@ -1,0 +1,44 @@
+---
+title: "txpool_inspect"
+---
+
+Similar to `txpool_content`, but returns a more human-readable summary of the transactions in the transaction pool.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## **Returns**
+
+`Object` - An object categorized by pending and queued transactions, showing a simplified listing of transactions with sender addresses and brief details.
+
+```json
+// Result (one account's first transaction shown per pool)
+{
+  "jsonrpc": "2.0",
+  "id": 67,
+  "result": {
+    "pending": {
+      "0x91b8c5e8c1ddb9d326013d0c30e383f5cb428f60": {
+        "0": "0x389276e4cb30967951d83eb08a7e6f0d2ee5623b: 0 wei + 200000 gas × 241199997 wei"
+      }
+    },
+    "queued": {}
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"txpool_inspect","params":[],"id":67}'
+```
+
+</CodeGroup>

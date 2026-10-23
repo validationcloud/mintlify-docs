@@ -1,0 +1,69 @@
+---
+title: "eth_subscribe"
+---
+
+Subscribes to real-time events over WebSocket and returns a subscription ID that is attached to every notification.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing) and each notification delivered on the subscription will use `10` Compute Units regardless of size.
+
+***
+
+## **Reference:** [**Here**](https://ethereum.org/en/developers/tutorials/using-websockets/#eth-subscribe)
+
+## **Parameters**
+
+`subscription name` - **string** - The type of event you want to subscribe to (newHeads, logs). This method supports the following subscription types:
+
+* **newHeads** - Fires a notification each time a new header is appended to the chain, including chain reorganizations.
+* **logs** - Returns logs that are included in new imported blocks and match the given filter criteria.
+
+`data - object -` (Optional) - Arguments such as an address, multiple addresses, and topics. Note, only logs that are created from these addresses or match the specified topics will return logs.
+
+```json
+// newHeads
+params: ["newHeads"]
+
+// logs from one contract
+params: ["logs", {"address": "0xe538905cf8410324e03a5a23c1c177a474d59b2b"}]
+```
+
+## Returns
+
+`result - string` - Hex encoded subscription ID. This ID will be attached to all received events and can also be used to cancel the subscription using [eth\_unsubscribe](/nodeapi/xlayer/execution-api/eth_unsubscribe).
+
+```json
+// Result
+{"jsonrpc":"2.0","id":1,"result":"0x4e9adcdf37eff2ba0fecfd51481e8305"}
+
+//Example (newHeads)
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0x4e9adcdf37eff2ba0fecfd51481e8305",
+    "result": {
+      "number": "0x468d9b9",
+      "hash": "0x34e81cefc49206b9f6decd6613faffb1e72cfe7bcd5a6c37c5e8a9e0a6b96b7c",
+      "parentHash": "0xfdbcb35cb6aa0a359612943e9b7d8e414b1e55d17fce1003ebbbaee5537e0ec7",
+      "timestamp": "0x6adb2f45",
+      "gasLimit": "0xc845880",
+      "gasUsed": "0x53891d",
+      "baseFeePerGas": "0x1312d00",
+      "miner": "0x4200000000000000000000000000000000000011",
+      "transactionsRoot": "0x3f3b356c08fd1ba60bff3a880d8655b2f1b67f910906bd4ae6ae62ce044d0fa9",
+      "receiptsRoot": "0x5c4dda127d53ebbaf5e870f6257ecf4c6f82f61eac7a0f50faa3ccec85f07ba1"
+    }
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.xlayer.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+{"jsonrpc":  "2.0",  "id":  1,  "method":"eth_subscribe","params":["newHeads"]}
+{"jsonrpc":"2.0","result":"0x4e9adcdf37eff2ba0fecfd51481e8305","id":1}
+```
+
+</CodeGroup>
+

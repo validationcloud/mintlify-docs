@@ -1,0 +1,71 @@
+---
+title: "eth_getFilterLogs"
+---
+
+Returns an array of all logs matching filter with given id.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getfilterlogs)
+
+## **Parameters**
+
+`QUANTITY` - the filter id.
+
+```javascript
+params: 
+[
+  "0x16", // 22
+]
+```
+
+## Returns
+
+`Array` - Array of log objects matching the filter, or an empty array if none match. Each log object has the following fields:
+  * `removed`: `Boolean` - `true` when the log was removed, due to a chain reorganization. `false` if its a valid log.
+  * `logIndex`: `QUANTITY` - integer of the log index position in the block. `null` when its pending log.
+  * `transactionIndex`: `QUANTITY` - integer of the transactions index position log was created from. `null` when its pending log.
+  * `transactionHash`: `DATA`, 32 Bytes - hash of the transactions this log was created from. `null` when its pending log.
+  * `blockHash`: `DATA`, 32 Bytes - hash of the block where this log was in. `null` when its pending. `null` when its pending log.
+  * `blockNumber`: `QUANTITY` - the block number where this log was in. `null` when its pending. `null` when its pending log.
+  * `address`: `DATA`, 20 Bytes - address from which this log originated.
+  * `data`: `DATA` - contains one or more 32 Bytes non-indexed arguments of the log.
+  * `topics`: `Array of DATA` - Array of 0 to 4 32 Bytes `DATA` of indexed log arguments. (In _solidity_: The first topic is the _hash_ of the signature of the event (e.g. `Deposit(address,bytes32,uint256)`), except you declared the event with the `anonymous` specifier.)
+
+```json
+// Result (first of the 6 logs shown)
+{
+  "jsonrpc": "2.0",
+  "id": 74,
+  "result": [
+    {
+      "address": "0xe538905cf8410324e03a5a23c1c177a474d59b2b",
+      "topics": [
+        "0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c",
+        "0x000000000000000000000000881fb2f98c13d521009464e7d1cbf16e1b394e8e"
+      ],
+      "data": "0x00000000000000000000000000000000000000000000000014f498ffead70000",
+      "blockHash": "0x7e9e342d666f5430dc4950a84f26c5ba500936fc0e1bb7a0c088f85ec1c39e48",
+      "blockNumber": "0x468d9c4",
+      "blockTimestamp": "0x6adb2f50",
+      "transactionHash": "0xed873a42932350d945a5b4eab9e6fc694540926043353c08f835cda8e10dd546",
+      "transactionIndex": "0xe",
+      "logIndex": "0x57",
+      "removed": false
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0x3b61bb879b85551941939d58c32b2455"],"id":74}'
+```
+
+</CodeGroup>

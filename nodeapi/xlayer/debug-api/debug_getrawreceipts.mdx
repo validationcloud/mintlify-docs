@@ -1,0 +1,40 @@
+---
+title: "debug_getRawReceipts"
+---
+
+Returns an array of EIP-2718 binary-encoded receipts.
+
+This method will use `10` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - Quantity (hex) | Tag - <span style={{color: "red"}}>Required</span>  - The block number as a string in hexadecimal format or latest
+
+## **Returns**
+
+`result` - An array of EIP-2718 binary-encoded receipts.
+
+```json wrap
+// Result (first of the block's 12 receipts shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    "0x7ef9010e0182b45ab901000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000..."
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_getRawReceipts","params":["0x4685f68"],"id":1}'
+```
+
+</CodeGroup>
+

@@ -1,0 +1,65 @@
+---
+title: "trace_callMany"
+---
+
+Executes several message calls in sequence against the same state and returns the traces of each, without creating transactions on the block chain.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+1. `array` - A list of `[transaction, traceTypes]` pairs, executed in order, each later call seeing the state changes of the earlier ones:
+   * `transaction` - Object - The call object with the same fields as [eth\_call](/nodeapi/xlayer/execution-api/eth_call) (`from`, `to`, `gas`, `gasPrice`, `value`, `data`).
+   * `traceTypes` - Array - Any of `trace`, `vmTrace`, `stateDiff`.
+2. `QUANTITY | TAG` - Integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+
+## **Returns**
+
+`array` - One result per call, each with `output`, `trace`, `stateDiff` and `vmTrace` as requested.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "output": "0x000000000000000000000000000000000000000000002f8496e4c770fd4b4e84",
+      "stateDiff": null,
+      "trace": [
+        {
+          "type": "call",
+          "action": {
+            "from": "0x0000000000000000000000000000000000000000",
+            "callType": "call",
+            "gas": "0xffffffffffffadb7",
+            "input": "0x18160ddd",
+            "to": "0xe538905cf8410324e03a5a23c1c177a474d59b2b",
+            "value": "0x0"
+          },
+          "result": {
+            "gasUsed": "0x15f",
+            "output": "0x000000000000000000000000000000000000000000002f8496e4c770fd4b4e84"
+          },
+          "subtraces": 0,
+          "traceAddress": []
+        }
+      ],
+      "vmTrace": null
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE>/evm \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_callMany","params":[[[{"to":"0xe538905cf8410324e03a5a23c1c177a474d59b2b","data":"0x18160ddd"},["trace"]]],"latest"],"id":1}'
+```
+
+</CodeGroup>

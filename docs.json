@@ -3289,6 +3289,96 @@
                 ]
               },
               {
+                "group": "X Layer",
+                "icon": "/nodeapi/assets/chains/xlayer.svg",
+                "root": "nodeapi/xlayer/overview",
+                "pages": [
+                  {
+                    "group": "Execution API",
+                    "pages": [
+                      "nodeapi/xlayer/execution-api/eth_accounts",
+                      "nodeapi/xlayer/execution-api/eth_blobbasefee",
+                      "nodeapi/xlayer/execution-api/eth_blocknumber",
+                      "nodeapi/xlayer/execution-api/eth_call",
+                      "nodeapi/xlayer/execution-api/eth_chainid",
+                      "nodeapi/xlayer/execution-api/eth_createaccesslist",
+                      "nodeapi/xlayer/execution-api/eth_estimategas",
+                      "nodeapi/xlayer/execution-api/eth_feehistory",
+                      "nodeapi/xlayer/execution-api/eth_gasprice",
+                      "nodeapi/xlayer/execution-api/eth_getbalance",
+                      "nodeapi/xlayer/execution-api/eth_getblockbyhash",
+                      "nodeapi/xlayer/execution-api/eth_getblockbynumber",
+                      "nodeapi/xlayer/execution-api/eth_getblockreceipts",
+                      "nodeapi/xlayer/execution-api/eth_getblocktransactioncountbyhash",
+                      "nodeapi/xlayer/execution-api/eth_getblocktransactioncountbynumber",
+                      "nodeapi/xlayer/execution-api/eth_getcode",
+                      "nodeapi/xlayer/execution-api/eth_getfilterchanges",
+                      "nodeapi/xlayer/execution-api/eth_getfilterlogs",
+                      "nodeapi/xlayer/execution-api/eth_getlogs",
+                      "nodeapi/xlayer/execution-api/eth_getproof",
+                      "nodeapi/xlayer/execution-api/eth_getrawtransactionbyhash",
+                      "nodeapi/xlayer/execution-api/eth_getstorageat",
+                      "nodeapi/xlayer/execution-api/eth_gettransactionbyblockhashandindex",
+                      "nodeapi/xlayer/execution-api/eth_gettransactionbyblocknumberandindex",
+                      "nodeapi/xlayer/execution-api/eth_gettransactionbyhash",
+                      "nodeapi/xlayer/execution-api/eth_gettransactioncount",
+                      "nodeapi/xlayer/execution-api/eth_gettransactionreceipt",
+                      "nodeapi/xlayer/execution-api/eth_getunclebyblockhashandindex",
+                      "nodeapi/xlayer/execution-api/eth_getunclebyblocknumberandindex",
+                      "nodeapi/xlayer/execution-api/eth_getunclecountbyblockhash",
+                      "nodeapi/xlayer/execution-api/eth_getunclecountbyblocknumber",
+                      "nodeapi/xlayer/execution-api/eth_maxpriorityfeepergas",
+                      "nodeapi/xlayer/execution-api/eth_newblockfilter",
+                      "nodeapi/xlayer/execution-api/eth_newfilter",
+                      "nodeapi/xlayer/execution-api/eth_newpendingtransactionfilter",
+                      "nodeapi/xlayer/execution-api/eth_protocolversion",
+                      "nodeapi/xlayer/execution-api/eth_sendrawtransaction",
+                      "nodeapi/xlayer/execution-api/eth_simulatev1",
+                      "nodeapi/xlayer/execution-api/eth_subscribe",
+                      "nodeapi/xlayer/execution-api/eth_syncing",
+                      "nodeapi/xlayer/execution-api/eth_uninstallfilter",
+                      "nodeapi/xlayer/execution-api/eth_unsubscribe",
+                      "nodeapi/xlayer/execution-api/net_listening",
+                      "nodeapi/xlayer/execution-api/net_peercount",
+                      "nodeapi/xlayer/execution-api/net_version",
+                      "nodeapi/xlayer/execution-api/txpool_content",
+                      "nodeapi/xlayer/execution-api/txpool_inspect",
+                      "nodeapi/xlayer/execution-api/txpool_status",
+                      "nodeapi/xlayer/execution-api/web3_clientversion",
+                      "nodeapi/xlayer/execution-api/web3_sha3"
+                    ]
+                  },
+                  {
+                    "group": "Debug API",
+                    "pages": [
+                      "nodeapi/xlayer/debug-api/debug_getbadblocks",
+                      "nodeapi/xlayer/debug-api/debug_getrawblock",
+                      "nodeapi/xlayer/debug-api/debug_getrawheader",
+                      "nodeapi/xlayer/debug-api/debug_getrawreceipts",
+                      "nodeapi/xlayer/debug-api/debug_getrawtransaction",
+                      "nodeapi/xlayer/debug-api/debug_traceblockbyhash",
+                      "nodeapi/xlayer/debug-api/debug_traceblockbynumber",
+                      "nodeapi/xlayer/debug-api/debug_tracecall",
+                      "nodeapi/xlayer/debug-api/debug_tracetransaction"
+                    ]
+                  },
+                  {
+                    "group": "Trace API",
+                    "pages": [
+                      "nodeapi/xlayer/trace-api/trace_block",
+                      "nodeapi/xlayer/trace-api/trace_call",
+                      "nodeapi/xlayer/trace-api/trace_callmany",
+                      "nodeapi/xlayer/trace-api/trace_filter",
+                      "nodeapi/xlayer/trace-api/trace_get",
+                      "nodeapi/xlayer/trace-api/trace_rawtransaction",
+                      "nodeapi/xlayer/trace-api/trace_replayblocktransactions",
+                      "nodeapi/xlayer/trace-api/trace_replaytransaction",
+                      "nodeapi/xlayer/trace-api/trace_transaction"
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "XRPL",
                 "icon": "/nodeapi/assets/chains/xrp-ledger-xrpl.svg",
                 "root": "nodeapi/xrp-ledger-xrpl/overview",

@@ -20,7 +20,7 @@ LOGOS = {
     'hedera': 'hbar', 'hyperliquid': 'hype', 'icp': 'icp', 'mezo': 'mezo', 'monad': 'mon',
     'opbnb': 'opbnb', 'optimism': 'optimism', 'polygon': 'matic', 'rayls': 'rls',
     'robinhood-chain': 'rbh', 'solana': 'sol', 'somnia': 'stt', 'stellar': 'xlm', 'tempo': 'tempo',
-    'tron': 'trx', 'unichain': 'uni', 'wemix': 'wemix', 'xrp-ledger-xrpl': 'xrp',
+    'tron': 'trx', 'unichain': 'uni', 'wemix': 'wemix', 'xlayer': 'okb', 'xrp-ledger-xrpl': 'xrp',
 }
 
 sprite = open(SPRITE).read()

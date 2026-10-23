@@ -1,0 +1,84 @@
+---
+title: "trace_filter"
+---
+
+Returns traces matching given filter.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`object` - object - The filter object
+
+* `fromBlock` - string - The starting block number for the filter in hexadecimal format
+* `toBlock` - string - The ending block number for the filter in hexadecimal format
+* `fromAddress` - array - An array of sender addresses to filter by
+* `toAddress` - array - An array of receiver addresses to filter by
+* `after` - integer - The offset trace number for pagination
+* `count` - integer - The number of traces to display in a batch
+
+## **Returns**
+
+`result` - array - An array of trace objects that match the given filter
+
+* `action` - object - The trace action object containing details of the call
+  * `from` - string - The address of the sender
+  * `callType` - string - The type of method such as call, delegatecall, staticcall
+  * `gas` - string - The gas provided by the sender encoded as hexadecimal
+  * `input` - string - The data sent along with the transaction
+  * `to` - string - The address of the receiver
+  * `value` - string - The value sent with this transaction encoded as hexadecimal
+* `blockHash` - string - The hash of the block containing this transaction
+* `blockNumber` - integer - The block number containing this transaction
+* `result` - object - The execution result object of the trace
+  * `gasUsed` - string - The amount of gas used by this specific trace
+  * `output` - string - The value returned by the call, empty if no RETURN was executed
+* `subtraces` - integer - The number of subtraces (internal calls) in this trace
+* `traceAddress` - array - The list showing the nested call structure of this trace
+* `transactionHash` - string - The hash of the transaction
+* `transactionPosition` - integer - The transaction index position within the block
+* `type` - string - The type of trace, such as call or create
+
+```json
+// Result (first of the 36 traces shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "action": {
+        "from": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0001",
+        "callType": "call",
+        "gas": "0xee9f8",
+        "input": "0x3db6be2b00000000000000000000000000000005000000006adab4a700000000019092be00000000000000000000000000000000000000000000000000000000...",
+        "to": "0x4200000000000000000000000000000000000015",
+        "value": "0x0"
+      },
+      "blockHash": "0x241a36521807e99d82624139dd3dd2ee0007c3126d9e15b82d08e2e76b6b7c8f",
+      "blockNumber": 73949032,
+      "result": {
+        "gasUsed": "0x5c12",
+        "output": "0x"
+      },
+      "subtraces": 1,
+      "traceAddress": [],
+      "transactionHash": "0x0cf46910a7ede71333dbb1689c03b2eb77b958af08701039cbef40f0cace0a4c",
+      "transactionPosition": 0,
+      "type": "call"
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_filter","params":[{"fromBlock":"0x4685f68","toBlock":"0x4685f68"}],"id":1}'
+```
+
+</CodeGroup>

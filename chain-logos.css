@@ -32,6 +32,7 @@
 #content-area:has(.chain-logo-tron) #page-title::before { background-image: url("/nodeapi/assets/chains/tron.svg"); }
 #content-area:has(.chain-logo-unichain) #page-title::before { background-image: url("/nodeapi/assets/chains/unichain.svg"); }
 #content-area:has(.chain-logo-wemix) #page-title::before { background-image: url("/nodeapi/assets/chains/wemix.svg"); }
+#content-area:has(.chain-logo-xlayer) #page-title::before { background-image: url("/nodeapi/assets/chains/xlayer.svg"); }
 #content-area:has(.chain-logo-xrp-ledger-xrpl) #page-title::before { background-image: url("/nodeapi/assets/chains/xrp-ledger-xrpl.svg"); }
 /* Several logos are a white disc; outline them on the light theme so they keep their shape */
 html:not(.dark) img[src*="/nodeapi/assets/chains/"],
