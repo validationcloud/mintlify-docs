@@ -1,0 +1,83 @@
+---
+title: "trace_block"
+---
+
+Returns traces created at given block.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span> - The block number as a string in hexadecimal format or tags. The supported tag values include:
+
+* `earliest` - For the earliest/genesis block
+* `latest` for the latest mined block
+* `safe` for the most recent secure block
+* `finalized` for the latest block whose Ethereum (L1) data is finalized
+
+## **Returns**
+
+`array` - The block traces, which have the following fields (all return types are hexadecimal unless otherwise noted):
+
+* `action` - object The ParityTrace action object containing call details
+  * `from` - string - The address of the sender
+  * `callType` - string - The type of method such as call, staticcall, delegatecall
+  * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+  * `input` - string - The input data sent along with the transaction
+  * `to` - string - The address of the receiver
+  * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+* `blockHash` - string - The hash of the block where this transaction was in
+* `blockNumber` - integer - The block number where this transaction was in
+* `result` - object - The ParityTrace result object containing execution outcome
+  * `gasUsed` - string -The amount of gas used by this specific transaction
+  * `output` - string - The return value of the contract call, empty if no RETURN executed
+* `subtraces` - integer - The number of subtraces (internal calls) made by the transaction
+* `traceAddress` - array - The list of addresses where the call executed, including parent addresses and call order
+* `transactionHash` - string - The hash of the transaction
+* `transactionPosition` - integer - The transaction index position within the block
+* `type` - string - The type of the trace, such as call or create
+* `error` - string - The error message, if any
+
+```json
+// Result (first of the block's 36 traces shown)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "action": {
+        "from": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0001",
+        "callType": "call",
+        "gas": "0xee9f8",
+        "input": "0x3db6be2b00000000000000000000000000000005000000006adab4a700000000019092be00000000000000000000000000000000000000000000000000000000...",
+        "to": "0x4200000000000000000000000000000000000015",
+        "value": "0x0"
+      },
+      "blockHash": "0x241a36521807e99d82624139dd3dd2ee0007c3126d9e15b82d08e2e76b6b7c8f",
+      "blockNumber": 73949032,
+      "result": {
+        "gasUsed": "0x5c12",
+        "output": "0x"
+      },
+      "subtraces": 1,
+      "traceAddress": [],
+      "transactionHash": "0x0cf46910a7ede71333dbb1689c03b2eb77b958af08701039cbef40f0cace0a4c",
+      "transactionPosition": 0,
+      "type": "call"
+    }
+  ]
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_block","params":["0x4685f68"],"id":1}'
+```
+
+</CodeGroup>

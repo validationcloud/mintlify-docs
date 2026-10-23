@@ -1,0 +1,41 @@
+---
+title: "eth_getStorageAt"
+---
+
+Returns the value from a storage position at a given address.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getstorageat)
+
+## **Parameters**
+
+1. `DATA`, 20 Bytes - address of the storage.
+2. `QUANTITY` - integer of the position in the storage.
+3. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`String` - Hex value representing data at this storage position.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x57726170706564204f4b42000000000000000000000000000000000000000016"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getStorageAt","params":["0xe538905cf8410324e03a5a23c1c177a474d59b2b","0x0","latest"],"id":1}'
+```
+
+</CodeGroup>

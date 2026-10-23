@@ -1,0 +1,98 @@
+---
+title: "trace_call"
+---
+
+Executes a new message call and returns a number of possible traces.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`object` - object - <span style={{color: "red"}}>Required</span> - The transaction call object
+
+* `from` - string - The address the transaction is sent from
+* `to` - string - The address the transaction is directed to
+* `gas` - string - The gas provided for the transaction execution, encoded as hexadecimal
+* `gasPrice` - string - The gas price for each paid gas, encoded as hexadecimal
+* `value` - string - The value sent with this transaction, encoded as hexadecimal
+* `data` - string - The call data: the 4-byte function selector followed by the ABI-encoded parameters
+
+`array` - array - <span style={{color: "red"}}>Required</span> - The type of trace, which can be one of the following:
+
+* `trace` - string - To get the basic trace of the given call
+* `stateDiff` - string - To get information on altered state due to execution of the given call
+* `vmTrace` - string - To get a full trace of the virtual machine's state during execution
+
+`blockNumber` - String - <span style={{color: "red"}}>Required</span> - The block number as a string in hexadecimal format or tags. The supported tag values include:
+
+* `earliest` - For the earliest/genesis block
+* `latest` for the latest mined block
+* `safe` for the most recent secure block
+* `finalized` for the latest block whose Ethereum (L1) data is finalized
+
+## **Returns**
+
+`object` - object -The transaction trace result object
+
+* `output` - string - The data returned as output encoded in hexadecimal format
+* `stateDiff` - object - The altered Ethereum state due to execution of the given transaction, or null if not available
+* `trace` - array - An array of basic trace objects for the given transaction containing:
+  * `action` - object The ParityTrace action object containing call details
+    * `from` - string - The address of the sender
+    * `callType` - string - The type of method such as call, staticcall, delegatecall
+    * `gas` - string - The gas provided by the sender, encoded as hexadecimal
+    * `input` - string - The input data sent along with the transaction
+    * `to` - string - The address of the receiver
+    * `value` - string - The integer of the value sent with this transaction, encoded as hexadecimal
+  * `result` - object - The execution result of the trace
+    * `gasUsed` - string - The amount of gas used by this trace
+    * `output` - string - The return value of the contract call, empty if no RETURN executed
+  * `subtraces` - integer - The number of subtraces (internal calls) within this trace
+  * `traceAddress` - array - The list of addresses where the call executed, including parent calls and order
+  * `type` - string The type of the trace, such as call or create
+* `vmTrace` - object - The full trace of the virtual machine's state during execution, including sub-calls, or null if not available
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "output": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "stateDiff": null,
+    "trace": [
+      {
+        "type": "call",
+        "action": {
+          "from": "0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073",
+          "callType": "call",
+          "gas": "0xffffffffffffac47",
+          "input": "0x70a082310000000000000000000000007a8bcda73a1eca3f47944a7c9ee0133adce3d073",
+          "to": "0xe538905cf8410324e03a5a23c1c177a474d59b2b",
+          "value": "0x0"
+        },
+        "result": {
+          "gasUsed": "0xa04",
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "subtraces": 0,
+        "traceAddress": []
+      }
+    ],
+    "vmTrace": null
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"trace_call","params":[{"from":"0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073","to":"0xe538905cf8410324e03a5a23c1c177a474d59b2b","data":"0x70a082310000000000000000000000007a8bcda73a1eca3f47944a7c9ee0133adce3d073"},["trace"],"latest"],"id":1}'
+```
+
+</CodeGroup>

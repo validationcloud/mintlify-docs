@@ -1,0 +1,127 @@
+---
+title: "Overview"
+---
+
+import TryFree from "/snippets/try-free.mdx";
+
+<span className="chain-logo-xlayer" />
+
+<img className="page-cover" src="/nodeapi/assets/xlayer-overview-2x.png" alt="" noZoom />
+
+<TryFree chain="X Layer" logo="/nodeapi/assets/chains/xlayer.svg" />
+
+X Layer is an Ethereum Layer 2 built by OKX on the OP Stack. It produces a block every second. Its native token is `OKB`.
+
+Block explorer: [https://web3.okx.com/explorer/x-layer](https://web3.okx.com/explorer/x-layer)
+
+X Layer's own developer documentation: [https://web3.okx.com/xlayer/docs](https://web3.okx.com/xlayer/docs)
+
+## Network Support
+
+| Network | Full History / Archive | HTTPS | WSS |
+| --- | --- | --- | --- |
+| X Layer Mainnet | ✅ since re-genesis (block 42,810,021) | ✅ | ✅ |
+
+> X Layer moved from Polygon CDK to the OP Stack at block 42,810,021 on 27 October 2025. All account state carried over, so current balances and contracts are complete. State methods such as `eth_call` and `eth_getBalance`, the [Debug API](/nodeapi/xlayer/debug-api/debug_traceblockbynumber) and the [Trace API](/nodeapi/xlayer/trace-api/trace_block) work for any block from 42,810,021 onward. Blocks before the re-genesis are not served. Block requests for them return `null` and state requests return an error.
+
+> `eth_getProof` serves the latest 128 blocks. Older blocks return JSON-RPC error `-32602`.
+
+> WebSocket clients **MUST** respond to server `ping` frames, otherwise the connection will be closed and re-established every minute.
+
+## Getting Started
+
+Send a request to check that your endpoint works. Replace `<YOUR_API_KEY_HERE>` with the key from your endpoint in the [Validation Cloud app](https://app.validationcloud.io/node).
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":0}'
+```
+
+</CodeGroup>
+
+Connect over WebSocket:
+
+<CodeGroup>
+
+```bash title="mainnet"
+wscat -c wss://mainnet.xlayer.validationcloud.io/v1/wss/<YOUR_API_KEY_HERE>
+```
+
+</CodeGroup>
+
+## Compute Units
+
+| Method | Compute units |
+| --- | --- |
+| [debug_getBadBlocks](/nodeapi/xlayer/debug-api/debug_getbadblocks) | 80 |
+| [debug_getRawBlock](/nodeapi/xlayer/debug-api/debug_getrawblock) | 80 |
+| [debug_getRawHeader](/nodeapi/xlayer/debug-api/debug_getrawheader) | 80 |
+| [debug_getRawReceipts](/nodeapi/xlayer/debug-api/debug_getrawreceipts) | 80 |
+| [debug_getRawTransaction](/nodeapi/xlayer/debug-api/debug_getrawtransaction) | 80 |
+| [debug_traceBlockByHash](/nodeapi/xlayer/debug-api/debug_traceblockbyhash) | 80 |
+| [debug_traceBlockByNumber](/nodeapi/xlayer/debug-api/debug_traceblockbynumber) | 80 |
+| [debug_traceCall](/nodeapi/xlayer/debug-api/debug_tracecall) | 80 |
+| [debug_traceTransaction](/nodeapi/xlayer/debug-api/debug_tracetransaction) | 80 |
+| [eth_accounts](/nodeapi/xlayer/execution-api/eth_accounts) | 20 |
+| [eth_blobBaseFee](/nodeapi/xlayer/execution-api/eth_blobbasefee) | 10 |
+| [eth_blockNumber](/nodeapi/xlayer/execution-api/eth_blocknumber) | 20 |
+| [eth_call](/nodeapi/xlayer/execution-api/eth_call) | 40 |
+| [eth_chainId](/nodeapi/xlayer/execution-api/eth_chainid) | 10 |
+| [eth_createAccessList](/nodeapi/xlayer/execution-api/eth_createaccesslist) | 20 |
+| [eth_estimateGas](/nodeapi/xlayer/execution-api/eth_estimategas) | 40 |
+| [eth_feeHistory](/nodeapi/xlayer/execution-api/eth_feehistory) | 20 |
+| [eth_gasPrice](/nodeapi/xlayer/execution-api/eth_gasprice) | 40 |
+| [eth_getBalance](/nodeapi/xlayer/execution-api/eth_getbalance) | 40 |
+| [eth_getBlockByHash](/nodeapi/xlayer/execution-api/eth_getblockbyhash) | 40 |
+| [eth_getBlockByNumber](/nodeapi/xlayer/execution-api/eth_getblockbynumber) | 40 |
+| [eth_getBlockReceipts](/nodeapi/xlayer/execution-api/eth_getblockreceipts) | 40 |
+| [eth_getBlockTransactionCountByHash](/nodeapi/xlayer/execution-api/eth_getblocktransactioncountbyhash) | 40 |
+| [eth_getBlockTransactionCountByNumber](/nodeapi/xlayer/execution-api/eth_getblocktransactioncountbynumber) | 40 |
+| [eth_getCode](/nodeapi/xlayer/execution-api/eth_getcode) | 40 |
+| [eth_getFilterChanges](/nodeapi/xlayer/execution-api/eth_getfilterchanges) | 40 |
+| [eth_getFilterLogs](/nodeapi/xlayer/execution-api/eth_getfilterlogs) | 40 |
+| [eth_getLogs](/nodeapi/xlayer/execution-api/eth_getlogs) | 80 |
+| [eth_getProof](/nodeapi/xlayer/execution-api/eth_getproof) | 40 |
+| [eth_getRawTransactionByHash](/nodeapi/xlayer/execution-api/eth_getrawtransactionbyhash) | 10 |
+| [eth_getStorageAt](/nodeapi/xlayer/execution-api/eth_getstorageat) | 40 |
+| [eth_getTransactionByBlockHashAndIndex](/nodeapi/xlayer/execution-api/eth_gettransactionbyblockhashandindex) | 40 |
+| [eth_getTransactionByBlockNumberAndIndex](/nodeapi/xlayer/execution-api/eth_gettransactionbyblocknumberandindex) | 40 |
+| [eth_getTransactionByHash](/nodeapi/xlayer/execution-api/eth_gettransactionbyhash) | 40 |
+| [eth_getTransactionCount](/nodeapi/xlayer/execution-api/eth_gettransactioncount) | 40 |
+| [eth_getTransactionReceipt](/nodeapi/xlayer/execution-api/eth_gettransactionreceipt) | 40 |
+| [eth_getUncleByBlockHashAndIndex](/nodeapi/xlayer/execution-api/eth_getunclebyblockhashandindex) | 40 |
+| [eth_getUncleByBlockNumberAndIndex](/nodeapi/xlayer/execution-api/eth_getunclebyblocknumberandindex) | 40 |
+| [eth_getUncleCountByBlockHash](/nodeapi/xlayer/execution-api/eth_getunclecountbyblockhash) | 40 |
+| [eth_getUncleCountByBlockNumber](/nodeapi/xlayer/execution-api/eth_getunclecountbyblocknumber) | 40 |
+| [eth_maxPriorityFeePerGas](/nodeapi/xlayer/execution-api/eth_maxpriorityfeepergas) | 20 |
+| [eth_newBlockFilter](/nodeapi/xlayer/execution-api/eth_newblockfilter) | 40 |
+| [eth_newFilter](/nodeapi/xlayer/execution-api/eth_newfilter) | 40 |
+| [eth_newPendingTransactionFilter](/nodeapi/xlayer/execution-api/eth_newpendingtransactionfilter) | 40 |
+| [eth_protocolVersion](/nodeapi/xlayer/execution-api/eth_protocolversion) | 10 |
+| [eth_sendRawTransaction](/nodeapi/xlayer/execution-api/eth_sendrawtransaction) | 80 |
+| [eth_simulateV1](/nodeapi/xlayer/execution-api/eth_simulatev1) | 40 |
+| [eth_subscribe](/nodeapi/xlayer/execution-api/eth_subscribe) | 20 |
+| [eth_syncing](/nodeapi/xlayer/execution-api/eth_syncing) | 10 |
+| [eth_uninstallFilter](/nodeapi/xlayer/execution-api/eth_uninstallfilter) | 20 |
+| [eth_unsubscribe](/nodeapi/xlayer/execution-api/eth_unsubscribe) | 20 |
+| [net_listening](/nodeapi/xlayer/execution-api/net_listening) | 10 |
+| [net_peerCount](/nodeapi/xlayer/execution-api/net_peercount) | 20 |
+| [net_version](/nodeapi/xlayer/execution-api/net_version) | 10 |
+| [trace_block](/nodeapi/xlayer/trace-api/trace_block) | 80 |
+| [trace_call](/nodeapi/xlayer/trace-api/trace_call) | 80 |
+| [trace_callMany](/nodeapi/xlayer/trace-api/trace_callmany) | 80 |
+| [trace_filter](/nodeapi/xlayer/trace-api/trace_filter) | 80 |
+| [trace_get](/nodeapi/xlayer/trace-api/trace_get) | 80 |
+| [trace_rawTransaction](/nodeapi/xlayer/trace-api/trace_rawtransaction) | 80 |
+| [trace_replayBlockTransactions](/nodeapi/xlayer/trace-api/trace_replayblocktransactions) | 270 |
+| [trace_replayTransaction](/nodeapi/xlayer/trace-api/trace_replaytransaction) | 270 |
+| [trace_transaction](/nodeapi/xlayer/trace-api/trace_transaction) | 80 |
+| [txpool_content](/nodeapi/xlayer/execution-api/txpool_content) | 500 |
+| [txpool_inspect](/nodeapi/xlayer/execution-api/txpool_inspect) | 80 |
+| [txpool_status](/nodeapi/xlayer/execution-api/txpool_status) | 80 |
+| [web3_clientVersion](/nodeapi/xlayer/execution-api/web3_clientversion) | 40 |
+| [web3_sha3](/nodeapi/xlayer/execution-api/web3_sha3) | 40 |

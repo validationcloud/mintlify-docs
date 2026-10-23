@@ -1,0 +1,94 @@
+---
+title: "txpool_content"
+---
+
+Returns a list of pending and queued transactions.
+
+This method will use `500` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`None`
+
+## Returns
+
+An object with two maps, `pending` and `queued`. Each map is keyed by sender address, then by nonce, and each entry is a transaction object with the following fields:
+
+* `blockHash` - Hash of block the transaction is in, null since its pending
+* `blockNumber` - hexadecimal block number of the block the transaction is in, null since pending
+* `from` - Address of the sender
+* `gas` - The gas limit of the transaction
+* `gasPrice` - The gas price, in wei per unit of gas
+* `maxFeePerGas` - The maximum total fee the sender will pay, in wei per unit of gas
+* `maxPriorityFeePerGas` - The maximum priority fee (tip) the sender will pay, in wei per unit of gas
+* `hash` - Hash of the transaction
+* `input` - Encoded transaction input data
+* `nonce` - Number of transactions the sender has sent till now
+* `v` - hexadecimal ECDSA recovery id
+* `r` - ECDSA signature r
+* `s` - ECDSA signature s
+* `to` - Address of the receiver
+* `transactionIndex` - hexadecimal integer of the transactions index position in the block, null since pending
+* `type` - A number between 0 and 0x7f, for a total of 128 possible transaction types.
+* `value` - hexadecimal value transferred
+
+```json
+// Result (one account's first transaction shown per pool)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "pending": {
+      "0x91b8c5e8c1ddb9d326013d0c30e383f5cb428f60": {
+        "0": {
+          "type": "0x4",
+          "chainId": "0xc4",
+          "nonce": "0x0",
+          "gas": "0x30d40",
+          "maxFeePerGas": "0xe606b7d",
+          "maxPriorityFeePerGas": "0xf4240",
+          "to": "0x389276e4cb30967951d83eb08a7e6f0d2ee5623b",
+          "value": "0x0",
+          "accessList": [],
+          "authorizationList": [
+            {
+              "chainId": "0xc4",
+              "address": "0xc574b75e9fbc116bc563ce51c47842e067cc386c",
+              "nonce": "0x396",
+              "yParity": "0x0",
+              "r": "0xb11bb4a69a6eb22e0019ebbca12dc0016d9b1f609718c15a3275cef75a7bd656",
+              "s": "0x32b4b1be64fb06db5bf5b85265366e3bb9aa3469f8269e28b8633f58f7c44319"
+            }
+          ],
+          "input": "0x760f2a0b000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000...",
+          "r": "0x29fd03bfa2e002065c83b988082073304cd5171821a9848ffc823000486fe01c",
+          "s": "0xcdb5cd9377c26d7fc025b492c7fa266e7c17a274b2bccbdeb807c1890d786dd",
+          "yParity": "0x0",
+          "v": "0x0",
+          "hash": "0xb82070add220f433df75946d9be01065f9a32f933211c97eee527546c6479cda",
+          "blockHash": null,
+          "blockNumber": null,
+          "transactionIndex": null,
+          "from": "0x91b8c5e8c1ddb9d326013d0c30e383f5cb428f60",
+          "gasPrice": "0xe606b7d"
+        }
+      }
+    },
+    "queued": {}
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"txpool_content","params":[],"id":1}'
+```
+
+</CodeGroup>
+

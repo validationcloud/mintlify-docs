@@ -1,0 +1,38 @@
+---
+title: "debug_getRawTransaction"
+---
+
+Returns the EIP-2718 binary-encoded transaction.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`tx_hash` - String <span style={{color: "red"}}>Required</span>  - The transaction hash.
+
+## **Returns**
+
+`result` - String or null. The EIP-2718 binary-encoded transaction as hex, or `null` if the transaction is not found.
+
+```json wrap
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x02f9019481c4833cf795837704c084025317c18302abf694bff976f8874814e6f2ee98d559826812ff26597f80b9012464489bf5000000000000000000000000..."
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_getRawTransaction","params":["0x6761ad2af540c24d7168489c98e77e8910eba2d07294ae25f24ceeeba11fb382"],"id":1}'
+```
+
+</CodeGroup>
+

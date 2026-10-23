@@ -1,0 +1,45 @@
+---
+title: "eth_getUncleCountByBlockHash"
+---
+
+Returns the number of uncles in a block from a block matching the given block hash.
+
+This method will use `40` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## Reference: [Here](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_getunclecountbyblockhash)
+
+## **Parameters**
+
+1. `DATA`, 32 Bytes - hash of a block
+
+```javascript
+params: [
+  "0x241a36521807e99d82624139dd3dd2ee0007c3126d9e15b82d08e2e76b6b7c8f"
+]
+```
+
+## Returns
+
+`QUANTITY` - integer of the number of uncles in this block.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x0"
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getUncleCountByBlockHash","params":["0x241a36521807e99d82624139dd3dd2ee0007c3126d9e15b82d08e2e76b6b7c8f"],"id":1}'
+```
+
+</CodeGroup>

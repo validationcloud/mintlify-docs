@@ -1,0 +1,76 @@
+---
+title: "debug_traceTransaction"
+---
+
+Returns all traces of a given transaction.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`transactionHash` - String - <span style={{color: "red"}}>Required</span> - The transaction hash to be traced.
+
+`object` - Object - <span style={{color: "red"}}>Required</span> - The tracer object with the following fields:
+
+* `tracer` - String - The type of tracer, options are: `callTracer` or `prestateTracer`.
+  * `callTracer` - String - The callTracer keeps track of all call frames, including depth - calls, that are made during a transaction.
+  * `prestateTracer` - String - The prestateTracer replays the transaction and tracks every part of state that occurred during the transaction.
+* `tracerConfig` - Object (Optional) - The object to specify the configurations of the tracer.
+  * `onlyTopCall` - Boolean - When set to true, this will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+* `timeout` - String (Optional) - A string of decimal integers that overrides the JavaScript-based tracing calls default timeout of 5 seconds. Example: `10s` for 10 seconds.
+
+## **Returns**
+
+`result` - With `callTracer`, an object with the result of the trace, containing:
+
+* `from` - The address the transaction is sent from.
+* `gas` - The integer of the gas provided for the transaction execution.
+* `gasUsed` - The integer of the gas used.
+* `to` - The address the transaction is directed to.
+* `input` - The data given at the time of input.
+* `value` - The integer of the value sent with this transaction.
+* `type` - The type of call.
+
+With `prestateTracer`, the result is instead a map keyed by account address, holding the state the transaction touched (such as `balance`, `nonce`, `code` and `storage`).
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from": "0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073",
+    "gas": "0x2abf6",
+    "gasUsed": "0x209db",
+    "to": "0xbff976f8874814e6f2ee98d559826812ff26597f",
+    "input": "0x64489bf50000000000000000000000000000000000000000000000000021c0331d5dc00000000000000000000000000019e315ec9cce550dcfe7e3972f148219...",
+    "calls": [
+      {
+        "from": "0xbff976f8874814e6f2ee98d559826812ff26597f",
+        "gas": "0x13d03",
+        "gasUsed": "0xbb8",
+        "to": "0x0000000000000000000000000000000000000001",
+        "input": "0x9c6f763e023354a67c05f9d22da1545665f798e32d37b2433e9ebe7130b34226000000000000000000000000000000000000000000000000000000000000001c...",
+        "output": "0x00000000000000000000000098587a8693710728a22ddfad2b3a1f40f9535ada",
+        "type": "STATICCALL"
+      }
+    ],
+    "value": "0x0",
+    "type": "CALL"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_traceTransaction","params":["0x6761ad2af540c24d7168489c98e77e8910eba2d07294ae25f24ceeeba11fb382",{"tracer":"callTracer"}],"id":1}'
+```
+
+</CodeGroup>
+

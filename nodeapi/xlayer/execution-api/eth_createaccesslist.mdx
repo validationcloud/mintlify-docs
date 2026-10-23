@@ -1,0 +1,59 @@
+---
+title: "eth_createAccessList"
+---
+
+Returns an [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list that you can include in a transaction. You can use this method to optimize your smart contract interactions.
+
+This method will use `20` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+1. `Object` - The transaction call object
+
+`from` - \[optional] String of the address the transaction is sent from.
+
+`to` - \[optional] String of the address the transaction is directed to. Omit it for a contract creation.
+
+`gas` - \[optional] Integer of the gas provided for the transaction execution encoded as a hexadecimal.
+
+`gasPrice` - \[optional] Integer of the gasPrice used for each paid gas encoded as a hexadecimal.
+
+`value` - \[optional] Integer of the value sent with this transaction encoded as a hexadecimal.
+
+`data` - \[optional] String of the hash of the method signature and encoded parameters. For more information, see the [Contract ABI description in the Solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html).
+
+2. `QUANTITY | TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block-parameter)
+
+## Returns
+
+`Object` with the following fields:
+
+* `accessList`: A list of objects, one per account the transaction touches:
+  * `address`: Address accessed by the transaction.
+  * `storageKeys`: Storage keys accessed at that address.
+* `gasUsed`: A hexadecimal string representing the approximate gas cost for the transaction if the access list is included.
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "accessList": [],
+    "gasUsed": "0x53a7"
+  }
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_createAccessList","params":[{"from":"0x7a8bcda73a1eca3f47944a7c9ee0133adce3d073","to":"0xe538905cf8410324e03a5a23c1c177a474d59b2b","data":"0x18160ddd"},"latest"],"id":1}'
+```
+
+</CodeGroup>

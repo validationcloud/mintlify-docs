@@ -1,0 +1,38 @@
+---
+title: "debug_getRawBlock"
+---
+
+Returns an RLP-encoded block.
+
+This method will use `80` [Compute Units](/nodeapi/about/billing).
+
+***
+
+## **Parameters**
+
+`blockNumber` - Quantity (hex) | Tag - <span style={{color: "red"}}>Required</span>  - The block number as a string in hexadecimal format or latest
+
+## **Returns**
+
+`result` - The RLP encoded block
+
+```json
+// Result
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0xf91e90f9027aa0d98a06d970c2ac3804ce5a452e73a21eceeb31369cfe171534f12faf08a23a30a01dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413..."
+}
+```
+
+<CodeGroup>
+
+```bash title="mainnet"
+curl https://mainnet.xlayer.validationcloud.io/v1/<YOUR_API_KEY_HERE> \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"debug_getRawBlock","params":["0x4685f68"],"id":1}'
+```
+
+</CodeGroup>
+
